@@ -1,13 +1,26 @@
 import Navigation from "../Navigation/Navigation";
+import { Modal } from "../Modal/Modal";
+import  { useState } from 'react';
 
 function Welcome() {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
   return (
     <>
-      <p>
-        Supercharge your productivity and take control of your tasks with Task
-        Pro - Dont wait, start achieving your goals now!
-      </p>
+      <button onClick={handleModalOpen}>Open Modal</button>
+      {isModalOpen && <Modal onClose={handleModalClose}>
+        {/* Вставьте сюда содержимое для модалки, если требуется */}
+        <p>This is modal content</p>
+      </Modal>}
       <Navigation />
+      
     </>
   );
 }
