@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 body {
+  padding: 0;
   color: black;
   font-family: 'Poppins', -apple-system, sans-serif;
   font-weight: 500;
@@ -10,5 +11,6 @@ body {
   line-height: 1.21;
   width: 100vw;
   min-height: 100vh;
-  background: white;
+  background:linear-gradient(180deg, rgba(196, 196, 196, 0.00) 25%, #BEDBB0 92.19%);
+
   }`;
