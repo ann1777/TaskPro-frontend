@@ -4,27 +4,26 @@ import { breakpoints } from "../styles/breakpoints";
 
 const { tablet, desktop } = breakpoints;
 
-export const NavigationList = styled.ul`
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  /* justify-content: center; */
-  @media screen and (max-width: 767px) {
-    margin-right: -16px;
-  }
-  @media screen and (min-width: ${tablet}) {
-    gap: 45px;
-    /* flex-direction: row-reverse; */
-  }
-`;
+export const NavItemLogIn = styled(NavLink)`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.28px;
 
-export const NavigationItem = styled.li`
-  font-style: none;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-  color: black;
+  color: #161616;
+  font-style: normal;
+
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  transition: all 250ms linear;
+
+  color: #161616;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+    transition: opacity 250ms linear;
+  }
 
   @media screen and (min-width: ${tablet}) {
     &:last-child {
@@ -32,26 +31,46 @@ export const NavigationItem = styled.li`
       flex-wrap: nowrap;
       align-items: center;
     }
-  } /* &:hover,
-  &:focus {
-    color: #ffffff;
   }
-  &:active {
-    color: #ffffff;
-  } */
 `;
-
-export const NavItem = styled(NavLink)`
+export const NavItemRegistration = styled(NavLink)`
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.28px;
 
-  color: black;
+  color: #fff;
+  font-style: normal;
+  padding: 14px;
+  background-color: #161616;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  border-radius: 8px;
+  color: #fff;
+  width: calc(100vw - 40px);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 250ms linear;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+    transition: opacity 250ms linear;
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 344px;
+  }
 `;
 
-export const StyledDiv = styled.div`
+export const StyledNav = styled.nav`
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   @media screen and (min-width: ${tablet}) {
     flex-grow: 0;
   }
