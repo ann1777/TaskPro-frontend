@@ -1,5 +1,4 @@
 import { Formik, ErrorMessage } from "formik";
-
 import * as yup from "yup";
 import {
   StyledInputAuth,
@@ -11,11 +10,20 @@ import {
   StyledErrorAuth,
   StyledWrapAuthBtn,
   AuthWrapComponent,
+  LinkItem,
+  LinkList,
+  LinkNav,
+  WrapperForm,
+  AuthFormPasswordIcon,
+  StyledEyeIcon,
+  StyledEyeIconVis,
 } from "../Login/Login.styled";
-import Navigation from "../Navigation/Navigation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signup } from "../../../redux/auth/operations";
 
 let schema = yup.object({
-  username: yup
+  name: yup
     .string()
     .required("Please enter your name")
     .min(3, "Min length 8 symbols")
@@ -35,61 +43,110 @@ let schema = yup.object({
     .min(8, "Min length 8 symbols")
     .max(32, "Max length 32 symbols"),
 });
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+  showPassword: false,
+};
+
 function Registration() {
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+  const onSubmit = (values, { resetForm }) => {
+    const { name, email, password } = values;
+    console.log(name, email, password);
+    dispatch(
+      signup({
+        name,
+        email,
+        password,
+      })
+    );
+    resetForm();
+  };
+
   return (
     <>
-      <AuthWrapComponent>
-        <Navigation />
-        <StyledHeaderAuth></StyledHeaderAuth>
-        <Formik validationSchema={schema}>
-          <StyledFormAuth>
-            <StyledWrapInputAuth>
-              <StyledInputAuth
-                type="text"
-                name="username"
-                placeholder="Enter your name"
-              />
-              <StyledLabelAuth></StyledLabelAuth>
-              <ErrorMessage name="username">
-                {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
-              </ErrorMessage>
-            </StyledWrapInputAuth>
+      <WrapperForm>
+        <AuthWrapComponent>
+          <LinkList>
+            <LinkNav>
+              <LinkItem to="/registration" replace>
+                Registration
+              </LinkItem>
+            </LinkNav>
+            <LinkNav>
+              <LinkItem to="/login" replace>
+                Log In
+              </LinkItem>
+            </LinkNav>
+          </LinkList>
+          <StyledHeaderAuth></StyledHeaderAuth>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={schema}
+            onSubmit={onSubmit}
+          >
+            <StyledFormAuth>
+              <StyledWrapInputAuth>
+                <StyledInputAuth
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                />
+                <StyledLabelAuth></StyledLabelAuth>
+                <ErrorMessage name="name">
+                  {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
+                </ErrorMessage>
+              </StyledWrapInputAuth>
 
-            <StyledWrapInputAuth>
-              <StyledInputAuth
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-              />
-              <StyledLabelAuth></StyledLabelAuth>
-              <ErrorMessage name="email">
-                {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
-              </ErrorMessage>
-            </StyledWrapInputAuth>
+              <StyledWrapInputAuth>
+                <StyledInputAuth
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                />
+                <StyledLabelAuth></StyledLabelAuth>
+                <ErrorMessage name="email">
+                  {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
+                </ErrorMessage>
+              </StyledWrapInputAuth>
 
-            <StyledWrapInputAuth>
-              <StyledInputAuth
-                type="password"
-                name="password"
-                placeholder="Create a password"
-                // pattern="/^[a-zA-Z0-9]{8,16}$/"
-                // minlength="8"
-              />
-              <StyledLabelAuth></StyledLabelAuth>
+              <StyledWrapInputAuth>
+                <StyledInputAuth
+                  className="no-bottom-padding"
+                  name="password"
+                  placeholder="Create a password"
+                  type={showPassword ? "text" : "password"}
+                />
+                <StyledLabelAuth></StyledLabelAuth>
 
-              <ErrorMessage name="password">
-                {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
-              </ErrorMessage>
-            </StyledWrapInputAuth>
-            <StyledWrapAuthBtn>
-              <StyledBtnAuthAccent type="submit">
-                Register Now
-              </StyledBtnAuthAccent>
-              {/* <StyledLinkAuth to="/login">Log in</StyledLinkAuth> */}
-            </StyledWrapAuthBtn>
-          </StyledFormAuth>
-        </Formik>
-      </AuthWrapComponent>
+                <ErrorMessage name="password">
+                  {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
+                </ErrorMessage>
+                <AuthFormPasswordIcon onClick={handleTogglePassword}>
+                  {showPassword ? (
+                    <StyledEyeIcon size={18} />
+                  ) : (
+                    <StyledEyeIconVis size={18} />
+                  )}
+                </AuthFormPasswordIcon>
+              </StyledWrapInputAuth>
+              <StyledWrapAuthBtn>
+                <StyledBtnAuthAccent type="submit">
+                  Register Now
+                </StyledBtnAuthAccent>
+                {/* <StyledLinkAuth to="/login">Log in</StyledLinkAuth> */}
+              </StyledWrapAuthBtn>
+            </StyledFormAuth>
+          </Formik>
+        </AuthWrapComponent>
+      </WrapperForm>
     </>
   );
 }
