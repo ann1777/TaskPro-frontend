@@ -7,9 +7,6 @@ import {
   StyledErrorAuth,
   StyledWrapAuthBtn,
   AuthWrapComponent,
-  LinkList,
-  LinkNav,
-  LinkItem,
   WrapperForm,
   AuthFormPasswordIcon,
   StyledEyeIcon,
@@ -20,6 +17,8 @@ import * as yup from "yup";
 import { useState } from "react";
 import { signin } from "../../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
+import NavAuth from "../Navigation/NavAuth.jsx";
+import { useNavigate } from "react-router-dom";
 
 let schema = yup.object({
   password: yup
@@ -46,6 +45,7 @@ const initialValues = {
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -54,7 +54,9 @@ function Login() {
   const onSubmit = async (values, { resetForm }) => {
     const { email, password } = values;
     const resultAction = await dispatch(signin({ email, password }));
-    if (signin.rejected.match(resultAction)) {
+    if (signin.fulfilled.match(resultAction)) {
+      navigate("/home");
+    } else if (signin.rejected.match(resultAction)) {
       console.log(resultAction.error.message);
     }
     resetForm();
@@ -64,19 +66,7 @@ function Login() {
     <>
       <WrapperForm>
         <AuthWrapComponent>
-          <LinkList>
-            <LinkNav>
-              <LinkItem to="/registration" replace>
-                Registration
-              </LinkItem>
-            </LinkNav>
-            <LinkNav>
-              <LinkItem to="/login" replace>
-                Log In
-              </LinkItem>
-            </LinkNav>
-          </LinkList>
-
+          <NavAuth />
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
