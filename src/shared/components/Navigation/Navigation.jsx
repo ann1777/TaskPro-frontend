@@ -1,28 +1,19 @@
 import {
-  NavigationList,
-  NavigationItem,
-  NavItem,
-  StyledDiv,
+  NavItemRegistration,
+  NavItemLogIn,
+  StyledNav,
 } from "./Navigation.styled";
 
 function Navigation() {
   return (
-    <StyledDiv>
-      <nav>
-        <NavigationList>
-          <NavigationItem>
-            <NavItem to="/registration" replace>
-              Registration
-            </NavItem>
-          </NavigationItem>
-          <NavigationItem>
-            <NavItem to="/login" replace>
-              Log In
-            </NavItem>
-          </NavigationItem>
-        </NavigationList>
-      </nav>
-    </StyledDiv>
+    <StyledNav>
+      <NavItemRegistration to="/registration" replace>
+        Registration
+      </NavItemRegistration>
+      <NavItemLogIn to="/login" replace>
+        Log In
+      </NavItemLogIn>
+    </StyledNav>
   );
 }
 export default Navigation;
