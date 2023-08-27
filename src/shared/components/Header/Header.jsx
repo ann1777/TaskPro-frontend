@@ -1,7 +1,7 @@
-import { useState } from "react";
-import sprite from "../../images/header-burger.svg";
-import Avatar from "../../images/avatar.png";
-import { Sidebar } from "../Sidebar/Sidebar";
+import { useState } from 'react';
+import sprite from '../../images/header-burger.svg';
+import Avatar from '../../images/avatar.png';
+import { Sidebar } from '../Sidebar/Sidebar';
 import {
   StyledHeader,
   Wrapper,
@@ -11,13 +11,13 @@ import {
   StyledSvgBurger,
   ButtonBurger,
   Overlay,
-} from "./Header.styled";
+} from './Header.styled';
 
 const options = [
-  { value: "theme", label: "Theme" },
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
-  { value: "violet", label: "Violet" },
+  { value: 'theme', label: 'Theme' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+  { value: 'violet', label: 'Violet' },
 ];
 
 export const Header = () => {
@@ -33,31 +33,28 @@ export const Header = () => {
 
   return (
     <>
-
-    {isOpenMenu && <Overlay onClick={handleToggleMenu}/>}
-   <Sidebar/>
-    <StyledHeader>
-      <ButtonBurger onClick={handleToggleMenu}>
-        <StyledSvgBurger>
-          <use href={sprite + "#icon-burger"}></use>
-        </StyledSvgBurger>
-      </ButtonBurger>
-
-      <Wrapper>
-        <StyledSelect
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
-          options={options}
-        />
-        <UserName>Name</UserName>
-        {/* <img
+      {isOpenMenu && <Overlay onClick={handleToggleMenu} />}
+      <Sidebar />
+      <StyledHeader>
+        <ButtonBurger onClick={handleToggleMenu}>
+          <StyledSvgBurger>
+            <use href={sprite + '#icon-burger'}></use>
+          </StyledSvgBurger>
+        </ButtonBurger>
+        <Wrapper>
+          <StyledSelect
+            defaultValue={selectedOption}
+            onChange={setSelectedOption}
+            options={options}
+          />
+          <UserName>Name</UserName>
+          {/* <img
         src={`${URL}${}`}
         alt={}
       ></img> */}
-        <AvatarImg src={Avatar} alt="" />
-      </Wrapper>
-    </StyledHeader>
-  </>
-    
+          <AvatarImg src={Avatar} alt='' />
+        </Wrapper>
+      </StyledHeader>
+    </>
   );
 };

@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { breakpoints } from "../styles/breakpoints";
-import Select from "react-select";
+import styled from 'styled-components';
+import { breakpoints } from '../styles/breakpoints';
+import Select from 'react-select';
 
 const { tablet, desktop } = breakpoints;
 
@@ -16,7 +16,7 @@ export const StyledHeader = styled.header`
   box-sizing: border-box;
   flex-shrink: 0;
   position: absolute;
- 
+
   background-color: #fcfcfc;
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
     margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
@@ -110,6 +110,4 @@ export const Overlay = styled.div`
   /* @media screen and (min-width: ${tablet}) {
     display:none; 
   } */
- 
- 
 `;
