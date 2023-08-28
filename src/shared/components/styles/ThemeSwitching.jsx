@@ -1,11 +1,11 @@
-import { theme } from "./Theme.styled";
-import { ThemeProvider } from "styled-components";
-import { useSelector } from "react-redux";
-import PropTypes from "prop-types";
+import { theme } from './theme.styled';
+import { ThemeProvider } from 'styled-components';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   selectIsLoggedIn,
   selectUserTheme,
-} from "../../../redux/auth/authSelectors";
+} from '../../../redux/auth/authSelectors';
 
 export const ThemeSwitching = ({ children }) => {
   const activeUserTheme = useSelector(selectUserTheme);
@@ -13,11 +13,11 @@ export const ThemeSwitching = ({ children }) => {
   console.log(isLoggedIn);
 
   const selectThemeIndex = () => {
-    if (activeUserTheme === "dark") {
+    if (activeUserTheme === 'dark') {
       return 0;
-    } else if (activeUserTheme === "light") {
+    } else if (activeUserTheme === 'light') {
       return 1;
-    } else if (activeUserTheme === "color") {
+    } else if (activeUserTheme === 'color') {
       return 2;
     }
     return 0;
