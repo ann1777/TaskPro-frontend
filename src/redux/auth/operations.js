@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+
 const instance = axios.create({
   baseURL: "https://taskpro-backend-c73a.onrender.com/",
 });
@@ -8,16 +9,6 @@ const instance = axios.create({
 const setAuthHeader = (token) => {
   if (token) {
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  }
-};
-
-
-
-
-
-const setAuthTheme = (theme) => {
-  if (theme) {
-    instance.defaults.headers.common.Theme = theme;
   }
 };
 
@@ -36,7 +27,6 @@ export const signup = createAsyncThunk(
           email,
           password,
         });
-        console.log("we do it");
         setAuthHeader(data.accessToken);
         return data;
       }
@@ -52,11 +42,10 @@ export const signin = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await instance.post("api/auth/signin", credentials);
-           setAuthHeader(data.token);
-      console.log("we do it");
+      setAuthHeader(data.token);
       localStorage.setItem("refreshToken", data.token);
       localStorage.setItem("accessToken", data.token);
-      setAuthTheme({ theme: data.user.theme });
+      // setAuthTheme(data.theme);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -81,10 +70,12 @@ export const signOut = createAsyncThunk(
 
 export const changeTheme = createAsyncThunk(
   "auth/updateTheme",
-  async ({ theme }, thunkAPI) => {
+  async (selectedOption, thunkAPI) => {
     try {
-      const { data } = await instance.put("api/auth/updateTheme", { theme });
-      await thunkAPI.dispatch(setAuthTheme({ theme: data.user.theme }));
+      const { data } = await instance.put("api/auth/updateTheme", {
+        theme: selectedOption,
+      });
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -96,14 +87,12 @@ export const currentUser = createAsyncThunk(
   "auth/current",
   async (_, thunkAPI) => {
     const accessToken = localStorage.getItem("accessToken");
-    console.log("accessToken:", accessToken)
-    
+
     if (!accessToken) {
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
-
-    setAuthHeader(accessToken);
     try {
+      setAuthHeader(accessToken);
       const { data } = await instance.get("api/auth/current");
       return data;
     } catch (error) {

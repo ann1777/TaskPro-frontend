@@ -20,9 +20,10 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    theme: "",
+    theme: null,
   },
   token: null,
+  isRefreshing: false,
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -69,9 +70,8 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(currentUser.rejected, (state, action) => {
+      .addCase(currentUser.rejected, (state) => {
         state.isRefreshing = false;
-        state.error = action.payload;
       });
   },
 });
