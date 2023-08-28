@@ -11,6 +11,10 @@ const setAuthHeader = (token) => {
   }
 };
 
+
+
+
+
 const setAuthTheme = (theme) => {
   if (theme) {
     instance.defaults.headers.common.Theme = theme;
@@ -48,11 +52,10 @@ export const signin = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await instance.post("api/auth/signin", credentials);
-
-      setAuthHeader(data.accessToken);
+           setAuthHeader(data.token);
       console.log("we do it");
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.token);
+      localStorage.setItem("accessToken", data.token);
       setAuthTheme({ theme: data.user.theme });
       return data;
     } catch (error) {
@@ -93,6 +96,8 @@ export const currentUser = createAsyncThunk(
   "auth/current",
   async (_, thunkAPI) => {
     const accessToken = localStorage.getItem("accessToken");
+    console.log("accessToken:", accessToken)
+    
     if (!accessToken) {
       return thunkAPI.rejectWithValue("Unable to fetch user");
     }
