@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import icon from '../../images/icons.svg';
 
+
 import {
   StyledModal,
   StyledOverlay,
@@ -8,14 +9,17 @@ import {
   Svg,
 } from './Modal.styled';
 
-
-export const Modal = ({ onClose, children }) => {
+export const Modal = ({ onClose, children, title }) => {
+  
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeydown);
+
     return () => {
+      document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeydown);
     };
-  });
+  },);
 
   const handleKeydown = ({ code }) => {
     if (code === 'Escape') {
@@ -37,6 +41,7 @@ export const Modal = ({ onClose, children }) => {
             <use xlinkHref={`${icon}#icon-x-close`} />
           </Svg>
         </StyledCloseButton>
+        {title && <h2>{title}</h2>}
         {children}
       </StyledModal>
     </StyledOverlay>
