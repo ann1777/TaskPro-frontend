@@ -12,6 +12,8 @@ import {
   ButtonBurger,
   Overlay,
 } from "./Header.styled";
+import { useDispatch } from "react-redux";
+import { changeTheme } from "../../../redux/auth/operations";
 
 const options = [
   { value: "theme", label: "Theme" },
@@ -24,11 +26,14 @@ export const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   //   const [isUserLogin, setIsUserLogin]=useState(false);
   // const [isSelectedTheme,setIsSelectedTheme]=useState(false);
-
   const handleToggleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
   };
+  const dispatch = useDispatch();
 
+  const handleThemeChange = (selectedOption) => {
+    dispatch(changeTheme(selectedOption.value));
+  };
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
@@ -45,7 +50,7 @@ export const Header = () => {
         <Wrapper>
           <StyledSelect
             defaultValue={selectedOption}
-            onChange={setSelectedOption}
+            onChange={handleThemeChange}
             options={options}
           />
           <UserName>Name</UserName>

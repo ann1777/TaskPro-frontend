@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { breakpoints } from "../styles/breakpoints";
 
 export const WelcomeWrapper = styled.div`
-  padding: 211px 20px;
+  padding: 211px 20px 0px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
   @media screen and (min-width: ${breakpoints.tablet}) {
-    padding: 293px 148px;
+    padding: 293px 148px 0px 148px;
   }
   @media screen and (min-width: ${breakpoints.desktop}) {
-    padding: 166px 484px;
+    padding: 166px 484px 0px 484px;
   }
 `;
 
@@ -58,7 +58,7 @@ export const LogoWrapper = styled.div`
 `;
 
 export const AboutText = styled.p`
-  color: #161616;
+  color: color: ${(props) => props.theme.secondTextSidebar};;
   text-align: center;
   font-size: 14px;
   font-weight: 400;

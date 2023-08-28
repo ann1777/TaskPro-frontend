@@ -4,15 +4,11 @@ import {
   StyledInputAuth,
   StyledFormAuth,
   StyledBtnAuthAccent,
-  StyledHeaderAuth,
   StyledWrapInputAuth,
   StyledLabelAuth,
   StyledErrorAuth,
   StyledWrapAuthBtn,
   AuthWrapComponent,
-  LinkItem,
-  LinkList,
-  LinkNav,
   WrapperForm,
   AuthFormPasswordIcon,
   StyledEyeIcon,
@@ -21,6 +17,7 @@ import {
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../redux/auth/operations";
+import NavAuth from "../Navigation/NavAuth";
 
 let schema = yup.object({
   name: yup
@@ -74,19 +71,7 @@ function Registration() {
     <>
       <WrapperForm>
         <AuthWrapComponent>
-          <LinkList>
-            <LinkNav>
-              <LinkItem to="/registration" replace>
-                Registration
-              </LinkItem>
-            </LinkNav>
-            <LinkNav>
-              <LinkItem to="/login" replace>
-                Log In
-              </LinkItem>
-            </LinkNav>
-          </LinkList>
-          <StyledHeaderAuth></StyledHeaderAuth>
+          <NavAuth />
           <Formik
             initialValues={initialValues}
             validationSchema={schema}
