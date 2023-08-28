@@ -1,4 +1,3 @@
-import Navigation from "../Navigation/Navigation";
 import sprite from "../../images/icons.svg";
 
 import userDesktop1x from "../../images/user-desktop1x.png";
@@ -86,7 +85,6 @@ function Welcome() {
           Supercharge your productivity and take control of your tasks with Task
           Pro - Dont wait, start achieving your goals now!
         </AboutText>
-        <Navigation />
       </WelcomeWrapper>
     </>
   );
