@@ -1,7 +1,6 @@
 import { useState } from "react";
 import sprite from "../../images/header-burger.svg";
 import Avatar from "../../images/avatar.png";
-import { Sidebar } from "../Sidebar/Sidebar";
 import {
   StyledHeader,
   Wrapper,
@@ -10,8 +9,9 @@ import {
   UserName,
   StyledSvgBurger,
   ButtonBurger,
-  Overlay,
+ 
 } from "./Header.styled";
+import {useToggle} from "../../hooks/useToggle.js";
 
 const options = [
   { value: "theme", label: "Theme" },
@@ -21,22 +21,22 @@ const options = [
 ];
 
 export const Header = () => {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  // const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const {isOpen, open } = useToggle();
   //   const [isUserLogin, setIsUserLogin]=useState(false);
   // const [isSelectedTheme,setIsSelectedTheme]=useState(false);
 
-  const handleToggleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
+  // const handleToggleMenu = () => {
+  //   setIsOpenMenu(!isOpenMenu);
+  // };
 
   const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     <>
-      {isOpenMenu && <Overlay onClick={handleToggleMenu} />}
-      <Sidebar />
+     
       <StyledHeader>
-        <ButtonBurger onClick={handleToggleMenu}>
+        <ButtonBurger onClick={open}>
           <StyledSvgBurger>
             <use href={sprite + "#icon-burger"}></use>
           </StyledSvgBurger>
@@ -48,6 +48,7 @@ export const Header = () => {
             onChange={setSelectedOption}
             options={options}
           />
+          
           <UserName>Name</UserName>
           {/* <img
         src={`${URL}${}`}
