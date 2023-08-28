@@ -1,15 +1,15 @@
-import { BrowserRouter as Route, Routes } from 'react-router-dom';
-import { GlobalStyles } from './shared/components/styles/GlobalStyles.styled';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
-import { ThemeSwitching } from './shared/components/styles/ThemeSwitching';
-import { HomePage } from './pages/HomePage/HomePage';
-import { useDispatch } from 'react-redux';
-import { currentUser } from './redux/auth/operations';
 import { useEffect } from 'react';
-import { PrivateRoute } from './PrivateRoute';
-import { PublicRoute } from './PublicRoute';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Route, Routes } from 'react-router-dom';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import { HomePage } from './pages/HomePage/HomePage';
 import Registration from './shared/components/Registration/Registration';
 import Login from './shared/components/Login/Login';
+import { currentUser } from './redux/auth/operations';
+import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
+import { GlobalStyles } from './shared/components/styles/GlobalStyles.styled';
+import { ThemeSwitching } from './shared/components/styles/ThemeSwitching';
 
 function App() {
   const dispatch = useDispatch();
