@@ -4,7 +4,36 @@ import { breakpoints } from "../styles/breakpoints";
 const { tablet, desktop } = breakpoints;
 
 export const StyledSidebar = styled.div`
-  top: 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 24px 14px;
+  width: 225px;
+  overflow: auto;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 250ms ease-in;
+  background: #ffffff;
+
+  ${(props) =>
+    props.isOpen
+      ? "transform: translateX(0);"
+      : "transform: translateX(-100%);"}
+
+  @media screen and (min-width: ${tablet}) {
+    padding: 24px;
+    width: 260px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+    position: fixed;
+    transform: translateX(0);
+    transition: none;
+  }
+
+  /* top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -15,14 +44,14 @@ export const StyledSidebar = styled.div`
   inset: 0px;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   z-index: 2;
-  /* webkit-scrollbar {
+  webkit-scrollbar {
     width: 4px;
     height: 61px;
     border-radius: 4px 0px 0px 4px;
   }
   ::-webkit-scrollbar-thumb {
     background: #bedbb0;
-  } */
+  }
   overflow: hidden;
 
   @media screen and (max-width: ${tablet}) {
@@ -48,7 +77,7 @@ export const StyledSidebar = styled.div`
     border-right: 1px solid rgba(0, 0, 0, 0.12);
   }
 
-  background-color: #ffffff;
+  background-color: #ffffff; */
 `;
 
 export const LogoWrapper = styled.div`
@@ -56,7 +85,11 @@ export const LogoWrapper = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
+
+  @media screen and (min-width: ${desktop}) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const Logo = styled.svg`
@@ -70,19 +103,17 @@ export const AppName = styled.h2`
   top: 0;
   font-family: Poppins;
   font-size: 16px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  line-height: 1.2;
   letter-spacing: -0.64px;
 `;
-export const Text = styled.h2`
+export const Title = styled.h2`
   color: #16161680;
   display: block;
   margin-bottom: 8px;
   font-size: 12px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.2;
   letter-spacing: -0.24px;
 `;
 
@@ -91,13 +122,19 @@ export const Wrapper = styled.div`
   flex-direction: row;
   width: 212px;
   padding: 14px 0;
-  margin-bottom: 40px;
+  margin-bottom: 282px;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #1616161a;
   border-bottom: 1px solid #1616161a;
+
   @media screen and (min-width: ${tablet}) {
     width: 197px;
+    margin-bottom: 460;
+  }
+  @media screen and (min-width: ${desktop}) {
+    width: 197px;
+    margin-bottom: 206px;
   }
 `;
 
@@ -120,79 +157,11 @@ export const CreateBoardButton = styled.button`
   background: #bedbb0;
 `;
 
-export const ProjectWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 20px 0;
-  justify-content: start;
-  align-items: center;
-`;
-
-export const ProjectText = styled.h2`
-  margin-right: 43px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.28px;
-  color: #161616;
-
-  @media screen and (min-width: ${tablet}) {
-    margin-right: 43px;
-  }
-`;
-
 export const Plus = styled.svg`
   width: 20px;
   height: 20px;
   margin-right: 8px;
   stroke: #121212;
-`;
-export const ProjectIcon = styled.svg`
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  stroke: #161616;
-`;
-export const PencilIcon = styled.svg`
-  margin-right: 8px;
-  width: 18px;
-  height: 18px;
-  /* fill: #16161680; */
-  stroke: #16161680;
-`;
-export const TrashIcon = styled.svg`
-  width: 16px;
-  height: 16px;
-  stroke: #16161680;
-  fill: #16161680;
-`;
-
-export const PuzzleIcon = styled.svg`
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  fill: #16161680;
-`;
-
-export const NeonProjectWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 20px 0;
-  justify-content: start;
-  align-items: center;
-  margin-bottom: 116px;
-  @media screen and (min-width: ${tablet}) {
-    margin-bottom: 40px;
-  }
-`;
-export const NeonText = styled.h2`
-  color: rgba(22, 22, 22, 0.5);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.28px;
 `;
 
 export const BlockWrapper = styled.div`
@@ -224,14 +193,15 @@ export const BlockImg = styled.img`
 `;
 
 export const MessageWrapper = styled.div`
+outline: 2px solid black;
   text-align: start;
   width: 168px;
-  height: 80px;
+  /* height: 80px; */
   margin-bottom: 18px;
 
   @media screen and (min-width: ${tablet}) {
     width: 172px;
-    height: 102px;
+    /* height: 102px; */
   }
 `;
 export const SupportMessage = styled.p`
@@ -295,4 +265,17 @@ export const LogOutIcon = styled.svg`
   margin-right: 14px;
   fill: transparent;
   stroke: #bedbb0;
+`;
+
+export const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1515154d;
+  z-index: 1;
+  @media screen and (min-width: ${desktop}) {
+    display:none; 
+  }
 `;
