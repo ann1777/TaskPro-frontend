@@ -27,7 +27,7 @@ import { Logo } from "./Sidebar.styled";
 import { BoardList } from "./BoardList";
 import { useToggle } from "../../hooks/useToggle.js";
 import { useNavigate } from "react-router-dom";
-import { logOut } from "../../../redux/auth/operations.js";
+import { signOut } from "../../../redux/auth/operations.js";
 
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ export const Sidebar = () => {
   const { open, isOpen, toggle } = useToggle();
 
   const handleLogOut = () => {
-    dispatch(logOut());
+    dispatch(signOut());
     navigate("/welcome");
   };
 

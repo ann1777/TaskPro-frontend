@@ -20,13 +20,19 @@ import {
 export const BoardList = () => {
   const dispatch = useDispatch();
   const dashboards = useSelector(allDashboards);
+  console.log("dashboards:", dashboards)
+
 
   useEffect(() => {
+
+
+
     dispatch(fetchAllDashboardsThunk());
   }, [dispatch]);
 
-  const elements = dashboards.map((dashboard) => (
+  const elements = dashboards.data.map((dashboard) => (
     <Project key={dashboard.id}>
+     
       <ProjectIcon>
         <use href={sprite + "#icon-Project"}></use>
       </ProjectIcon>
@@ -55,6 +61,9 @@ export const BoardList = () => {
       </button>
     </Project>
   ));
+ 
 
-  return <ProjectList>{elements}</ProjectList>
+
+
+  return <ProjectList>{elements }</ProjectList>
 };

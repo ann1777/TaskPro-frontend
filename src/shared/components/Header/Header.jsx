@@ -11,12 +11,12 @@ import {
   ButtonBurger,
  
 } from "./Header.styled";
-<<<<<<< HEAD
+
 import {useToggle} from "../../hooks/useToggle.js";
-=======
+
 import { useDispatch } from "react-redux";
 import { changeTheme } from "../../../redux/auth/operations";
->>>>>>> 3178f16b7a20978831cb3f04ed65c1f5391b4f0c
+
 
 const options = [
   { value: "theme", label: "Theme" },
@@ -30,17 +30,17 @@ export const Header = () => {
   const {isOpen, open } = useToggle();
   //   const [isUserLogin, setIsUserLogin]=useState(false);
   // const [isSelectedTheme,setIsSelectedTheme]=useState(false);
-<<<<<<< HEAD
+
 
   // const handleToggleMenu = () => {
   //   setIsOpenMenu(!isOpenMenu);
   // };
-=======
-  const handleToggleMenu = () => {
-    setIsOpenMenu(!isOpenMenu);
-  };
+
+  // const handleToggleMenu = () => {
+  //   setIsOpenMenu(!isOpenMenu);
+  // };
   const dispatch = useDispatch();
->>>>>>> 3178f16b7a20978831cb3f04ed65c1f5391b4f0c
+
 
   const handleThemeChange = (selectedOption) => {
     dispatch(changeTheme(selectedOption.value));

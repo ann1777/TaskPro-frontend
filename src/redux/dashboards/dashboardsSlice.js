@@ -8,10 +8,11 @@ import {
 } from "../dashboards/operations";
 
 const initialState = {
-  dashboards: [],
-  dashboardsLength: null,
-  isLoading: false,
-  error: null,
+  dashboards: {
+    data: [],
+    isLoading: false,
+    error: null,
+  },
 };
 
 const dashboardSlice = createSlice({
@@ -20,29 +21,29 @@ const dashboardSlice = createSlice({
 
   reducers: {
     filterAllContacts: (state, { payload }) => {
-      state.filter = payload;
+      state.dashboards.filter = payload;
     },
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllDashboardsThunk.fulfilled, (state, action) => {
-        state.dashboards = action.payload;
+        state.dashboards.data = action.payload;
       })
       .addCase(getDashboardByIdThunk.fulfilled, (state, action) => {
-        state.dashboards = action.payload;
+        state.dashboards.data = action.payload;
       })
       .addCase(addDashboardThunk.fulfilled, (state, action) => {
-        state.dashboards.push(action.payload);
+        state.dashboards.data.push(action.payload);
       })
       .addCase(updateDashboardThunk.fulfilled, (state, action) => {
-        state.dashboards = action.payload;
+        state.dashboards.data = action.payload;
       })
       .addCase(deleteDashboardThunk.fulfilled, (state, action) => {
-        const dashboardId = state.dashboards.findIndex(
+        const dashboardId = state.dashboards.data.findIndex(
           (item) => item.id === action.payload
         );
-        state.dashboards.splice(dashboardId, 1);
+        state.dashboards.data.splice(dashboardId, 1);
       })
       .addMatcher(
         (action) => action.type.endsWith("/fulfilled"),
