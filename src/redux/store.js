@@ -9,9 +9,9 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist/es/constants';
-import { authSlice } from './auth/authSlice';
+import { authReducer } from './auth/authSlice';
 import { dashboardReducer } from './dashboards/dashboardsSlice';
-import { themeSlice } from './theme/theme-reducer';
+// import { themeReducer } from './theme/theme-reducer';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -23,14 +23,14 @@ const authPersistConfig = {
 };
 
 // Persisting theme slice to local storage
-const themePersistConfig = {
-  key: 'theme',
-  storage,
-};
+// const themePersistConfig = {
+//   key: 'theme',
+//   storage,
+// };
 
 const rootReducer = {
-  auth: persistReducer(authPersistConfig, authSlice.reducer),
-  theme: persistReducer(themePersistConfig, themeSlice.reducer),
+  auth: persistReducer(authPersistConfig, authReducer),
+  // theme: persistReducer(themePersistConfig, themeReducer),
   dashboards: dashboardReducer,
 };
 
