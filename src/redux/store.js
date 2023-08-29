@@ -1,8 +1,8 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-import { authReducer } from "./auth/authSlice";
-import { dashboardReducer } from "./dashboards/dashboardsSlice";
+import { authReducer } from './auth/authSlice';
+import { dashboardReducer } from './dashboards/dashboardsSlice';
 import {
   FLUSH,
   REHYDRATE,
@@ -11,8 +11,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist/es/constants';
-
-
 // import { themeReducer } from './theme/theme-reducer';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
