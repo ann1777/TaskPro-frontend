@@ -40,7 +40,7 @@ function AddBoard({ onClose }) {
             background: 'empty',
             icon: BOARD_ICONS[0],
           }}
-          // Оставьте это так как было
+        
         >
           {({ isSubmitting }) => (
             <StyledForm onChange={() => setErrorMessage(null)}>
@@ -88,7 +88,7 @@ function AddBoard({ onClose }) {
                               </RadioLabel>
                               
                               
-                {/* Здесь я использую путь к вашей заглушке */}
+              
               </Row>
 
               <SubmitButton disabled={isSubmitting}>Create</SubmitButton>
