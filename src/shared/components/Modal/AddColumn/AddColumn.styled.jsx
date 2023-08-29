@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { dark } from '../../styles/theme.styled';
+// import { dark } from '../../styles/theme.styled';
 import { Field } from 'formik';
 import { Button } from '../../Button/Button';
 
 
 export const TitleHelp = styled.div`
-  color: ${dark.colors.textColorModal};
+  ${'' /* color: ${dark.colors.textColorModal}; */}
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -16,12 +16,12 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: ${dark.colors.backgroundColorModal};
+  ${'' /* background-color: ${dark.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  color: ${dark.colors.textColorModal};
+  ${'' /* color: ${dark.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`

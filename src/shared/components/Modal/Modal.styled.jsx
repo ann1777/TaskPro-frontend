@@ -20,6 +20,7 @@ export const StyledOverlay = styled.div`
 export const StyledModal = styled.div`
   /* position: relative; */
   border-radius: 8px;
+  background-color: #FCFCFC;
   padding: 24px;
   position: fixed;
   top: 50%;

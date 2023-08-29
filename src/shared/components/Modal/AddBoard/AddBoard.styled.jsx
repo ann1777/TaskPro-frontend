@@ -6,6 +6,7 @@ import { Button } from "../../Button/Button";
 // const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
+  color: #fff;
   color: ${(props) => props.theme.textColorModal};
   font-size: 18px;
   font-weight: 500;
@@ -17,10 +18,12 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  ${'' /* background-color: ${selectedTheme.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`
   margin-bottom: 24px;
+  ${'' /* color: ${selectedTheme.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`
@@ -76,6 +79,8 @@ export const IconContainer = styled.div`
 
   svg {
     fill: #151515;
+    ${'' /* opacity: ${props => props.isSelected ? 1 : 0.5};
+    stroke: ${props => props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"}; */}
     opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
     stroke: ${(props) =>
       props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};
