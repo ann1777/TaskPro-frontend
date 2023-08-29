@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import theme from '../../styles/theme.styled';
-import { Field } from 'formik';
-import { Button } from '../../Button/Button';
+import styled from "styled-components";
+// import theme from "../../styles/theme.styled";
+import { Field } from "formik";
+import { Button } from "../../Button/Button";
 
-const selectedTheme = theme[1];
+// const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
-  color: ${selectedTheme.colors.textColorModal};
+  color: ${(props) => props.theme.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -17,12 +17,10 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: ${selectedTheme.colors.backgroundColorModal};
 `;
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  color: ${selectedTheme.colors.textColorModal};
 `;
 
 export const InputField = styled(Field)`
@@ -30,13 +28,13 @@ export const InputField = styled(Field)`
   padding: 14px 18px;
   background: inherit;
   border-radius: 8px;
-  border: 1px solid #BEDBB0;
+  border: 1px solid #bedbb0;
   outline: none;
-  color: #BEDBB0;
+  color: #bedbb0;
   opacity: 0.5;
 
   &::placeholder {
-    color:#BEDBB0;
+    color: #bedbb0;
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -78,8 +76,9 @@ export const IconContainer = styled.div`
 
   svg {
     fill: #151515;
-    opacity: ${props => props.isSelected ? 1 : 0.5};
-    stroke: ${props => props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};
+    opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
+    stroke: ${(props) =>
+      props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};
   }
 `;
 
@@ -88,7 +87,7 @@ export const RadioField = styled(Field)`
   opacity: 0;
   pointer-events: none;
 
-  &:focus + ${IconContainer} svg, 
+  &:focus + ${IconContainer} svg,
   &:hover + ${IconContainer} svg {
     opacity: 1;
     stroke: rgba(255, 255, 255, 1);
