@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import AuthPage from "./pages/AuthPage/AuthPage";
@@ -40,7 +40,7 @@ function App() {
             @import
             url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
           </style>
-          <Router>
+       
             <Routes>
               <Route
                 path="/"
@@ -79,7 +79,7 @@ function App() {
                 element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
               />
             </Routes>
-          </Router>
+         
         </>
       )}
       <GlobalStyles />

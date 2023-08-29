@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import {useEffect } from "react";
+import { useEffect, useState } from "react";
 import { allDashboards } from "../../../redux/dashboards/dashboardsSelectos.js";
 import {
   fetchAllDashboardsThunk,
@@ -15,33 +15,48 @@ import {
   ProjectName,
   Project,
 } from "../Sidebar/BoardList.styled";
+import axios from 'axios';
 
 
 export const BoardList = () => {
-  const dispatch = useDispatch();
-  const dashboards = useSelector(allDashboards);
-  console.log("dashboards:", dashboards)
+  // const dispatch = useDispatch();
+  // const dashboards = useSelector(allDashboards);
+
+  const [arrayDashboard, setArrayDashboard] = useState([])
+
 
 
   useEffect(() => {
+    const apiDashboard = async () => {
+      const token = localStorage.getItem('accessToken');
+      const { data } = await axios.get("https://taskpro-backend-c73a.onrender.com/api/dashboard/", {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      
+      setArrayDashboard(data)
+    }
+
+    apiDashboard();
 
 
+    // dispatch(fetchAllDashboardsThunk());
+  }, []);
 
-    dispatch(fetchAllDashboardsThunk());
-  }, [dispatch]);
 
-  const elements = dashboards.data.map((dashboard) => (
-    <Project key={dashboard.id}>
-     
+  const elements = arrayDashboard.map((dashboard) => (
+    <Project key={dashboard._id}>
+
       <ProjectIcon>
         <use href={sprite + "#icon-Project"}></use>
       </ProjectIcon>
-      <ProjectName>Project office</ProjectName>
+      <ProjectName>{dashboard.title}</ProjectName>
 
       <button
         type="button"
         onClick={() => {
-          updateDashboardThunk(dashboard.id);
+          updateDashboardThunk(dashboard._id);
         }}
       >
         <PencilIcon>
@@ -52,7 +67,7 @@ export const BoardList = () => {
       <button
         type="button"
         onClick={() => {
-          deleteDashboardThunk(dashboard.id);
+          deleteDashboardThunk(dashboard._id);
         }}
       >
         <TrashIcon>
@@ -61,9 +76,9 @@ export const BoardList = () => {
       </button>
     </Project>
   ));
- 
 
 
 
-  return <ProjectList>{elements }</ProjectList>
+
+  return <ProjectList>{elements}</ProjectList>
 };

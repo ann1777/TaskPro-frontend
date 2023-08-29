@@ -4,6 +4,7 @@ import theme from '../../components/styles/theme.styled';
 
 const selectedTheme = theme[1];
 
+
 export const StyledOverlay = styled.div`
   position: fixed;
   top: 0;

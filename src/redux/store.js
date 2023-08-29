@@ -11,8 +11,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist/es/constants';
-import { authReducer } from './auth/authSlice';
-import { dashboardReducer } from './dashboards/dashboardsSlice';
+
+
 // import { themeReducer } from './theme/theme-reducer';
 
 const isDevelopment = process.env.NODE_ENV === 'development';

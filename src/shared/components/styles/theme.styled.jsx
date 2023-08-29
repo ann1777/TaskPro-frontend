@@ -130,5 +130,10 @@ export const color = {
     borderColorModal: "1px solid #5255BC",
   },
 };
-];
+
+
+const theme = [light, dark, color]
+ 
+
+
 export default theme;
