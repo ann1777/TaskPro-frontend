@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { breakpoints } from "../styles/breakpoints";
+import styled from 'styled-components';
+import { breakpoints } from '../styles/breakpoints';
 
 export const WelcomeWrapper = styled.div`
   padding: 211px 20px 0px 20px;
@@ -58,7 +58,7 @@ export const LogoWrapper = styled.div`
 `;
 
 export const AboutText = styled.p`
-  color: color: ${(props) => props.theme.secondTextSidebar};;
+  color: ${(props) => props.theme.secondTextSidebar};
   text-align: center;
   font-size: 14px;
   font-weight: 400;

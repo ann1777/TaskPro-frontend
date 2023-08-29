@@ -1,4 +1,4 @@
-import { useState } from 'react'; // Импорт useState
+import { useState } from 'react'; 
 import {
   TitleHelp,
   StyledForm,
@@ -12,12 +12,12 @@ import {
   LabelTitle,
   Labels,
   LabelRadiobutton,
-} from './AddCard.styled';
+} from './EditCard.styled';
 import { Formik, ErrorMessage } from 'formik';
 import {getPriorityStyles}  from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
 
-function AddCard({ onClose }) {
+function EditCard({ onClose }) {
   const labels = [
     { value: 'low' },
     { value: 'medium' },
@@ -25,7 +25,7 @@ function AddCard({ onClose }) {
     { value: 'without' },
   ];
 
-  const [selectedDate, setSelectedDate] = useState(new Date()); // Использование useState для даты
+  const [selectedDate, setSelectedDate] = useState(new Date()); 
 
   
   const handleDateChange = (date) => {
@@ -34,7 +34,7 @@ function AddCard({ onClose }) {
 
   return (
     <>
-      <TitleHelp>Add card</TitleHelp>
+      <TitleHelp>Edit card</TitleHelp>
       <Formik
         initialValues={{
           email: '',
@@ -68,7 +68,6 @@ function AddCard({ onClose }) {
               ))}
             </Labels>
 
-            
             <DedlineTitle>Deadline</DedlineTitle>
             <TaskCalendar
               dateChange={handleDateChange} 
@@ -77,7 +76,7 @@ function AddCard({ onClose }) {
             />
             <div style={{ height: '40px' }}></div>
 
-            <SubmitButton disabled={isSubmitting}>Add</SubmitButton>
+            <SubmitButton disabled={isSubmitting}>Edit</SubmitButton>
           </StyledForm>
         )}
       </Formik>
@@ -85,4 +84,4 @@ function AddCard({ onClose }) {
   );
 }
 
-export default AddCard;
+export default EditCard;

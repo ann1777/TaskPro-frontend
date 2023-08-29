@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { dark } from '../../styles/theme.styled';
+import theme from '../../styles/theme.styled';
 import { Field } from 'formik';
-import { Button }  from '../../Button/Button';
+import { Button } from '../../Button/Button';
+
+const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
-  color: ${dark.colors.textColorModal};
+  color: ${selectedTheme.colors.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -15,12 +17,12 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  background-color: ${dark.colors.backgroundColorModal};
+  background-color: ${selectedTheme.colors.backgroundColorModal};
 `;
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  color: ${dark.colors.textColorModal};
+  color: ${selectedTheme.colors.textColorModal};
 `;
 
 export const InputField = styled(Field)`
@@ -42,17 +44,19 @@ export const InputField = styled(Field)`
 
   &:hover,
   &:focus {
-  opacity: 1;
-  &::placeholder {
+    opacity: 1;
+    &::placeholder {
       opacity: 1;
     }
   }
 `;
+
 export const SubmitButton = styled(Button)`
   padding: 10px 0 11px 0;
 `;
+
 export const BoardText = styled.p`
-font-family: Poppins;
+  font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
@@ -61,26 +65,47 @@ font-family: Poppins;
   color: #ffffff;
 `;
 
+export const RadioLabel = styled.label`
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 8px;
+`;
+
+export const IconContainer = styled.div`
+  position: relative;
+  cursor: pointer;
+
+  svg {
+    fill: #151515;
+    opacity: ${props => props.isSelected ? 1 : 0.5};
+    stroke: ${props => props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};
+  }
+`;
+
 export const RadioField = styled(Field)`
-  position: fixed;
+  position: absolute;
   opacity: 0;
   pointer-events: none;
 
-  &:hover ~ .background-label,
-  &:checked ~ .background-label {
-    outline: 1px solid var(--createBoardInputBorderFocus);
-  }
-
-  &:hover ~ .icon-label,
-  &:checked ~ .icon-label {
-    --color1: var(--createBoardButtonIconFill);
+  &:focus + ${IconContainer} svg, 
+  &:hover + ${IconContainer} svg {
+    opacity: 1;
+    stroke: rgba(255, 255, 255, 1);
   }
 `;
-export const Row = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: calc(8 * 32px);
-  margin-bottom: 24px;
+
+export const Svg = styled.svg`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  stroke: rgba(255, 255, 255, 0.5);
+  transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
+
+  &:hover {
+    stroke: rgba(255, 255, 255, 1);
+    opacity: 1;
+  }
 `;
 
 export const BackgroundIcon = styled.img`
@@ -88,36 +113,9 @@ export const BackgroundIcon = styled.img`
   height: 28px;
 `;
 
-export const RadioLabel = styled.label`
-  
-  
-  border-radius: 6px;
-  cursor: pointer;
-`;
-
-export const IconContainer = styled.div`
-  margin-right: 8px;
-  cursor: pointer;
-
-  svg {
-    fill: #151515;
-
-  }
-`;
-export const ImageContainer = styled.div`
-  margin-right: 4px;
-  margin-bottom: 4px;
-  cursor: pointer;
-`;
-
-export const Svg = styled.svg`
-  fill: #151515;
-  stroke: rgba(255, 255, 255, 0.5);
-
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
- &:hover {
-    stroke: rgba(255, 255, 255, 1); 
-  }
+export const Row = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(8 * 32px);
+  margin-bottom: 24px;
 `;
