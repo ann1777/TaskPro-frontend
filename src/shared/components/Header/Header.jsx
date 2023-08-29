@@ -1,6 +1,5 @@
 import { useState } from "react";
 import sprite from "../../images/header-burger.svg";
-import Avatar from "../../images/avatar.png";
 import {
   StyledHeader,
   Wrapper,
@@ -15,6 +14,9 @@ import { useToggle } from "../../hooks/useToggle.js";
 import { changeTheme } from "../../../redux/auth/operations";
 import { selectUserTheme } from "../../../redux/auth/authSelectors";
 import { useSelector } from "react-redux";
+import { selectUser } from "../../../redux/auth/authSelectors";
+import { Modal } from "../Modal/Modal";
+import { EditProfile } from "../Modal/EditProfile/EditProfile";
 
 const options = [
   { value: "light", label: "Light" },
@@ -22,28 +24,21 @@ const options = [
   { value: "dark", label: "Violet" },
 ];
 
-export const Header = () => {
+export const Header = ({ onOpenSidebar, openSidebar }) => {
+  const { name, avatarURL } = useSelector(selectUser);
   // const [isOpenMenu, setIsOpenMenu] = useState(false);
   const { isOpen, open } = useToggle();
   const activeUserTheme = useSelector(selectUserTheme);
   //   const [isUserLogin, setIsUserLogin]=useState(false);
   // const [isSelectedTheme,setIsSelectedTheme]=useState(false);
-
-  // const handleToggleMenu = () => {
-  //   setIsOpenMenu(!isOpenMenu);
-  // };
-
-  // const handleToggleMenu = () => {
-  //   setIsOpenMenu(!isOpenMenu);
-  // };
   const dispatch = useDispatch();
 
   const handleThemeChange = (selectedOption) => {
     dispatch(changeTheme(selectedOption.value));
   };
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption] = useState(null);
   const customStyles = {
-    option: (defaultStyles, state) => ({
+    option: (defaultStyles) => ({
       ...defaultStyles,
       // color: state.isSelected ? "#212529" : "#fff",
       // borderRadius: "8px",
@@ -104,7 +99,7 @@ export const Header = () => {
   return (
     <>
       <StyledHeader>
-        <ButtonBurger onClick={open}>
+        <ButtonBurger onClick={openSidebar}>
           <StyledSvgBurger>
             <use href={sprite + "#icon-burger"}></use>
           </StyledSvgBurger>
@@ -118,12 +113,13 @@ export const Header = () => {
             styles={customStyles}
           />
 
-          <UserName>Name</UserName>
-          {/* <img
-        src={`${URL}${}`}
-        alt={}
-      ></img> */}
-          <AvatarImg src={Avatar} alt="" />
+          <UserName>{name}</UserName>
+          <AvatarImg onClick={open} src={avatarURL} alt="user" />
+          {isOpen && (
+            <Modal>
+              <EditProfile />
+            </Modal>
+          )}
         </Wrapper>
       </StyledHeader>
     </>

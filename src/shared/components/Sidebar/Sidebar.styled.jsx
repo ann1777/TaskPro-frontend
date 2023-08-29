@@ -13,16 +13,25 @@ export const StyledSidebar = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  transform: translateX(-100%);
-  transition: transform 250ms ease-in;
+  /* transform: translateX(-100%);
+  transition: transform 250ms ease-in; */
   background: #ffffff;
+  webkit-scrollbar {
+    width: 4px;
+    height: 61px;
+    border-radius: 4px 0px 0px 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #bedbb0;
+  }
+  overflow: hidden;
 
-  ${(props) =>
+  /* ${(props) =>
     props.isOpen
       ? "transform: translateX(0);"
-      : "transform: translateX(-100%);"}
+      : "transform: translateX(-100%);"} */
 
-  @media screen and (min-width: ${tablet}) {
+  /* @media screen and (min-width: ${tablet}) {
     padding: 24px;
     width: 260px;
   }
@@ -31,7 +40,7 @@ export const StyledSidebar = styled.div`
     position: fixed;
     transform: translateX(0);
     transition: none;
-  }
+  } */
 
   /* top: 0px;
   display: flex;
@@ -193,7 +202,6 @@ export const BlockImg = styled.img`
 `;
 
 export const MessageWrapper = styled.div`
-outline: 2px solid black;
   text-align: start;
   width: 168px;
   /* height: 80px; */

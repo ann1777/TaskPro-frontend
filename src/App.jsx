@@ -9,6 +9,7 @@ import { HomePage } from './pages/HomePage/HomePage';
 import Loader from './shared/components/styles/Loader';
 import Registration from './shared/components/Registration/Registration';
 import Login from './shared/components/Login/Login';
+import Dashboard from './shared/components/Dashboard/Dashboard';
 
 import { currentUser } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/authSelectors';
@@ -39,7 +40,6 @@ function App() {
             @import
             url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
           </style>
-          {/* <Router> */}
           <Routes>
             <Route
               path='/'
@@ -76,9 +76,13 @@ function App() {
             <Route
               path='/home'
               element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
-            />
+            >
+              <Route
+                path='/home/:dashboardId'
+                element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
+              />
+            </Route>
           </Routes>
-          {/* </Router> */}
         </>
       )}
       <GlobalStyles />
