@@ -28,10 +28,6 @@ function App() {
     if (accessToken) {
       dispatch(currentUser());
     }
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      dispatch(currentUser());
-    }
   }, [dispatch]);
   return (
     <ThemeSwitching>
