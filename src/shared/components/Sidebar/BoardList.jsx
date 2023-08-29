@@ -16,6 +16,7 @@ import {
   Project,
 } from "../Sidebar/BoardList.styled";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 
 export const BoardList = () => {
@@ -51,7 +52,7 @@ export const BoardList = () => {
       <ProjectIcon>
         <use href={sprite + "#icon-Project"}></use>
       </ProjectIcon>
-      <ProjectName>{dashboard.title}</ProjectName>
+      <ProjectName><Link to={`/home/${dashboard._id}`}>{dashboard.title}</Link></ProjectName>
 
       <button
         type="button"

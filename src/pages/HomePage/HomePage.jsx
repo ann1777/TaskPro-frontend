@@ -4,6 +4,7 @@ import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.st
 import { Modal } from "../../shared/components/Modal/Modal";
 import AddBoard from "../../shared/components/Modal/AddBoard/AddBoard";
 import { useState } from "react";
+import Dashboard from "../../shared/components/Dashboard/Dashboard";
 
 
 
@@ -24,6 +25,7 @@ export const HomePage = () => {
         </Modal>
       )}
       <Header />
+      <Dashboard />
     </>
   );
 };

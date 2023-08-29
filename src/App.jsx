@@ -19,6 +19,8 @@ import { PrivateRoute } from "./PrivateRoute";
 import { GlobalStyles } from './shared/components/styles/GlobalStyles.styled';
 import { ThemeSwitching } from './shared/components/styles/ThemeSwitching';
 
+import Dashboard from './shared/components/Dashboard/Dashboard';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -76,8 +78,14 @@ function App() {
               />    
               <Route
                 path="/home"
-                element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
-              />
+                element={<PrivateRoute>{<HomePage />}</PrivateRoute>} >
+                  <Route
+                    path="/home/:dashboardId"
+                    element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
+                  />
+
+              </Route>
+              
             </Routes>
          
         </>
