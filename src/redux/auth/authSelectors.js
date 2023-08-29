@@ -6,7 +6,7 @@ export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 
 export const selectIsLoading = (state) => state.auth.isLoading;
 
-export const selectUserTheme = (state) => state.auth.theme;
+export const selectUserTheme = (state) => state.auth.user.theme;
 
 export const selectUser = (state) => state.auth.user;
 
