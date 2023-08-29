@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import AuthPage from './pages/AuthPage/AuthPage';
@@ -39,46 +39,46 @@ function App() {
             @import
             url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
           </style>
-          <Router>
-            <Routes>
-              <Route
-                path='/'
-                element={
-                  <PublicRoute restricted>
-                    <WelcomePage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path='/:id'
-                element={
-                  <PublicRoute restricted>
-                    <AuthPage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path='/registration'
-                element={
-                  <PublicRoute restricted>
-                    <Registration />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path='/login'
-                element={
-                  <PublicRoute restricted>
-                    <Login />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path='/home'
-                element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
-              />
-            </Routes>
-          </Router>
+          {/* <Router> */}
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <PublicRoute restricted>
+                  <WelcomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path='/:id'
+              element={
+                <PublicRoute restricted>
+                  <AuthPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path='/registration'
+              element={
+                <PublicRoute restricted>
+                  <Registration />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path='/login'
+              element={
+                <PublicRoute restricted>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path='/home'
+              element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
+            />
+          </Routes>
+          {/* </Router> */}
         </>
       )}
       <GlobalStyles />
