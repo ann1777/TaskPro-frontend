@@ -1,31 +1,45 @@
+import { useState } from "react";
+import { useToggle } from "../../shared/hooks/useToggle";
+
+import NeedHelp from "../../shared/components/Modal/NeedHelp/NeedHelp";
 import { Header } from "../../shared/components/Header/Header";
 import { Sidebar } from "../../shared/components/Sidebar/Sidebar";
-import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.styled";
 import { Modal } from "../../shared/components/Modal/Modal";
 import AddBoard from "../../shared/components/Modal/AddBoard/AddBoard";
-import { useState } from "react";
 import Dashboard from "../../shared/components/Dashboard/Dashboard";
 
-
+import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.styled";
 
 export const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [helpModalOpen, setHelpModalOpen] = useState(false);
+  const { isOpen, toggle } = useToggle();
 
   const toggleModal = () => {
     setModalOpen(true);
   };
 
+  const openHelpModal = () => {
+    setHelpModalOpen(true);
+  };
+
   return (
     <>
       <GlobalStylesHome />
-      <Sidebar onOpen={toggleModal}/>
-      {modalOpen && (
+      <Sidebar
+        closeSidebar={toggle}
+        isOpen={isOpen}
+        onOpen={toggleModal}
+        onOpenHelp={openHelpModal}
+      />
+
+      {helpModalOpen && (
         <Modal>
-          <AddBoard />
+          <NeedHelp />
         </Modal>
       )}
-      <Header />
-      <Dashboard />
+      <Header openSidebar={toggle} />
+        <Dashboard />
     </>
   );
 };
