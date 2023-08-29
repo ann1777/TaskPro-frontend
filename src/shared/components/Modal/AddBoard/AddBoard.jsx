@@ -30,8 +30,8 @@ const BOARD_ICONS = [
 function AddBoard({ onClose }) {
  const handleSubmit = async (values, { setSubmitting }) => {
   try {
-    const token = localStorage.getItem('token'); 
-    const response = await axios.post("https://taskpro-backend-c73a.onrender.com/dashboard/", values, {
+    const token = localStorage.getItem('accessToken'); 
+      const response = await axios.post("https://taskpro-backend-c73a.onrender.com/api/dashboard/", values, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -57,8 +57,8 @@ function AddBoard({ onClose }) {
       <Formik
         initialValues={{
           title: '',
-          background: 'empty',
-          icon: BOARD_ICONS[0],
+          // background: 'empty',
+          // icon: BOARD_ICONS[0],
         }}
         onSubmit={handleSubmit}
       >

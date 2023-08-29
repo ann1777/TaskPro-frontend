@@ -28,6 +28,7 @@ import { BoardList } from "./BoardList";
 import { signOut } from "../../../redux/auth/operations.js";
 
 export const Sidebar = ({ isOpen, onOpen, onOpenHelp}) => {
+
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
