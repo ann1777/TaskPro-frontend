@@ -29,9 +29,9 @@ export const StyledHeader = styled.header`
     justify-content: end;
     margin-left: 260px;
     width: calc(100% - 260px);
-    left: auto;
-    right: 0px;
-    z-index: 1201;
+    /* left: auto; */
+    right: 0;
+    /* z-index: 5; */
   }
 `;
 

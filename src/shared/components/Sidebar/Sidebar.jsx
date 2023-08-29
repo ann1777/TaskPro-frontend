@@ -17,7 +17,7 @@ import {
   LogOutBtn,
   LogOutIcon,
   GreenColor,
-  Overlay,
+  // Overlay,
 } from "./Sidebar.styled";
 import sprite from "../../images/icons.svg";
 import Helper from "../../images/help.png";
@@ -25,24 +25,19 @@ import Helper from "../../images/help.png";
 // import Helper3 from "../../images/helper3x.png";
 import { Logo } from "./Sidebar.styled";
 import { BoardList } from "./BoardList";
-import { useToggle } from "../../hooks/useToggle.js";
-import { useNavigate } from "react-router-dom";
 import { signOut } from "../../../redux/auth/operations.js";
 
-export const Sidebar = () => {
-  const navigate = useNavigate();
+export const Sidebar = ({ isOpen, onOpen, onOpenHelp}) => {
   const dispatch = useDispatch();
-  const { open, isOpen, toggle } = useToggle();
 
   const handleLogOut = () => {
     dispatch(signOut());
-    navigate("/welcome");
   };
 
   return (
     <>
-      {isOpen && <Overlay onClick={toggle} />}
-      <StyledSidebar isOpen={!open}>
+      {/* <Overlay isOpen={isOpen} onClick={closeSidebar}> */}
+      <StyledSidebar isOpen={isOpen}>
         <LogoWrapper>
           <Logo>
             <use href={sprite + "#icon-logo"}></use>
@@ -56,7 +51,7 @@ export const Sidebar = () => {
           <CreateText>
             Create a<br></br>new board
           </CreateText>
-          <CreateBoardButton>
+          <CreateBoardButton onClick={onOpen}>
             <Plus>
               <use href={sprite + "#icon-plus"}></use>
             </Plus>
@@ -64,26 +59,6 @@ export const Sidebar = () => {
         </Wrapper>
 
         <BoardList />
-
-        {/* <ProjectList>
-        <ProjectIcon>
-          <use href={sprite + "#icon-Project"}></use>
-        </ProjectIcon>
-        <ProjectText>Project office</ProjectText>
-        <PencilIcon>
-          <use href={sprite + "#icon-pencil-01"}></use>
-        </PencilIcon>
-        <TrashIcon>
-          <use href={sprite + "#icon-trash-04"}></use>
-        </TrashIcon>
-      </ProjectList>
-
-      <NeonProjectWrapper>
-        <PuzzleIcon>
-          <use href={sprite + "#icon-puzzle-piece-02"}></use>
-        </PuzzleIcon>
-        <NeonText>Neon Light Project</NeonText>
-      </NeonProjectWrapper> */}
 
         <BlockWrapper>
           <img src={Helper} style={{ width: "54px", height: "78px" }} alt="/" />
@@ -104,7 +79,7 @@ export const Sidebar = () => {
             </SupportMessage>
           </MessageWrapper>
 
-          <HelpBtn type="button">
+          <HelpBtn type="button" onClick={onOpenHelp}>
             <HelpIcon>
               <use href={sprite + "#icon-help-circle"} />
             </HelpIcon>
@@ -119,6 +94,7 @@ export const Sidebar = () => {
           Log out
         </LogOutBtn>
       </StyledSidebar>
+      {/* </Overlay> */}
     </>
   );
 };

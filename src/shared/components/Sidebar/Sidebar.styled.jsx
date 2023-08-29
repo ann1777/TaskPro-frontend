@@ -16,6 +16,15 @@ export const StyledSidebar = styled.div`
   transform: translateX(-100%);
   transition: transform 250ms ease-in;
   background: #ffffff;
+  webkit-scrollbar {
+    width: 4px;
+    height: 61px;
+    border-radius: 4px 0px 0px 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #bedbb0;
+  }
+  overflow: hidden;
 
   ${(props) =>
     props.isOpen
@@ -193,7 +202,6 @@ export const BlockImg = styled.img`
 `;
 
 export const MessageWrapper = styled.div`
-outline: 2px solid black;
   text-align: start;
   width: 168px;
   /* height: 80px; */
