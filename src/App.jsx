@@ -1,20 +1,31 @@
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { GlobalStyles } from './shared/components/styles/GlobalStyles.styled';
+
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import AuthPage from './pages/AuthPage/AuthPage';
-import { ThemeSwitching } from './shared/components/styles/ThemeSwitching';
 import { HomePage } from './pages/HomePage/HomePage';
-import { useDispatch } from 'react-redux';
+import Loader from './shared/components/styles/Loader';
+import Registration from './shared/components/Registration/Registration';
+import Login from './shared/components/Login/Login';
+
 import { currentUser } from './redux/auth/operations';
-import { useEffect } from 'react';
+import { selectIsRefreshing } from './redux/auth/authSelectors';
+
+import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+
+import { GlobalStyles } from './shared/components/styles/GlobalStyles.styled';
+import { ThemeSwitching } from './shared/components/styles/ThemeSwitching';
 
 function App() {
   const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(currentUser());
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      dispatch(currentUser());
+    }
   }, [dispatch]);
 
   return (
@@ -27,7 +38,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<WelcomePage />} />
-          <Route path='/:id' element={<AuthPage />} />
+          <Route path='/:id' element={<HomePage />} />
           <Route
             path='/home'
             element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
