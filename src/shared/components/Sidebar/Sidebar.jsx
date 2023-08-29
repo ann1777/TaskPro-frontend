@@ -29,7 +29,7 @@ import { useToggle } from "../../hooks/useToggle.js";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../../redux/auth/operations.js";
 
-export const Sidebar = () => {
+export const Sidebar = ({onOpen}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { open, isOpen, toggle } = useToggle();
@@ -42,7 +42,7 @@ export const Sidebar = () => {
   return (
     <>
       {isOpen && <Overlay onClick={toggle} />}
-      <StyledSidebar isOpen={!open}>
+      <StyledSidebar isOpen={isOpen}>
         <LogoWrapper>
           <Logo>
             <use href={sprite + "#icon-logo"}></use>
@@ -56,7 +56,7 @@ export const Sidebar = () => {
           <CreateText>
             Create a<br></br>new board
           </CreateText>
-          <CreateBoardButton>
+          <CreateBoardButton onClick={onOpen}>
             <Plus>
               <use href={sprite + "#icon-plus"}></use>
             </Plus>
