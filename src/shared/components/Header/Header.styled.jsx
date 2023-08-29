@@ -17,7 +17,7 @@ export const StyledHeader = styled.header`
   flex-shrink: 0;
   position: absolute;
 
-  background-color: #fcfcfc;
+  background-color: ${({ theme }) => theme.colors.backgroundHeader};
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
     margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 
@@ -36,13 +36,11 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledSelect = styled(Select)`
-  /* width: 68px;
-height:21px; */
   font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.28px;
-  color: #161616cc;
+  background-color: ${({ theme }) => theme.colors.backgroundHeader};
   /* color: #FFFFFFCC; */
 `;
 
@@ -62,7 +60,7 @@ export const UserName = styled.p`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
-  color: #161616;
+  color: ${({ theme }) => theme.colors.textHeader};
 `;
 
 export const AvatarImg = styled.img`
@@ -91,13 +89,10 @@ export const ButtonBurger = styled.button`
 export const StyledSvgBurger = styled.svg`
   width: 24px;
   height: 24px;
-  fill: #161616;
+  fill: ${({ theme }) => theme.colors.textHeader};
   /* fill:  #FFFFFF; */
   @media screen and (min-width: ${tablet}) {
     width: 32px;
     height: 32px;
   }
 `;
-
-
-

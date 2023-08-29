@@ -1,34 +1,25 @@
-import { theme } from './theme.styled';
-import { ThemeProvider } from 'styled-components';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import {
-  selectIsLoggedIn,
-  selectUserTheme,
-} from '../../../redux/auth/authSelectors';
+import { ThemeProvider } from "styled-components";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import { selectUserTheme } from "../../../redux/auth/authSelectors";
+import { light, dark, color } from "./Theme.styled";
 
 export const ThemeSwitching = ({ children }) => {
   const activeUserTheme = useSelector(selectUserTheme);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log(isLoggedIn);
-
-  const selectThemeIndex = () => {
-    if (activeUserTheme === 'dark') {
-      return 0;
-    } else if (activeUserTheme === 'light') {
-      return 1;
-    } else if (activeUserTheme === 'color') {
-      return 2;
+  const HandleThemeChoose = () => {
+    if (activeUserTheme === "light") {
+      return light;
+    } else if (activeUserTheme === "dark") {
+      return dark;
+    } else if (activeUserTheme === "color") {
+      return color;
     }
-    return 0;
+    return light;
   };
-  const selectedThemeIndex = theme[selectThemeIndex()];
 
-  return (
-    <ThemeProvider theme={selectedThemeIndex.colors}>{children}</ThemeProvider>
-  );
+  return <ThemeProvider theme={HandleThemeChoose}>{children}</ThemeProvider>;
 };
 
 ThemeSwitching.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.object.isRequired,
 };
