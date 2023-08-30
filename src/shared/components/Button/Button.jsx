@@ -1,5 +1,5 @@
 import icon from '../../images/icons.svg';
-
+import PropTypes from 'prop-types';
 import { StyledButton, StyledIcon, Svg } from './Button.styled';
 
 export const Button = ({
@@ -14,7 +14,7 @@ export const Button = ({
       {svg && (
         <StyledIcon>
           (
-          <Svg width="28" height="28">
+          <Svg width='28' height='28'>
             <use xlinkHref={`${icon}#icon-plus`} />
           </Svg>
           )
@@ -23,4 +23,11 @@ export const Button = ({
       {children}
     </StyledButton>
   );
+};
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired,
+  svg: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
 };

@@ -1,7 +1,8 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {
   TitleHelp,
-  StyledForm,
+  // StyledForm,
   FormField,
   InputField,
   SubmitButton,
@@ -29,30 +30,33 @@ const BOARD_ICONS = [
 ];
 
 function AddBoard({ onClose }) {
- const handleSubmit = async (values, { setSubmitting }) => {
-  try {
-    console.log("Submitting values:", values);  // <-- добавьте эту строку
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      console.log('Submitting values:', values); // <-- добавьте эту строку
 
-    const token = localStorage.getItem('accessToken'); 
-      const response = await axios.post("https://taskpro-backend-c73a.onrender.com/api/dashboard/", values, {
-      headers: {
-        'Authorization': `Bearer ${token}`
+      const token = localStorage.getItem('accessToken');
+      const response = await axios.post(
+        'https://taskpro-backend-c73a.onrender.com/api/dashboard/',
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        console.log('Доска создана');
+        onClose();
+      } else {
+        console.error('Неожиданный ответ от сервера:', response);
       }
-    });
-
-
-    if (response.status === 201) {
-      console.log("Доска создана");
-      onClose();
-    } else {
-      console.error("Неожиданный ответ от сервера:", response);
+    } catch (error) {
+      console.error('Ошибка при создании доски:', error);
+    } finally {
+      setSubmitting(false);
     }
-  }    catch (error) {
-    console.error("Ошибка при создании доски:", error);
-  } finally {
-    setSubmitting(false);
-  }
-};
+  };
 
   return (
     <>
@@ -69,14 +73,19 @@ function AddBoard({ onClose }) {
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <FormField>
-              <InputField autoFocus name="title" component="input" placeholder="Title" />
+              <InputField
+                autoFocus
+                name='title'
+                component='input'
+                placeholder='Title'
+              />
             </FormField>
 
             <BoardText>Icons</BoardText>
             <Row>
-              {BOARD_ICONS.map(id => (
-                <RadioLabel key={id} onClick={() => setFieldValue("icon", id)}>
-                  <RadioField name="icon" type="radio" value={id} />
+              {BOARD_ICONS.map((id) => (
+                <RadioLabel key={id} onClick={() => setFieldValue('icon', id)}>
+                  <RadioField name='icon' type='radio' value={id} />
                   <IconContainer isSelected={values.icon === id}>
                     <Svg>
                       <use xlinkHref={`${icon}#${id}`} />
@@ -87,20 +96,32 @@ function AddBoard({ onClose }) {
             </Row>
 
             <BoardText>Background</BoardText>
-<Row>
-  {data.map((item, index) => (
-    <RadioLabel key={index} onClick={() => setFieldValue("background", item.url)}>
-      <RadioField name="background" type="radio" value={item.url} />
-      <BackgroundIcon src={item.url} alt={`Background ${index + 1}`} />
-    </RadioLabel>
-  ))}
-</Row>
-            <SubmitButton type="submit" disabled={isSubmitting}>Create</SubmitButton>
+            <Row>
+              {data.map((item, index) => (
+                <RadioLabel
+                  key={index}
+                  onClick={() => setFieldValue('background', item.url)}
+                >
+                  <RadioField name='background' type='radio' value={item.url} />
+                  <BackgroundIcon
+                    src={item.url}
+                    alt={`Background ${index + 1}`}
+                  />
+                </RadioLabel>
+              ))}
+            </Row>
+            <SubmitButton type='submit' disabled={isSubmitting}>
+              Create
+            </SubmitButton>
           </Form>
         )}
       </Formik>
     </>
   );
 }
+
+AddBoard.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default AddBoard;

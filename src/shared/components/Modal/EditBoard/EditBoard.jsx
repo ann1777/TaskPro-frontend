@@ -1,18 +1,19 @@
- import {
+import PropTypes from 'prop-types';
+import {
   TitleHelp,
   StyledForm,
-    FormField,
+  FormField,
   InputField,
   SubmitButton,
   Row,
   RadioLabel,
   BackgroundIcon,
   IconContainer,
-    Svg,
-    BoardText,
-    RadioField,
-  ImageContainer
-} from './EditBoard.styled'; 
+  Svg,
+  BoardText,
+  RadioField,
+  ImageContainer,
+} from './EditBoard.styled';
 import { Formik, Field, ErrorMessage } from 'formik';
 import icon from '../../../images/icons.svg';
 
@@ -25,7 +26,6 @@ const BOARD_ICONS = [
   'icon-lightning-02',
   'icon-colors',
   'icon-hexagon-01',
-  
 ];
 
 function EditBoard({ onClose }) {
@@ -40,31 +40,30 @@ function EditBoard({ onClose }) {
             background: 'empty',
             icon: BOARD_ICONS[0],
           }}
-       
         >
           {({ isSubmitting }) => (
             <StyledForm onChange={() => setErrorMessage(null)}>
               <FormField>
                 <InputField
                   autoFocus
-                  name="title"
-                  component="input"
-                  placeholder="Title"
+                  name='title'
+                  component='input'
+                  placeholder='Title'
                 />
-                <ErrorMessage name="title" component="div" />
+                <ErrorMessage name='title' component='div' />
               </FormField>
 
-               <BoardText>Icons</BoardText>
+              <BoardText>Icons</BoardText>
               <Row>
-                {BOARD_ICONS.map(id => (
+                {BOARD_ICONS.map((id) => (
                   <RadioLabel key={id} title={id}>
                     <RadioField
-                      name="icon"
-                      type="radio"
+                      name='icon'
+                      type='radio'
                       value={id}
-                      component="input"
+                      component='input'
                     />
-                    <IconContainer className="icon-label">
+                    <IconContainer className='icon-label'>
                       <Svg>
                         <use xlinkHref={`${icon}#${id}`} />
                       </Svg>
@@ -73,25 +72,27 @@ function EditBoard({ onClose }) {
                 ))}
               </Row>
 
-             <BoardText>Background</BoardText>
+              <BoardText>Background</BoardText>
               <Row>
-             <RadioLabel>
-  <RadioField
-    name="background"
-    type="radio"
-    value="empty"
-    component="input"
-  />
-  <ImageContainer>
-    <BackgroundIcon src="https://res.cloudinary.com/doc0gvy9u/image/upload/v1693183018/block_fbhcsq.png" alt="Background Description" />
-  </ImageContainer>
-                              </RadioLabel>
-                              
-                              
-             
+                <RadioLabel>
+                  <RadioField
+                    name='background'
+                    type='radio'
+                    value='empty'
+                    component='input'
+                  />
+                  <ImageContainer>
+                    <BackgroundIcon
+                      src='https://res.cloudinary.com/doc0gvy9u/image/upload/v1693183018/block_fbhcsq.png'
+                      alt='Background Description'
+                    />
+                  </ImageContainer>
+                </RadioLabel>
               </Row>
 
-              <SubmitButton disabled={isSubmitting}>Edit</SubmitButton>
+              <SubmitButton disabled={isSubmitting} onClick={onClose}>
+                Edit
+              </SubmitButton>
             </StyledForm>
           )}
         </Formik>
@@ -99,5 +100,9 @@ function EditBoard({ onClose }) {
     </>
   );
 }
+
+EditBoard.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default EditBoard;

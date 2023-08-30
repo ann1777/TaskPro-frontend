@@ -1,4 +1,11 @@
-import { TitleHelp, StyledForm, FormField, InputField, SubmitButton} from './EditColumn.styled';
+import PropTypes from 'prop-types';
+import {
+  TitleHelp,
+  StyledForm,
+  FormField,
+  InputField,
+  SubmitButton,
+} from './EditColumn.styled';
 import { Formik, ErrorMessage } from 'formik';
 
 function EditColumn({ onClose }) {
@@ -8,7 +15,7 @@ function EditColumn({ onClose }) {
       <Formik
         initialValues={{
           email: '',
-          comment: ''
+          comment: '',
         }}
       >
         {({ isSubmitting }) => (
@@ -16,11 +23,11 @@ function EditColumn({ onClose }) {
             <FormField>
               <InputField
                 autoFocus
-                name="Title"
-                type="text"
-                placeholder="Title"
+                name='Title'
+                type='text'
+                placeholder='Title'
               />
-              <ErrorMessage name="title" component="div" />
+              <ErrorMessage name='title' component='div' />
             </FormField>
             <SubmitButton disabled={isSubmitting}>Add</SubmitButton>
           </StyledForm>
@@ -29,5 +36,9 @@ function EditColumn({ onClose }) {
     </>
   );
 }
+
+EditColumn.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default EditColumn;
