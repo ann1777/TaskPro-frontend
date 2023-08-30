@@ -40,6 +40,9 @@ export const light = {
     textColorModal: '#161616',
     textSecondModal: 'rgba(22, 22, 22, 0.50)',
     borderColorModal: '1px solid #BEDBB0',
+
+
+    
   },
 };
 export const dark = {

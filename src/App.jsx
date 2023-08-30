@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import AuthPage from './pages/AuthPage/AuthPage';
 import { HomePage } from './pages/HomePage/HomePage';
-import Loader from './shared/components/styles/Loader';
+import Loader from './shared/components/Loader/Loader';
 import Registration from './shared/components/Registration/Registration';
 import Login from './shared/components/Login/Login';
 import Dashboard from './shared/components/Dashboard/Dashboard';
@@ -18,7 +18,7 @@ import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 
 import { GlobalStyles } from './shared/components/styles/GlobalStyles.styled';
-import { ThemeSwitching } from './shared/components/styles/ThemeSwitching';
+import { ThemeSwitching } from './shared/components/Theme/ThemeSwitching';
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ function App() {
         <>
           <style>
             @import
-            url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+            url(`https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap`);
           </style>
           <Routes>
             <Route

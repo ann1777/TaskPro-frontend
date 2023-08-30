@@ -14,20 +14,24 @@ export const StyledOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 999;
+
 `;
 
 export const StyledModal = styled.div`
   /* position: relative; */
   border-radius: 8px;
-  background-color: #FCFCFC;
+ 
+ background-color: ${({ theme }) => theme.colors.backgroundColorModal};
   padding: 24px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  border:${({ theme }) => theme.colors.borderColorModal};
+  z-index: 9999;
 
   @media (max-width: 374px) {
     min-width: 50%;
@@ -60,5 +64,5 @@ export const StyledCloseButton = styled.button`
 `;
 
 export const Svg = styled.svg`
-  stroke: #fff;
+  stroke: ${({ theme }) => theme.colors.textColorModal};
 `;
