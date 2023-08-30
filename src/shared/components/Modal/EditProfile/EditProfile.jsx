@@ -1,4 +1,6 @@
-import  { useState } from "react";
+import { useState } from "react";
+import { useSelector } from 'react-redux';
+import { selectUser } from "../../../../redux/auth/authSelectors";
 import { Formik, Form } from 'formik';
 import avatarImg from '../../../images/user-zaglushka.png';
 
@@ -22,12 +24,12 @@ export const EditProfile = () => {
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
-
+const { name, avatarURL } = useSelector(selectUser);
     return (
         <WindowContaier>
             <ModalTitle>Edit Profile</ModalTitle>
             <AvatarWrapper>
-                <AvatarImg src={avatarImg} alt="avatar" />
+                <AvatarImg src={avatarURL || avatarImg} alt="avatar" />
                 <FileInputWrapper>
                     <FileInput type="file" accept="image/jpeg, image/png, image/gif" />
                     +
@@ -46,7 +48,7 @@ export const EditProfile = () => {
             >
                 {({ isSubmitting }) => (
                     <Form>
-                        <ProfileInput type="text" name="name" placeholder="Name" required />
+                        <ProfileInput type="text" name="name" placeholder="Name" value={name} required />
                         <ProfileInput type="text" name="email" placeholder="Email" required />
                         <label style={{ position: 'relative' }}>
                             <ProfileInput 

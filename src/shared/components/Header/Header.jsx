@@ -36,6 +36,10 @@ export const Header = ({ onOpenSidebar, openSidebar }) => {
   const handleThemeChange = (selectedOption) => {
     dispatch(changeTheme(selectedOption.value));
   };
+  
+  const closeModal = () => {
+        setModalOpen(false);
+    };
   const [selectedOption] = useState(null);
   const customStyles = {
     option: (defaultStyles) => ({
@@ -116,7 +120,7 @@ export const Header = ({ onOpenSidebar, openSidebar }) => {
           <UserName>{name}</UserName>
           <AvatarImg onClick={open} src={avatarURL} alt="user" />
           {isOpen && (
-            <Modal>
+            <Modal onClose={closeModal}>
               <EditProfile />
             </Modal>
           )}

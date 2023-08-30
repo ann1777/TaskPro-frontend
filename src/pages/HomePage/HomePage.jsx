@@ -9,37 +9,51 @@ import AddBoard from "../../shared/components/Modal/AddBoard/AddBoard";
 import Dashboard from "../../shared/components/Dashboard/Dashboard";
 
 import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.styled";
+import AddColumn from "../../shared/components/Modal/AddColumn/AddColumn";
 
 export const HomePage = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [helpModalOpen, setHelpModalOpen] = useState(false);
-  const { isOpen, toggle } = useToggle();
+    const [modalOpen, setModalOpen] = useState(false);
+    const [helpModalOpen, setHelpModalOpen] = useState(false);
+    const { isOpen, toggle } = useToggle();
 
-  const toggleModal = () => {
-    setModalOpen(true);
-  };
+    const toggleModal = () => {
+        setModalOpen(true);
+    };
 
-  const openHelpModal = () => {
-    setHelpModalOpen(true);
-  };
+    const openHelpModal = () => {
+        setHelpModalOpen(true);
+    };
 
-  return (
-    <>
-      <GlobalStylesHome />
-      <Sidebar
-        closeSidebar={toggle}
-        isOpen={isOpen}
-        onOpen={toggleModal}
-        onOpenHelp={openHelpModal}
-      />
+    const closeHelpModal = () => {
+        setHelpModalOpen(false);
+    };
 
-      {helpModalOpen && (
-        <Modal>
-          <NeedHelp />
-        </Modal>
-      )}
-      <Header openSidebar={toggle} />
-        <Dashboard />
-    </>
-  );
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    return (
+        <>
+            <GlobalStylesHome />
+            <Sidebar
+                closeSidebar={toggle}
+                isOpen={isOpen}
+                onOpen={toggleModal}
+                onOpenHelp={openHelpModal}
+            />
+
+            {helpModalOpen && (
+                <Modal onClose={closeHelpModal}>
+                    <NeedHelp onClose={closeHelpModal} />
+                </Modal>
+            )}
+            {modalOpen && (
+                <Modal onClose={closeModal}>
+                    <AddBoard onClose={closeModal} />
+                </Modal>
+            )}
+            <Header openSidebar={toggle} />
+            <Dashboard />
+        </>
+    );
 };
