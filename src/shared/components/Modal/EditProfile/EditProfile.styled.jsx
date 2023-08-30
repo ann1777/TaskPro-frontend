@@ -62,6 +62,7 @@ export const FileInputWrapper = styled.label`
   width: 24px;
   height: 24px;
   border-radius: 20%;
+  background-color: #bedbb0;
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -71,6 +72,7 @@ export const FileInputWrapper = styled.label`
 
 export const FileInput = styled.input`
   display: none;
+  background-color: #bedbb0;
 `;
 
 export const ProfileForm = styled.form`
