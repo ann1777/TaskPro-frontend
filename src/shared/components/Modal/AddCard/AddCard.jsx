@@ -1,4 +1,5 @@
-import { useState } from 'react'; // Импорт useState
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   TitleHelp,
   StyledForm,
@@ -14,7 +15,7 @@ import {
   LabelRadiobutton,
 } from './AddCard.styled';
 import { Formik, ErrorMessage } from 'formik';
-import {getPriorityStyles}  from '../../../../hepers/getPriorityStyles';
+import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
 
 function AddCard({ onClose }) {
@@ -27,9 +28,9 @@ function AddCard({ onClose }) {
 
   const [selectedDate, setSelectedDate] = useState(new Date()); // Использование useState для даты
 
-  
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    onClose();
   };
 
   return (
@@ -44,36 +45,48 @@ function AddCard({ onClose }) {
         {({ isSubmitting }) => (
           <StyledForm>
             <FormField>
-              <InputField autoFocus name="Title" type="text" placeholder="Title" />
-              <ErrorMessage name="email" component="div" />
+              <InputField
+                autoFocus
+                name='Title'
+                type='text'
+                placeholder='Title'
+              />
+              <ErrorMessage name='email' component='div' />
             </FormField>
             <FormField>
-              <Textarea name="Desc" component="textarea" placeholder="Description" />
-              <ErrorMessage name="description" component="div" />
+              <Textarea
+                name='Desc'
+                component='textarea'
+                placeholder='Description'
+              />
+              <ErrorMessage name='description' component='div' />
             </FormField>
             <LabelTitle>Label color</LabelTitle>
             <Labels>
               {labels.slice().map(({ value }) => (
                 <div style={{ display: 'flex' }} key={value}>
-                  <RadioLabel buttoncolor={getPriorityStyles(value)} className="inputlabel">
+                  <RadioLabel
+                    buttoncolor={getPriorityStyles(value)}
+                    className='inputlabel'
+                  >
                     <LabelRadiobutton
                       buttoncolor={getPriorityStyles(value)}
-                      name="label"
-                      type="radio"
+                      name='label'
+                      type='radio'
                       value={value}
                     />
-                    <Checkmark buttoncolor={getPriorityStyles(value)}></Checkmark>
+                    <Checkmark
+                      buttoncolor={getPriorityStyles(value)}
+                    ></Checkmark>
                   </RadioLabel>
                 </div>
               ))}
             </Labels>
 
-            
             <DedlineTitle>Deadline</DedlineTitle>
             <TaskCalendar
-              dateChange={handleDateChange} 
+              dateChange={handleDateChange}
               initialDate={selectedDate}
-              
             />
             <div style={{ height: '40px' }}></div>
 
@@ -84,5 +97,9 @@ function AddCard({ onClose }) {
     </>
   );
 }
+
+AddCard.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default AddCard;
