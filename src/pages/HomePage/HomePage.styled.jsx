@@ -1,9 +1,8 @@
-
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const FlexDiv = styled.div`
-display:flex;
-`
+  display: flex;
+`;
 export const HeadBoardDIv = styled.div`
-width: 100%;
+  width: 100%;
+`;
