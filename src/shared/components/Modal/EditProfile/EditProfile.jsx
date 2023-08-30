@@ -11,7 +11,6 @@ import {
   AvatarImg,
   FileInputWrapper,
   FileInput,
-
   ProfileInput,
   SendButton,
   StyledEyeIcon,  
@@ -37,9 +36,8 @@ const { name, avatarURL } = useSelector(selectUser);
             </AvatarWrapper>
             <Formik
                 initialValues={{
-                    name: '',
-                    email: '',
-                    password: '',
+                    name: `${name}`,
+            
                 }}
                 onSubmit={(values, actions) => {
                     console.log(values);
@@ -54,8 +52,7 @@ const { name, avatarURL } = useSelector(selectUser);
                             <ProfileInput 
                                 type={showPassword ? "text" : "password"} 
                                 name="password" 
-                                placeholder="Password" 
-                                required 
+                                placeholder="Password"  
                             />
                             
                             <span style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer' }} onClick={handleTogglePassword}>

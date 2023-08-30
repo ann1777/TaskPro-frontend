@@ -1,15 +1,11 @@
-import { useEffect } from 'react';
+
+import { StyledModal, StyledOverlay, StyledCloseButton, Svg } from './Modal.styled';
 import icon from '../../images/icons.svg';
-
-
-import {
-  StyledModal,
-  StyledOverlay,
-  StyledCloseButton,
-  Svg,
-} from './Modal.styled';
+import { useEffect } from 'react';
 
 export const Modal = ({ onClose, children, title }) => {
+
+
   
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -43,6 +39,7 @@ export const Modal = ({ onClose, children, title }) => {
         </StyledCloseButton>
         {title && <h2>{title}</h2>}
         {children}
+        
       </StyledModal>
     </StyledOverlay>
   );

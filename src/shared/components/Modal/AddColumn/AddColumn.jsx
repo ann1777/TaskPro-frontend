@@ -1,28 +1,44 @@
 import { TitleHelp, StyledForm, FormField, InputField, SubmitButton } from './AddColumn.styled';
 import { Formik, ErrorMessage } from 'formik';
+import axios from 'axios';
 
-function AddColumn({ onClose }) {
+function AddColumn({ onCloseModal }) {
+  const handleOnSubmit = async (values, { setSubmitting }) => {
+    try {
+      const dashboardId = getDashboardIdFromURL();
+      
   
+      const token = localStorage.getItem('accessToken');
 
-  const handleOnSubmit = async (values) => {
-  try {
-    const response = await fetch(`https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ title: values.Title })
-    });
-    const data = await response.json();
-    console.log('Server response:', data); 
-    if (!response.ok) {
-      throw new Error('Failed to add column');
+      const response = await axios.post(
+        `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}`,
+        { title: values.Title },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
+
+      console.log('Ответ сервера:', response.data);
+      
+     onCloseModal()
+
+    } catch (error) {
+      console.error('Ошибка:', error);
     }
-    console.log(data);
-  } catch (error) {
-    console.error('Error:', error); 
-  }
-};
+
+    setSubmitting(false);
+    return false;
+  };
+
+  const getDashboardIdFromURL = () => {
+    const pathnameParts = window.location.pathname.split('/');
+    const dashboardId = pathnameParts[pathnameParts.length - 1];
+    return dashboardId;
+  };
+
   return (
     <>
       <TitleHelp>Add column</TitleHelp>
@@ -30,8 +46,8 @@ function AddColumn({ onClose }) {
         initialValues={{ Title: '' }}
         onSubmit={handleOnSubmit}
       >
-        {({ isSubmitting }) => (
-          <StyledForm>
+        {({ isSubmitting, handleSubmit }) => (
+          <StyledForm onSubmit={handleSubmit}>
             <FormField>
               <InputField
                 autoFocus
@@ -41,7 +57,9 @@ function AddColumn({ onClose }) {
               />
               <ErrorMessage name="Title" component="div" />
             </FormField>
-            <SubmitButton type="submit" disabled={isSubmitting}>Add</SubmitButton>
+            <SubmitButton type="submit" disabled={isSubmitting}>
+              Add
+            </SubmitButton>
           </StyledForm>
         )}
       </Formik>

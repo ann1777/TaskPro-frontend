@@ -9,9 +9,9 @@ import * as css from './Dashboard.styled';
 const Dashboard = () => {
   const { dashboardId } = useParams();
   const [dashboard, setDashboard] = useState([]);
-  const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
+ 
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
-
+  const [isModalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     const apiDashboard = async () => {
       if (dashboardId) {
@@ -31,13 +31,21 @@ const Dashboard = () => {
     apiDashboard();
   }, [dashboardId]);
 
-  const toggleAddColumnModal = () => {
-    setIsAddColumnOpen(!isAddColumnOpen);
-  };
+  
 
   const toggleAddBoardModal = () => {
     setIsAddBoardOpen(!isAddBoardOpen);
   };
+  
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
 
   return (
     <css.DivFull>
@@ -45,13 +53,15 @@ const Dashboard = () => {
         <>
           {dashboard.title && <>
             <css.H1>{dashboard.title}</css.H1>
-            <css.ButtonAddColumn onClick={toggleAddColumnModal}><css.IconPlus />Add another column</css.ButtonAddColumn>
+            <css.ButtonAddColumn onClick={handleModalOpen}><css.IconPlus />Add another column</css.ButtonAddColumn>
           </>}
-          {isAddColumnOpen &&
-            <Modal>
-              <AddColumn onClose={toggleAddColumnModal} />
-            </Modal>
-          }
+          {isModalOpen && <Modal onClose={handleModalClose}>
+       
+          <AddColumn onCloseModal={handleModalClose} />
+        </Modal>
+     
+      }
+
         </>
       ) : (
         <css.DivText>

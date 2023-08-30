@@ -1,5 +1,4 @@
 import icon from '../../images/icons.svg';
-
 import { StyledButton, StyledIcon, Svg } from './Button.styled';
 
 export const Button = ({
@@ -9,8 +8,10 @@ export const Button = ({
   children,
   ...allyProps
 }) => {
+
+
   return (
-    <StyledButton type={type} onClick={onClick} {...allyProps}>
+    <StyledButton type={type} {...allyProps}>
       {svg && (
         <StyledIcon>
           (

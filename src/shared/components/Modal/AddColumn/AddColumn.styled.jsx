@@ -5,7 +5,7 @@ import { Button } from '../../Button/Button';
 
 
 export const TitleHelp = styled.div`
-  ${'' /* color: ${dark.colors.textColorModal}; */}
+  color: ${({ theme }) => theme.colors.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -16,7 +16,6 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  ${'' /* background-color: ${dark.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`

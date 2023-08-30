@@ -95,7 +95,7 @@ function AddBoard({ onClose }) {
     </RadioLabel>
   ))}
 </Row>
-            <SubmitButton type="submit" disabled={isSubmitting}>Create</SubmitButton>
+            <SubmitButton type="submit" handleSubmit>Create</SubmitButton>
           </Form>
         )}
       </Formik>

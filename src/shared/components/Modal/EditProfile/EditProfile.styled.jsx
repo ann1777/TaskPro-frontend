@@ -5,7 +5,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 export const WindowContaier = styled.div`
   background-color: var(--profileBgColor);
   border-radius: 8px;
-  box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.05);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +35,7 @@ export const SendButton = styled.button`
 export const ModalTitle = styled.h2`
   font-size: 18px;
   font-weight: 500;
-  color: #FFF;
+  color: ${({ theme }) => theme.colors.textColorModal};
   margin-bottom: 24px;
   align-self: flex-start;
 `;
@@ -63,7 +62,6 @@ export const FileInputWrapper = styled.label`
   width: 24px;
   height: 24px;
   border-radius: 20%;
-  background-color: white;
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -83,26 +81,33 @@ export const ProfileForm = styled.form`
   gap: 14px;
 `;
 
+
 export const ProfileInput = styled.input`
-  height: 49px;
-  width: 100%;
+   width: 100%;
+  padding: 14px 18px;
+  background: inherit;
   border-radius: 8px;
-  border: 1px solid #FFF;
-  background-color: transparent;
-  color: #FFF;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 14px 0px 14px 18px;
+  border: 1px solid #bedbb0;
   outline: none;
+  color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
-  margin-top: 14px;
+  margin-bottom: 14px;
+
+  &::placeholder {
+    color:${({ theme }) => theme.colors.textSecondModal};
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.5;
+  }
+
+  &:hover,
   &:focus {
     opacity: 1;
+    &::placeholder {
+      opacity: 1;
+    }
   }
-  
-  @media screen and (min-width: ${breakpoints.M}) {
-    width: 352px;
-  }
+
 `;
 
 export const StyledEyeIcon = styled(AiOutlineEyeInvisible)`
