@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 
@@ -6,4 +7,3 @@ display:flex;
 `
 export const HeadBoardDIv = styled.div`
 width: 100%;
-`
