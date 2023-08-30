@@ -11,6 +11,8 @@ import Dashboard from '../../shared/components/Dashboard/Dashboard';
 import { GlobalStylesHome } from '../../shared/components/styles/GlobalStyles.styled';
 import * as css from './HomePage.styled';
 
+import * as css from './HomePage.styled';
+
 export const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [helpModalOpen, setHelpModalOpen] = useState(false);
@@ -44,10 +46,16 @@ export const HomePage = () => {
         />
 
         {helpModalOpen && (
-          <Modal>
-            <NeedHelp />
-          </Modal>
-        )}
+                <Modal onClose={closeHelpModal}>
+                    <NeedHelp onClose={closeHelpModal} />
+                </Modal>
+            )}
+            {modalOpen && (
+                <Modal onClose={closeModal}>
+                    <AddBoard onClose={closeModal} />
+                </Modal>
+            )}
+           
         <css.HeadBoardDiv>
           <Header openSidebar={toggle} />
           <Dashboard />

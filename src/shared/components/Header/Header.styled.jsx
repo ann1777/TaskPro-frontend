@@ -8,14 +8,14 @@ export const StyledHeader = styled.header`
   width: 100%;
   padding: 14px 20px;
   margin: 0 auto;
-  top: 0px;
-  left: 0;
+  /* top: 0px;
+  left: 0; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
   flex-shrink: 0;
-  position: absolute;
+  /* position: absolute; */
 
   background-color: ${({ theme }) => theme.colors.backgroundHeader};
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
@@ -27,8 +27,8 @@ export const StyledHeader = styled.header`
   @media screen and (min-width: ${desktop}) {
     padding: 18px 24px;
     justify-content: end;
-    margin-left: 260px;
-    width: calc(100% - 260px);
+    /* margin-left: 260px;
+    width: calc(100% - 260px); */
     /* left: auto; */
     right: 0;
     /* z-index: 5; */
