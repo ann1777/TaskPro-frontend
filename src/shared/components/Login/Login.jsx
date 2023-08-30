@@ -19,6 +19,7 @@ import { signin } from "../../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
 import NavAuth from "../Navigation/NavAuth.jsx";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 let schema = yup.object({
   password: yup
@@ -46,6 +47,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const formikRef = React.useRef();
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -56,10 +58,10 @@ function Login() {
     const resultAction = await dispatch(signin({ email, password }));
     if (signin.fulfilled.match(resultAction)) {
       navigate("/home");
+      formikRef.current.resetForm();
     } else if (signin.rejected.match(resultAction)) {
       console.log(resultAction.error.message);
     }
-    resetForm();
   };
 
   return (
