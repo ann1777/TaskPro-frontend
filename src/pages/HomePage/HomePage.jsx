@@ -9,6 +9,7 @@ import AddBoard from "../../shared/components/Modal/AddBoard/AddBoard";
 import Dashboard from "../../shared/components/Dashboard/Dashboard";
 
 import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.styled";
+import AddColumn from "../../shared/components/Modal/AddColumn/AddColumn";
 
 import * as css from './HomePage.styled';
 
@@ -24,6 +25,14 @@ export const HomePage = () => {
   const openHelpModal = () => {
     setHelpModalOpen(true);
   };
+  
+  const closeHelpModal = () => {
+        setHelpModalOpen(false);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
   return (
     <>
@@ -38,13 +47,17 @@ export const HomePage = () => {
         />
 
         {helpModalOpen && (
-          <Modal>
-            <NeedHelp />
-          </Modal>
-        )}
-        <css.HeadBoardDIv>
-          <Header openSidebar={toggle} />
-          <Dashboard />
+                <Modal onClose={closeHelpModal}>
+                    <NeedHelp onClose={closeHelpModal} />
+                </Modal>
+            )}
+            {modalOpen && (
+                <Modal onClose={closeModal}>
+                    <AddBoard onClose={closeModal} />
+                </Modal>
+            )}
+            <Header openSidebar={toggle} />
+            <Dashboard />
         </css.HeadBoardDIv>
       </css.FlexDiv>
 
@@ -52,3 +65,4 @@ export const HomePage = () => {
     </>
   );
 };
+
