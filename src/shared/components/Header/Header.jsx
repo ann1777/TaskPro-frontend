@@ -32,6 +32,25 @@ export const Header = ({ onOpenSidebar, openSidebar }) => {
 
   //   const [isUserLogin, setIsUserLogin]=useState(false);
   // const [isSelectedTheme,setIsSelectedTheme]=useState(false);
+  const dispatch = useDispatch();
+
+  const handleThemeChange = (selectedOption) => {
+    dispatch(changeTheme(selectedOption.value));
+  };
+  
+  const closeModal = () => {
+        setModalOpen(false);
+    };
+  const [selectedOption] = useState(null);
+  const customStyles = {
+    option: (defaultStyles) => ({
+      ...defaultStyles,
+      // color: state.isSelected ? "#212529" : "#fff",
+      // borderRadius: "8px",
+      // border: "1px solid #BEDBB0",
+
+      // boxShadow: "0px 4px 16px 0px rgba(17, 17, 17, 0.10)",
+
 
   // const [selectedOption, setSelectedOption] = useState("");
 
@@ -48,7 +67,7 @@ export const Header = ({ onOpenSidebar, openSidebar }) => {
           <UserName>{name}</UserName>
           <AvatarImg onClick={open} src={avatarURL} alt="user" />
           {isOpen && (
-            <Modal>
+            <Modal onClose={closeModal}>
               <EditProfile />
             </Modal>
           )}

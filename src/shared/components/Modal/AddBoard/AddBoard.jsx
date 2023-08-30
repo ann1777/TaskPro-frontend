@@ -15,6 +15,7 @@ import {
 } from './AddBoard.styled';
 import { Formik, Form } from 'formik';
 import icon from '../../../images/icons.svg';
+import data from '../../../../hepers/bacground.json';
 
 const BOARD_ICONS = [
   'icon-Project',
@@ -30,6 +31,8 @@ const BOARD_ICONS = [
 function AddBoard({ onClose }) {
  const handleSubmit = async (values, { setSubmitting }) => {
   try {
+    console.log("Submitting values:", values);  // <-- добавьте эту строку
+
     const token = localStorage.getItem('accessToken'); 
       const response = await axios.post("https://taskpro-backend-c73a.onrender.com/api/dashboard/", values, {
       headers: {
@@ -37,13 +40,14 @@ function AddBoard({ onClose }) {
       }
     });
 
+
     if (response.status === 201) {
       console.log("Доска создана");
       onClose();
     } else {
       console.error("Неожиданный ответ от сервера:", response);
     }
-  } catch (error) {
+  }    catch (error) {
     console.error("Ошибка при создании доски:", error);
   } finally {
     setSubmitting(false);
@@ -83,13 +87,14 @@ function AddBoard({ onClose }) {
             </Row>
 
             <BoardText>Background</BoardText>
-            <Row>
-              <RadioLabel onClick={() => setFieldValue("background", "empty")}>
-                <RadioField name="background" type="radio" value="empty" />
-                <BackgroundIcon src="https://res.cloudinary.com/doc0gvy9u/image/upload/v1693183018/block_fbhcsq.png" alt="Background Description" />
-              </RadioLabel>
-            </Row>
-
+<Row>
+  {data.map((item, index) => (
+    <RadioLabel key={index} onClick={() => setFieldValue("background", item.url)}>
+      <RadioField name="background" type="radio" value={item.url} />
+      <BackgroundIcon src={item.url} alt={`Background ${index + 1}`} />
+    </RadioLabel>
+  ))}
+</Row>
             <SubmitButton type="submit" disabled={isSubmitting}>Create</SubmitButton>
           </Form>
         )}

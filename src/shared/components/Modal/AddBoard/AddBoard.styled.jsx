@@ -1,13 +1,13 @@
 import styled from "styled-components";
-// import theme from "../../styles/theme.styled";
 import { Field } from "formik";
 import { Button } from "../../Button/Button";
+// import { breakpoints } from "../styles/breakpoints";
 
-// const selectedTheme = theme[1];
+// const { tablet, desktop } = breakpoints;
 
 export const TitleHelp = styled.div`
-  color: #fff;
-  color: ${(props) => props.theme.textColorModal};
+  color: ${({ theme }) => theme.colors.textColorModal};
+  
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -17,13 +17,13 @@ export const TitleHelp = styled.div`
 
 export const StyledForm = styled.form`
   display: flex;
-  flex-direction: column;
-  ${'' /* background-color: ${selectedTheme.colors.backgroundColorModal}; */}
+  flex-direction: column; 
 `;
+ 
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  ${'' /* color: ${selectedTheme.colors.textColorModal}; */}
+ 
 `;
 
 export const InputField = styled(Field)`
@@ -33,11 +33,11 @@ export const InputField = styled(Field)`
   border-radius: 8px;
   border: 1px solid #bedbb0;
   outline: none;
-  color: #bedbb0;
+  color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
 
   &::placeholder {
-    color: #bedbb0;
+    color:${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -54,6 +54,7 @@ export const InputField = styled(Field)`
 
 export const SubmitButton = styled(Button)`
   padding: 10px 0 11px 0;
+  
 `;
 
 export const BoardText = styled.p`
@@ -63,24 +64,23 @@ export const BoardText = styled.p`
   line-height: 21px;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
-  color: #ffffff;
+  color:${({ theme }) => theme.colors.textColorModal};
 `;
 
 export const RadioLabel = styled.label`
   position: relative;
   display: inline-block;
   cursor: pointer;
-  margin-right: 8px;
+  margin-right: 4px;
 `;
 
 export const IconContainer = styled.div`
   position: relative;
   cursor: pointer;
 
-  svg {
+   svg {
     fill: #151515;
-    ${'' /* opacity: ${props => props.isSelected ? 1 : 0.5};
-    stroke: ${props => props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"}; */}
+  
     opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
     stroke: ${(props) =>
       props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};

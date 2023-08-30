@@ -9,7 +9,7 @@ export const StyledButton = styled.button`
   font-size: var(--fontSize14);
   font-family: var(--fontFamily);
   font-weight: var(--fontWeight500);
- 
+  border: none;
   background-color: #BEDBB0;
   border-radius: 8px;
 `;
