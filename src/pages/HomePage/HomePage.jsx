@@ -54,10 +54,10 @@ export const HomePage = () => {
           </Modal>
         )}
 
-        <css.HeadBoardDiv>
+        <css.HeadBoardDIv>
           <Header openSidebar={toggle} />
           <Dashboard />
-        </css.HeadBoardDiv>
+        </css.HeadBoardDIv>
       </css.FlexDiv>
       <Sidebar
         closeSidebar={toggle}
