@@ -11,14 +11,16 @@ import {
   AuthFormPasswordIcon,
   StyledEyeIcon,
   StyledEyeIconVis,
-} from './Login.styled.jsx';
-import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
-import { useState } from 'react';
-import { signin } from '../../../redux/auth/operations.js';
-import { useDispatch } from 'react-redux';
-import NavAuth from '../Navigation/NavAuth.jsx';
-import { useNavigate } from 'react-router-dom';
+
+} from "./Login.styled.jsx";
+import { Formik, ErrorMessage } from "formik";
+import * as yup from "yup";
+import { useState } from "react";
+import { signin } from "../../../redux/auth/operations.js";
+import { useDispatch } from "react-redux";
+import NavAuth from "../Navigation/NavAuth.jsx";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
 let schema = yup.object({
   password: yup
@@ -46,6 +48,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const formikRef = React.useRef();
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -55,11 +58,12 @@ function Login() {
     const { email, password } = values;
     const resultAction = await dispatch(signin({ email, password }));
     if (signin.fulfilled.match(resultAction)) {
-      navigate('/home');
+      navigate("/home");
+      formikRef.current.resetForm();
+
     } else if (signin.rejected.match(resultAction)) {
       console.log(resultAction.error.message);
     }
-    resetForm();
   };
 
   return (

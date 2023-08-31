@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signup } from "../../../redux/auth/operations";
 import NavAuth from "../Navigation/NavAuth";
+import React from "react";
 
 let schema = yup.object({
   name: yup
@@ -50,21 +51,20 @@ const initialValues = {
 function Registration() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const formikRef = React.useRef();
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
-  const onSubmit = (values, { resetForm }) => {
+
+  const onSubmit = async (values, { resetForm }) => {
     const { name, email, password } = values;
-    console.log(name, email, password);
-    dispatch(
-      signup({
-        name,
-        email,
-        password,
-      })
-    );
-    resetForm();
+    const resultAction = await dispatch(signup({ name, email, password }));
+    if (signup.fulfilled.match(resultAction)) {
+      formikRef.current.resetForm();
+    } else if (signup.rejected.match(resultAction)) {
+      console.log(resultAction.error.message);
+    }
   };
 
   return (
@@ -126,7 +126,6 @@ function Registration() {
                 <StyledBtnAuthAccent type="submit">
                   Register Now
                 </StyledBtnAuthAccent>
-                {/* <StyledLinkAuth to="/login">Log in</StyledLinkAuth> */}
               </StyledWrapAuthBtn>
             </StyledFormAuth>
           </Formik>
