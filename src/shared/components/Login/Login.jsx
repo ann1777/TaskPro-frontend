@@ -11,34 +11,34 @@ import {
   AuthFormPasswordIcon,
   StyledEyeIcon,
   StyledEyeIconVis,
-} from "./Login.styled.jsx";
-import { Formik, ErrorMessage } from "formik";
-import * as yup from "yup";
-import { useState } from "react";
-import { signin } from "../../../redux/auth/operations.js";
-import { useDispatch } from "react-redux";
-import NavAuth from "../Navigation/NavAuth.jsx";
-import { useNavigate } from "react-router-dom";
+} from './Login.styled.jsx';
+import { Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import { useState } from 'react';
+import { signin } from '../../../redux/auth/operations.js';
+import { useDispatch } from 'react-redux';
+import NavAuth from '../Navigation/NavAuth.jsx';
+import { useNavigate } from 'react-router-dom';
 
 let schema = yup.object({
   password: yup
     .string()
-    .required("Please enter a password")
-    .min(8, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols")
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, "a-z and 0-9"),
+    .required('Please enter a password')
+    .min(8, 'Min length 8 symbols')
+    .max(32, 'Max length 32 symbols')
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, 'a-z and 0-9'),
 
   email: yup
     .string()
-    .required("Please enter an email")
-    .email("Enter a correct email")
-    .min(8, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols"),
+    .required('Please enter an email')
+    .email('Enter a correct email')
+    .min(8, 'Min length 8 symbols')
+    .max(32, 'Max length 32 symbols'),
 });
 
 const initialValues = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
   showPassword: false,
 };
 
@@ -55,7 +55,7 @@ function Login() {
     const { email, password } = values;
     const resultAction = await dispatch(signin({ email, password }));
     if (signin.fulfilled.match(resultAction)) {
-      navigate("/home");
+      navigate('/home');
     } else if (signin.rejected.match(resultAction)) {
       console.log(resultAction.error.message);
     }
@@ -75,24 +75,24 @@ function Login() {
             <StyledFormAuth>
               <StyledWrapInputAuth>
                 <StyledInputAuth
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
+                  type='email'
+                  name='email'
+                  placeholder='Enter your email'
                 />
                 <StyledLabelAuth></StyledLabelAuth>
-                <ErrorMessage name="email">
+                <ErrorMessage name='email'>
                   {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
                 </ErrorMessage>
               </StyledWrapInputAuth>
               <StyledWrapInputAuth>
                 <StyledInputAuth
-                  className="no-bottom-padding"
-                  name="password"
-                  placeholder="Enter your password"
-                  type={showPassword ? "text" : "password"}
+                  className='no-bottom-padding'
+                  name='password'
+                  placeholder='Enter your password'
+                  type={showPassword ? 'text' : 'password'}
                 />
                 <StyledLabelAuth></StyledLabelAuth>
-                <ErrorMessage name="password">
+                <ErrorMessage name='password'>
                   {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
                 </ErrorMessage>
                 <AuthFormPasswordIcon onClick={handleTogglePassword}>
@@ -104,7 +104,7 @@ function Login() {
                 </AuthFormPasswordIcon>
               </StyledWrapInputAuth>
               <StyledWrapAuthBtn>
-                <StyledBtnAuthAccent type="submit">
+                <StyledBtnAuthAccent type='submit'>
                   Log In Now
                 </StyledBtnAuthAccent>
               </StyledWrapAuthBtn>

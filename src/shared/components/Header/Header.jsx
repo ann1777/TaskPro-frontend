@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import sprite from '../../images/header-burger.svg';
 import {
   StyledHeader,
@@ -52,4 +53,8 @@ export const Header = ({ openSidebar }) => {
       </Wrapper>
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  openSidebar: PropTypes.func.isRequired,
 };
