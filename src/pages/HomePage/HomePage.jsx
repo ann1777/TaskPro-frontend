@@ -5,7 +5,7 @@ import NeedHelp from '../../shared/components/Modal/NeedHelp/NeedHelp';
 import { Header } from '../../shared/components/Header/Header';
 import { Sidebar } from '../../shared/components/Sidebar/Sidebar';
 import { Modal } from '../../shared/components/Modal/Modal';
-import AddBoard from '../../shared/components/Modal/AddBoard/AddBoard';
+import BoardModal from '../../shared/components/Modal/BoardModal/BoardModal';
 import Dashboard from '../../shared/components/Dashboard/Dashboard';
 
 import { GlobalStylesHome } from '../../shared/components/styles/GlobalStyles.styled';
@@ -50,7 +50,7 @@ export const HomePage = () => {
         )}
         {modalOpen && (
           <Modal onClose={closeModal}>
-            <AddBoard onClose={closeModal} />
+            <BoardModal onClose={closeModal} />
           </Modal>
         )}
 
@@ -73,7 +73,7 @@ export const HomePage = () => {
       )}
       {modalOpen && (
         <Modal onClose={closeModal}>
-          <AddBoard onClose={closeModal} />
+          <BoardModal onClose={closeModal} />
         </Modal>
       )}
       <Header openSidebar={toggle} />

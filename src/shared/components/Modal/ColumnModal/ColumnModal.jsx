@@ -1,36 +1,50 @@
-import { TitleHelp, StyledForm, FormField, InputField, SubmitButton } from './AddColumn.styled';
+import { useState } from 'react';
+import { TitleHelp, StyledForm, FormField, InputField, SubmitButton } from './ColumnModal.styled';
 import { Formik, ErrorMessage } from 'formik';
 import axios from 'axios';
 
-function AddColumn({ onCloseModal }) {
+function ColumnModal({ onCloseModal, isEditMode, columbId}) {
+  
+
   const handleOnSubmit = async (values, { setSubmitting }) => {
     try {
       const dashboardId = getDashboardIdFromURL();
-      
-  
       const token = localStorage.getItem('accessToken');
 
-      const response = await axios.post(
-        `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}`,
-        { title: values.Title },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+      let response;
+      if (isEditMode) {
+        response = await axios.put(
+          `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}/${columnId}`,
+          { title: values.Title },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
           }
-        }
-      );
+        );
+      } else {
+        response = await axios.post(
+          `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}`,
+          { title: values.Title },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            }
+          }
+        );
+       
+      }
 
       console.log('Ответ сервера:', response.data);
-      
-     onCloseModal()
 
+      onCloseModal();
     } catch (error) {
       console.error('Ошибка:', error);
     }
 
     setSubmitting(false);
-    return false;
   };
 
   const getDashboardIdFromURL = () => {
@@ -41,7 +55,7 @@ function AddColumn({ onCloseModal }) {
 
   return (
     <>
-      <TitleHelp>Add column</TitleHelp>
+      <TitleHelp>{isEditMode ? 'Edit column' : 'Add column'}</TitleHelp>
       <Formik
         initialValues={{ Title: '' }}
         onSubmit={handleOnSubmit}
@@ -58,7 +72,7 @@ function AddColumn({ onCloseModal }) {
               <ErrorMessage name="Title" component="div" />
             </FormField>
             <SubmitButton type="submit" disabled={isSubmitting}>
-              Add
+              {isEditMode ? 'Save' : 'Add'}
             </SubmitButton>
           </StyledForm>
         )}
@@ -67,4 +81,4 @@ function AddColumn({ onCloseModal }) {
   );
 }
 
-export default AddColumn;
+export default ColumnModal;

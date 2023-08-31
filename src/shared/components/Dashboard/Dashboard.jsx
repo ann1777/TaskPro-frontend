@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddColumn from "../Modal/AddColumn/AddColumn";
-import AddBoard from "../Modal/AddBoard/AddBoard";
+import ColumnModal from "../Modal/ColumnModal/ColumnModal";
 import { Modal } from "../Modal/Modal";
 import * as css from './Dashboard.styled';
 
@@ -57,7 +56,7 @@ const Dashboard = () => {
           </>}
           {isModalOpen && <Modal onClose={handleModalClose}>
        
-          <AddColumn onCloseModal={handleModalClose} />
+          <ColumnModal onCloseModal={handleModalClose}  />
         </Modal>
      
       }
@@ -77,7 +76,7 @@ const Dashboard = () => {
 
       {isAddBoardOpen &&
         <Modal>
-          <AddBoard onClose={toggleAddBoardModal} />
+          <ColumnModal onClose={toggleAddBoardModal} />
         </Modal>
       }
     </css.DivFull>
