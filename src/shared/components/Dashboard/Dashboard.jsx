@@ -1,17 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddColumn from "../Modal/AddColumn/AddColumn";
-import AddBoard from "../Modal/AddBoard/AddBoard";
+import ColumnModal from "../Modal/ColumnModal/ColumnModal";
 import { Modal } from "../Modal/Modal";
 import * as css from './Dashboard.styled';
 
 const Dashboard = () => {
   const { dashboardId } = useParams();
   const [dashboard, setDashboard] = useState([]);
-  const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
+ 
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
-
+  const [isModalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     const apiDashboard = async () => {
       if (dashboardId) {
@@ -31,13 +30,21 @@ const Dashboard = () => {
     apiDashboard();
   }, [dashboardId]);
 
-  const toggleAddColumnModal = () => {
-    setIsAddColumnOpen(!isAddColumnOpen);
-  };
+  
 
   const toggleAddBoardModal = () => {
     setIsAddBoardOpen(!isAddBoardOpen);
   };
+  
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
 
   return (
     <css.DivFull>
@@ -45,13 +52,15 @@ const Dashboard = () => {
         <>
           {dashboard.title && <>
             <css.H1>{dashboard.title}</css.H1>
-            <css.ButtonAddColumn onClick={toggleAddColumnModal}><css.IconPlus />Add another column</css.ButtonAddColumn>
+            <css.ButtonAddColumn onClick={handleModalOpen}><css.IconPlus />Add another column</css.ButtonAddColumn>
           </>}
-          {isAddColumnOpen &&
-            <Modal>
-              <AddColumn onClose={toggleAddColumnModal} />
-            </Modal>
-          }
+          {isModalOpen && <Modal onClose={handleModalClose}>
+       
+          <ColumnModal onCloseModal={handleModalClose}  />
+        </Modal>
+     
+      }
+
         </>
       ) : (
         <css.DivText>
@@ -67,7 +76,7 @@ const Dashboard = () => {
 
       {isAddBoardOpen &&
         <Modal>
-          <AddBoard onClose={toggleAddBoardModal} />
+          <ColumnModal onClose={toggleAddBoardModal} />
         </Modal>
       }
     </css.DivFull>

@@ -35,7 +35,7 @@ export const InputField = styled(Field)`
   outline: none;
   color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
-
+    background: inherit;
   &::placeholder {
     color:${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;

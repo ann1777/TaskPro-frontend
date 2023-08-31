@@ -42,6 +42,7 @@ export const Modal = ({ onClose, children, title }) => {
         </StyledCloseButton>
         {title && <h2>{title}</h2>}
         {children}
+        
       </StyledModal>
     </StyledOverlay>
   );

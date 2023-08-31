@@ -9,8 +9,10 @@ export const Button = ({
   children,
   ...allyProps
 }) => {
+
+
   return (
-    <StyledButton type={type} onClick={onClick} {...allyProps}>
+    <StyledButton type={type} {...allyProps}>
       {svg && (
         <StyledIcon>
           (
