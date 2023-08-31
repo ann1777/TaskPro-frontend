@@ -19,7 +19,7 @@ import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
 
 function EditCard({ onClose }) {
-  const labels = [
+   const labels = [
     { value: 'low' },
     { value: 'medium' },
     { value: 'high' },
