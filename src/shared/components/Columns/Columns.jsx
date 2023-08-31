@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Card from "../Card/Card";
 import AddCard from "../Modal/AddCard/AddCard";
 import { Modal } from "../Modal/Modal";
-import EditColumn from "../Modal/EditColumn/EditColumn";
+import ColumnModal from "../Modal/ColumnModal/ColumnModal";
 
 const Columns = () => {
   const { dashboardId } = useParams();
@@ -70,7 +70,7 @@ const Columns = () => {
               <button onClick={handleColumnModalOpen}>Edit</button>
               {isColumnModalOpen && (
               <Modal onClose={handleColumnModalClose}>
-                <EditColumn onCloseModal={handleColumnModalClose} />
+                  <ColumnModal onCloseModal={handleColumnModalClose} columnId={column._id} isEditMode={true} />
               </Modal>
             )}
               <button onClick={() => deleteColumn(column._id)}>Delete</button>
