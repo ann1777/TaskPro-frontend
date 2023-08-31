@@ -59,25 +59,6 @@ export const HomePage = () => {
           <Dashboard />
         </css.HeadBoardDIv>
       </css.FlexDiv>
-      <Sidebar
-        closeSidebar={toggle}
-        isOpen={isOpen}
-        onOpen={toggleModal}
-        onOpenHelp={openHelpModal}
-      />
-
-      {helpModalOpen && (
-        <Modal onClose={closeHelpModal}>
-          <NeedHelp onClose={closeHelpModal} />
-        </Modal>
-      )}
-      {modalOpen && (
-        <Modal onClose={closeModal}>
-          <BoardModal onClose={closeModal} />
-        </Modal>
-      )}
-      <Header openSidebar={toggle} />
-      <Dashboard />
     </>
   );
 };
