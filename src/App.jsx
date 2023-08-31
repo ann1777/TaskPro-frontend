@@ -78,14 +78,7 @@ function App() {
                 element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
               />
             </Route>
-            <Route
-              path="*"
-              element={
-                <PrivateRoute>
-                  <PageNotFound />
-                </PrivateRoute>
-              }
-            />
+            <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </>
       )}
