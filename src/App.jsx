@@ -20,6 +20,9 @@ import { PrivateRoute } from "./PrivateRoute";
 import { GlobalStyles } from "./shared/components/styles/GlobalStyles.styled";
 import { ThemeSwitching } from "./shared/components/Theme/ThemeSwitching";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -82,6 +85,18 @@ function App() {
         </>
       )}
       <GlobalStyles />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </ThemeSwitching>
   );
 }
