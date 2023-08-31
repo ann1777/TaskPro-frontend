@@ -45,7 +45,7 @@ function App() {
             <Route
               path='/'
               element={
-                <PublicRoute restricted>
+                <PublicRoute restricted={true}>
                   <WelcomePage />
                 </PublicRoute>
               }
@@ -53,7 +53,7 @@ function App() {
             <Route
               path='/:id'
               element={
-                <PublicRoute restricted>
+                <PublicRoute restricted={true}>
                   <AuthPage />
                 </PublicRoute>
               }
@@ -61,7 +61,7 @@ function App() {
             <Route
               path='/registration'
               element={
-                <PublicRoute restricted>
+                <PublicRoute restricted={true}>
                   <Registration />
                 </PublicRoute>
               }
@@ -69,18 +69,26 @@ function App() {
             <Route
               path='/login'
               element={
-                <PublicRoute restricted>
+                <PublicRoute restricted={true}>
                   <Login />
                 </PublicRoute>
               }
             />
             <Route
               path='/home'
-              element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
+              element={
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
+              }
             >
               <Route
-                path='/home/:dashboardId'
-                element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
+                path=':dashboardId'
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
               />
             </Route>
             <Route
