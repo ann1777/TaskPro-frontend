@@ -10,7 +10,7 @@ import Loader from "./shared/components/Loader/Loader";
 import Registration from "./shared/components/Registration/Registration";
 import Login from "./shared/components/Login/Login";
 import Dashboard from "./shared/components/Dashboard/Dashboard";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import PageNotFound from "./shared/components/PageNotFound/PageNotFound";
 
 import { currentUser } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/authSelectors";
@@ -40,7 +40,7 @@ function App() {
             <Route
               path="/"
               element={
-                <PublicRoute restricted={true}>
+                <PublicRoute restricted>
                   <WelcomePage />
                 </PublicRoute>
               }
@@ -48,7 +48,7 @@ function App() {
             <Route
               path="/:id"
               element={
-                <PublicRoute restricted={true}>
+                <PublicRoute restricted>
                   <AuthPage />
                 </PublicRoute>
               }
@@ -56,7 +56,7 @@ function App() {
             <Route
               path="/registration"
               element={
-                <PublicRoute restricted={true}>
+                <PublicRoute restricted>
                   <Registration />
                 </PublicRoute>
               }
@@ -64,34 +64,26 @@ function App() {
             <Route
               path="/login"
               element={
-                <PublicRoute restricted={true}>
+                <PublicRoute restricted>
                   <Login />
                 </PublicRoute>
               }
             />
             <Route
               path="/home"
-              element={
-                <PrivateRoute>
-                  <HomePage />
-                </PrivateRoute>
-              }
+              element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
             >
               <Route
-                path=":dashboardId"
-                element={
-                  <PrivateRoute>
-                    <Dashboard />
-                  </PrivateRoute>
-                }
+                path="/home/:dashboardId"
+                element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
               />
             </Route>
             <Route
               path="*"
               element={
-                <PublicRoute>
+                <PrivateRoute>
                   <PageNotFound />
-                </PublicRoute>
+                </PrivateRoute>
               }
             />
           </Routes>
