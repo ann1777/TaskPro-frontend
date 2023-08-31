@@ -5,7 +5,7 @@ import { Button } from '../../Button/Button';
 // const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
-  ${'' /* color: ${selectedTheme.colors.textColorModal}; */}
+   color: ${({ theme }) => theme.colors.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;

@@ -19,7 +19,7 @@ import axios from 'axios';
 import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
 
-function CardModal({ onCloseModal, editMode, columnId }) {
+function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
   const labels = [
     { value: 'low' },
     { value: 'medium' },
@@ -46,32 +46,45 @@ function CardModal({ onCloseModal, editMode, columnId }) {
       title: values.Title,
       description: values.Desc,
       priority: selectedPriority,
-      deadline: selectedDate, 
+      deadline: selectedDate,
     };
 
-    const response = await axios.post(
-      `https://taskpro-backend-c73a.onrender.com/api/card/${columnId}`,
-      payload,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      }
-    );
+    let response;
+    if (isEditMode) { 
+      response = await axios.put(
+        `https://taskpro-backend-c73a.onrender.com/api/card/${columnId}/${cardId}`,
+        payload,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+    } else {
+      response = await axios.post(
+        `https://taskpro-backend-c73a.onrender.com/api/card/${columnId}`,
+        payload,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+    }
 
     console.log('Ответ от бекенда:', response.data);
-    setSubmitting(false);
-    onCloseModal();
-
+     onCloseModal();
   } catch (error) {
     console.error('Error:', error);
-  } 
+  } finally {
+    setSubmitting(false);
+  }
 };
-
   return (
     <>
-      <TitleHelp>{editMode ? 'Edit card' : 'Add card'}</TitleHelp>
+      <TitleHelp>{isEditMode ? 'Edit card' : 'Add card'}</TitleHelp>
       <Formik
         initialValues={{
           Title: '',
@@ -115,7 +128,7 @@ function CardModal({ onCloseModal, editMode, columnId }) {
             />
             <div style={{ height: '40px' }}></div>
             <SubmitButton type='submit' disabled={isSubmitting}>
-              {editMode ? 'Save' : 'Add'}
+              {isEditMode ? 'Edit' : 'Add'}
             </SubmitButton>
           </StyledForm>
         )}
@@ -126,8 +139,9 @@ function CardModal({ onCloseModal, editMode, columnId }) {
 
 CardModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
-  editMode: PropTypes.bool,
+  isEditMode: PropTypes.bool,
   columnId: PropTypes.string,
+  cardId: PropTypes.string,
 };
 
 export default CardModal;

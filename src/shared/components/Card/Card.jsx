@@ -61,7 +61,7 @@ const Card = ({ id }) => {
             <button onClick={handleModalOpen}>EditCard</button>
             {isModalOpen && (
               <Modal onClose={handleModalClose}>
-                <CardModal onCloseModal={handleModalClose} />
+                <CardModal onCloseModal={handleModalClose} cardId={card._id} isEditMode={true} columnId={id}/>
               </Modal>
             )}
             <button onClick={() => deleteCard(card._id)}>DeleteCard</button>
