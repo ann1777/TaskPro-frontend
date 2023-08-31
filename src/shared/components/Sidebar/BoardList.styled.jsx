@@ -1,43 +1,32 @@
 import styled from "styled-components";
 import { breakpoints } from "../styles/breakpoints";
-
+import { NavLink } from "react-router-dom";
 const { tablet } = breakpoints;
 
-export const ProjectList = styled.div`
-  outline: 2px solid black;
-  position: absolute;
-  width: 225px;
+export const ProjectList = styled.ul`
   width: 100%;
-  height: 126px;
+  max-height: 126px;
   max-height: 126px;
   padding: 0;
-  margin-bottom: 40px;
+  margin-bottom: 116px;
   z-index: 3;
-  left: 50%;
-  transform: translate(-50%, calc(200%));
-  /* top: -100%; */
-  /* transform: translateY(100%); */
-  /* overflow-y: scroll;
-  scroll-behavior: auto; */
-  @media screen and (min-width: tablet) {
-    width: 260px;
-  }
-
-  /* ::-webkit-scrollbar {
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
     width: 0;
-  } */
+    height: 0;
+  }
 `;
 
 export const Project = styled.li`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+  position: relative;
+  margin-bottom: 4px;
   padding: 20px 14px;
-  justify-content: start;
-  align-items: center;
-
+  cursor: pointer;
   @media screen and (min-width: tablet) {
     padding: 20px 24px;
+    width: 260px;
   }
 `;
 
@@ -64,39 +53,54 @@ export const PencilIcon = styled.svg`
   margin-right: 8px;
   width: 18px;
   height: 18px;
-  /* fill: #16161680; */
+  fill: white;
   stroke: #16161680;
 `;
 export const TrashIcon = styled.svg`
   width: 16px;
   height: 16px;
   stroke: #16161680;
-  fill: #16161680;
+  fill: white;
 `;
 
-export const PuzzleIcon = styled.svg`
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  fill: #16161680;
+export const ProjectNameWrapper = styled.div`
+  max-width: 122px;
+  width: 122px;
+  margin-right: 9px;
+  @media screen and (min-width: ${tablet}) {
+    max-width: 122px;
+    margin-right: 24px;
+  }
 `;
 
-// export const NeonProjectWrapper = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   width: 100%;
-//   padding: 20px 0;
-//   justify-content: start;
-//   align-items: center;
-//   margin-bottom: 116px;
-//   @media screen and (min-width: ${tablet}) {
-//     margin-bottom: 40px;
-//   }
-// `;
-// export const NeonText = styled.h2`
-//   color: rgba(22, 22, 22, 0.5);
-//   font-size: 14px;
-//   font-weight: 500;
-//   line-height: normal;
-//   letter-spacing: -0.28px;
-// `;
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  :hover {
+    opacity: 1;
+    color: #161616;
+  }
+
+  &.active {
+    opacity: 1;
+    color: #161616;
+
+    ::after {
+      content: "";
+      height: 61px;
+      width: 4px;
+      right: 0;
+      top: 0;
+      display: block;
+      position: absolute;
+
+      border-radius: 4px 0px 0px 4px;
+      background: #bedbb0;
+      opacity: 1;
+    }
+  }
+`;

@@ -1,30 +1,38 @@
-import styled from 'styled-components';
-import { breakpoints } from '../styles/breakpoints';
+import styled from "styled-components";
+import { breakpoints } from "../styles/breakpoints";
 
 const { tablet, desktop } = breakpoints;
 
 export const StyledSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 14px 14px 24px 14px;
   width: 225px;
   overflow: auto;
   height: 100vh;
   top: 0;
   left: 0;
   z-index: 100;
-  /* transform: translateX(-100%);
-  transition: transform 250ms ease-in; */
-  background: #ffffff;
-  webkit-scrollbar {
-    width: 4px;
-    height: 61px;
-    border-radius: 4px 0px 0px 4px;
+  transform: translateX(-100%);
+  transition: all 250ms;
+  background: ${({ theme }) => theme.colors.backSidebar};
+  /* overflow-y: hidden;
+  overflow-x: hidden; */
+
+  ${(props) =>
+    props.isOpen
+      ? "transform: translateX(0);"
+      : "transform: translateX(-100%);"}
+
+  @media screen and (min-width: ${tablet}) {
+    width: 260px;
   }
-  ::-webkit-scrollbar-thumb {
-    background: #bedbb0;
+
+  @media screen and (min-width: ${desktop}) {
+    width: 260px;
+    position: fixed;
+    transform: translateX(0);
+    transition: none;
   }
-  overflow: hidden;
 `;
 
 export const LogoWrapper = styled.div`
@@ -32,10 +40,10 @@ export const LogoWrapper = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  margin-bottom: 70px;
+  margin: 14px 0px 70px 14px;
 
   @media screen and (min-width: ${desktop}) {
-    margin-bottom: 60px;
+    margin: 24px 0px 60px 24px;
   }
 `;
 
@@ -58,30 +66,33 @@ export const Title = styled.h2`
   color: #16161680;
   display: block;
   margin-bottom: 8px;
+  margin-left: 14px;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.24px;
+
+  @media screen and (min-width: ${tablet}) {
+    margin-left: 24px;
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: 212px;
+  width: 100%;
+  width: 197px;
   padding: 14px 0;
-  margin-bottom: 282px;
+  margin: 0 14px 40px 14px;
+  margin-bottom: 40px;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #1616161a;
   border-bottom: 1px solid #1616161a;
 
   @media screen and (min-width: ${tablet}) {
-    width: 197px;
-    margin-bottom: 460;
-  }
-  @media screen and (min-width: ${desktop}) {
-    width: 197px;
-    margin-bottom: 206px;
+    width: 212px;
+    margin: 0 24px 40px 24px;
   }
 `;
 
@@ -112,18 +123,17 @@ export const Plus = styled.svg`
 `;
 
 export const BlockWrapper = styled.div`
-  padding: 14px;
+  width: 100%;
+  margin: 0 14px 24px 14px;
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
   width: 197px;
   height: 238px;
   justify-content: start;
-  margin-bottom: 24px;
   background-color: #f6f6f7;
 
   @media screen and (min-width: ${tablet}) {
-    padding: 20px;
+    margin: 0 24px 24px 24px;
     width: 212px;
     height: 272px;
   }
@@ -142,12 +152,10 @@ export const BlockImg = styled.img`
 export const MessageWrapper = styled.div`
   text-align: start;
   width: 168px;
-  /* height: 80px; */
   margin-bottom: 18px;
 
   @media screen and (min-width: ${tablet}) {
     width: 172px;
-    /* height: 102px; */
   }
 `;
 export const SupportMessage = styled.p`
@@ -176,7 +184,6 @@ export const HelpBtn = styled.button`
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.24px;
-  /* background: #fff; */
   color: #161616;
 `;
 
@@ -198,7 +205,6 @@ export const LogOutBtn = styled.button`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
-  /* background: #fff; */
   color: #161616;
   @media screen and (min-width: ${desktop}) {
     font-size: 16px;
@@ -217,11 +223,17 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: #1515154d;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(21, 21, 21, 0.3);
   z-index: 1;
-  @media screen and (min-width: ${desktop}) {
-    display: none;
-  }
+  transition: all 250ms;
+
+  ${(props) =>
+    props.isOpen
+      ? "opacity: 1; display:static;"
+      : "opacity: 0; pointer-events: none;visibility: hidden;"} /* transition: opacity 3000ms cubic-bezier(0.4, 0, 0.2, 1)
+    opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1); */
+    transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
