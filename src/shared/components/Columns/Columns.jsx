@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../Card/Card";
-import AddCard from "../Modal/AddCard/AddCard";
+import CardModal from "../Modal/CardModal/CardModal";
 import { Modal } from "../Modal/Modal";
 import ColumnModal from "../Modal/ColumnModal/ColumnModal";
 
@@ -79,7 +79,7 @@ const Columns = () => {
             <button onClick={handleModalOpen}>Add another card</button>
             {isModalOpen && (
               <Modal onClose={handleModalClose}>
-                <AddCard onCloseModal={handleModalClose} />
+                <CardModal onCloseModal={handleModalClose} />
               </Modal>
             )}
           </>

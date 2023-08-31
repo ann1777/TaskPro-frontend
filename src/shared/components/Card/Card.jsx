@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import EditCard from "../Modal/EditCard/EditCard";
+import CardModal from "../Modal/CardModal/CardModal";
 import { Modal } from "../Modal/Modal";
 
 const Card = ({ id }) => {
@@ -61,7 +61,7 @@ const Card = ({ id }) => {
             <button onClick={handleModalOpen}>EditCard</button>
             {isModalOpen && (
               <Modal onClose={handleModalClose}>
-                <EditCard onCloseModal={handleModalClose} />
+                <CardModal onCloseModal={handleModalClose} />
               </Modal>
             )}
             <button onClick={() => deleteCard(card._id)}>DeleteCard</button>

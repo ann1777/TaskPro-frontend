@@ -74,7 +74,7 @@ export const RadioField = styled(Field)`
 
   &:hover ~ .background-label,
   &:checked ~ .background-label {
-    outline: 1px solid var(--createBoardInputBorderFocus);
+    ${'' /* outline: 1px solid var(--createBoardInputBorderFocus); */}
   }
 
   &:hover ~ .icon-label,
@@ -146,13 +146,14 @@ margin-top: 4px;
   width: 14px;
   height: 14px;
  
-  border: 2px solid ${props => props.buttoncolor.color};
+  ${'' /* border: 2px solid ${props => props.buttoncolor.color}; */}
 
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  background-color: ${props => props.backgroundColor.color};
   & input {
     display: none;
   }
@@ -167,7 +168,7 @@ export const Checkmark = styled.span`
   width: calc(100%);
   height: calc(100%);
   border-radius: 50%;
-  background-color: ${props => props.buttoncolor.color};
+  ${'' /* background-color: ${props => props.buttoncolor.color}; */}
   display: inline-block;
   opacity: 1;
   transition: opacity 0.25s ease;

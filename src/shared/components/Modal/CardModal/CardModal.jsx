@@ -1,5 +1,5 @@
+import  { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import {
   TitleHelp,
   StyledForm,
@@ -12,14 +12,15 @@ import {
   RadioLabel,
   LabelTitle,
   Labels,
-  LabelRadiobutton,
-} from './EditCard.styled';
+  LabelRadiobutton
+  
+} from './CardModal.styled';
 import { Formik, ErrorMessage } from 'formik';
 import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
 
-function EditCard({ onClose }) {
-   const labels = [
+function CardModal({ onCloseModal, editMode }) {
+  const labels = [
     { value: 'low' },
     { value: 'medium' },
     { value: 'high' },
@@ -27,18 +28,24 @@ function EditCard({ onClose }) {
   ];
 
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedPriority, setSelectedPriority] = useState('');
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    onCloseModal();
+  };
+
+  const handlePriorityChange = (value) => {
+    setSelectedPriority(value);
   };
 
   return (
     <>
-      <TitleHelp>Edit card</TitleHelp>
+      <TitleHelp>{editMode ? 'Edit card' : 'Add card'}</TitleHelp>
       <Formik
         initialValues={{
-          email: '',
-          comment: '',
+          Title: '',
+          Desc: '',
         }}
       >
         {({ isSubmitting }) => (
@@ -50,7 +57,7 @@ function EditCard({ onClose }) {
                 type='text'
                 placeholder='Title'
               />
-              <ErrorMessage name='email' component='div' />
+              <ErrorMessage name='Title' component='div' />
             </FormField>
             <FormField>
               <Textarea
@@ -58,38 +65,41 @@ function EditCard({ onClose }) {
                 component='textarea'
                 placeholder='Description'
               />
-              <ErrorMessage name='description' component='div' />
+              <ErrorMessage name='Desc' component='div' />
             </FormField>
             <LabelTitle>Label color</LabelTitle>
             <Labels>
-              {labels.slice().map(({ value }) => (
+              {labels.map(({ value }) => (
                 <div style={{ display: 'flex' }} key={value}>
                   <RadioLabel
-                    buttoncolor={getPriorityStyles(value)}
+                    backgroundColor={getPriorityStyles(value)}
                     className='inputlabel'
+                    checked={selectedPriority === value}
+                    onClick={() => handlePriorityChange(value)}
                   >
                     <LabelRadiobutton
-                      buttoncolor={getPriorityStyles(value)}
+                      backgroundColor={getPriorityStyles(value)}
                       name='label'
                       type='radio'
                       value={value}
                     />
                     <Checkmark
-                      buttoncolor={getPriorityStyles(value)}
+                      backgroundColor={getPriorityStyles(value)}
+                      checked={selectedPriority === value}
                     ></Checkmark>
                   </RadioLabel>
                 </div>
               ))}
             </Labels>
-
             <DedlineTitle>Deadline</DedlineTitle>
             <TaskCalendar
               dateChange={handleDateChange}
               initialDate={selectedDate}
             />
             <div style={{ height: '40px' }}></div>
-
-            <SubmitButton disabled={isSubmitting}>Edit</SubmitButton>
+            <SubmitButton disabled={isSubmitting}>
+              {editMode ? 'Save' : 'Add'}
+            </SubmitButton>
           </StyledForm>
         )}
       </Formik>
@@ -97,8 +107,9 @@ function EditCard({ onClose }) {
   );
 }
 
-EditCard.propTypes = {
-  onClose: PropTypes.func.isRequired,
+CardModal.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
+  editMode: PropTypes.bool,
 };
 
-export default EditCard;
+export default CardModal;
