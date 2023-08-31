@@ -1,4 +1,12 @@
-import { TitleHelp, StyledForm, FormField, InputField, SendButton, Textarea} from './NeedHelp.styled';
+import PropTypes from 'prop-types';
+import {
+  TitleHelp,
+  StyledForm,
+  FormField,
+  InputField,
+  SendButton,
+  Textarea,
+} from './NeedHelp.styled';
 import { Formik, ErrorMessage } from 'formik';
 
 function NeedHelp({ onClose }) {
@@ -8,7 +16,7 @@ function NeedHelp({ onClose }) {
       <Formik
         initialValues={{
           email: '',
-          comment: ''
+          comment: '',
         }}
       >
         {({ isSubmitting }) => (
@@ -16,26 +24,32 @@ function NeedHelp({ onClose }) {
             <FormField>
               <InputField
                 autoFocus
-                name="email"
-                type="email"
-                placeholder="Email address"
+                name='email'
+                type='email'
+                placeholder='Email address'
               />
-              <ErrorMessage name="email" component="div" />
+              <ErrorMessage name='email' component='div' />
             </FormField>
             <FormField>
               <Textarea
-                name="comment"
-                component="textarea"
-                placeholder="Comment"
+                name='comment'
+                component='textarea'
+                placeholder='Comment'
               />
-              <ErrorMessage name="comment" component="div" />
+              <ErrorMessage name='comment' component='div' />
             </FormField>
-            <SendButton disabled={isSubmitting}>Send</SendButton>
+            <SendButton disabled={isSubmitting} onSubmit={onClose}>
+              Send
+            </SendButton>
           </StyledForm>
         )}
       </Formik>
     </>
   );
 }
+
+NeedHelp.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
 
 export default NeedHelp;

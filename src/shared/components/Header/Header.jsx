@@ -1,74 +1,53 @@
-// import { useState } from "react";
-// import sprite from "../../images/header-burger.svg";
+import PropTypes from 'prop-types';
+import sprite from '../../images/header-burger.svg';
 import {
   StyledHeader,
   Wrapper,
   AvatarImg,
-  // StyledSelect,
   UserName,
   StyledSvgBurger,
   ButtonBurger,
 } from './Header.styled';
-// import { useDispatch } from "react-redux";
-// import { useToggle } from "../../hooks/useToggle.js";
-// import { changeTheme } from "../../../redux/auth/operations";
-// import { selectUserTheme } from "../../../redux/auth/authSelectors";
-// import { useSelector } from "react-redux";
-// import { selectUser } from "../../../redux/auth/authSelectors";
-// import { Modal } from "../Modal/Modal";
-// import { EditProfile } from "../Modal/EditProfile/EditProfile";
-// import { ThemeSwitcher } from "../Theme/ThemeSwitcher";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSelectors';
+import { Modal } from '../Modal/Modal';
+import { EditProfile } from '../Modal/EditProfile/EditProfile';
+import { ThemeSwitcher } from '../Theme/ThemeSwitcher';
+import { useState } from 'react';
 
-// const options = [
-//   { value: "light", label: "Light" },
-//   { value: "color", label: "Dark" },
-//   { value: "dark", label: "Violet" },
-// ];
+export const Header = ({ openSidebar }) => {
+  const { name, avatarURL } = useSelector(selectUser);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-// export const Header = ({ onOpenSidebar, openSidebar }) => {
-//   const { name, avatarURL } = useSelector(selectUser);
-//   // const [isOpenMenu, setIsOpenMenu] = useState(false);
-//   const { isOpen, open } = useToggle();
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
 
-//   //   const [isUserLogin, setIsUserLogin]=useState(false);
-//   // const [isSelectedTheme,setIsSelectedTheme]=useState(false);
-//   const dispatch = useDispatch();
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
 
-//   const handleThemeChange = (selectedOption) => {
-//     dispatch(changeTheme(selectedOption.value));
-//   };
-
-//   const closeModal = () => {
-//         setIsOpenOpen(false);
-//     };
-//   const [selectedOption] = useState(null);
-//   const customStyles = {
-//     option: (defaultStyles) => ({
-//       ...defaultStyles,
-//       // color: state.isSelected ? "#212529" : "#fff",
-//       // borderRadius: "8px",
-//       // border: "1px solid #BEDBB0",
-
-//       // boxShadow: "0px 4px 16px 0px rgba(17, 17, 17, 0.10)",
-
-//       // const [selectedOption, setSelectedOption] = useState("");
-//     }),
-//   };
-export const Header = () => {
   return (
-    <>
-      <StyledHeader>
-        {/* <Wrapper>
-          <ThemeSwitcher />
-          <UserName>{name}</UserName>
-          <AvatarImg onClick={open} src={avatarURL} alt='user' />
-          {isOpen && (
-            <Modal onClose={closeModal}>
-              <EditProfile />
-            </Modal>
-          )}
-        </Wrapper> */}
-      </StyledHeader>
-    </>
+    <StyledHeader>
+      <ButtonBurger onClick={openSidebar}>
+        <StyledSvgBurger>
+          <use href={sprite + '#icon-burger'}></use>
+        </StyledSvgBurger>
+      </ButtonBurger>
+      <Wrapper>
+        <ThemeSwitcher />
+        <UserName>{name}</UserName>
+        <AvatarImg onClick={handleModalOpen} src={avatarURL} alt='user' />
+        {isModalOpen && (
+          <Modal onClose={handleModalClose}>
+            <EditProfile onCloseModal={handleModalClose} />
+          </Modal>
+        )}
+      </Wrapper>
+    </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  openSidebar: PropTypes.func.isRequired,
 };

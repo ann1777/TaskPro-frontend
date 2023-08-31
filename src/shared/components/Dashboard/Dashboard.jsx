@@ -1,70 +1,85 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddColumn from "../Modal/AddColumn/AddColumn";
-import AddBoard from "../Modal/AddBoard/AddBoard";
+import ColumnModal from "../Modal/ColumnModal/ColumnModal";
 import { Modal } from "../Modal/Modal";
+import * as css from './Dashboard.styled';
 
 const Dashboard = () => {
   const { dashboardId } = useParams();
   const [dashboard, setDashboard] = useState([]);
-  const [isAddColumnOpen, setIsAddColumnOpen] = useState(false);
+ 
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
-
+  const [isModalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     const apiDashboard = async () => {
-      const token = localStorage.getItem("accessToken");
-      const { data } = await axios.get(
-        `https://taskpro-backend-c73a.onrender.com/api/dashboard/${dashboardId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setDashboard(data);
+      if (dashboardId) {
+        const token = localStorage.getItem("accessToken");
+        const { data } = await axios.get(
+          `https://taskpro-backend-c73a.onrender.com/api/dashboard/${dashboardId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setDashboard(data);
+      }
     };
 
     apiDashboard();
   }, [dashboardId]);
 
-  const toggleAddColumnModal = () => {
-    setIsAddColumnOpen(!isAddColumnOpen);
-  };
+  
 
   const toggleAddBoardModal = () => {
-    setIsAddBoardOpen(!isAddBoardOpen); 
+    setIsAddBoardOpen(!isAddBoardOpen);
+  };
+  
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
   };
 
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+
   return (
-    <>
+    <css.DivFull>
       {dashboardId ? (
         <>
-          <div>{dashboard.title}</div>
-          <button onClick={toggleAddColumnModal}>Add another column</button>
-          {isAddColumnOpen && 
-          <Modal>
-          <AddColumn onClose={toggleAddColumnModal} />
-          </Modal>
-          }
+          {dashboard.title && <>
+            <css.H1>{dashboard.title}</css.H1>
+            <css.ButtonAddColumn onClick={handleModalOpen}><css.IconPlus />Add another column</css.ButtonAddColumn>
+          </>}
+          {isModalOpen && <Modal onClose={handleModalClose}>
+       
+          <ColumnModal onCloseModal={handleModalClose}  />
+        </Modal>
+     
+      }
+
         </>
       ) : (
-        <p>
-          Before starting your project, it is essential <span onClick={toggleAddBoardModal} style={{ cursor: "pointer", color: "#BEDBB0"}}>to create a board to</span>
-          visualize and track all the necessary tasks and milestones. This board
-          serves as a powerful tool to organize the workflow and ensure
-          effective collaboration among team members.
-        </p>
-        
+        <css.DivText>
+          <p>
+            Before starting your project, it is essential <span onClick={toggleAddBoardModal} style={{ cursor: "pointer", color: "#BEDBB0" }}>to create a board to </span>
+            visualize and track all the necessary tasks and milestones. This board
+            serves as a powerful tool to organize the workflow and ensure
+            effective collaboration among team members.
+          </p>
+        </css.DivText>
+
       )}
-      
-      {isAddBoardOpen && 
-      <Modal>
-      <AddBoard onClose={toggleAddBoardModal} />
-      </Modal>
+
+      {isAddBoardOpen &&
+        <Modal>
+          <ColumnModal onClose={toggleAddBoardModal} />
+        </Modal>
       }
-    </>
+    </css.DivFull>
   );
 };
 

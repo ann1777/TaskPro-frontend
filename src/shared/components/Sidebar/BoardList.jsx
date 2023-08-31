@@ -17,15 +17,26 @@ import {
 } from "../Sidebar/BoardList.styled";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-
+import { Modal } from "../Modal/Modal.jsx";
+import BoardModal from "../Modal/BoardModal/BoardModal.jsx";
 
 export const BoardList = () => {
   // const dispatch = useDispatch();
   // const dashboards = useSelector(allDashboards);
 
-  const [arrayDashboard, setArrayDashboard] = useState([])
+  const [arrayDashboard, setArrayDashboard] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedDashboardId, setSelectedDashboardId] = useState(null);
 
+  const handleModalOpen = (dashboardId) => {
+    setSelectedDashboardId(dashboardId);
+    setModalOpen(true);
+  };
 
+  const handleModalClose = () => {
+    setSelectedDashboardId(null);
+    setModalOpen(false);
+  };
 
   useEffect(() => {
     const apiDashboard = async () => {
@@ -34,36 +45,37 @@ export const BoardList = () => {
         headers: {
           'Authorization': `Bearer ${token}`
         }
-      })
+      });
       
-      setArrayDashboard(data)
+      setArrayDashboard(data);
     }
 
     apiDashboard();
 
-
     // dispatch(fetchAllDashboardsThunk());
   }, []);
-
 
   const elements = arrayDashboard.map((dashboard) => (
     <Project key={dashboard._id}>
 
       <ProjectIcon>
-        <use href={sprite + "#icon-Project"}></use>
+           <use xlinkHref={`${sprite}#${dashboard.icon}`} />
       </ProjectIcon>
       <ProjectName><Link to={`/home/${dashboard._id}`}>{dashboard.title}</Link></ProjectName>
 
       <button
         type="button"
-        onClick={() => {
-          updateDashboardThunk(dashboard._id);
-        }}
-      >
+        onClick={() => handleModalOpen(dashboard._id)}>
         <PencilIcon>
           <use href={sprite + "#icon-pencil-01"}></use>
         </PencilIcon>
       </button>
+      
+      {isModalOpen && (
+        <Modal onClose={handleModalClose}>
+          <BoardModal isEditMode={true} dashboardId={selectedDashboardId} onClose={handleModalClose} />
+        </Modal>
+      )}
 
       <button
         type="button"
@@ -78,8 +90,5 @@ export const BoardList = () => {
     </Project>
   ));
 
-
-
-
-  return <ProjectList>{elements}</ProjectList>
+  return <ProjectList>{elements}</ProjectList>;
 };

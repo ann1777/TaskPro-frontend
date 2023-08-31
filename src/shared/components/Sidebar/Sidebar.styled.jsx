@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { breakpoints } from "../styles/breakpoints";
+import styled from 'styled-components';
+import { breakpoints } from '../styles/breakpoints';
 
 const { tablet, desktop } = breakpoints;
 
@@ -25,68 +25,6 @@ export const StyledSidebar = styled.div`
     background: #bedbb0;
   }
   overflow: hidden;
-
-  /* ${(props) =>
-    props.isOpen
-      ? "transform: translateX(0);"
-      : "transform: translateX(-100%);"} */
-
-  /* @media screen and (min-width: ${tablet}) {
-    padding: 24px;
-    width: 260px;
-  }
-
-  @media screen and (min-width: ${desktop}) {
-    position: fixed;
-    transform: translateX(0);
-    transition: none;
-  } */
-
-  /* top: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  text-align: start;
-  height: 100%;
-  overflow-y: auto;
-  position: fixed;
-  inset: 0px;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  z-index: 2;
-  webkit-scrollbar {
-    width: 4px;
-    height: 61px;
-    border-radius: 4px 0px 0px 4px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #bedbb0;
-  }
-  overflow: hidden;
-
-  @media screen and (max-width: ${tablet}) {
-    left: -225px;
-    width: 225px;
-    padding: 14px;
-  }
-
-  @media screen and (min-width: ${tablet}) {
-    left: -260px;
-    width: 260px;
-    padding: 24px;
-  }
-
-  @media screen and (min-width: ${desktop}) {
-    left: 0px;
-    flex: 1 0 auto;
-    z-index: 2;
-    outline: 0px;
-    box-shadow: none;
-    background-color: rgb(255, 255, 255);
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    border-right: 1px solid rgba(0, 0, 0, 0.12);
-  }
-
-  background-color: #ffffff; */
 `;
 
 export const LogoWrapper = styled.div`
@@ -284,6 +222,6 @@ export const Overlay = styled.div`
   background: #1515154d;
   z-index: 1;
   @media screen and (min-width: ${desktop}) {
-    display:none; 
+    display: none;
   }
 `;

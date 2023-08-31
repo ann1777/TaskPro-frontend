@@ -5,7 +5,7 @@ import { Button } from '../../Button/Button';
 
 
 export const TitleHelp = styled.div`
-  ${'' /* color: ${dark.colors.textColorModal}; */}
+  color: ${({ theme }) => theme.colors.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -16,7 +16,6 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  ${'' /* background-color: ${dark.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`
@@ -31,11 +30,11 @@ export const InputField = styled(Field)`
   border-radius: 8px;
   border: 1px solid #BEDBB0;
   outline: none;
-  color: #BEDBB0;
+    color:${({ theme }) => theme.colors.textSecondModal};
   opacity: 0.5;
 
   &::placeholder {
-    color:#BEDBB0;
+   color:${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;

@@ -5,11 +5,11 @@ import NeedHelp from '../../shared/components/Modal/NeedHelp/NeedHelp';
 import { Header } from '../../shared/components/Header/Header';
 import { Sidebar } from '../../shared/components/Sidebar/Sidebar';
 import { Modal } from '../../shared/components/Modal/Modal';
-import AddBoard from '../../shared/components/Modal/AddBoard/AddBoard';
+import BoardModal from '../../shared/components/Modal/BoardModal/BoardModal';
 import Dashboard from '../../shared/components/Dashboard/Dashboard';
 
 import { GlobalStylesHome } from '../../shared/components/styles/GlobalStyles.styled';
-// import AddColumn from "../../shared/components/Modal/AddColumn/AddColumn";
+import * as css from './HomePage.styled';
 
 export const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -54,6 +54,12 @@ export const HomePage = () => {
       )}
       <Header openSidebar={toggle} />
       <Dashboard />
+      <css.FlexDiv>
+        <css.HeadBoardDIv>
+          <Header openSidebar={toggle} />
+          <Dashboard />
+        </css.HeadBoardDIv>
+      </css.FlexDiv>
     </>
   );
 };
