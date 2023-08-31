@@ -154,6 +154,7 @@ margin-top: 4px;
   justify-content: center;
   cursor: pointer;
   background-color: ${props => props.backgroundColor.color};
+  cursor: pointer;
   & input {
     display: none;
   }
@@ -168,7 +169,9 @@ export const Checkmark = styled.span`
   width: calc(100%);
   height: calc(100%);
   border-radius: 50%;
-  ${'' /* background-color: ${props => props.buttoncolor.color}; */}
+  background-color: ${props => (props.checked ? 'black' : props.backgroundColor.color)};
+  border: ${props => (props.checked ? '2px solid ' + props.backgroundColor.color: '1px solid ' + props.backgroundColor.color)};
+
   display: inline-block;
   opacity: 1;
   transition: opacity 0.25s ease;

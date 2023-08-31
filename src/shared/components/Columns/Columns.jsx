@@ -79,7 +79,7 @@ const Columns = () => {
             <button onClick={handleModalOpen}>Add another card</button>
             {isModalOpen && (
               <Modal onClose={handleModalClose}>
-                <CardModal onCloseModal={handleModalClose} />
+                <CardModal onCloseModal={handleModalClose} columnId={column._id} />
               </Modal>
             )}
           </>
