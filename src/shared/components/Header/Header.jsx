@@ -17,10 +17,6 @@ import { useState } from 'react';
 
 export const Header = ({ openSidebar }) => {
   const { name, avatarURL } = useSelector(selectUser);
-  
-
-
-  
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -30,7 +26,6 @@ export const Header = ({ openSidebar }) => {
   const handleModalClose = () => {
     setModalOpen(false);
   };
-
 
   return (
     <StyledHeader>
@@ -43,13 +38,11 @@ export const Header = ({ openSidebar }) => {
         <ThemeSwitcher />
         <UserName>{name}</UserName>
         <AvatarImg onClick={handleModalOpen} src={avatarURL} alt='user' />
-        {isModalOpen && <Modal onClose={handleModalClose}>
-       
-          <EditProfile onCloseModal={handleModalClose} />
-        </Modal>
-     
-      }
-
+        {isModalOpen && (
+          <Modal onClose={handleModalClose}>
+            <EditProfile onCloseModal={handleModalClose} />
+          </Modal>
+        )}
       </Wrapper>
     </StyledHeader>
   );
