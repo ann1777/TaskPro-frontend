@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { Formik, Form } from 'formik';
 import icon from '../../../images/icons.svg';
-import data from '../../../../hepers/bacground.json';  
+import data from '../../../../hepers/bacground.json'; 
+import PropTypes from 'prop-types';
 
 import {
   TitleHelp,
@@ -121,5 +122,10 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
     </>
   );
 }
+BoardModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isEditMode: PropTypes.bool,
+  dashboardId: PropTypes.string
+};
 
 export default BoardModal;

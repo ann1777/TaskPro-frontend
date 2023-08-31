@@ -1,5 +1,4 @@
-
-import { StyledModal, StyledOverlay, StyledCloseButton, Svg } from './Modal.styled';
+import { useEffect } from 'react';
 import icon from '../../images/icons.svg';
 import PropTypes from 'prop-types';
 

@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { TitleHelp, StyledForm, FormField, InputField, SubmitButton } from './ColumnModal.styled';
 import { Formik, ErrorMessage } from 'formik';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
-function ColumnModal({ onCloseModal, isEditMode, columbId}) {
+function ColumnModal({ onCloseModal, isEditMode, columnId}) {
   
 
   const handleOnSubmit = async (values, { setSubmitting }) => {
@@ -80,5 +80,11 @@ function ColumnModal({ onCloseModal, isEditMode, columbId}) {
     </>
   );
 }
+ColumnModal.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
+  isEditMode: PropTypes.bool,
+  columnId: PropTypes.string
+};
+
 
 export default ColumnModal;
