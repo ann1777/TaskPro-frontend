@@ -1,19 +1,30 @@
+import { useAuth } from "../../hooks/useAuth";
 import {
   NavItemRegistration,
   NavItemLogIn,
   StyledNav,
+  NavItemHome,
 } from "./Navigation.styled";
 
 function Navigation() {
+  const { isLoggedIn } = useAuth();
   return (
-    <StyledNav>
-      <NavItemRegistration to="/registration" replace>
-        Registration
-      </NavItemRegistration>
-      <NavItemLogIn to="/login" replace>
-        Log In
-      </NavItemLogIn>
-    </StyledNav>
+    <>
+      {isLoggedIn ? (
+        <StyledNav>
+          <NavItemHome to="/home" replace>
+            Return Back
+          </NavItemHome>
+        </StyledNav>
+      ) : (
+        <StyledNav>
+          <NavItemRegistration to="/registration">
+            Registration
+          </NavItemRegistration>
+          <NavItemLogIn to="/login">Log In</NavItemLogIn>
+        </StyledNav>
+      )}
+    </>
   );
 }
 export default Navigation;

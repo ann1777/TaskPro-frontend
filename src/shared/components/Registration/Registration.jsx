@@ -50,6 +50,7 @@ const initialValues = {
 
 function Registration() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const formikRef = React.useRef();
 
@@ -57,7 +58,8 @@ function Registration() {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const onSubmit = async (values, { resetForm }) => {
+  const onSubmit = async (values) => {
+    setIsLoading(true);
     const { name, email, password } = values;
     const resultAction = await dispatch(signup({ name, email, password }));
     if (signup.fulfilled.match(resultAction)) {
@@ -65,6 +67,7 @@ function Registration() {
     } else if (signup.rejected.match(resultAction)) {
       console.log(resultAction.error.message);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -123,7 +126,7 @@ function Registration() {
                 </AuthFormPasswordIcon>
               </StyledWrapInputAuth>
               <StyledWrapAuthBtn>
-                <StyledBtnAuthAccent type="submit">
+                <StyledBtnAuthAccent type="submit" disabled={isLoading}>
                   Register Now
                 </StyledBtnAuthAccent>
               </StyledWrapAuthBtn>

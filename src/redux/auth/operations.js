@@ -26,7 +26,7 @@ export const signup = createAsyncThunk(
           email,
           password,
         });
-        setAuthHeader(data.accessToken);
+        setAuthHeader(data.token);
         return data;
       }
     } catch (error) {
@@ -44,7 +44,6 @@ export const signin = createAsyncThunk(
       setAuthHeader(data.token);
       localStorage.setItem("refreshToken", data.token);
       localStorage.setItem("accessToken", data.token);
-      // setAuthTheme(data.theme);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -74,7 +73,6 @@ export const changeTheme = createAsyncThunk(
       const { data } = await instance.put("api/auth/updateTheme", {
         theme: selectedOption,
       });
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
