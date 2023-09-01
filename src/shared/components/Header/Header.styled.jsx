@@ -13,8 +13,7 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   box-sizing: border-box;
   flex-shrink: 0;
-
-  background-color: ${(props) => props.theme.backgroundHeader};
+  background: ${({ theme }) => theme.colors.backgroundHeader};
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
     margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 

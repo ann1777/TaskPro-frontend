@@ -11,6 +11,7 @@ export const StyledSidebar = styled.div`
   height: 100vh;
   top: 0;
   left: 0;
+  position:absolute;
   z-index: 100;
   transform: translateX(-100%);
   transition: all 250ms;
@@ -29,7 +30,7 @@ export const StyledSidebar = styled.div`
 
   @media screen and (min-width: ${desktop}) {
     width: 260px;
-    position: fixed;
+    /* position: fixed; */
     transform: translateX(0);
     transition: none;
   }
@@ -231,13 +232,15 @@ export const Overlay = styled.div`
 
   ${(props) =>
     props.isOpen
-      ? "opacity: 1; display:static;"
-      : "opacity: 0; pointer-events: none;visibility: hidden;"} /* transition: opacity 3000ms cubic-bezier(0.4, 0, 0.2, 1)
+      ? "opacity: 1; display:static;pointer-events:auto;"
+      : "opacity: 0; pointer-events: none; visibility: hidden;"} /* transition: opacity 3000ms cubic-bezier(0.4, 0, 0.2, 1)
     opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1); */
     /* transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1); */
     transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1),
   transform 5000ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
+
+
 
 

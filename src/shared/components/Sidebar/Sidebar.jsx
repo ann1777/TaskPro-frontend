@@ -25,6 +25,8 @@ import { Logo } from "./Sidebar.styled";
 import { BoardList } from "./BoardList";
 import { signOut } from "../../../redux/auth/operations.js";
 import { useMediaQuery } from "react-responsive";
+import localStorage from "redux-persist/es/storage";
+import { createGlobalStyle } from "styled-components";
 export const Sidebar = ({
   isOpen,
   onOpen,
@@ -41,12 +43,16 @@ export const Sidebar = ({
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1440px)",
   });
-  console.log(isDesktopOrLaptop);
 
   return (
     <>
       {isDesktopOrLaptop && (
-        <StyledSidebar isOpen={isOpen}>
+        <StyledSidebar
+          onClick={() => {
+            console.log("Я сайт");
+          }}
+          isOpen={isOpen}
+        >
           <LogoWrapper>
             <Logo>
               <use href={sprite + "#icon-logo"}></use>
@@ -102,7 +108,7 @@ export const Sidebar = ({
         </StyledSidebar>
       )}
       {!isDesktopOrLaptop && (
-        <Overlay onClick={closeSidebar} isOpen={isOpen}>
+        <>
           <StyledSidebar isOpen={isOpen}>
             <LogoWrapper>
               <Logo>
@@ -157,7 +163,8 @@ export const Sidebar = ({
               Log out
             </LogOutBtn>
           </StyledSidebar>
-        </Overlay>
+          <Overlay onClick={closeSidebar} isOpen={isOpen} />
+        </>
       )}
     </>
   );
