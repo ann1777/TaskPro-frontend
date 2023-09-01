@@ -5,7 +5,7 @@ import { Button } from '../../Button/Button';
 // const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
-  ${'' /* color: ${selectedTheme.colors.textColorModal}; */}
+   color: ${({ theme }) => theme.colors.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -74,7 +74,7 @@ export const RadioField = styled(Field)`
 
   &:hover ~ .background-label,
   &:checked ~ .background-label {
-    outline: 1px solid var(--createBoardInputBorderFocus);
+    ${'' /* outline: 1px solid var(--createBoardInputBorderFocus); */}
   }
 
   &:hover ~ .icon-label,
@@ -146,12 +146,14 @@ margin-top: 4px;
   width: 14px;
   height: 14px;
  
-  border: 2px solid ${props => props.buttoncolor.color};
+  ${'' /* border: 2px solid ${props => props.buttoncolor.color}; */}
 
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  background-color: ${props => props.backgroundColor.color};
   cursor: pointer;
   & input {
     display: none;
@@ -167,7 +169,9 @@ export const Checkmark = styled.span`
   width: calc(100%);
   height: calc(100%);
   border-radius: 50%;
-  background-color: ${props => props.buttoncolor.color};
+  background-color: ${props => (props.checked ? 'black' : props.backgroundColor.color)};
+  border: ${props => (props.checked ? '2px solid ' + props.backgroundColor.color: '1px solid ' + props.backgroundColor.color)};
+
   display: inline-block;
   opacity: 1;
   transition: opacity 0.25s ease;
