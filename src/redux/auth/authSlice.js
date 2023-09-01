@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import {
   signin,
   signup,
   signOut,
   changeTheme,
   currentUser,
-} from './operations';
+} from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -20,7 +20,7 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    theme: 'light',
+    theme: null,
     avatarURL: null,
   },
   token: null,
@@ -31,7 +31,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
 
   extraReducers: (builder) => {
@@ -40,7 +40,11 @@ const authSlice = createSlice({
       .addCase(signup.pending, handlePending)
       .addCase(signup.rejected, handleRejected)
       .addCase(signup.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        state.user.email = action.payload.email;
+        state.user.name = action.payload.name;
+        state.user.theme = action.payload.theme;
+        state.user.avatarURL = action.payload.avatarURL;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
       })

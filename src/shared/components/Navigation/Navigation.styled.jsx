@@ -65,6 +65,38 @@ export const NavItemRegistration = styled(NavLink)`
     width: 344px;
   }
 `;
+export const NavItemHome = styled(NavLink)`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+
+  color: #fff;
+  font-style: normal;
+  padding: 14px;
+  background-color: #161616;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.28px;
+  border-radius: 8px;
+  color: #fff;
+  width: calc(100vw - 40px);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 250ms linear;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+    transition: opacity 250ms linear;
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 344px;
+  }
+`;
 
 export const StyledNav = styled.nav`
   margin-top: 48px;

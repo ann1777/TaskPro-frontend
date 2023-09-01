@@ -15,18 +15,21 @@ import userMobile2x from "../../images/user-mobile2x.png";
 import userMobile1xWebp from "../../images/user-mobile1xWebp.webp";
 import userMobile2xWebp from "../../images/user-mobile2xWebp.webp";
 import {
-  AboutText,
+  NotFoundText,
   LogoSvg,
   LogoText,
   LogoWrapper,
   UserPicture,
-  WelcomeWrapper,
-} from "./Welcome.styled";
+  NotFoundWrapper,
+} from "./NotFound.styled.jsx";
+import { GlobalStyles } from "../styles/GlobalStyles.styled";
+import Navigation from "../Navigation/Navigation";
 
-function Welcome() {
+function NotFound() {
   return (
     <>
-      <WelcomeWrapper>
+      <GlobalStyles />
+      <NotFoundWrapper>
         <UserPicture>
           <source
             srcSet={userDesktop2xWebp}
@@ -79,14 +82,15 @@ function Welcome() {
           <LogoSvg width="40px" height="40px">
             <use href={sprite + "#icon-logo"}></use>
           </LogoSvg>
-          <LogoText>Task Pro</LogoText>
+          <LogoText>Page Not Found</LogoText>
         </LogoWrapper>
-        <AboutText>
-          Supercharge your productivity and take control of your tasks with Task
-          Pro - Dont wait, start achieving your goals now!
-        </AboutText>
-      </WelcomeWrapper>
+        <NotFoundText>
+          Page you are looking for not found. Back to the RegisterPage or
+          LoginPage! Or try to access Task Pro later!
+        </NotFoundText>
+      </NotFoundWrapper>
+      <Navigation />
     </>
   );
 }
-export default Welcome;
+export default NotFound;

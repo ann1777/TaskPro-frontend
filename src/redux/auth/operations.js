@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-
 const instance = axios.create({
   baseURL: "https://taskpro-backend-c73a.onrender.com/",
 });
@@ -27,7 +26,7 @@ export const signup = createAsyncThunk(
           email,
           password,
         });
-        setAuthHeader(data.accessToken);
+        setAuthHeader(data.token);
         return data;
       }
     } catch (error) {
@@ -45,7 +44,6 @@ export const signin = createAsyncThunk(
       setAuthHeader(data.token);
       localStorage.setItem("refreshToken", data.token);
       localStorage.setItem("accessToken", data.token);
-      // setAuthTheme(data.theme);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -75,7 +73,6 @@ export const changeTheme = createAsyncThunk(
       const { data } = await instance.put("api/auth/updateTheme", {
         theme: selectedOption,
       });
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

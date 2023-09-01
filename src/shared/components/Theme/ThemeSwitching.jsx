@@ -6,6 +6,7 @@ import { light, dark, color } from "./theme.styled";
 
 export const ThemeSwitching = ({ children }) => {
   const activeUserTheme = useSelector(selectUserTheme);
+
   const HandleThemeChoose = () => {
     if (activeUserTheme === "light") {
       return light;
@@ -21,5 +22,5 @@ export const ThemeSwitching = ({ children }) => {
 };
 
 ThemeSwitching.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.object.isRequired,
 };
