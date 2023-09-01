@@ -20,6 +20,9 @@ import Layout from "./pages/Layout/Layout";
 import LoginPage from "./pages/AuthPage/LoginPage";
 import RegistrationPage from "./pages/AuthPage/RegistrationPage";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -69,6 +72,18 @@ function App() {
           </Routes>
         </>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </ThemeSwitching>
   );
 }
