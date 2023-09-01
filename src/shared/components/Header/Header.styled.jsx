@@ -8,30 +8,26 @@ export const StyledHeader = styled.header`
   width: 100%;
   padding: 14px 20px;
   margin: 0 auto;
-  /* top: 0px;
-  left: 0; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
   flex-shrink: 0;
-  /* position: absolute; */
-
-  background-color: ${({ theme }) => theme.colors.backgroundHeader};
+  background: ${({ theme }) => theme.colors.backgroundHeader};
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
     margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 
   @media screen and (min-width: ${tablet}) {
     padding: 18px 32px;
+    position: absolute;
+    left: 0;
   }
+
   @media screen and (min-width: ${desktop}) {
     padding: 18px 24px;
     justify-content: end;
-    /* margin-left: 260px;
-    width: calc(100% - 260px); */
-    /* left: auto; */
+    width: calc(100% - 260px);
     right: 0;
-    /* z-index: 5; */
   }
 `;
 
@@ -41,14 +37,12 @@ export const StyledSelect = styled(Select)`
   line-height: 1.2;
   letter-spacing: -0.28px;
   background-color: ${({ theme }) => theme.colors.backgroundHeader};
-  /* color: #FFFFFFCC; */
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* outline: 2px solid black; */
 `;
 export const UserName = styled.p`
   margin-left: 14px;
@@ -77,6 +71,8 @@ export const ButtonBurger = styled.button`
   height: 24px;
   border: none;
   background-color: transparent;
+  z-index: 5;
+
   @media screen and (min-width: ${tablet}) {
     width: 32px;
     height: 32px;
@@ -90,7 +86,7 @@ export const StyledSvgBurger = styled.svg`
   width: 24px;
   height: 24px;
   fill: ${({ theme }) => theme.colors.textHeader};
-  /* fill:  #FFFFFF; */
+
   @media screen and (min-width: ${tablet}) {
     width: 32px;
     height: 32px;

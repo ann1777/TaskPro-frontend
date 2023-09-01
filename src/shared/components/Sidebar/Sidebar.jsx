@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-// import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import {
   StyledSidebar,
   AppName,
@@ -18,84 +17,155 @@ import {
   LogOutBtn,
   LogOutIcon,
   GreenColor,
-  // Overlay,
-} from './Sidebar.styled';
-import sprite from '../../images/icons.svg';
-import Helper from '../../images/help.png';
-// import Helper2 from "../../images/helper2x.png";
-// import Helper3 from "../../images/helper3x.png";
-import { Logo } from './Sidebar.styled';
-import { BoardList } from './BoardList';
-import { signOut } from '../../../redux/auth/operations.js';
-
-export const Sidebar = ({ isOpen, onOpen, onOpenHelp }) => {
+  Overlay,
+} from "./Sidebar.styled";
+import sprite from "../../images/icons.svg";
+import Helper from "../../images/help.png";
+import { Logo } from "./Sidebar.styled";
+import { BoardList } from "./BoardList";
+import { signOut } from "../../../redux/auth/operations.js";
+import { useMediaQuery } from "react-responsive";
+import localStorage from "redux-persist/es/storage";
+import { createGlobalStyle } from "styled-components";
+export const Sidebar = ({
+  isOpen,
+  onOpen,
+  onOpenHelp,
+  onOpenEditDashBoard,
+  closeSidebar,
+}) => {
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
     dispatch(signOut());
   };
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1440px)",
+  });
+
   return (
     <>
-      {/* <Overlay isOpen={isOpen} onClick={closeSidebar}> */}
-      <StyledSidebar isOpen={isOpen}>
-        <LogoWrapper>
-          <Logo>
-            <use href={sprite + '#icon-logo'}></use>
-          </Logo>
-          <AppName>Task Pro</AppName>
-        </LogoWrapper>
+      {isDesktopOrLaptop && (
+        <StyledSidebar
+          onClick={() => {
+            console.log("Я сайт");
+          }}
+          isOpen={isOpen}
+        >
+          <LogoWrapper>
+            <Logo>
+              <use href={sprite + "#icon-logo"}></use>
+            </Logo>
+            <AppName>Task Pro</AppName>
+          </LogoWrapper>
 
-        <Title>My boards</Title>
+          <Title>My boards</Title>
 
-        <Wrapper>
-          <CreateText>
-            Create a<br></br>new board
-          </CreateText>
-          <CreateBoardButton onClick={onOpen}>
-            <Plus>
-              <use href={sprite + '#icon-plus'}></use>
-            </Plus>
-          </CreateBoardButton>
-        </Wrapper>
+          <Wrapper>
+            <CreateText>
+              Create a<br></br>new board
+            </CreateText>
+            <CreateBoardButton onClick={onOpen}>
+              <Plus>
+                <use href={sprite + "#icon-plus"}></use>
+              </Plus>
+            </CreateBoardButton>
+          </Wrapper>
 
-        <BoardList />
+          <BoardList onOpenEditDashBoard={onOpenEditDashBoard} />
 
-        <BlockWrapper>
-          <img src={Helper} style={{ width: '54px', height: '78px' }} alt='/' />
+          <BlockWrapper>
+            <img
+              src={Helper}
+              style={{ width: "54px", height: "78px" }}
+              alt="/"
+            />
 
-          {/* <BlockImg>
-          <source srcSet={Helper} media="(max-width:767px)" />
-          <source srcSet={Helper2} media="(max-width:1199px)" />
-          <source srcSet={Helper3} media="(min-width:1200px)" /> 
-          <img src={Helper} alt="/" />
-        </BlockImg> */}
+            <MessageWrapper>
+              <SupportMessage>
+                If you need help with
+                <br /> <GreenColor>TaskPro</GreenColor>, check out our
+                <br /> support resources or <br /> reach out to our <br />{" "}
+                customer support team.
+              </SupportMessage>
+            </MessageWrapper>
 
-          <MessageWrapper>
-            <SupportMessage>
-              If you need help with
-              <br /> <GreenColor>TaskPro</GreenColor>, check out our
-              <br /> support resources or <br /> reach out to our <br />{' '}
-              customer support team.
-            </SupportMessage>
-          </MessageWrapper>
+            <HelpBtn type="button" onClick={onOpenHelp}>
+              <HelpIcon>
+                <use href={sprite + "#icon-help-circle"} />
+              </HelpIcon>
+              Need help?
+            </HelpBtn>
+          </BlockWrapper>
 
-          <HelpBtn type='button' onClick={onOpenHelp}>
-            <HelpIcon>
-              <use href={sprite + '#icon-help-circle'} />
-            </HelpIcon>
-            Need help?
-          </HelpBtn>
-        </BlockWrapper>
+          <LogOutBtn type="button" onClick={handleLogOut}>
+            <LogOutIcon>
+              <use href={sprite + "#icon-login"} />
+            </LogOutIcon>
+            Log out
+          </LogOutBtn>
+        </StyledSidebar>
+      )}
+      {!isDesktopOrLaptop && (
+        <>
+          <StyledSidebar isOpen={isOpen}>
+            <LogoWrapper>
+              <Logo>
+                <use href={sprite + "#icon-logo"}></use>
+              </Logo>
+              <AppName>Task Pro</AppName>
+            </LogoWrapper>
 
-        <LogOutBtn type='button' onClick={handleLogOut}>
-          <LogOutIcon>
-            <use href={sprite + '#icon-login'} />
-          </LogOutIcon>
-          Log out
-        </LogOutBtn>
-      </StyledSidebar>
-      {/* </Overlay> */}
+            <Title>My boards</Title>
+
+            <Wrapper>
+              <CreateText>
+                Create a<br></br>new board
+              </CreateText>
+              <CreateBoardButton onClick={onOpen}>
+                <Plus>
+                  <use href={sprite + "#icon-plus"}></use>
+                </Plus>
+              </CreateBoardButton>
+            </Wrapper>
+
+            <BoardList onOpenEditDashBoard={onOpenEditDashBoard} />
+
+            <BlockWrapper>
+              <img
+                src={Helper}
+                style={{ width: "54px", height: "78px" }}
+                alt="/"
+              />
+
+              <MessageWrapper>
+                <SupportMessage>
+                  If you need help with
+                  <br /> <GreenColor>TaskPro</GreenColor>, check out our
+                  <br /> support resources or <br /> reach out to our <br />{" "}
+                  customer support team.
+                </SupportMessage>
+              </MessageWrapper>
+
+              <HelpBtn type="button" onClick={onOpenHelp}>
+                <HelpIcon>
+                  <use href={sprite + "#icon-help-circle"} />
+                </HelpIcon>
+                Need help?
+              </HelpBtn>
+            </BlockWrapper>
+
+            <LogOutBtn type="button" onClick={handleLogOut}>
+              <LogOutIcon>
+                <use href={sprite + "#icon-login"} />
+              </LogOutIcon>
+              Log out
+            </LogOutBtn>
+          </StyledSidebar>
+          <Overlay onClick={closeSidebar} isOpen={isOpen} />
+        </>
+      )}
     </>
   );
 };
@@ -104,4 +174,6 @@ Sidebar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onOpen: PropTypes.func.isRequired,
   onOpenHelp: PropTypes.func.isRequired,
+  onOpenEditDashBoard: PropTypes.func.isRequired,
+  closeSidebar: PropTypes.func.isRequired,
 };
