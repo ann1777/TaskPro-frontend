@@ -1,0 +1,470 @@
+[
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1693183018/block_fbhcsq.png"
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon1_ico_wy44tz.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon1_mob_x1_nxoyxr.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon1_mob_x2_sosnbg.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon1_tab_x1_e9bipr.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon1_tab_x2_wgvjeb.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon1_pc_x1_bpu8pw.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon1_pc_x2_gupyqh.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon1_mob_x1_umohnn.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon1_mob_x2_pthyeu.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon1_tab_x1_y6s9br.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon1_tab_x2_ef19am.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon1_pc_x1_tio8bo.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon1_pc_x2_ul39yc.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon2_ico_n8gegc.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon2_mob_x1_qrl9y7.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon2_mob_x2_ytqpc3.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon2_tab_x1_yktk9h.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon2_tab_x2_oqpnj3.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon2_pc_x1_grctob.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon2_pc_x2_scyl15.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon2_mob_x1_tydfi8.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon2_mob_x2_vqxfvd.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831639/webp/fon2_tab_x1_ltd0jd.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831639/webp/fon2_tab_x2_ac1c3s.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831638/webp/fon2_pc_x1_y8f0zg.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831639/webp/fon2_pc_x2_l4i3n2.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon3_ico_w9tpox.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon3_mob_x1_f865mf.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831419/jpg/fon3_mob_x2_j609nk.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon3_tab_x1_jas5zu.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon3_tab_x2_zmpbjh.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon3_pc_x1_ol63wr.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831420/jpg/fon3_pc_x2_xmx3ea.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831639/webp/fon3_mob_x1_q15i84.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831639/webp/fon3_mob_x2_vxufa6.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831640/webp/fon3_tab_x1_jikzzd.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831640/webp/fon3_tab_x2_nity4j.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831639/webp/fon3_pc_x1_mufjbz.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831640/webp/fon3_pc_x2_e3jo7g.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon4_ico_be59k6.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon4_mob_x1_cqu790.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon4_mob_x2_zgdyyf.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon4_tab_x1_xnt4mz.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon4_tab_x2_xurxwp.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon4_pc_x1_ffizd8.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon4_pc_x2_lfpfue.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831640/webp/fon4_mob_x1_ahk70i.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831640/webp/fon4_mob_x2_abvkiy.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831641/webp/fon4_tab_x1_rs3yel.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831652/webp/fon4_tab_x2_bricjm.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831640/webp/fon4_pc_x1_joq15i.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831641/webp/fon4_pc_x2_p88hxk.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon5_ico_ucju49.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831421/jpg/fon5_mob_x1_rr0dcx.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon5_mob_x2_zu488f.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon5_tab_x1_gpickf.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon5_tab_x2_x6zsx5.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon5_pc_x1_hmzbp5.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon5_pc_x2_d437cl.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831641/webp/fon5_mob_x1_cf6rcf.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831641/webp/fon5_mob_x2_pr8onf.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831655/webp/fon5_tab_x1_yg77eq.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831656/webp/fon5_tab_x2_v76gxn.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831648/webp/fon5_pc_x1_hice86.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831655/webp/fon5_pc_x2_tdyopu.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon6_ico_yvrlrm.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon6_mob_x1_zowbrk.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon6_mob_x2_euvbqj.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831426/jpg/fon6_tab_x1_crvxmb.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon6_tab_x2_x4xri0.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon6_pc_x1_serqyy.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831422/jpg/fon6_pc_x2_s638eq.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831655/webp/fon6_mob_x1_ysrkg4.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831655/webp/fon6_mob_x2_ygcklj.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831656/webp/fon6_tab_x1_xsm9pw.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831656/webp/fon6_tab_x2_nb2blf.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831656/webp/fon6_pc_x1_yhgbmj.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831656/webp/fon6_pc_x2_sfkafn.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon7_ico_wc5s17.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon7_mob_x1_gxcnsw.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon7_mob_x2_ba600l.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon7_tab_x1_bdaltw.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon7_tab_x2_abdzye.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon7_pc_x1_yzqpgw.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831441/jpg/fon7_pc_x2_munz1f.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831656/webp/fon7_mob_x1_hfst5a.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831657/webp/fon7_mob_x2_z2mi4t.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831657/webp/fon7_tab_x1_i7bwqs.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831657/webp/fon7_tab_x2_xb85tv.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831657/webp/fon7_pc_x1_cdqit2.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831658/webp/fon7_pc_x2_i7w1fk.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon8_ico_vq98ft.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831442/jpg/fon8_mob_x1_uqvfnk.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831444/jpg/fon8_mob_x2_wnidct.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831447/jpg/fon8_tab_x1_fxqyyr.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831447/jpg/fon8_tab_x2_mnmh6l.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831447/jpg/fon8_pc_x1_fcfet7.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831447/jpg/fon8_pc_x2_hvwuym.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831658/webp/fon8_mob_x1_bxtxc1.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831658/webp/fon8_mob_x2_oz0k8m.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831669/webp/fon8_tab_x1_rtvcoq.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831669/webp/fon8_tab_x2_chegoe.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831659/webp/fon8_pc_x1_farsvj.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831668/webp/fon8_pc_x2_qmyzkv.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon9_ico_tubexe.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831447/jpg/fon9_mob_x1_qudi61.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831447/jpg/fon9_mob_x2_csqeia.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831452/jpg/fon9_tab_x1_obw8hs.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon9_tab_x2_qbqkuq.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831448/jpg/fon9_pc_x1_fibwgt.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831452/jpg/fon9_pc_x2_m5qh2n.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831669/webp/fon9_mob_x1_gotbrt.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831670/webp/fon9_mob_x2_tf6chl.webp "
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831669/webp/fon9_tab_x1_hccogd.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831670/webp/fon9_tab_x2_asfzbo.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831670/webp/fon9_pc_x1_m9zkae.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831670/webp/fon9_pc_x2_eajklf.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon10_ico_y32inn.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon10_mob_x1_kgqntb.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831454/jpg/fon10_mob_x2_wmwfzb.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon10_tab_x1_c0qzbe.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon10_tab_x2_m5swfp.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon10_pc_x1_re5gbl.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon10_pc_x2_pkindf.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831670/webp/fon10_mob_x1_fsqail.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831670/webp/fon10_mob_x2_d2hugv.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831678/webp/fon10_tab_x1_razroj.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831679/webp/fon10_tab_x2_gtbqap.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831671/webp/fon10_pc_x1_phknpc.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831673/webp/fon10_pc_x2_y4ux2f.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon11_ico_mru7rc.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831453/jpg/fon11_mob_x1_tub7lw.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831454/jpg/fon11_mob_x2_srkby2.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831460/jpg/fon11_tab_x1_hble99.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831460/jpg/fon11_tab_x2_rm1wjt.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831459/jpg/fon11_pc_x1_pbki4x.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831460/jpg/fon11_pc_x2_ljapdy.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831680/webp/fon11_mob_x1_m9idzh.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831680/webp/fon11_mob_x2_rs8rua.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831680/webp/fon11_tab_x1_tdskp8.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831681/webp/fon11_tab_x2_jipjlq.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831680/webp/fon11_pc_x1_hxj7na.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831681/webp/fon11_pc_x2_jk5aha.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832134/fon12_ico_hphtyt.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831460/jpg/fon12_mob_x1_kesmnj.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831461/jpg/fon12_mob_x2_jam8he.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831466/jpg/fon12_tab_x1_ofryeo.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831467/jpg/fon12_tab_x2_mcj6t1.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831461/jpg/fon12_pc_x1_xf79jd.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831461/jpg/fon12_pc_x2_ppudbu.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831682/webp/fon12_mob_x1_vzpyug.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831687/webp/fon12_mob_x2_vnb6q9.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831690/webp/fon12_tab_x1_s5q93u.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831689/webp/fon12_tab_x2_i74jjr.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831688/webp/fon12_pc_x1_zeyefs.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831689/webp/fon12_pc_x2_anhypm.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832135/fon13_ico_zr7ydo.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831467/jpg/fon13_mob_x1_bty5f8.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831467/jpg/fon13_mob_x2_gdawpc.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831467/jpg/fon13_tab_x1_rcbghh.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon13_tab_x2_v3n6mp.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831467/jpg/fon13_pc_x1_mn2cui.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon13_pc_x2_noflv2.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831688/webp/fon13_mob_x1_iz7cqu.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831689/webp/fon13_mob_x2_bqrric.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831693/webp/fon13_tab_x1_lfulej.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831696/webp/fon13_tab_x2_v5majf.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831690/webp/fon13_pc_x1_v6xl7a.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831690/webp/fon13_pc_x2_v72ngc.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832135/fon14_ico_pidbhb.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831467/jpg/fon14_mob_x1_hnroim.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon14_mob_x2_puvyol.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon14_tab_x1_bji7eg.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon14_tab_x2_zrfpqw.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon14_pc_x1_z2mrma.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon14_pc_x2_lr29cz.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831697/webp/fon14_mob_x1_gtpng8.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831697/webp/fon14_mob_x2_ktymmq.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831697/webp/fon14_tab_x1_bcilx9.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831697/webp/fon14_tab_x2_ssqkhd.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831697/webp/fon14_pc_x1_txou4r.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831698/webp/fon14_pc_x2_bnvype.webp"
+      }
+    }
+  },
+  {
+    "icon": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692832135/fon15_ico_hsvqd1.png",
+    "backgroundJpg": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon15_mob_x1_e1jyv4.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon15_mob_x2_rfxxhz.jpg"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon15_tab_x1_wolpmp.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831469/jpg/fon15_tab_x2_ayegrl.jpg"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831468/jpg/fon15_pc_x1_r650jm.jpg",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831469/jpg/fon15_pc_x2_vbwah2.jpg"
+      }
+    },
+    "backgroundWebp": {
+      "mobile": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831698/webp/fon15_mob_x1_ubctc1.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831698/webp/fon15_mob_x2_zwhbgi.webp"
+      },
+      "tablet": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831706/webp/fon15_tab_x1_sfhpue.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831707/webp/fon15_tab_x2_husxyp.webp"
+      },
+      "desktop": {
+        "1x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831698/webp/fon15_pc_x1_omqtlf.webp",
+        "2x": "https://res.cloudinary.com/doc0gvy9u/image/upload/v1692831700/webp/fon15_pc_x2_rm7xfi.webp"
+      }
+    }
+  }
+]

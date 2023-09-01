@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Formik, Form } from 'formik';
 import icon from '../../../images/icons.svg';
-import data from '../../../../hepers/bacground.json'; 
+import data from '../../../../hepers/background.json'; 
 import PropTypes from 'prop-types';
 
 import {
@@ -108,9 +108,9 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
             <BoardText>Background</BoardText>
             <Row>
               {data.map((item, index) => (
-                <RadioLabel key={index} onClick={() => setFieldValue("background", item.url)}>
-                  <RadioField name="background" type="radio" value={item.url} />
-                  <BackgroundIcon src={item.url} alt={`Background ${index + 1}`} />
+                <RadioLabel key={index} onClick={() => setFieldValue("background", item.icon)}>
+                  <RadioField name="background" type="radio" value={item.icon} />
+                  <BackgroundIcon src={item.icon} alt={`Background ${index + 1}`} />
                 </RadioLabel>
               ))}
             </Row>
