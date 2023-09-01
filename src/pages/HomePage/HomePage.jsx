@@ -9,12 +9,15 @@ import BoardModal from "../../shared/components/Modal/BoardModal/BoardModal";
 import Dashboard from "../../shared/components/Dashboard/Dashboard";
 
 import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.styled";
+
 import * as css from "./HomePage.styled";
 
 export const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [helpModalOpen, setHelpModalOpen] = useState(false);
-  const { isOpen, toggle } = useToggle();
+  const { isOpen, close, open } = useToggle();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDashboardId, setSelectedDashboardId] = useState(null);
 
   const toggleModal = () => {
     setModalOpen(true);
@@ -32,29 +35,54 @@ export const HomePage = () => {
     setModalOpen(false);
   };
 
+  const handleModalOpen = (dashboardId) => {
+    setSelectedDashboardId(dashboardId);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setSelectedDashboardId(null);
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <GlobalStylesHome />
-      <Sidebar
-        closeSidebar={toggle}
-        isOpen={isOpen}
-        onOpen={toggleModal}
-        onOpenHelp={openHelpModal}
-      />
-
-      {helpModalOpen && (
-        <Modal onClose={closeHelpModal}>
-          <NeedHelp onClose={closeHelpModal} />
-        </Modal>
-      )}
-      {modalOpen && (
-        <Modal onClose={closeModal}>
-          <BoardModal onClose={closeModal} />
-        </Modal>
-      )}
       <css.FlexDiv>
+        {" "}
+        <Sidebar
+          onOpenEditDashBoard={handleModalOpen}
+          closeSidebar={close}
+          isOpen={isOpen}
+          onOpen={toggleModal}
+          onOpenHelp={openHelpModal}
+        />
+        {modalOpen && (
+          <Modal>
+            <BoardModal />
+          </Modal>
+        )}
+        {helpModalOpen && (
+          <Modal onClose={closeHelpModal}>
+            <NeedHelp onClose={closeHelpModal} />
+          </Modal>
+        )}
+        {modalOpen && (
+          <Modal onClose={closeModal}>
+            <BoardModal onClose={closeModal} />
+          </Modal>
+        )}
+        {isModalOpen && (
+          <Modal onClose={handleModalClose}>
+            <BoardModal
+              isEditMode={true}
+              dashboardId={selectedDashboardId}
+              onClose={handleModalClose}
+            />
+          </Modal>
+        )}
         <css.HeadBoardDIv>
-          <Header openSidebar={toggle} />
+          <Header isOpen={isOpen} openSidebar={open} />
           <Dashboard />
         </css.HeadBoardDIv>
       </css.FlexDiv>

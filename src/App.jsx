@@ -7,10 +7,10 @@ import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import Loader from "./shared/components/Loader/Loader";
-import Registration from "./shared/components/Registration/Registration";
-import Login from "./shared/components/Login/Login";
+// import Registration from "./shared/components/Registration/Registration";
+// import Login from "./shared/components/Login/Login";
 import Dashboard from "./shared/components/Dashboard/Dashboard";
-import PageNotFound from "./shared/components/PageNotFound/PageNotFound";
+// import PageNotFound from "./shared/components/PageNotFound/PageNotFound";
 
 import { currentUser } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/authSelectors";
@@ -53,7 +53,7 @@ function App() {
                 </PublicRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/registration"
               element={
                 <PublicRoute restricted>
@@ -68,7 +68,7 @@ function App() {
                   <Login />
                 </PublicRoute>
               }
-            />
+            /> */}
             <Route
               path="/home"
               element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
@@ -78,7 +78,7 @@ function App() {
                 element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
               />
             </Route>
-            <Route path="/*" element={<PageNotFound />} />
+            {/* <Route path="/*" element={<PageNotFound />} /> */}
           </Routes>
         </>
       )}

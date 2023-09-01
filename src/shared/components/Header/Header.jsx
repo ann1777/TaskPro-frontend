@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import sprite from '../../images/header-burger.svg';
+import PropTypes from "prop-types";
+import sprite from "../../images/header-burger.svg";
 import {
   StyledHeader,
   Wrapper,
@@ -7,16 +7,17 @@ import {
   UserName,
   StyledSvgBurger,
   ButtonBurger,
-} from './Header.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../redux/auth/authSelectors';
-import { Modal } from '../Modal/Modal';
-import { EditProfile } from '../Modal/EditProfile/EditProfile';
-import { ThemeSwitcher } from '../Theme/ThemeSwitcher';
-import { useState } from 'react';
+} from "./Header.styled";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../redux/auth/authSelectors";
+import { Modal } from "../Modal/Modal";
+import { EditProfile } from "../Modal/EditProfile/EditProfile";
+import { ThemeSwitcher } from "../Theme/ThemeSwitcher";
+import { useState } from "react";
 
-export const Header = ({ openSidebar }) => {
+export const Header = ({ openSidebar, isOpen }) => {
   const { name, avatarURL } = useSelector(selectUser);
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -29,15 +30,18 @@ export const Header = ({ openSidebar }) => {
 
   return (
     <StyledHeader>
-      <ButtonBurger onClick={openSidebar}>
-        <StyledSvgBurger>
-          <use href={sprite + '#icon-burger'}></use>
-        </StyledSvgBurger>
-      </ButtonBurger>
+      {!isOpen && (
+        <ButtonBurger onClick={openSidebar}>
+          <StyledSvgBurger>
+            <use href={sprite + "#icon-burger"}></use>
+          </StyledSvgBurger>
+        </ButtonBurger>
+      )}
+
       <Wrapper>
         <ThemeSwitcher />
         <UserName>{name}</UserName>
-        <AvatarImg onClick={handleModalOpen} src={avatarURL} alt='user' />
+        <AvatarImg onClick={handleModalOpen} src={avatarURL} alt="user" />
         {isModalOpen && (
           <Modal onClose={handleModalClose}>
             <EditProfile onCloseModal={handleModalClose} />
@@ -50,4 +54,5 @@ export const Header = ({ openSidebar }) => {
 
 Header.propTypes = {
   openSidebar: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
