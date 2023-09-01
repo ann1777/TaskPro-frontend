@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Formik, Form } from 'formik';
 import icon from '../../../images/icons.svg';
-import data from '../../../../hepers/bacground.json'; 
+import data from '../../../../hepers/background.json'; 
 import PropTypes from 'prop-types';
 
 import {
