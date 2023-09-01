@@ -9,7 +9,6 @@ import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import Loader from "./shared/components/Loader/Loader";
 import Dashboard from "./shared/components/Dashboard/Dashboard";
-import PageNotFound from "./shared/components/PageNotFound/PageNotFound";
 
 import { currentUser } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/authSelectors";

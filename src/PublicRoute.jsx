@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useAuth } from "./shared/hooks/useAuth";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 
 export const PublicRoute = ({ children, restricted }) => {
