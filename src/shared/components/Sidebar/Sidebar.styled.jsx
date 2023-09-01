@@ -14,8 +14,8 @@ export const StyledSidebar = styled.div`
   z-index: 100;
   transform: translateX(-100%);
   transition: all 250ms;
-  background: ${({ theme }) => theme.colors.backSidebar};
-  /* overflow-y: hidden;
+  background: ${({ theme }) => theme.colors.backroundSidebar};
+    /* overflow-y: hidden;
   overflow-x: hidden; */
 
   ${(props) =>
@@ -234,6 +234,10 @@ export const Overlay = styled.div`
       ? "opacity: 1; display:static;"
       : "opacity: 0; pointer-events: none;visibility: hidden;"} /* transition: opacity 3000ms cubic-bezier(0.4, 0, 0.2, 1)
     opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1); */
+    /* transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1); */
     transition: opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity-transform 5000ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform 5000ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
+
+
