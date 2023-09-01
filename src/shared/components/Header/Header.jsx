@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import sprite from '../../images/header-burger.svg';
 import {
   StyledHeader,
@@ -8,18 +9,22 @@ import {
   ButtonBurger,
 } from './Header.styled';
 import { useSelector } from 'react-redux';
-import { useToggle } from '../../hooks/useToggle.js';
 import { selectUser } from '../../../redux/auth/authSelectors';
 import { Modal } from '../Modal/Modal';
 import { EditProfile } from '../Modal/EditProfile/EditProfile';
 import { ThemeSwitcher } from '../Theme/ThemeSwitcher';
+import { useState } from 'react';
 
 export const Header = ({ openSidebar }) => {
   const { name, avatarURL } = useSelector(selectUser);
-  const { isOpen, open } = useToggle();
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const closeModal = () => {
-    open(false);
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -32,13 +37,17 @@ export const Header = ({ openSidebar }) => {
       <Wrapper>
         <ThemeSwitcher />
         <UserName>{name}</UserName>
-        <AvatarImg onClick={open} src={avatarURL} alt='user' />
-        {isOpen && (
-          <Modal onClose={closeModal}>
-            <EditProfile />
+        <AvatarImg onClick={handleModalOpen} src={avatarURL} alt='user' />
+        {isModalOpen && (
+          <Modal onClose={handleModalClose}>
+            <EditProfile onCloseModal={handleModalClose} />
           </Modal>
         )}
       </Wrapper>
     </StyledHeader>
   );
+};
+
+Header.propTypes = {
+  openSidebar: PropTypes.func.isRequired,
 };

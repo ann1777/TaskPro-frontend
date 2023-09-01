@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-// import { dark } from '../../styles/theme.styled';
+// import theme from '../../styles/theme.styled';
 import { Field } from 'formik';
 import { Button } from '../../Button/Button';
-
+// const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
-  ${'' /* color: ${dark.colors.textColorModal}; */}
+   color: ${({ theme }) => theme.colors.textColorModal};
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -16,12 +16,12 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  ${'' /* background-color: ${dark.colors.backgroundColorModal}; */}
+  ${'' /* background-color: ${selectedTheme.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`
-  margin-bottom: 24px;
-  ${'' /* color: ${dark.colors.textColorModal}; */}
+  margin-bottom: 14px;
+  ${'' /* color: ${selectedTheme.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`
@@ -49,6 +49,9 @@ export const InputField = styled(Field)`
     }
   }
 `;
+
+  
+
 export const SubmitButton = styled(Button)`
   padding: 10px 0 11px 0;
 `;
@@ -56,11 +59,13 @@ export const SubmitButton = styled(Button)`
 export const BoardText = styled.p`
   font-family: Poppins;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
   color: #ffffff;
+  opacity: 0.5;
+  margin-top: 24px;
 `;
 export const RadioField = styled(Field)`
   position: fixed;
@@ -69,7 +74,7 @@ export const RadioField = styled(Field)`
 
   &:hover ~ .background-label,
   &:checked ~ .background-label {
-    outline: 1px solid var(--createBoardInputBorderFocus);
+    ${'' /* outline: 1px solid var(--createBoardInputBorderFocus); */}
   }
 
   &:hover ~ .icon-label,
@@ -116,12 +121,62 @@ export const Textarea = styled(Field)`
   }
 `;
 
-export const RadioLabel = styled.label`
-  
-  
-  border-radius: 6px;
-  cursor: pointer;
+export const LabelTitle = styled.p`
+  color: #ffffff;
+  opacity: 0.5;
+  text-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  margin-top: 24px;
 `;
+
+export const Labels = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const LabelRadiobutton = styled(Field)``;
+
+export const RadioLabel = styled.label`
+margin-top: 4px;
+  width: 14px;
+  height: 14px;
+ 
+  ${'' /* border: 2px solid ${props => props.buttoncolor.color}; */}
+
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: ${props => props.backgroundColor.color};
+  cursor: pointer;
+  & input {
+    display: none;
+  }
+
+  & input:checked + span {
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+  }
+`;
+
+export const Checkmark = styled.span`
+  width: calc(100%);
+  height: calc(100%);
+  border-radius: 50%;
+  background-color: ${props => (props.checked ? 'black' : props.backgroundColor.color)};
+  border: ${props => (props.checked ? '2px solid ' + props.backgroundColor.color: '1px solid ' + props.backgroundColor.color)};
+
+  display: inline-block;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+`;
+
 
 export const IconContainer = styled.div`
   margin-right: 8px;
@@ -137,6 +192,19 @@ export const ImageContainer = styled.div`
   margin-bottom: 4px;
   cursor: pointer;
 `;
+export const DedlineTitle = styled.p`
+  color:  #FFFFFF;
+  opacity: 0.5;
+  margin-top: 14px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.24px;
+`;
+
 
 export const Svg = styled.svg`
   fill: #151515;

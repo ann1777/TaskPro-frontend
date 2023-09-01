@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { breakpoints } from "../styles/breakpoints";
+import styled from 'styled-components';
+import { breakpoints } from '../styles/breakpoints';
 
-export const WelcomeWrapper = styled.div`
+export const NotFoundWrapper = styled.div`
   padding: 211px 20px 0px 20px;
   display: flex;
   align-items: center;
@@ -57,8 +57,8 @@ export const LogoWrapper = styled.div`
   margin-bottom: 24px;
 `;
 
-export const AboutText = styled.p`
-  color: #161616;
+export const NotFoundText = styled.p`
+  color: ${(props) => props.theme.secondTextSidebar};
   text-align: center;
   font-size: 14px;
   font-weight: 400;

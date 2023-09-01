@@ -7,8 +7,8 @@ import { StyledSelect } from "../Header/Header.styled";
 
 const options = [
   { value: "light", label: "Light" },
-  { value: "color", label: "Dark" },
-  { value: "dark", label: "Violet" },
+  { value: "dark", label: "Dark" },
+  { value: "color", label: "Violet" },
 ];
 
 export const ThemeSwitcher = () => {
@@ -27,10 +27,10 @@ export const ThemeSwitcher = () => {
     option: (base, state) => ({
       ...base,
       ":active": {
-        color: activeUserTheme === "dark" ? "#5255BC" : "#BEDBB0",
+        color: activeUserTheme === "color" ? "#5255BC" : "#BEDBB0",
       },
       ":hover": {
-        color: activeUserTheme === "dark" ? "#5255BC" : "#BEDBB0",
+        color: activeUserTheme === "color" ? "#5255BC" : "#BEDBB0",
       },
       border: "none",
       outline: "none",
@@ -38,11 +38,11 @@ export const ThemeSwitcher = () => {
       cursor: "pointer",
       margin: "0px",
       color:
-        state.isSelected && activeUserTheme === "dark"
+        state.isSelected && activeUserTheme === "color"
           ? "#5255BC"
-          : state.isSelected && activeUserTheme !== "dark"
+          : state.isSelected && activeUserTheme !== "color"
           ? "#BEDBB0"
-          : activeUserTheme === "color"
+          : activeUserTheme === "dark"
           ? "rgba(255, 255, 255, 0.5)"
           : "#161616",
       backgroundColor: "transparent",
@@ -53,12 +53,12 @@ export const ThemeSwitcher = () => {
     }),
     menu: (defaultStyles) => ({
       ...defaultStyles,
-      backgroundColor: activeUserTheme === "color" ? "#161616" : "#FCFCFC",
+      backgroundColor: activeUserTheme === "dark" ? "#161616" : "#FCFCFC",
       cursor: "pointer",
       borderRadius: "8px",
       padding: "0px",
       border:
-        activeUserTheme === "dark" ? "1px solid #5255BC" : "1px solid #BEDBB0",
+        activeUserTheme === "color" ? "1px solid #5255BC" : "1px solid #BEDBB0",
       width: "100px",
       height: "107px",
       justifyСontent: "center",
@@ -71,12 +71,12 @@ export const ThemeSwitcher = () => {
       ...defaultStyles,
       cursor: "pointer",
       ":hover": {
-        color: activeUserTheme === "dark" ? "#5255BC" : "#BEDBB0",
+        color: activeUserTheme === "color" ? "#5255BC" : "#BEDBB0",
       },
       padding: "0px",
       margin: "0px",
       color:
-        activeUserTheme === "color"
+        activeUserTheme === "dark"
           ? "rgba(255, 255, 255, 0.8)"
           : "rgba(22, 22, 22, 0.80)",
     }),
@@ -98,7 +98,7 @@ export const ThemeSwitcher = () => {
       },
       ":placeholder": {
         color:
-          activeUserTheme === "color"
+          activeUserTheme === "dark"
             ? "rgba(255, 255, 255, 0.8)"
             : "rgba(22, 22, 22, 0.80)",
       },
@@ -108,14 +108,14 @@ export const ThemeSwitcher = () => {
       cursor: "pointer",
 
       color:
-        activeUserTheme === "color"
+        activeUserTheme === "dark"
           ? "rgba(255, 255, 255, 0.8)"
           : "rgba(22, 22, 22, 0.80)",
     }),
     valueContainer: (defaultStyles) => ({
       ...defaultStyles,
       ":hover": {
-        color: activeUserTheme === "dark" ? "#5255BC" : "#BEDBB0",
+        color: activeUserTheme === "color" ? "#5255BC" : "#BEDBB0",
       },
     }),
   };
