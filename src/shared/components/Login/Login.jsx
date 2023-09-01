@@ -54,7 +54,7 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = async (values, { resetForm }) => {
+  const onSubmit = async (values) => {
     const { email, password } = values;
     setIsLoading(true);
     const resultAction = await dispatch(signin({ email, password }));
