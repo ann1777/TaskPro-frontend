@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useToggle } from "../../shared/hooks/useToggle";
+import { useMediaQuery } from "react-responsive";
 
 import NeedHelp from "../../shared/components/Modal/NeedHelp/NeedHelp";
 import { Header } from "../../shared/components/Header/Header";
@@ -7,15 +8,16 @@ import { Sidebar } from "../../shared/components/Sidebar/Sidebar";
 import { Modal } from "../../shared/components/Modal/Modal";
 import BoardModal from "../../shared/components/Modal/BoardModal/BoardModal";
 import Dashboard from "../../shared/components/Dashboard/Dashboard";
+import { Overlay } from "../../shared/components/Sidebar/Overlay";
 
 import { GlobalStylesHome } from "../../shared/components/styles/GlobalStyles.styled";
 
 import * as css from "./HomePage.styled";
 
 export const HomePage = () => {
+  const { isOpen, close, open } = useToggle();
   const [modalOpen, setModalOpen] = useState(false);
   const [helpModalOpen, setHelpModalOpen] = useState(false);
-  const { isOpen, close, open } = useToggle();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDashboardId, setSelectedDashboardId] = useState(null);
 
@@ -45,18 +47,35 @@ export const HomePage = () => {
     setIsModalOpen(false);
   };
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1440px)",
+  });
+
   return (
     <>
       <GlobalStylesHome />
       <css.FlexDiv>
         {" "}
-        <Sidebar
-          onOpenEditDashBoard={handleModalOpen}
-          closeSidebar={close}
-          isOpen={isOpen}
-          onOpen={toggleModal}
-          onOpenHelp={openHelpModal}
-        />
+        {isDesktopOrLaptop && (
+          <Sidebar
+            onOpenEditDashBoard={handleModalOpen}
+            closeSidebar={close}
+            isOpen={isOpen}
+            onOpenCreateBoard={toggleModal}
+            onOpenHelp={openHelpModal}
+          />
+        )}
+        {!isDesktopOrLaptop && (
+          <>
+            <Sidebar
+              onOpenCreateBoard={toggleModal}
+              onOpenEditDashBoard={handleModalOpen}
+              isOpen={isOpen}
+              onOpenHelp={openHelpModal}
+            />
+            <Overlay closeSidebar={close} isOpen={isOpen} />
+          </>
+        )}
         {modalOpen && (
           <Modal>
             <BoardModal />
