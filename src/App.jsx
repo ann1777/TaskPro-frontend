@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import Loader from "./shared/components/Loader/Loader";
 import Dashboard from "./shared/components/Dashboard/Dashboard";
+import PageNotFound from "./shared/components/PageNotFound/PageNotFound";
 
 import { currentUser } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/authSelectors";
@@ -17,11 +20,9 @@ import { PrivateRoute } from "./PrivateRoute";
 import { ThemeSwitching } from "./shared/components/Theme/ThemeSwitching";
 import NotFound from "./shared/components/PageNotFound/NotFound";
 import Layout from "./pages/Layout/Layout";
-import LoginPage from "./pages/AuthPage/LoginPage";
+import AuthPage from "./pages/AuthPage/LoginPage";
 import RegistrationPage from "./pages/AuthPage/RegistrationPage";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import LoginPage from "./pages/AuthPage/LoginPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,40 @@ function App() {
       ) : (
         <>
           <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute restricted>
+                  <WelcomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/:id"
+              element={
+                <PublicRoute restricted>
+                  <AuthPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={<PrivateRoute>{<HomePage />}</PrivateRoute>}
+            >
+              <Route
+                path="/home/:dashboardId"
+                element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
+              />
+            </Route>
+            <Route
+              path="/docs"
+              element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
+            />
+            <Route
+              path="/privacy-policy"
+              element={<PrivateRoute>{<Dashboard />}</PrivateRoute>}
+            />
+
             <Route path="/" element={<Layout />}>
               <Route index element={<WelcomePage />} />
               <Route
