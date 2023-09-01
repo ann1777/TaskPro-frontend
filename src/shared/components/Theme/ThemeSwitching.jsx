@@ -22,5 +22,5 @@ export const ThemeSwitching = ({ children }) => {
 };
 
 ThemeSwitching.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
 };

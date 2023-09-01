@@ -27,6 +27,7 @@ export const signup = createAsyncThunk(
           password,
         });
         setAuthHeader(data.token);
+        toast.success("Welcome!");
         return data;
       }
     } catch (error) {
@@ -44,8 +45,10 @@ export const signin = createAsyncThunk(
       setAuthHeader(data.token);
       localStorage.setItem("refreshToken", data.token);
       localStorage.setItem("accessToken", data.token);
+      toast.success("Welcome!");
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -59,6 +62,7 @@ export const signOut = createAsyncThunk(
       localStorage.clear("refreshToken");
       localStorage.clear("accessToken");
       unsetAuthHeader();
+      toast.info("See you soon!");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -91,6 +95,7 @@ export const currentUser = createAsyncThunk(
     try {
       setAuthHeader(accessToken);
       const { data } = await instance.get("api/auth/current");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
