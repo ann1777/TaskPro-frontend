@@ -20,6 +20,7 @@ import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
 
 function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
+  console.log("columnIdQQQQQ:", columnId)
   const labels = [
     { value: 'low' },
     { value: 'medium' },

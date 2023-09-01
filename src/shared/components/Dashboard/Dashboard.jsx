@@ -50,11 +50,13 @@ const Dashboard = () => {
           {dashboard.title && (
             <>
               <css.H1>{dashboard.title}</css.H1>
-              <Columns />
-              <css.ButtonAddColumn onClick={handleModalOpen}>
-                <css.IconPlus />
-                Add another column
-              </css.ButtonAddColumn>
+              <css.DivColumsBtn>
+                <Columns />
+                <div><css.ButtonAddColumn onClick={handleModalOpen}>
+                  <css.IconPlus />
+                  Add another column
+                </css.ButtonAddColumn></div>
+            </css.DivColumsBtn>
             </>
           )}
           {isModalOpen && (
