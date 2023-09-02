@@ -23,6 +23,7 @@ const initialState = {
     theme: null,
     avatarURL: null,
   },
+  dashboards: [],
   token: null,
   isRefreshing: false,
   isLoggedIn: false,
@@ -56,6 +57,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.theme = action.payload.theme;
         state.user.avatarURL = action.payload.avatarURL;
+        state.dashboards = action.payload.dashboards;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -77,6 +79,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.user.theme = action.payload.theme;
         state.user.avatarURL = action.payload.avatarURL;
+        state.dashboards = action.payload.dashboards;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
