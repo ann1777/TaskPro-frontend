@@ -19,7 +19,7 @@ export const fetchAllDashboardsThunk = createAsyncThunk(
 
 export const getDashboardByIdThunk = createAsyncThunk(
   "dashboards/getSingleDashboard",
-  async (_id, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) =>{
     try {
       await instance.get(`api/dashboard/${id}`);
       return id;
