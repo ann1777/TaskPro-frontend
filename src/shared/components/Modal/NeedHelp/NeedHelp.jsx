@@ -1,4 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TitleHelp,
   StyledForm,
@@ -6,39 +8,88 @@ import {
   InputField,
   SendButton,
   Textarea,
-} from './NeedHelp.styled';
-import { Formik, ErrorMessage } from 'formik';
+} from "./NeedHelp.styled";
+import { Formik, Field, ErrorMessage } from "formik";
+import { selectUserEmail } from "../../../../redux/auth/authSelectors";
 
-function NeedHelp({ onClose }) {
+const NeedHelp = ({ onClose }) => {
+  const [comment, setComment] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const sendEmail = async ({ comment }) => {
+    const token = localStorage.getItem("accessToken");
+
+    const userEmail = selectUserEmail; // 'me' represents the authenticated user
+
+    const message = {
+      raw: window.btoa(
+        `From: YOUR_EMAIL\r\nTo: taskpro.project1@gmail.com\r\nSubject: Help Request\r\n\r\n${comment}`
+      ),
+    };
+    const response = await fetch(
+      `https://gmail.googleapis.com/gmail/v1/users/${userEmail}/messages`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      }
+    );
+
+    if (response.ok) {
+      console.log("Email sent successfully!");
+      setComment("");
+      setErrorMessage("");
+    } else {
+      console.error(
+        "Failed to send email:",
+        response.status,
+        response.statusText
+      );
+      setErrorMessage("Failed to send email");
+    }
+  };
+  setSubmitting(false);
+
   return (
     <>
       <TitleHelp>Need help</TitleHelp>
       <Formik
         initialValues={{
-          email: '',
-          comment: '',
+          email: "",
+          comment: "",
         }}
+        onSubmit={sendEmail}
       >
         {({ isSubmitting }) => (
-          <StyledForm onChange={() => setErrorMessage(null)}>
+          <StyledForm>
             <FormField>
               <InputField
                 autoFocus
-                name='email'
-                type='email'
-                placeholder='Email address'
+                name="email"
+                type="email"
+                placeholder="Email address"
               />
-              <ErrorMessage name='email' component='div' />
+              <ErrorMessage name="email" component="div" />
             </FormField>
             <FormField>
               <Textarea
-                name='comment'
-                component='textarea'
-                placeholder='Comment'
+                name="comment"
+                component={Field}
+                placeholder="Comment"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                onChange={setComment}
               />
-              <ErrorMessage name='comment' component='div' />
+              <ErrorMessage name="comment" component="div" />
             </FormField>
-            <SendButton disabled={isSubmitting} onSubmit={onClose}>
+            <SendButton
+              disabled={isSubmitting}
+              onSubmit={sendEmail}
+              onClose={onClose}
+            >
               Send
             </SendButton>
           </StyledForm>
@@ -46,7 +97,7 @@ function NeedHelp({ onClose }) {
       </Formik>
     </>
   );
-}
+};
 
 NeedHelp.propTypes = {
   onClose: PropTypes.func.isRequired,

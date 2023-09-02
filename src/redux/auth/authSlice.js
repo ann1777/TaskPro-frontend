@@ -5,6 +5,7 @@ import {
   signOut,
   changeTheme,
   currentUser,
+  helpMail,
 } from "./operations";
 
 const handlePending = (state) => {
@@ -81,6 +82,18 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(currentUser.rejected, (state) => {
+        state.isRefreshing = false;
+      })
+      .addCase(helpMail.fulfilled, (state, action) => {
+        state.user.email = action.payload.email;
+        state.user.comments = action.payload.comments;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(helpMail.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(helpMail.rejected, (state) => {
         state.isRefreshing = false;
       });
   },

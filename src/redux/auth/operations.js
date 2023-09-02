@@ -103,4 +103,26 @@ export const currentUser = createAsyncThunk(
   }
 );
 
+export const helpMail = createAsyncThunk(
+  "auth/help",
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await instance.post("api/auth/help", credentials);
+      if (res.status === 201) {
+        const { email, comments } = credentials;
+        const { data } = await instance.post("api/auth/help", {
+          email,
+          comments,
+        });
+        setAuthHeader(data.token);
+        toast.success("Help-mail send success!");
+        return data;
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export default instance;
