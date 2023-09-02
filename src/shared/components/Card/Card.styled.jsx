@@ -37,13 +37,36 @@ padding-right: 8px;
 export const LiCard = styled.li`
 width: 334px;
 height: 154px;
+position: relative;
 background: ${({ theme }) => theme.colors.backgroundAll};
 border-radius: 8px;
+border-left: 4px solid ${({ $property }) => ({
+    without: "#FFFFFF4D",
+    low: "#8FA1D0",
+    medium: "#E09CB5",
+    high: "#BEDBB0",
+  }[$property])}; 
 padding: 14px 20px 14px 24px;
 margin-bottom: 8px;
+`
 
+export const DivCard = styled.div`
+position: absolute;
+width: 4px;
+height:100%;
+  /* background: ${({ $property }) => ({
+    without: "#FFFFFF4D",
+    low: "#8FA1D0",
+    medium: "#E09CB5",
+    high: "#BEDBB0",
+  }[$property])};  */
+  
+  
+`
 
-
+export const DivCardTwo= styled.div`
+  /* background: ${({ theme }) => theme.colors.backgroundAll}; */
+  padding: 14px 20px 14px 24px;
 `
 
 export const LiCardH2 = styled.h2`
@@ -167,3 +190,20 @@ align-items: flex-end;`
 export const DivDivEditSvg = styled.div`
 display: flex;
 gap:8px;`
+
+export const SvgPriority = styled.svg`
+  width: 12px;
+  height: 12px;
+  fill: ${({ $property }) => ({
+      without: "#FFFFFF4D",
+      low: "#8FA1D0",
+      medium: "#E09CB5",
+      high: "#BEDBB0",
+    }[$property])};
+`
+
+export const PriorityDiv = styled.div`
+      align-items: center;
+    display: flex;
+    gap: 4px;
+`

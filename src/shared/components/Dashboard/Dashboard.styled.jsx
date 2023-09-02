@@ -80,3 +80,60 @@ width: 1132px;
 }
 
 `
+export const FilterDiv = styled.div `
+  display: flex;
+    justify-content: space-between;
+    position: relative;
+`
+
+export const FilterBtn = styled.button`
+ display: flex;
+    width: 64px;
+    height:20px;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.28px;
+`
+
+export const FilterSvg = styled.svg`
+  width: 16px;
+height: 16px;
+fill: none;
+stroke: #FFFFFFCC;
+margin-right: 8px;
+
+
+`
+
+export const FilterMenu = styled.div`
+   position: absolute;
+  top: 40px; 
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100; 
+  width: 300px;
+height: 234px;
+border-radius: 8px;
+border: 1px solid rgba(190, 219, 176, 0.50);
+background: #151515;
+  
+`
+
+export const StyledCloseButton = styled.button`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  margin-left: auto;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+`;
+
+export const Svg = styled.svg`
+  stroke: ${({ theme }) => theme.colors.textColorModal};
+`;
+ 
