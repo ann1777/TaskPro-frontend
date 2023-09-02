@@ -77,6 +77,7 @@ export const RadioLabel = styled.label`
 export const IconContainer = styled.div`
   position: relative;
   cursor: pointer;
+   outline: ${props => props.isSelected ? "2px solid red" : "none"};
 
    svg {
     fill: #151515;
@@ -115,6 +116,7 @@ export const Svg = styled.svg`
 export const BackgroundIcon = styled.img`
   width: 28px;
   height: 28px;
+  margin-bottom: 4px;
 `;
 
 export const Row = styled.div`
