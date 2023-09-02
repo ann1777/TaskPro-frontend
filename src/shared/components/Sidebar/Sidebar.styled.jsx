@@ -52,14 +52,16 @@ export const Logo = styled.svg`
   margin-right: 8px;
   width: 32px;
   height: 32px;
-  fill: #161616;
+  fill: transparent;
+  stroke: ${({ theme }) => theme.colors.logoBackground};
+   
 `;
+
 export const AppName = styled.h2`
-  color: #161616;
   top: 0;
-  font-family: Poppins;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.64px;
+  color: ${({ theme }) => theme.colors.textTitlesSidebar};
 `;

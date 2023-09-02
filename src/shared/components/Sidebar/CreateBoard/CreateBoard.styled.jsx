@@ -4,7 +4,6 @@ import { breakpoints } from "../../styles/breakpoints";
 const { tablet } = breakpoints;
 
 export const Title = styled.h2`
-  color: #16161680;
   display: block;
   margin-bottom: 8px;
   margin-left: 14px;
@@ -12,6 +11,7 @@ export const Title = styled.h2`
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -0.24px;
+  color: ${({ theme }) => theme.colors.secondTextSidebar};
 
   @media screen and (min-width: ${tablet}) {
     margin-left: 24px;
@@ -28,8 +28,8 @@ export const Wrapper = styled.div`
   margin-bottom: 40px;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #1616161a;
-  border-bottom: 1px solid #1616161a;
+  border-top: 1px solid ${({ theme }) => theme.colors.borderLineCreateBoard};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderLineCreateBoard};
 
   @media screen and (min-width: ${tablet}) {
     width: 212px;
@@ -43,6 +43,7 @@ export const CreateText = styled.h2`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
+  color: ${({ theme }) => theme.colors.textTitlesSidebar};
 `;
 
 export const CreateBoardButton = styled.button`
@@ -53,12 +54,12 @@ export const CreateBoardButton = styled.button`
   display: block;
   border: none;
   cursor: pointer;
-  background: #bedbb0;
+  background: ${({ theme }) => theme.colors.plusBtnBackgroundSidebar};
 `;
 
 export const Plus = styled.svg`
   width: 20px;
   height: 20px;
   margin-right: 8px;
-  stroke: #121212;
+  stroke: ${({ theme }) => theme.colors.plusBtnColorSidebar};
 `;

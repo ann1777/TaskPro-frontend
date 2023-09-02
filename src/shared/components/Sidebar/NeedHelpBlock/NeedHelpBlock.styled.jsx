@@ -12,6 +12,7 @@ export const BlockWrapper = styled.div`
   width: 197px;
   height: 238px;
   justify-content: start;
+  border-radius: 8px;
   background-color: #f6f6f7;
   background: ${({ theme }) => theme.colors.backgroundWindowSidebar};
 
@@ -26,28 +27,31 @@ export const BlockWrapper = styled.div`
 export const BlockImg = styled.img`
   width: 54px;
   height: 78px;
-  padding-bottom: 14px;
-
+  margin-bottom: 14px;
   @media screen and (min-width: ${tablet}) {
     padding: 20px;
   }
 `;
+// export const MessageWrapper = styled.div`
+//   text-align: start;
+//   width: 168px;
+//   height: 80px;
+//   margin-bottom: 18px;
 
-export const MessageWrapper = styled.div`
-  text-align: start;
-  width: 168px;
-  margin-bottom: 18px;
+//   @media screen and (min-width: ${tablet}) {
+//     width: 172px;
+//     height: 102px;
+//   }
+// `;
 
-  @media screen and (min-width: ${tablet}) {
-    width: 172px;
-  }
-`;
 export const SupportMessage = styled.p`
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.24px;
+  margin-bottom: 18px;
+  color: ${({ theme }) => theme.colors.textTitlesSidebar};
   span {
-    color: #bedbb0;
+    color: ${({ theme }) => theme.colors.spanColor};
   }
 
   @media screen and (min-width: ${tablet}) {
@@ -67,7 +71,7 @@ export const HelpBtn = styled.button`
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.24px;
-  color: #161616;
+  color: ${({ theme }) => theme.colors.textTitlesSidebar};
 `;
 
 export const HelpIcon = styled.svg`
@@ -75,5 +79,6 @@ export const HelpIcon = styled.svg`
   height: 20px;
   margin-right: 8px;
   fill: transparent;
-  stroke: #161616;
+  stroke: ${({ theme }) => theme.colors.textTitlesSidebar};
+  fill: transparent;
 `;
