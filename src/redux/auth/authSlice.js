@@ -23,7 +23,6 @@ const initialState = {
     theme: null,
     avatarURL: null,
   },
-  dashboards: [],
   token: null,
   isRefreshing: false,
   isLoggedIn: false,
