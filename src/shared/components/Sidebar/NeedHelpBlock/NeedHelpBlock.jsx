@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import {
   BlockWrapper,
   SupportMessage,
-  MessageWrapper,
+  // MessageWrapper,
   HelpBtn,
   HelpIcon,
 } from "./NeedHelpBlock.styled";
@@ -14,14 +14,14 @@ export const NeedHelpBlock = ({ onOpenHelp }) => {
     <BlockWrapper>
       <img src={Helper} style={{ width: "54px", height: "78px" }} alt="/" />
 
-      <MessageWrapper>
+      {/* <MessageWrapper> */}
         <SupportMessage>
           If you need help with
           <br /> <span>TaskPro</span>, check out our
           <br /> support resources or <br /> reach out to our <br /> customer
           support team.
         </SupportMessage>
-      </MessageWrapper>
+      {/* </MessageWrapper> */}
 
       <HelpBtn type="button" onClick={onOpenHelp}>
         <HelpIcon>

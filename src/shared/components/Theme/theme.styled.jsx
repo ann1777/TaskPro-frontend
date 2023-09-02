@@ -14,6 +14,8 @@ export const light = {
     logoColor: "#FFFFFF",
     btnLogOut: "#BEDBB0",
     btnLogOutActive: "#9DC888",
+    borderLineCreateBoard: "rgba(22, 22, 22, 0.10)",
+    spanColor: " #BEDBB0",
 
     // HEADER
 
@@ -52,7 +54,7 @@ export const dark = {
     //   SIDEBAR
 
     secondTextSidebar: "rgba(255, 255, 255, 0.50)",
-    textTitlesSidebar: "#FFF",
+    textTitlesSidebar: "#FFFFFF",
     plusBtnColorSidebar: "#121212",
     plusBtnBackgroundSidebar: "#BEDBB0",
     backgroundActiveSidebar: "#1F1F1F",
@@ -62,6 +64,8 @@ export const dark = {
     logoColor: "#FFFFFF",
     btnLogOut: "#BEDBB0",
     btnLogOutActive: "#9DC888",
+    borderLineCreateBoard: "rgba(255, 255, 255, 0.10)",
+    spanColor: " #BEDBB0",
 
     // HEADER
 
@@ -99,7 +103,7 @@ export const color = {
     //   SIDEBAR
 
     secondTextSidebar: "rgba(255, 255, 255, 0.50)",
-    textTitlesSidebar: "#FFF",
+    textTitlesSidebar: "#FFFFFF",
     plusBtnColorSidebar: "#FFF",
     plusBtnBackgroundSidebar: "#B8BCFD",
     backgroundActiveSidebar: "rgba(255, 255, 255, 0.50)",
@@ -109,6 +113,8 @@ export const color = {
     logoColor: "##5255BC",
     btnLogOut: "#FFF",
     btnLogOutActive: "#B8BCFD",
+    borderLineCreateBoard: "rgba(255, 255, 255, 0.10)",
+    spanColor: " #5255BC",
 
     // HEADER
 
