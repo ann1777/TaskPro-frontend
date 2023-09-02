@@ -4,6 +4,8 @@ import sprite from "../../images/icons.svg";
 
 import { Logo } from "./Sidebar.styled";
 import { BoardList } from "./BoardList";
+import { selectUserTheme } from "../../../redux/auth/authSelectors";
+import { useSelector } from "react-redux";
 
 import { CreateBoard } from "./CreateBoard/CreateBoard";
 import { NeedHelpBlock } from "./NeedHelpBlock/NeedHelpBlock";
@@ -15,11 +17,16 @@ export const Sidebar = ({
   onOpenHelp,
   onOpenEditDashBoard,
 }) => {
+  const activeUserTheme = useSelector(selectUserTheme);
   return (
     <StyledSidebar isOpen={isOpen}>
       <LogoWrapper>
         <Logo>
-          <use href={sprite + "#icon-logo"}></use>
+          {activeUserTheme === "color" ? (
+            <use href={sprite + "#icon-logo-2"}></use>
+          ) : (
+            <use href={sprite + "#icon-logo-1"}></use>
+          )}
         </Logo>
         <AppName>Task Pro</AppName>
       </LogoWrapper>
@@ -28,9 +35,12 @@ export const Sidebar = ({
 
       <BoardList onOpenEditDashBoard={onOpenEditDashBoard} />
 
-      <NeedHelpBlock onOpenHelp={onOpenHelp} />
+      <div style={{ bottom: "0", left: "0", position: "relative" }}>
+      
+        <NeedHelpBlock onOpenHelp={onOpenHelp} />
 
-      <LogOut />
+        <LogOut />
+      </div>
     </StyledSidebar>
   );
 };

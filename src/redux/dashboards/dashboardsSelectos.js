@@ -1,1 +1,1 @@
-export const allDashboards = state => state.dashboards.dashboards;
+export const allDashboards = state => state.dashboards.dashboards.data;

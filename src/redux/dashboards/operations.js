@@ -9,7 +9,7 @@ export const fetchAllDashboardsThunk = createAsyncThunk(
   "dashboards/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await instance.get("api/dashboards");
+      const { data } = await instance.get("api/dashboard");
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -19,9 +19,9 @@ export const fetchAllDashboardsThunk = createAsyncThunk(
 
 export const getDashboardByIdThunk = createAsyncThunk(
   "dashboards/getSingleDashboard",
-  async (id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue }) => {
     try {
-      await instance.get(`api/dashboards/${id}`);
+      await instance.get(`api/dashboard/${_id}`);
       return id;
     } catch (error) {
       return rejectWithValue(error.message);

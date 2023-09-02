@@ -10,7 +10,6 @@ export const BlockWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 197px;
-  height: 238px;
   justify-content: start;
   border-radius: 8px;
   background-color: #f6f6f7;
@@ -20,11 +19,10 @@ export const BlockWrapper = styled.div`
     margin: 0 24px 24px 24px;
     padding: 20px;
     width: 212px;
-    height: 272px;
   }
 `;
 
-export const BlockImg = styled.img`
+export const HelpPicture = styled.picture`
   width: 54px;
   height: 78px;
   margin-bottom: 14px;
@@ -32,18 +30,6 @@ export const BlockImg = styled.img`
     padding: 20px;
   }
 `;
-// export const MessageWrapper = styled.div`
-//   text-align: start;
-//   width: 168px;
-//   height: 80px;
-//   margin-bottom: 18px;
-
-//   @media screen and (min-width: ${tablet}) {
-//     width: 172px;
-//     height: 102px;
-//   }
-// `;
-
 export const SupportMessage = styled.p`
   font-size: 12px;
   line-height: 1.33;
