@@ -11,7 +11,6 @@ import {
   AuthFormPasswordIcon,
   StyledEyeIcon,
   StyledEyeIconVis,
-
 } from "./Login.styled.jsx";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -25,27 +24,28 @@ import React from "react";
 let schema = yup.object({
   password: yup
     .string()
-    .required('Please enter a password')
-    .min(8, 'Min length 8 symbols')
-    .max(32, 'Max length 32 symbols')
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, 'a-z and 0-9'),
+    .required("Please enter a password")
+    .min(8, "Min length 8 symbols")
+    .max(32, "Max length 32 symbols")
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, "a-z and 0-9"),
 
   email: yup
     .string()
-    .required('Please enter an email')
-    .email('Enter a correct email')
-    .min(8, 'Min length 8 symbols')
-    .max(32, 'Max length 32 symbols'),
+    .required("Please enter an email")
+    .email("Enter a correct email")
+    .min(8, "Min length 8 symbols")
+    .max(32, "Max length 32 symbols"),
 });
 
 const initialValues = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   showPassword: false,
 };
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formikRef = React.useRef();
@@ -54,16 +54,17 @@ function Login() {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = async (values, { resetForm }) => {
+  const onSubmit = async (values) => {
     const { email, password } = values;
+    setIsLoading(true);
     const resultAction = await dispatch(signin({ email, password }));
     if (signin.fulfilled.match(resultAction)) {
       navigate("/home");
       formikRef.current.resetForm();
-
     } else if (signin.rejected.match(resultAction)) {
       console.log(resultAction.error.message);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -79,24 +80,24 @@ function Login() {
             <StyledFormAuth>
               <StyledWrapInputAuth>
                 <StyledInputAuth
-                  type='email'
-                  name='email'
-                  placeholder='Enter your email'
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
                 />
                 <StyledLabelAuth></StyledLabelAuth>
-                <ErrorMessage name='email'>
+                <ErrorMessage name="email">
                   {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
                 </ErrorMessage>
               </StyledWrapInputAuth>
               <StyledWrapInputAuth>
                 <StyledInputAuth
-                  className='no-bottom-padding'
-                  name='password'
-                  placeholder='Enter your password'
-                  type={showPassword ? 'text' : 'password'}
+                  className="no-bottom-padding"
+                  name="password"
+                  placeholder="Enter your password"
+                  type={showPassword ? "text" : "password"}
                 />
                 <StyledLabelAuth></StyledLabelAuth>
-                <ErrorMessage name='password'>
+                <ErrorMessage name="password">
                   {(m) => <StyledErrorAuth>{m}</StyledErrorAuth>}
                 </ErrorMessage>
                 <AuthFormPasswordIcon onClick={handleTogglePassword}>
@@ -108,7 +109,7 @@ function Login() {
                 </AuthFormPasswordIcon>
               </StyledWrapInputAuth>
               <StyledWrapAuthBtn>
-                <StyledBtnAuthAccent type='submit'>
+                <StyledBtnAuthAccent type="submit" disabled={isLoading}>
                   Log In Now
                 </StyledBtnAuthAccent>
               </StyledWrapAuthBtn>
