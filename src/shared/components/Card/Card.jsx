@@ -61,8 +61,8 @@ const Card = ({ id }) => {
       <css.UlCard>
         {cards.map((card) => (
           <css.LiCard key={card._id} $property={card.priority}>
-            <css.DivCard $property={card.priority}></css.DivCard>
-            <css.DivCardTwo>
+           
+           
               <css.LiCardH2>{card.title}</css.LiCardH2>
               <css.LiCardP>{card.description}</css.LiCardP>
               <css.DivEditBefor>
@@ -110,7 +110,7 @@ const Card = ({ id }) => {
                   </css.DivDivEditSvg>
                 </css.DivDivEdit>
               </css.DivEditBefor>
-            </css.DivCardTwo>
+           
           </css.LiCard>
         ))}
       </css.UlCard>
