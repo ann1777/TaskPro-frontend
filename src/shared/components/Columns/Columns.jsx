@@ -5,12 +5,15 @@ import Card from "../Card/Card";
 import CardModal from "../Modal/CardModal/CardModal";
 import { Modal } from "../Modal/Modal";
 import ColumnModal from "../Modal/ColumnModal/ColumnModal";
+import * as css from "./Columns.styled";
+import sprite from "../../images/icons.svg";
 
 const Columns = () => {
   const { dashboardId } = useParams();
   const [columns, setColumns] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isColumnModalOpen, setColumnModalOpen] = useState(false);
+  const [currentColumnId, setCurrentColumnId] = useState(null);
 
   const apiDashboard = async () => {
     if (dashboardId) {
@@ -31,7 +34,8 @@ const Columns = () => {
     apiDashboard();
   }, [dashboardId]);
 
-  const handleModalOpen = () => {
+  const handleModalOpen = (columnId) => {
+    setCurrentColumnId(columnId);
     setModalOpen(true);
   };
 
@@ -62,29 +66,51 @@ const Columns = () => {
 
   return (
     <>
-      <ul>
+      <css.UlFull>
         {columns.map((column) => (
           <>
-            <li key={column._id}>
-              <div>{column.title}</div>
-              <button onClick={handleColumnModalOpen}>Edit</button>
-              {isColumnModalOpen && (
-              <Modal onClose={handleColumnModalClose}>
-                  <ColumnModal onCloseModal={handleColumnModalClose} columnId={column._id} isEditMode={true} />
-              </Modal>
-            )}
-              <button onClick={() => deleteColumn(column._id)}>Delete</button>
+            <css.LiColumn key={column._id}>
+              <css.DivTitleColumn>
+                <css.DivTitleColumnText>{column.title}</css.DivTitleColumnText>
+                <css.DivTitleColumnBtn>
+                  <css.SvgAll onClick={handleColumnModalOpen}>
+                    <use href={sprite + "#icon-pencil-01"}></use>
+                  </css.SvgAll>
+
+                  {isColumnModalOpen && (
+                    <Modal onClose={handleColumnModalClose}>
+                      <ColumnModal
+                        onCloseModal={handleColumnModalClose}
+                        columnId={column._id}
+                        isEditMode={true}
+                      />
+                    </Modal>
+                  )}
+
+                  <css.SvgAll onClick={() => deleteColumn(column._id)}>
+                    <use href={sprite + "#icon-trash-04"}></use>
+                  </css.SvgAll>
+                </css.DivTitleColumnBtn>
+              </css.DivTitleColumn>
               <Card id={column._id} />
-            </li>
-            <button onClick={handleModalOpen}>Add another card</button>
+
+              <css.ButtonAddCard onClick={() => handleModalOpen(column._id)}>
+                <css.IconPlus />
+                Add another card
+              </css.ButtonAddCard>
+            </css.LiColumn>
+
             {isModalOpen && (
               <Modal onClose={handleModalClose}>
-                <CardModal onCloseModal={handleModalClose} columnId={column._id} />
+                <CardModal
+                  onCloseModal={handleModalClose}
+                  columnId={currentColumnId}
+                />
               </Modal>
             )}
           </>
         ))}
-      </ul>
+      </css.UlFull>
     </>
   );
 };

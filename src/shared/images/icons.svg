@@ -89,6 +89,12 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M24 8l-16 16"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M8 8l16 16"></path>
 </symbol>
+<symbol id="icon-Ellipse" viewBox="0 0 30 32">
+<path d="M29.538 16c0 8.157-6.612 14.769-14.769 14.769s-14.769-6.612-14.769-14.769c0-8.157 6.612-14.769 14.769-14.769s14.769 6.612 14.769 14.769z"></path>
+</symbol>
+<symbol id="icon-filter-priority" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M29.334 4h-26.668l10.668 12.614v8.72l5.332 2.666v-11.386l10.668-12.614z"></path>
+</symbol>
 </defs>
 </svg>
 
