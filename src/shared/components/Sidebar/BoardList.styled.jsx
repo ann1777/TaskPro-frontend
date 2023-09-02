@@ -5,11 +5,10 @@ const { tablet } = breakpoints;
 
 export const ProjectList = styled.ul`
   width: 100%;
-  height: 126px;
   padding: 0;
   z-index: 3;
   overflow: auto;
-  /* flex-grow: 1; */
+  flex-grow: 1;
   overflow-y: auto;
   scroll-snap-align: start;
   overscroll-behavior-y: contain;
@@ -27,11 +26,8 @@ export const ProjectList = styled.ul`
 export const Project = styled.li`
   position: relative;
   margin-bottom: 4px;
-  /* padding: 20px 14px;  */
   cursor: pointer;
   @media screen and (min-width: tablet) {
-    /* padding: 20px 24px;
-    width: 260px; */
   }
 `;
 
@@ -57,12 +53,16 @@ export const ProjectIcon = styled.svg`
   margin-right: 8px;
   fill: transparent;
   stroke: ${({ theme }) => theme.colors.secondTextSidebar};
-  /* transition: */
   &.active {
     stroke: ${({ theme }) => theme.colors.textTitlesSidebar};
   }
 `;
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export const PencilIcon = styled.svg`
+  visibility: hidden;
   margin-right: 8px;
   width: 18px;
   height: 18px;
@@ -70,6 +70,7 @@ export const PencilIcon = styled.svg`
   stroke: ${({ theme }) => theme.colors.textTitlesSidebar};
 `;
 export const TrashIcon = styled.svg`
+  visibility: hidden;
   width: 16px;
   height: 16px;
   fill: transparent;
@@ -99,8 +100,16 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   &.active {
-    /* opacity: 0.4; */
     background: ${({ theme }) => theme.colors.backgroundActiveSidebar};
+    > svg {
+      stroke: ${({ theme }) => theme.colors.textTitlesSidebar};
+    }
+    > div > h2 {
+      color: ${({ theme }) => theme.colors.textTitlesSidebar};
+    }
+    > div > svg {
+      visibility: visible;
+    }
 
     ::after {
       content: "";
