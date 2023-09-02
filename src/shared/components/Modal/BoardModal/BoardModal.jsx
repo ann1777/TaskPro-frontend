@@ -106,14 +106,18 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
             </Row>
 
             <BoardText>Background</BoardText>
-            <Row>
-              {data.map((item, index) => (
-                <RadioLabel key={index} onClick={() => setFieldValue("background", item.icon)}>
-                  <RadioField name="background" type="radio" value={item.icon} />
-                  <BackgroundIcon src={item.icon} alt={`Background ${index + 1}`} />
-                </RadioLabel>
-              ))}
-            </Row>
+           <Row>
+  {data.map((item, index) => (
+    <RadioLabel key={index} onClick={() => setFieldValue("background", item.icon)}>
+      <RadioField name="background" type="radio" value={item.icon} />
+      <BackgroundIcon 
+        src={item.icon} 
+        alt={`Background ${index + 1}`} 
+        isSelected={values.background === item.icon}
+      />
+    </RadioLabel>
+  ))}
+</Row>
 
             <SubmitButton type="submit" disabled={isSubmitting}>Create</SubmitButton>
           </Form>

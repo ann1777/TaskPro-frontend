@@ -3,9 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from "../../../../redux/auth/authSelectors";
 import { Formik, Form } from 'formik';
 import axios from 'axios'; 
-
 import avatarImg from '../../../images/user-zaglushka.png';
-
 import {
     WindowContaier,
     ModalTitle,
@@ -21,15 +19,12 @@ import {
 
 export const EditProfile = ({ onCloseModal }) => {
     const [showPassword, setShowPassword] = useState(false);
-    const { name: initialName, avatarURL, email, password } = useSelector(selectUser);
-    
+    const { name: initialName, avatarURL, email } = useSelector(selectUser);
     
     const [name, setName] = useState(initialName); 
-     
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
     
-
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
@@ -61,47 +56,40 @@ export const EditProfile = ({ onCloseModal }) => {
         });
 
         const data = await response.json();
-        const fullImageUrl = data.secure_url; // использование URL, который возвращает Cloudinary
-
-        return fullImageUrl;
+        return data.secure_url; 
     };
 
     const handleSubmit = async (values) => {
         try {
-           let imageUrl = avatarURL; 
-if (selectedFile) {
-    imageUrl = await uploadToCloudinary(selectedFile);
-    console.log('Cloudinary URL:', imageUrl);  // <-- добавьте этот код
-}
+            let imageUrl = avatarURL; 
+            if (selectedFile) {
+                imageUrl = await uploadToCloudinary(selectedFile);
+            }
 
             const token = localStorage.getItem('accessToken');
-
-          const response = await axios.put(
-    'https://taskpro-backend-c73a.onrender.com/api/auth/update',
-    { 
-        name: values.name, 
-        avatarURL: imageUrl 
-    }, 
-    {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    }
-);
-
-console.log('Sent to backend:', { name: values.name, avatarURL: avatarImg }); // Добавьте этот код
-console.log('Response:', response.data);
+            await axios.put(
+                'https://taskpro-backend-c73a.onrender.com/api/auth/updatedata',
+                { 
+                    name: values.name, 
+                    avatarURL: imageUrl
+                }, 
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
             onCloseModal();
         } catch (error) {
             console.error('Error:', error);
         }
     };
-    
+
     return (
         <WindowContaier>
             <ModalTitle>Edit Profile</ModalTitle>
             <AvatarWrapper>
-                <AvatarImg src={selectedImage || avatarURL || AvatarImg} alt="avatar" />
+                <AvatarImg src={selectedImage || avatarURL || avatarImg} alt="avatar" />
                 <FileInputWrapper>
                     <FileInput 
                         type="file" 
@@ -148,7 +136,6 @@ console.log('Response:', response.data);
                                 value='********'
                                 disabled    
                             />
-                            
                             <span style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer' }} onClick={handleTogglePassword}>
                                 {showPassword ? <StyledEyeIcon /> : <StyledEyeIconVis />}
                             </span>
