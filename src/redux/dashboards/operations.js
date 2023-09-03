@@ -138,3 +138,81 @@ export const updateColumnThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchAllCardsThunk = createAsyncThunk(
+  "cards/fetchAll",
+  async (columnId, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.get(`api/card/${columnId}`);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getCardByIdThunk = createAsyncThunk(
+  "cards/getSingleCard",
+  async (cardId, { rejectWithValue }) => {
+    try {
+      await instance.get(`api/cards/${cardId}`);
+      return cardId;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addCardThunk = createAsyncThunk(
+  "cards/addCard",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post(`api/card/${payload.columnId}`, {
+        ...payload,
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteCardThunk = createAsyncThunk(
+  "cards/deleteCard",
+  async ({ columnId, dashboardId, cardId }, { rejectWithValue }) => {
+    try {
+      await instance.delete(`api/card/${columnId}/${cardId}`);
+      return { columnId, dashboardId, cardId };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateCardThunk = createAsyncThunk(
+  "cards/update",
+  async ({ columnId, cardId, updateData }, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put(`api/card/${columnId}/${cardId}`, {
+        ...updateData,
+      });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateCardColumnThunk = createAsyncThunk(
+  "cards/updateCardColumn",
+  async ({ columnId, cardId, newColumnId }, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put(`api/card/${columnId}/${cardId}`, {
+        columnId: newColumnId,
+      });
+      return { data, columnId };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
