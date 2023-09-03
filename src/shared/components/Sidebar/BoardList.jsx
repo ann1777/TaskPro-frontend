@@ -13,10 +13,15 @@ import {
   IconWrapper,
 } from "../Sidebar/BoardList.styled";
 import { allDashboards } from "../../../redux/dashboards/dashboardsSelectos.js";
+import { useDispatch } from "react-redux";
+import { deleteDashboardThunk } from "../../../redux/dashboards/operations";
 
 export const BoardList = ({ onOpenEditDashBoard }) => {
   const dashboards = useSelector(allDashboards);
-
+  const dispatch = useDispatch(deleteDashboardThunk);
+  const handleDelete = (dashboard) => {
+    dispatch(deleteDashboardThunk(dashboard._id));
+  };
   return (
     <ProjectList>
       {dashboards.length > 0 &&
@@ -36,7 +41,12 @@ export const BoardList = ({ onOpenEditDashBoard }) => {
                   <use href={sprite + "#icon-pencil-01"}></use>
                 </PencilIcon>
 
-                <TrashIcon>
+                <TrashIcon
+                  dashboard={dashboard}
+                  onClick={() => {
+                    handleDelete(dashboard);
+                  }}
+                >
                   <use href={sprite + "#icon-trash-04"}></use>
                 </TrashIcon>
               </IconWrapper>
