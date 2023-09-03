@@ -26,9 +26,6 @@ export const HelpPicture = styled.picture`
   width: 54px;
   height: 78px;
   margin-bottom: 14px;
-  @media screen and (min-width: ${tablet}) {
-    padding: 20px;
-  }
 `;
 export const SupportMessage = styled.p`
   font-size: 12px;

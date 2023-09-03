@@ -17,7 +17,7 @@ export const StyledInputAuth = styled(Field)`
   box-shadow: 0px 4px 16px 0px rgba(22, 22, 22, 0.08);
   color: #fff;
   width: calc(100vw - 88px);
-  padding: 14px 0 14px 18px;
+  padding: 14px 40px 14px 18px;
   opacity: 0.4;
   &::placeholder {
     font-family: "Poppins";
