@@ -10,6 +10,11 @@ import {
   addColumnThunk,
   deleteColumnThunk,
   updateColumnThunk,
+  fetchAllCardsThunk,
+  getCardByIdThunk,
+  addCardThunk,
+  deleteCardThunk,
+  updateCardThunk,
 } from "../dashboards/operations";
 import { signin, currentUser } from "../auth/operations";
 
@@ -102,6 +107,57 @@ const dashboardSlice = createSlice({
           (item) => item._id === action.payload.columnId
         );
         state.dashboards[indexDashboard].splice(indexColumn, 1);
+      })
+      .addCase(fetchAllCardsThunk.pending, handlePending)
+      .addCase(fetchAllCardsThunk.rejected, handleRejected)
+      .addCase(fetchAllCardsThunk.fulfilled, () => {})
+      .addCase(getCardByIdThunk.pending, handlePending)
+      .addCase(getCardByIdThunk.rejected, handleRejected)
+      .addCase(getCardByIdThunk.fulfilled, () => {})
+      .addCase(addCardThunk.pending, handlePending)
+      .addCase(addCardThunk.rejected, handleRejected)
+      .addCase(addCardThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.dashboardId
+        );
+        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
+          (item) => item._id === action.payload.columnId
+        );
+        state.dashboards[indexDashboard].columns[indexColumn].push(
+          action.payload
+        );
+      })
+      .addCase(updateCardThunk.pending, handlePending)
+      .addCase(updateCardThunk.rejected, handleRejected)
+      .addCase(updateCardThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.dashboardId
+        );
+        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
+          (item) => item._id === action.payload.columnId
+        );
+        const indexCard = state.dashboards[indexDashboard].columns[
+          indexColumn
+        ].cards.findIndex((item) => item._id === action.payload._id);
+        state.dashboards[indexDashboard].columns[indexColumn].cards[indexCard] =
+          action.payload;
+      })
+      .addCase(deleteCardThunk.pending, handlePending)
+      .addCase(deleteCardThunk.rejected, handleRejected)
+      .addCase(deleteCardThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.dashboardId
+        );
+        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
+          (item) => item._id === action.payload.columnId
+        );
+        const indexCard = state.dashboards[indexDashboard].columns[
+          indexColumn
+        ].cards.findIndex((item) => item._id === action.payload.cardId);
+        state.dashboards[indexDashboard].columns[indexColumn].splice(
+          indexCard,
+          1
+        );
       });
   },
 });
