@@ -136,4 +136,8 @@ export const StyledCloseButton = styled.button`
 export const Svg = styled.svg`
   stroke: ${({ theme }) => theme.colors.textColorModal};
 `;
+
+export const FilterLi = styled.li`
+  cursor: pointer;
+`
  

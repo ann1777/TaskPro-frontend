@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
+import axios from "axios";
 import { useEffect, useState } from "react";
+// import { useSelector } from "react-redux";
 import { deleteDashboardThunk } from "../../../redux/dashboards/operations.js";
 import sprite from "../../images/icons.svg";
 import {
@@ -13,9 +15,9 @@ import {
   ProjectNameWrapper,
   IconWrapper,
 } from "../Sidebar/BoardList.styled";
-import axios from "axios";
 
 export const BoardList = ({ onOpenEditDashBoard }) => {
+  // const dashboards = useSelector((state) => state.dashboards.dashboards);
   const [arrayDashboard, setArrayDashboard] = useState([]);
 
   useEffect(() => {
@@ -29,7 +31,6 @@ export const BoardList = ({ onOpenEditDashBoard }) => {
           },
         }
       );
-
       setArrayDashboard(data);
     };
 
