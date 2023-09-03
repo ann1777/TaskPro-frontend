@@ -19,7 +19,6 @@ import {
   Svg,
   BoardText,
   RadioField,
-  RowBack,
 } from "./BoardModal.styled";
 
 const BOARD_ICONS = [
@@ -77,7 +76,7 @@ function BoardModal({ onClose, isEditMode }) {
             </Row>
 
             <BoardText>Background</BoardText>
-            <RowBack>
+            <Row>
               {data.map((item, index) => (
                 <RadioLabel
                   key={index}
@@ -95,7 +94,7 @@ function BoardModal({ onClose, isEditMode }) {
                   />
                 </RadioLabel>
               ))}
-            </RowBack>
+            </Row>
 
             <SubmitButton type="submit" disabled={isSubmitting}>
               Create
