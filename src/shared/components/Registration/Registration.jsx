@@ -1,5 +1,13 @@
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signup } from "../../../redux/auth/operations";
+
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
+
+import NavAuth from "../Navigation/NavAuth";
+
 import {
   StyledInputAuth,
   StyledFormAuth,
@@ -14,32 +22,37 @@ import {
   StyledEyeIcon,
   StyledEyeIconVis,
 } from "../Login/Login.styled";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signup } from "../../../redux/auth/operations";
-import NavAuth from "../Navigation/NavAuth";
-import React from "react";
 
 let schema = yup.object({
   name: yup
     .string()
     .required("Please enter your name")
-    .min(3, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols"),
+    .min(2, "Min length 2 symbols")
+    .max(32, "Max length 32 symbols")
+    .matches(
+      /^[a-zA-Z0-9!@#$%^&*()_+[\]{}|;':",.<>?`~\-=_]+$/,
+      "Use valid characters"
+    ),
 
   password: yup
     .string()
     .required("Please enter a password")
     .min(8, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols")
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, "Use characters and numbers"),
+    .max(64, "Max length 64 symbols")
+    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])[\s\S]*$/, "Use characters and numbers")
+    .test(
+      "no-spaces",
+      "Password cannot contain spaces",
+      (value) => !/\s/.test(value)
+    ),
 
   email: yup
     .string()
-    .required("Please enter a email")
-    .email("Enter a correct email")
-    .min(8, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols"),
+    .required("Please enter an email")
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Enter a valid email address"
+    ),
 });
 const initialValues = {
   name: "",
@@ -112,6 +125,7 @@ function Registration() {
                   placeholder="Create a password"
                   type={showPassword ? "text" : "password"}
                 />
+
                 <StyledLabelAuth></StyledLabelAuth>
 
                 <ErrorMessage name="password">
