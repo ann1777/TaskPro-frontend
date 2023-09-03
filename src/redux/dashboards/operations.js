@@ -202,3 +202,17 @@ export const updateCardThunk = createAsyncThunk(
     }
   }
 );
+
+export const updateCardColumnThunk = createAsyncThunk(
+  "cards/updateCardColumn",
+  async ({ columnId, cardId, newColumnId }, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.put(`api/card/${columnId}/${cardId}`, {
+        columnId: newColumnId,
+      });
+      return { data, columnId };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
