@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Formik, Form } from 'formik';
 import icon from '../../../images/icons.svg';
 import data from '../../../../hepers/background.json';
 import PropTypes from 'prop-types';
 import { TitleHelp, FormField, InputField, SubmitButton, Row, RadioLabel, BackgroundIcon, IconContainer, Svg, BoardText, RadioField } from './BoardModal.styled';
-import { allDashboards } from '../../../../redux/dashboards/dashboardsSelectos'; 
+import { addDashboardThunk, updateDashboardThunk } from '../../../../redux/dashboards/operations'; 
 
 const BOARD_ICONS = [
   'icon-Project',
@@ -18,53 +18,46 @@ const BOARD_ICONS = [
   'icon-hexagon-01',
 ];
 
-function BoardModal({ onClose, isEditMode, dashboardId }) {
-  
-  const allDashboardsData = useSelector(allDashboards);
-  const initialDashboardData = allDashboardsData.find(dashboard => dashboard._id === dashboardId);
+function BoardModal({ onClose, isEditMode }) {
+  const dispatch = useDispatch()
+  // const allDashboardsData = useSelector(allDashboards);
+  // const initialDashboardData = allDashboardsData.find(dashboard => dashboard._id === dashboardId);
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      console.log("Submitting values:", values);
+  
+     
 
-      const token = localStorage.getItem('accessToken'); 
-      let response;
+      // const token = localStorage.getItem('accessToken'); 
+      // let response;
 
       if (isEditMode) {
-        response = await axios.put(
-          `https://taskpro-backend-c73a.onrender.com/api/dashboard/${dashboardId}`,
-          values,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        // response = await axios.put(
+        //   `https://taskpro-backend-c73a.onrender.com/api/dashboard/${dashboardId}`,
+        //   values,
+        //   {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   }
+        // );
       } else {
-        response = await axios.post(
-          'https://taskpro-backend-c73a.onrender.com/api/dashboard/',
-          values,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        console.log(values)
+        dispatch(addDashboardThunk(values)).then(onClose());
       }
 
-      console.log('Response from the server:', response.data);
+      
 
-      if (response.status === 200 || response.status === 201) {
-        console.log(isEditMode ? "Доска обновлена" : "Доска создана");
-        onClose();
-      } else {
-        console.error("Неожиданный ответ от сервера:", response);
-      }
-    } catch (error) {
-      console.error(isEditMode ? "Ошибка при обновлении доски:" : "Ошибка при создании доски:", error);
-    } finally {
-      setSubmitting(false);
-    }
+    //   if (response.status === 200 || response.status === 201) {
+    //     console.log(isEditMode ? "Доска обновлена" : "Доска создана");
+    //     onClose();
+    //   } else {
+    //     console.error("Неожиданный ответ от сервера:", response);
+    //   }
+    // } catch (error) {
+    //   console.error(isEditMode ? "Ошибка при обновлении доски:" : "Ошибка при создании доски:", error);
+    // } finally {
+       setSubmitting(false);
+    // }
   };
 
   return (
@@ -73,10 +66,10 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
 
       <Formik
         initialValues={{
-          title: initialDashboardData ? initialDashboardData.title : '',
-          icon: initialDashboardData ? initialDashboardData.icon : BOARD_ICONS[0],
-          background: initialDashboardData ? initialDashboardData.background : '', // Добавлено поле background
-        }}
+           title: '',
+           icon: '',
+        
+         }}
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, values, setFieldValue }) => (
