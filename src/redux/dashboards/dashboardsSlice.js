@@ -5,67 +5,104 @@ import {
   addDashboardThunk,
   deleteDashboardThunk,
   updateDashboardThunk,
+  fetchAllColumnsThunk,
+  getColumnByIdThunk,
+  addColumnThunk,
+  deleteColumnThunk,
+  updateColumnThunk,
 } from "../dashboards/operations";
+import { signin, currentUser } from "../auth/operations";
+
+const handlePending = (state) => {
+  state.isLoading = true;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
 
 const initialState = {
-  dashboards: {
-    data: [],
-    isLoading: false,
-    error: null,
-  },
+  dashboards: [],
+  error: null,
+  isLoading: false,
 };
 
 const dashboardSlice = createSlice({
   name: "dashboards",
   initialState,
 
-  reducers: {
-    filterAllContacts: (state, { payload }) => {
-      state.dashboards.filter = payload;
-    },
-  },
-
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllDashboardsThunk.fulfilled, (state, action) => {
-        state.dashboards.data = action.payload;
-      })
-      .addCase(getDashboardByIdThunk.fulfilled, (state, action) => {
-        state.dashboards.data = action.payload;
-      })
+      .addCase(fetchAllDashboardsThunk.pending, handlePending)
+      .addCase(fetchAllDashboardsThunk.rejected, handleRejected)
+      .addCase(fetchAllDashboardsThunk.fulfilled, () => {})
+      .addCase(getDashboardByIdThunk.pending, handlePending)
+      .addCase(getDashboardByIdThunk.rejected, handleRejected)
+      .addCase(getDashboardByIdThunk.fulfilled, () => {})
+      .addCase(addDashboardThunk.pending, handlePending)
+      .addCase(addDashboardThunk.rejected, handleRejected)
       .addCase(addDashboardThunk.fulfilled, (state, action) => {
-        state.dashboards.data.push(action.payload);
+        state.dashboards.push(action.payload);
       })
+      .addCase(updateDashboardThunk.pending, handlePending)
+      .addCase(updateDashboardThunk.rejected, handleRejected)
       .addCase(updateDashboardThunk.fulfilled, (state, action) => {
-        state.dashboards.data = action.payload;
-      })
-      .addCase(deleteDashboardThunk.fulfilled, (state, action) => {
-        const dashboardId = state.dashboards.data.findIndex(
-          (item) => item.id === action.payload
+        const index = state.dashboards.findIndex(
+          (item) => item._id === action.payload._id
         );
-        state.dashboards.data.splice(dashboardId, 1);
+        state.dashboards[index] = action.payload;
       })
-      .addMatcher(
-        (action) => action.type.endsWith("/fulfilled"),
-        (state) => {
-          state.dashboards.isLoading = false;
-          state.dashboards.error = null;
-        }
-      )
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          state.dashboards.isLoading = true;
-          state.dashboards.error = null;
-        }
-      )
-      .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        (state, action) => {
-          state.dashboards.error = action.payload;
-          state.dashboards.isLoading = false;
-        }
-      );
+      .addCase(deleteDashboardThunk.pending, handlePending)
+      .addCase(deleteDashboardThunk.rejected, handleRejected)
+      .addCase(deleteDashboardThunk.fulfilled, (state, action) => {
+        const index = state.dashboards.findIndex(
+          (item) => item._id === action.payload
+        );
+        state.dashboards.splice(index, 1);
+      })
+      .addCase(signin.fulfilled, (state, action) => {
+        state.dashboards = action.payload.dashboards;
+      })
+      .addCase(currentUser.fulfilled, (state, action) => {
+        state.dashboards = action.payload.dashboards;
+      })
+      .addCase(fetchAllColumnsThunk.pending, handlePending)
+      .addCase(fetchAllColumnsThunk.rejected, handleRejected)
+      .addCase(fetchAllColumnsThunk.fulfilled, () => {})
+      .addCase(getColumnByIdThunk.pending, handlePending)
+      .addCase(getColumnByIdThunk.rejected, handleRejected)
+      .addCase(getColumnByIdThunk.fulfilled, () => {})
+      .addCase(addColumnThunk.pending, handlePending)
+      .addCase(addColumnThunk.rejected, handleRejected)
+      .addCase(addColumnThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.dashboardId
+        );
+        state.dashboards[indexDashboard].push(action.payload);
+      })
+      .addCase(updateColumnThunk.pending, handlePending)
+      .addCase(updateColumnThunk.rejected, handleRejected)
+      .addCase(updateColumnThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.dashboardId
+        );
+        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
+          (item) => item._id === action.payload._id
+        );
+        state.dashboards[indexDashboard].columns[indexColumn] = action.payload;
+      })
+      .addCase(deleteColumnThunk.pending, handlePending)
+      .addCase(deleteColumnThunk.rejected, handleRejected)
+      .addCase(deleteColumnThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.dashboardId
+        );
+        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
+          (item) => item._id === action.payload.columnId
+        );
+        state.dashboards[indexDashboard].splice(indexColumn, 1);
+      });
   },
 });
 

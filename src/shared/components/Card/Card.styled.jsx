@@ -189,7 +189,9 @@ align-items: flex-end;`
 
 export const DivDivEditSvg = styled.div`
 display: flex;
-gap:8px;`
+gap:8px;
+position: relative;
+`
 
 export const SvgPriority = styled.svg`
   width: 12px;
@@ -206,4 +208,26 @@ export const PriorityDiv = styled.div`
       align-items: center;
     display: flex;
     gap: 4px;
+`
+
+export const FilterMenu = styled.div`
+   position: absolute;
+  top: 40px; 
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100; 
+  width: auto;
+height: auto;
+border-radius: 8px;
+border: 1px solid rgba(190, 219, 176, 0.50);
+background: #151515;
+padding: 18px;
+  
+`
+
+export const ColumnsDiv = styled.div`
+  display: flex;
+
 `

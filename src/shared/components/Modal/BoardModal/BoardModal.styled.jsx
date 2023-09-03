@@ -115,6 +115,8 @@ export const Svg = styled.svg`
 export const BackgroundIcon = styled.img`
   width: 28px;
   height: 28px;
+  border: ${({ isSelected }) => (isSelected ? "2px solid red" : "none")};
+  box-sizing: border-box;  // чтобы размеры изображения оставались постоянными при добавлении рамки
 `;
 
 export const Row = styled.div`
