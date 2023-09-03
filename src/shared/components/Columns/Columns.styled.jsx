@@ -1,11 +1,23 @@
 import styled from "styled-components";
 import { BsPlus } from "react-icons/bs";
 
-
+import { breakpoints } from "../styles/breakpoints";
+const { tablet, desktop } = breakpoints;
 
 export const UlFull = styled.ul`
 display: flex;
-gap: 34px;
+gap: 15px;  
+
+ @media screen and (min-width: ${tablet}) {
+  
+  gap: 26px;  
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  
+  gap: 26px;
+  }
+
 `
 export const DivTitleColumn = styled.div`
 display: flex;
@@ -52,6 +64,16 @@ font-size: 14px;
 font-weight: 500;
 letter-spacing: -0.28px;
 margin: 14px 0px 16px 0px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+&:hover, &:active{
+  background: ${({ theme }) => theme.colors.hoverBtn};
+      transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
 `
 
 export const IconPlus = styled(BsPlus)`
@@ -77,8 +99,19 @@ height: 16px;
 cursor: pointer;
   stroke: ${({ theme }) => theme.colors.iconBtnStroke};
   fill: ${({ theme }) => theme.colors.iconBtnFill};
+     transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+&:hover, &:active{
+  stroke: ${({ theme }) => theme.colors.hoverBtnSvg};
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
 `
 
 export const LiColumn = styled.li`
-margin-right: 0px;`
+margin-right: 0px;
+width: 350px;`
 

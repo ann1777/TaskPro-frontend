@@ -1,12 +1,26 @@
 import styled from "styled-components";
+import { breakpoints } from "../styles/breakpoints";
+const { tablet, desktop } = breakpoints;
 
 
 export const UlCard = styled.ul`
 
 height: 478px;
-    overflow-x: hidden;
+overflow-x: hidden;
 overflow-y: auto;
+padding-right: 4px;
+
+
+
+ @media screen and (min-width: ${tablet}) {
+ height: 640px;
 padding-right: 8px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  height: 640px;
+  padding-right: 8px;
+    }
         
 &::-webkit-scrollbar {
   width: 8px; 
@@ -40,8 +54,8 @@ height: 154px;
 position: relative;
 background: ${({ theme }) => theme.colors.backgroundAll};
 border-radius: 4px 8px 8px 4px;
-border-left: 4px solid ${({ $property }) => ({
-    without: "rgba(22, 22, 22, 0.30)",
+border-left: 4px solid ${({ $property, theme }) => ({
+    without: theme.colors.colorWithout,
     low: "#8FA1D0",
     medium: "#E09CB5",
     high: "#BEDBB0",
@@ -50,24 +64,6 @@ padding: 14px 20px 14px 24px;
 margin-bottom: 8px;
 `
 
-export const DivCard = styled.div`
-position: absolute;
-width: 4px;
-height:100%;
-  /* background: ${({ $property }) => ({
-    without: "#FFFFFF4D",
-    low: "#8FA1D0",
-    medium: "#E09CB5",
-    high: "#BEDBB0",
-  }[$property])};  */
-  
-  
-`
-
-export const DivCardTwo = styled.div`
-  /* background: ${({ theme }) => theme.colors.backgroundAll}; */
-  padding: 14px 20px 14px 24px;
-`
 
 export const LiCardH2 = styled.h2`
 color: ${({ theme }) => theme.colors.textTitleMain};
@@ -89,6 +85,7 @@ font-size: 12px;
 font-style: normal;
 font-weight: 400;
 line-height:133%; 
+    height: 38px;
 letter-spacing: -0.24px;
     overflow: hidden;
     display: -webkit-box;
@@ -180,6 +177,15 @@ height: 16px;
 cursor: pointer;
   stroke: ${({ theme }) => theme.colors.iconBtnStroke};
   fill: ${({ theme }) => theme.colors.iconBtnFill};
+       transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+&:hover, &:active{
+  stroke: ${({ theme }) => theme.colors.hoverBtnSvg};
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
 `
 
 export const DivDivEdit = styled.div`
@@ -196,8 +202,8 @@ position: relative;
 export const SvgPriority = styled.svg`
   width: 12px;
   height: 12px;
-  fill: ${({ $property }) => ({
-  without: "rgba(22, 22, 22, 0.30)",
+  fill: ${({ $property, theme }) => ({
+    without: theme.colors.colorWithout,
     low: "#8FA1D0",
     medium: "#E09CB5",
     high: "#BEDBB0",

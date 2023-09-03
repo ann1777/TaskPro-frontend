@@ -1,10 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BsPlus } from "react-icons/bs";
 
-
+import { breakpoints } from "../styles/breakpoints";
+const { tablet, desktop } = breakpoints;
 
 export const DivFull = styled.div`
-padding: 84px 284px;
+padding: 14px 20px;
+background: url(${props => props.imgUrl}) no-repeat center center;
+background-size: cover;
+
+
+ @media screen and (min-width: ${tablet}) {
+     padding: 94px 32px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  padding: 84px 284px;
+    width: 100%;
+    height: 100vh;
+  }
+
 `
 
 
@@ -20,7 +35,18 @@ color: ${({ theme }) => theme.colors.textTitleMain};
 font-size: 18px;
 font-weight: 500;
 letter-spacing: -0.36px;
-margin-bottom: 10px;`
+ margin-bottom: 39px;
+
+@media screen and (min-width: ${tablet}) {
+  
+  margin-bottom: 26px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  
+  margin-bottom: 10px;
+  }
+`
 
 
 export const ButtonAddColumn = styled.button`
@@ -54,10 +80,18 @@ fill: ${({ theme }) => theme.colors.colorPlusColumn};`
 export const DivColumsBtn = styled.div`
 display:flex;
 gap: 26px;
+width: 347px;
 
-width: 1132px;
     overflow-x: auto;
 
+     @media screen and (min-width: ${tablet}) {
+  width: 702px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  max-width: 1550px;
+    width: 100vw;
+  }
             
 &::-webkit-scrollbar {
   width: 12px; 
@@ -80,7 +114,7 @@ width: 1132px;
 }
 
 `
-export const FilterDiv = styled.div `
+export const FilterDiv = styled.div`
   display: flex;
     justify-content: space-between;
     position: relative;
@@ -88,13 +122,14 @@ export const FilterDiv = styled.div `
 
 export const FilterBtn = styled.button`
  display: flex;
-    width: 64px;
-    height:20px;
+  height:20px;
     background-color: transparent;
     border: none;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.28px;
+    gap: 8px;
+    align-items: center;
 `
 
 export const FilterSvg = styled.svg`
@@ -119,7 +154,9 @@ export const FilterMenu = styled.div`
 height: 234px;
 border-radius: 8px;
 border: 1px solid rgba(190, 219, 176, 0.50);
-background: #151515;
+background: ${({ theme }) => theme.colors.filterBack};
+padding: 24px;
+
   
 `
 
@@ -134,10 +171,123 @@ export const StyledCloseButton = styled.button`
 `;
 
 export const Svg = styled.svg`
-  stroke: ${({ theme }) => theme.colors.textColorModal};
+  width: 16px;
+height: 16px;
+cursor: pointer;
+  stroke: ${({ theme }) => theme.colors.filterText};
+  fill: ${({ theme }) => theme.colors.iconBtnFill};
 `;
 
 export const FilterLi = styled.li`
-  cursor: pointer;
+cursor: pointer;
+color: ${({ theme }) => theme.colors.textCard};
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.24px;
+margin-bottom: 8px;
+
+
+
+display: flex;
+    align-items: center;
+    gap: 8px;
 `
- 
+
+export const FilterTitleBtn = styled.p`
+color: ${({ theme }) => theme.colors.filterText};
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.28px;
+`
+
+export const FilterTitle = styled.p`
+color: ${({ theme }) => theme.colors.textTitleMain};
+font-family: Poppins;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.36px;
+
+&::after{
+  content: "";
+  height: 1px;
+  width: 100%;
+background-color: ${({ theme }) => theme.colors.borderCard};
+    display: inline-block;
+}
+
+`
+export const FilterDivLabel = styled.div`
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    `
+
+export const FilterLabel = styled.p`
+color: ${({ theme }) => theme.colors.textTitleMain};
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.28px;`
+
+
+export const FilterLabelBtn = styled.button`
+color: ${({ theme }) => theme.colors.textCard};
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.24px;
+text-decoration-line: underline;
+    background: transparent;
+    border: 0;`
+
+
+export const SvgPriority = styled.svg`
+  width: 14px;
+  height: 14px;
+  fill: ${props => props.color};
+  
+  ${(props) =>
+    props.active &&
+    css`
+     outline: 2px solid;
+    border-radius: 50%;
+    outline-offset: 1px; 
+        padding: 1px;
+   
+    
+    `}
+  `
+
+
+
+
+export const SvgPriorityW = styled.svg`
+  width: 14px;
+  height: 14px;
+  fill: ${({ theme }) => theme.colors.colorWithout};
+  
+  ${(props) =>
+    props.active &&
+    css`
+     outline: 2px solid ${({ theme }) => theme.colors.colorWithout};
+    border-radius: 50%;
+    outline-offset: 1px; 
+        padding: 1px;
+   
+    
+    `}
+  `
+
