@@ -38,68 +38,52 @@ const initialValues = {
 
 function BoardModal({ onClose, isEditMode, dashboardId }) {
   const [dashboardData, setDashboardData] = useState();
-   const dispatch = useDispatch();
+  const [formInitialValues, setFormInitialValues] = useState(initialValues);
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     if (isEditMode && dashboardId) {
       dispatch(getDashboardByIdThunk(dashboardId))
         .unwrap()
         .then(data => {
-           console.log(data)
           setDashboardData(data);
-         
+          setFormInitialValues({
+            title: data.title,
+            icon: data.icon,
+            background: data.background
+          });
         })
         .catch(error => {
           console.error("Ошибка при загрузке данных доски:", error);
         });
+    } else {
+      setFormInitialValues(initialValues);
     }
   }, [isEditMode, dashboardId, dispatch]);
-  
- 
+
   const handleSubmit = async (values) => {
     if (isEditMode) {
-     
       const updateData = {
         ...values,
-       
-      }
+      };
       dispatch(updateDashboardThunk({ dashboardId, updateData })).then(handleFormClose());
     } else {
       dispatch(addDashboardThunk(values)).then(handleFormClose());
     }
-    
   };
 
-  useEffect(() => {
-    if (dashboardData && isEditMode) {
-      initialValues.title = dashboardData.title;
-      initialValues.icon = dashboardData.icon;
-      initialValues.background = dashboardData.background;
-    }
-  }, [dashboardData, isEditMode, initialValues]);
-
   const handleFormClose = () => {
-    setDashboardData({
-      title: "",
-      icon: BOARD_ICONS[0],
-      background: ''
-    });
+    setDashboardData(null);
     onClose();
   };
     return (
     <div>
       <TitleHelp>{isEditMode ? "Edit board" : "New board"}</TitleHelp>
-      <Formik
-        initialValues={
-          isEditMode && dashboardData
-            ? {
-                title: dashboardData.title,
-                icon: dashboardData.icon,
-                background: dashboardData.background
-              }
-            : initialValues
-        }
-        onSubmit={handleSubmit}
-      >
+       <Formik
+        key={formInitialValues.title}
+      initialValues={formInitialValues}
+      onSubmit={handleSubmit}
+    >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <FormField>
@@ -161,4 +145,4 @@ BoardModal.propTypes = {
   dashboardId: PropTypes.string,
 };
 
-export default BoardModal;
+export default BoardModal 
