@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { deleteDashboardThunk } from "../../../redux/dashboards/operations.js";
 import sprite from "../../images/icons.svg";
@@ -12,12 +11,12 @@ import {
   Project,
   StyledNavLink,
   ProjectNameWrapper,
+  IconWrapper,
 } from "../Sidebar/BoardList.styled";
 import axios from "axios";
 
 export const BoardList = ({ onOpenEditDashBoard }) => {
   const [arrayDashboard, setArrayDashboard] = useState([]);
-  
 
   useEffect(() => {
     const apiDashboard = async () => {
@@ -35,8 +34,6 @@ export const BoardList = ({ onOpenEditDashBoard }) => {
     };
 
     apiDashboard();
-
-    // dispatch(fetchAllDashboardsThunk());
   }, []);
 
   const elements = arrayDashboard.map((dashboard) => (
@@ -50,40 +47,19 @@ export const BoardList = ({ onOpenEditDashBoard }) => {
           <ProjectName>{dashboard.title}</ProjectName>
         </ProjectNameWrapper>
 
-        {/* <button
-        type="button"
-        onClick={() => handleModalOpen(dashboard._id)}> */}
-        <PencilIcon onClick={() => onOpenEditDashBoard(dashboard._id)}>
-          <use href={sprite + "#icon-pencil-01"}></use>
-        </PencilIcon>
-        {/* </button> */}
+        <IconWrapper>
+          <PencilIcon onClick={() => onOpenEditDashBoard(dashboard._id)}>
+            <use href={sprite + "#icon-pencil-01"}></use>
+          </PencilIcon>
 
-        {/* {isModalOpen && (
-          <Modal onClose={handleModalClose}>
-            <BoardModal
-              isEditMode={true}
-              dashboardId={selectedDashboardId}
-              onClose={handleModalClose}
-            />
-          </Modal>
-        )} */}
-
-        {/* <button
-        type="button"
-        onClick={() => {
-          deleteDashboardThunk(dashboard._id);
-        }}
-      > */}
-
-        <TrashIcon
-          onClick={() => {
-            deleteDashboardThunk(dashboard._id);
-          }}
-        >
-          <use href={sprite + "#icon-trash-04"}></use>
-        </TrashIcon>
-
-        {/* </button> */}
+          <TrashIcon
+            onClick={() => {
+              deleteDashboardThunk(dashboard._id);
+            }}
+          >
+            <use href={sprite + "#icon-trash-04"}></use>
+          </TrashIcon>
+        </IconWrapper>
       </StyledNavLink>
     </Project>
   ));
