@@ -15,6 +15,7 @@ import {
   addCardThunk,
   deleteCardThunk,
   updateCardThunk,
+  updateCardColumnThunk,
 } from "../dashboards/operations";
 import { signin, currentUser } from "../auth/operations";
 
@@ -157,6 +158,36 @@ const dashboardSlice = createSlice({
         state.dashboards[indexDashboard].columns[indexColumn].splice(
           indexCard,
           1
+        );
+      })
+      .addCase(updateCardColumnThunk.pending, handlePending)
+      .addCase(updateCardColumnThunk.rejected, handleRejected)
+      .addCase(updateCardColumnThunk.fulfilled, (state, action) => {
+        const indexDashboard = state.dashboards.findIndex(
+          (item) => item._id === action.payload.data.dashboardId
+        );
+
+        const indexOldColumn = state.dashboards[
+          indexDashboard
+        ].columns.findIndex((item) => item._id === action.payload.columnId);
+
+        const indexNewColumn = state.dashboards[
+          indexDashboard
+        ].columns.findIndex(
+          (item) => item._id === action.payload.data.columnId
+        );
+
+        const indexCard = state.dashboards[indexDashboard].columns[
+          indexOldColumn
+        ].cards.findIndex((item) => item._id === action.payload.data._id);
+
+        state.dashboards[indexDashboard].columns[indexOldColumn].splice(
+          indexCard,
+          1
+        );
+
+        state.dashboards[indexDashboard].columns[indexNewColumn].push(
+          action.payload.data
         );
       });
   },
