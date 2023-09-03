@@ -1,29 +1,28 @@
-import  { useState, forwardRef } from 'react';
+import { useState, forwardRef } from "react";
 
+import "react-datepicker/dist/react-datepicker.css";
+import "./calendar.css";
 
-import 'react-datepicker/dist/react-datepicker.css';
-import './calendar.css';
+import { format, isToday } from "date-fns";
+import { BsChevronDown } from "react-icons/bs";
 
-import { format, isToday } from 'date-fns';
-import { BsChevronDown } from 'react-icons/bs';
-
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 
 const TaskCalendar = ({ dateChange, initialDate }) => {
   const [selectedDate, setSelectedDate] = useState(initialDate);
 
-  const formatDate = date => {
+  const formatDate = (date) => {
     if (isToday(date)) {
-      return `Today, ${format(date, 'MMMM d')}`;
+      return `Today, ${format(date, "MMMM d")}`;
     }
-    return format(date, 'EEEE, MMMM d');
+    return format(date, "EEEE, MMMM d");
   };
 
-  const onDateChange = date => {
-  const clearedDate = new Date(date.setHours(0, 0, 0, 0));
-  setSelectedDate(clearedDate);
-  dateChange(clearedDate);
-};
+  const onDateChange = (date) => {
+    const clearedDate = new Date(date.setHours(0, 0, 0, 0));
+    setSelectedDate(clearedDate);
+    dateChange(clearedDate);
+  };
 
   const InputOutputBtn = forwardRef(({ _, onClick }, ref) => (
     <button

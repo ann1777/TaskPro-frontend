@@ -47,12 +47,11 @@ export const light = {
 
     filterBack: "#FCFCFC",
 
-
     hoverBtn: "#9DC888",
     hoverBtnSvg: "#BEDBB0",
     colorWithout: "rgba(22, 22, 22, 0.30)",
 
-    iconAndSubTextMain: "rgba(22, 22, 22, 0.50)", 
+    iconAndSubTextMain: "rgba(22, 22, 22, 0.50)",
     textCardMain: "rgba(22, 22, 22, 0.70)",
     backgroundMain: "#F6F6F7",
     backgroundCard: "#FFF",
@@ -60,13 +59,10 @@ export const light = {
     scrollLineColor: "#E8E8E8",
     scrollColor: "rgba(22, 22, 22, 0.10)",
     btnAccentBackground: "#BEDBB0",
-   
-
-
-
 
     // MODAL
-
+    inputModal: "#BEDBB0",
+    inputModalActive: "#9DC888",
     backgroundColorModal: "#FCFCFC",
     textColorModal: "#161616",
     textSecondModal: "rgba(22, 22, 22, 0.50)",
@@ -128,7 +124,6 @@ export const dark = {
     hoverBtnSvg: "#BEDBB0",
     colorWithout: "rgba(255, 255, 255, 0.30)",
 
-
     iconAndSubTextMain: "rgba(22, 22, 22, 0.50)",
     textCardMain: "rgba(22, 22, 22, 0.70)",
     backgroundMain: "#1F1F1F",
@@ -137,10 +132,10 @@ export const dark = {
     scrollLineColor: "#FFF",
     scrollColor: "#B8BCFD",
     btnAccentBackground: "#5255BC",
-   
 
     // MODAL
-
+    inputModal: "#9DC888",
+    inputModalActive: "#BEDBB0",
     backgroundColorModal: "#151515",
     textColorModal: "#FFF",
     textSecondModal: "#FFF",
@@ -186,7 +181,7 @@ export const color = {
     textCardNew: "#161616",
     btnAddColumn: "#ffffff",
     btnAddColumnPlus: "#5255BC",
-    btnAddCardPlus: "#ffffff",  
+    btnAddCardPlus: "#ffffff",
     backgroundAll: "#ffffff",
     colorPlus: "#161616;",
     colorPlusColumn: "#ffffff",
@@ -203,7 +198,7 @@ export const color = {
     hoverBtnSvg: "#5255BC",
 
     colorWithout: "rgba(22, 22, 22, 0.30)",
-    
+
     iconAndSubTextMain: "rgba(255, 255, 255, 0.50)",
     textCardMain: "rgba(255, 255, 255, 0.50)",
     backgroundMain: "#ECEDFD",
@@ -212,7 +207,6 @@ export const color = {
     scrollLineColor: "#FFF",
     scrollColor: "#121212",
     btnAccentBackground: "#BEDBB0",
-   
 
     // MODAL
 
@@ -220,10 +214,12 @@ export const color = {
     textColorModal: "#161616",
     textSecondModal: "rgba(22, 22, 22, 0.50)",
     borderColorModal: "1px solid #5255BC",
-    btnModal: "#FFF",
+    btnModal: "#5255BC",
     btnModalActive: "#B8BCFD",
+    inputModal: "#B8BCFD",
+    inputModalActive: "#5255BC",
     plusBtnColorModal: "#FFF",
-    plusBtnBackgroundModal: "#B8BCFD",
+    plusBtnBackgroundModal: "#161616",
   },
 };
 

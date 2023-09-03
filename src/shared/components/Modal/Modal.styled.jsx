@@ -4,7 +4,6 @@ import { breakpoints } from "../styles/breakpoints";
 
 // const selectedTheme = theme[1];
 
-
 export const StyledOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -14,23 +13,22 @@ export const StyledOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-   background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-
 `;
 
 export const StyledModal = styled.div`
   /* position: relative; */
   border-radius: 8px;
- 
- background-color: ${({ theme }) => theme.colors.backgroundColorModal};
+
+  background-color: ${({ theme }) => theme.colors.backgroundColorModal};
   padding: 24px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  border:${({ theme }) => theme.colors.borderColorModal};
+  border: ${({ theme }) => theme.colors.borderColorModal};
   z-index: 9999;
 
   @media (max-width: 374px) {
@@ -65,4 +63,9 @@ export const StyledCloseButton = styled.button`
 
 export const Svg = styled.svg`
   stroke: ${({ theme }) => theme.colors.textColorModal};
+  transition: all 250ms linear;
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.colors.btnModal};
+  }
 `;
