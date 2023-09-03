@@ -5,7 +5,6 @@ import { signup } from "../../../redux/auth/operations";
 
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import EllipsisText from "react-ellipsis-text";
 
 import NavAuth from "../Navigation/NavAuth";
 
