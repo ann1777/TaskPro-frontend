@@ -28,8 +28,8 @@ export const getDashboardByIdThunk = createAsyncThunk(
   "dashboards/getSingleDashboard",
   async (dashboardId, { rejectWithValue }) => {
     try {
-      await instance.get(`api/dashboard/${dashboardId}`);
-      return dashboardId;
+     const response = await instance.get(`api/dashboard/${dashboardId}`);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -1,12 +1,10 @@
-import axios from "axios";
 import { Formik, Form } from "formik";
 import icon from "../../../images/icons.svg";
 import data from "../../../../hepers/background.json";
 import PropTypes from "prop-types";
-
 import { useDispatch } from "react-redux";
-import { addDashboardThunk } from "../../../../redux/dashboards/operations";
-
+import { useEffect, useState } from "react";
+import { addDashboardThunk, updateDashboardThunk, getDashboardByIdThunk  } from "../../../../redux/dashboards/operations";
 import {
   TitleHelp,
   FormField,
@@ -31,23 +29,75 @@ const BOARD_ICONS = [
   "icon-colors",
   "icon-hexagon-01",
 ];
-
-function BoardModal({ onClose, isEditMode }) {
-  const dispatch = useDispatch();
-  const handleSubmit = async (values, { setSubmitting }) => {
-    dispatch(addDashboardThunk(values)).then(onClose());
+const initialValues = {
+    title: "",
+    icon: BOARD_ICONS[0],
+    background: ''
   };
 
-  return (
-    <>
+
+function BoardModal({ onClose, isEditMode, dashboardId }) {
+  const [dashboardData, setDashboardData] = useState();
+   const dispatch = useDispatch();
+  useEffect(() => {
+    if (isEditMode && dashboardId) {
+      dispatch(getDashboardByIdThunk(dashboardId))
+        .unwrap()
+        .then(data => {
+           console.log(data)
+          setDashboardData(data);
+         
+        })
+        .catch(error => {
+          console.error("Ошибка при загрузке данных доски:", error);
+        });
+    }
+  }, [isEditMode, dashboardId, dispatch]);
+  
+ 
+  const handleSubmit = async (values) => {
+    if (isEditMode) {
+     
+      const updateData = {
+        ...values,
+       
+      }
+      dispatch(updateDashboardThunk({ dashboardId, updateData })).then(handleFormClose());
+    } else {
+      dispatch(addDashboardThunk(values)).then(handleFormClose());
+    }
+    
+  };
+
+  useEffect(() => {
+    if (dashboardData && isEditMode) {
+      initialValues.title = dashboardData.title;
+      initialValues.icon = dashboardData.icon;
+      initialValues.background = dashboardData.background;
+    }
+  }, [dashboardData, isEditMode, initialValues]);
+
+  const handleFormClose = () => {
+    setDashboardData({
+      title: "",
+      icon: BOARD_ICONS[0],
+      background: ''
+    });
+    onClose();
+  };
+    return (
+    <div>
       <TitleHelp>{isEditMode ? "Edit board" : "New board"}</TitleHelp>
-
       <Formik
-        initialValues={{
-          title: "",
-
-          icon: BOARD_ICONS[0],
-        }}
+        initialValues={
+          isEditMode && dashboardData
+            ? {
+                title: dashboardData.title,
+                icon: dashboardData.icon,
+                background: dashboardData.background
+              }
+            : initialValues
+        }
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, values, setFieldValue }) => (
@@ -63,7 +113,7 @@ function BoardModal({ onClose, isEditMode }) {
 
             <BoardText>Icons</BoardText>
             <Row>
-              {BOARD_ICONS.map((id) => (
+              {BOARD_ICONS.map(id => (
                 <RadioLabel key={id} onClick={() => setFieldValue("icon", id)}>
                   <RadioField name="icon" type="radio" value={id} />
                   <IconContainer isSelected={values.icon === id}>
@@ -97,15 +147,14 @@ function BoardModal({ onClose, isEditMode }) {
             </Row>
 
             <SubmitButton type="submit" disabled={isSubmitting}>
-              Create
+              {isEditMode ? "Update" : "Create"}
             </SubmitButton>
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 }
-
 BoardModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool,
