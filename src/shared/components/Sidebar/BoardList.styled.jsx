@@ -37,6 +37,9 @@ export const ProjectName = styled.h2`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.secondTextSidebar};
   &.active {
     color: ${({ theme }) => theme.colors.textTitlesSidebar};

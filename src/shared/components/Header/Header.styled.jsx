@@ -14,13 +14,13 @@ export const StyledHeader = styled.header`
   box-sizing: border-box;
   flex-shrink: 0;
   background: ${({ theme }) => theme.colors.backgroundHeader};
-    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
+  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
     margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
 
   @media screen and (min-width: ${tablet}) {
     padding: 18px 32px;
     position: absolute;
-      }
+  }
 
   @media screen and (min-width: ${desktop}) {
     padding: 18px 24px;
@@ -53,6 +53,9 @@ export const UserName = styled.p`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.textHeader};
   
 `;
