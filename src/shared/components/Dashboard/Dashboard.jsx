@@ -9,8 +9,6 @@ import { useSelector } from "react-redux";
 
 import { getBackgroundByIcon } from "../../../hepers/getBackgroundByIcon";
 
-
-
 const Dashboard = () => {
   const { dashboardId } = useParams();
   const [dashboard, setDashboards] = useState({});
@@ -19,21 +17,18 @@ const Dashboard = () => {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
   const [selectedPriority, setSelectedPriority] = useState(null);
 
-  const [backDashboad, setBackDashboad] = useState("")
-  console.log("backDashboad:", backDashboad)
+  const [backDashboad, setBackDashboad] = useState("");
+  console.log("backDashboad:", backDashboad);
 
   const dashboards = useSelector((state) => state.dashboards.dashboards);
 
-
   useEffect(() => {
     async function someFunction() {
-      setBackDashboad(await getBackgroundByIcon(dashboard.background))
-
+      setBackDashboad(await getBackgroundByIcon(dashboard.background));
     }
 
     someFunction();
-  })
-
+  });
 
   useEffect(() => {
     dashboards.map((item) => {
@@ -42,9 +37,6 @@ const Dashboard = () => {
         setSelectedPriority(null);
       }
     });
-
-
-  
   }, [dashboardId]);
 
   const toggleAddBoardModal = () => {
@@ -80,13 +72,11 @@ const Dashboard = () => {
   };
 
   const color = {
-    "Without": "rgba(255, 255, 255, 0.30)",
-    "Low": "#8FA1D0",
-    "Medium": "#E09CB5",
-    "High": "#BEDBB0"
-  }
-
-
+    Without: "rgba(255, 255, 255, 0.30)",
+    Low: "#8FA1D0",
+    Medium: "#E09CB5",
+    High: "#BEDBB0",
+  };
 
   return (
     <css.DivFull imgUrl={backDashboad}>
@@ -96,7 +86,7 @@ const Dashboard = () => {
             <>
               <css.FilterDiv>
                 <css.H1>{dashboard.title}</css.H1>
-                {hasCardsInColumns() && (
+                {dashboard.columns && hasCardsInColumns() && (
                   <css.FilterBtn onClick={handleFilterMenuOpen}>
                     <css.Svg width="18" height="18">
                       <use href={sprite + "#icon-filter-priority"}></use>
@@ -114,97 +104,107 @@ const Dashboard = () => {
                     <css.FilterTitle>Filters</css.FilterTitle>
                     <css.FilterDivLabel>
                       <css.FilterLabel>Label color</css.FilterLabel>
-                      <css.FilterLabelBtn onClick={() => filterCardsByPriority("all")}>
+                      <css.FilterLabelBtn
+                        onClick={() => filterCardsByPriority("all")}
+                      >
                         Show All
-                      </css.FilterLabelBtn></css.FilterDivLabel>
+                      </css.FilterLabelBtn>
+                    </css.FilterDivLabel>
                     <ul>
-                      <css.FilterLi 
+                      <css.FilterLi
                         onClick={() => filterCardsByPriority("without")}
                       >
-                        <css.SvgPriorityW  active={selectedPriority === 'without'}>
+                        <css.SvgPriorityW
+                          active={selectedPriority === "without"}
+                        >
                           <use href={sprite + "#icon-Ellipse"}></use>
                         </css.SvgPriorityW>
                         Without
                       </css.FilterLi>
-                      <css.FilterLi 
+                      <css.FilterLi
                         onClick={() => filterCardsByPriority("low")}
                       >
-                        <css.SvgPriority color={color.Low} active={selectedPriority === 'low'}>
-                        <use href={sprite + "#icon-Ellipse"}></use>
-                      </css.SvgPriority>
-                      Low
-                    </css.FilterLi>
-                      <css.FilterLi 
-                      onClick={() => filterCardsByPriority("medium")}
-                    >
-                        <css.SvgPriority color={color.Medium} active={selectedPriority === 'medium'}>
-                        <use href={sprite + "#icon-Ellipse"}></use>
-                      </css.SvgPriority>
-                      Medium
-                    </css.FilterLi>
-                      <css.FilterLi 
-                      onClick={() => filterCardsByPriority("high")}
-                    >
-                        <css.SvgPriority color={color.High} active={selectedPriority === 'high'}>
-                        <use href={sprite + "#icon-Ellipse"}></use>
-                      </css.SvgPriority>
-                      High
-                    </css.FilterLi>
-                  </ul>
+                        <css.SvgPriority
+                          color={color.Low}
+                          active={selectedPriority === "low"}
+                        >
+                          <use href={sprite + "#icon-Ellipse"}></use>
+                        </css.SvgPriority>
+                        Low
+                      </css.FilterLi>
+                      <css.FilterLi
+                        onClick={() => filterCardsByPriority("medium")}
+                      >
+                        <css.SvgPriority
+                          color={color.Medium}
+                          active={selectedPriority === "medium"}
+                        >
+                          <use href={sprite + "#icon-Ellipse"}></use>
+                        </css.SvgPriority>
+                        Medium
+                      </css.FilterLi>
+                      <css.FilterLi
+                        onClick={() => filterCardsByPriority("high")}
+                      >
+                        <css.SvgPriority
+                          color={color.High}
+                          active={selectedPriority === "high"}
+                        >
+                          <use href={sprite + "#icon-Ellipse"}></use>
+                        </css.SvgPriority>
+                        High
+                      </css.FilterLi>
+                    </ul>
                   </css.FilterMenu>
                 )}
-            </css.FilterDiv>
+              </css.FilterDiv>
 
-          <css.DivColumsBtn>
+              <css.DivColumsBtn>
+                <Columns
+                  dashboard={dashboard}
+                  selectedPriority={selectedPriority}
+                  dashboardId={dashboardId}
+                  columns={dashboard.columns}
+                />
 
-            <Columns
-              dashboard={dashboard}
-              selectedPriority={selectedPriority}
-              dashboardId={dashboardId}
-              columns={dashboard.columns}
-            />
-
-            <div>
-              <css.ButtonAddColumn onClick={handleModalOpen}>
-                <css.IconPlus />
-                Add another column
-              </css.ButtonAddColumn>
-            </div>
-          </css.DivColumsBtn>
+                <div>
+                  <css.ButtonAddColumn onClick={handleModalOpen}>
+                    <css.IconPlus />
+                    Add another column
+                  </css.ButtonAddColumn>
+                </div>
+              </css.DivColumsBtn>
+            </>
+          )}
+          {isModalOpen && (
+            <Modal onClose={handleModalClose}>
+              <ColumnModal onCloseModal={handleModalClose} />
+            </Modal>
+          )}
         </>
+      ) : (
+        <css.DivText>
+          <p>
+            Before starting your project, it is essential{" "}
+            <span
+              onClick={toggleAddBoardModal}
+              style={{ cursor: "pointer", color: "#BEDBB0" }}
+            >
+              to create a board to{" "}
+            </span>
+            visualize and track all the necessary tasks and milestones. This
+            board serves as a powerful tool to organize the workflow and ensure
+            effective collaboration among team members.
+          </p>
+        </css.DivText>
       )}
-      {isModalOpen && (
-        <Modal onClose={handleModalClose}>
-          <ColumnModal onCloseModal={handleModalClose} />
+
+      {isAddBoardOpen && (
+        <Modal>
+          <ColumnModal onClose={toggleAddBoardModal} />
         </Modal>
       )}
-    </>
-  ) : (
-    <css.DivText>
-      <p>
-        Before starting your project, it is essential{" "}
-        <span
-          onClick={toggleAddBoardModal}
-          style={{ cursor: "pointer", color: "#BEDBB0" }}
-        >
-          to create a board to{" "}
-        </span>
-        visualize and track all the necessary tasks and milestones. This
-        board serves as a powerful tool to organize the workflow and ensure
-        effective collaboration among team members.
-      </p>
-    </css.DivText>
-  )
-}
-
-{
-  isAddBoardOpen && (
-    <Modal>
-      <ColumnModal onClose={toggleAddBoardModal} />
-    </Modal>
-  )
-}
-    </css.DivFull >
+    </css.DivFull>
   );
 };
 

@@ -43,56 +43,63 @@ const Columns = ({ dashboard, selectedPriority }) => {
         },
       }
     );
-    
   };
 
   return (
     <>
       <css.UlFull>
-        {dashboard.columns.map((column) => (
-          <>
-            <css.LiColumn key={column._id}>
-              <css.DivTitleColumn>
-                <css.DivTitleColumnText>{column.title}</css.DivTitleColumnText>
-                <css.DivTitleColumnBtn>
-                  <css.SvgAll onClick={handleColumnModalOpen}>
-                    <use href={sprite + "#icon-pencil-01"}></use>
-                  </css.SvgAll>
+        {dashboard.columns &&
+          dashboard.columns.map((column) => (
+            <>
+              <css.LiColumn key={column._id}>
+                <css.DivTitleColumn>
+                  <css.DivTitleColumnText>
+                    {column.title}
+                  </css.DivTitleColumnText>
+                  <css.DivTitleColumnBtn>
+                    <css.SvgAll onClick={handleColumnModalOpen}>
+                      <use href={sprite + "#icon-pencil-01"}></use>
+                    </css.SvgAll>
 
-                  {isColumnModalOpen && (
-                    <Modal onClose={handleColumnModalClose}>
-                      <ColumnModal
-                        onCloseModal={handleColumnModalClose}
-                        columnId={column._id}
-                        isEditMode={true}
-                      />
-                    </Modal>
-                  )}
+                    {isColumnModalOpen && (
+                      <Modal onClose={handleColumnModalClose}>
+                        <ColumnModal
+                          onCloseModal={handleColumnModalClose}
+                          columnId={column._id}
+                          isEditMode={true}
+                        />
+                      </Modal>
+                    )}
 
-                  <css.SvgAll onClick={() => deleteColumn(column._id)}>
-                    <use href={sprite + "#icon-trash-04"}></use>
-                  </css.SvgAll>
-                </css.DivTitleColumnBtn>
-              </css.DivTitleColumn>
-              <Card column={column} columns={dashboard.columns} selectedPriority={selectedPriority} openFilterMenuForCardId={openFilterMenuForCardId}
-                setOpenFilterMenuForCardId={setOpenFilterMenuForCardId}/>
-
-              <css.ButtonAddCard onClick={() => handleModalOpen(column._id)}>
-                <css.IconPlus />
-                Add another card
-              </css.ButtonAddCard>
-            </css.LiColumn>
-
-            {isModalOpen && (
-              <Modal onClose={handleModalClose}>
-                <CardModal
-                  onCloseModal={handleModalClose}
-                  columnId={currentColumnId}
+                    <css.SvgAll onClick={() => deleteColumn(column._id)}>
+                      <use href={sprite + "#icon-trash-04"}></use>
+                    </css.SvgAll>
+                  </css.DivTitleColumnBtn>
+                </css.DivTitleColumn>
+                <Card
+                  column={column}
+                  columns={dashboard.columns}
+                  selectedPriority={selectedPriority}
+                  openFilterMenuForCardId={openFilterMenuForCardId}
+                  setOpenFilterMenuForCardId={setOpenFilterMenuForCardId}
                 />
-              </Modal>
-            )}
-          </>
-        ))}
+
+                <css.ButtonAddCard onClick={() => handleModalOpen(column._id)}>
+                  <css.IconPlus />
+                  Add another card
+                </css.ButtonAddCard>
+              </css.LiColumn>
+
+              {isModalOpen && (
+                <Modal onClose={handleModalClose}>
+                  <CardModal
+                    onCloseModal={handleModalClose}
+                    columnId={currentColumnId}
+                  />
+                </Modal>
+              )}
+            </>
+          ))}
       </css.UlFull>
     </>
   );
