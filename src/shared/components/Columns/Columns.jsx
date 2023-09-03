@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../Card/Card";
 import CardModal from "../Modal/CardModal/CardModal";
@@ -7,32 +7,14 @@ import { Modal } from "../Modal/Modal";
 import ColumnModal from "../Modal/ColumnModal/ColumnModal";
 import * as css from "./Columns.styled";
 import sprite from "../../images/icons.svg";
+import PropTypes from "prop-types";
 
-const Columns = () => {
+const Columns = ({ dashboard, selectedPriority }) => {
   const { dashboardId } = useParams();
-  const [columns, setColumns] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isColumnModalOpen, setColumnModalOpen] = useState(false);
   const [currentColumnId, setCurrentColumnId] = useState(null);
-
-  const apiDashboard = async () => {
-    if (dashboardId) {
-      const token = localStorage.getItem("accessToken");
-      const { data } = await axios.get(
-        `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setColumns(data);
-    }
-  };
-
-  useEffect(() => {
-    apiDashboard();
-  }, [dashboardId]);
+  const [openFilterMenuForCardId, setOpenFilterMenuForCardId] = useState(null);
 
   const handleModalOpen = (columnId) => {
     setCurrentColumnId(columnId);
@@ -61,13 +43,13 @@ const Columns = () => {
         },
       }
     );
-    apiDashboard();
+    
   };
 
   return (
     <>
       <css.UlFull>
-        {columns.map((column) => (
+        {dashboard.columns.map((column) => (
           <>
             <css.LiColumn key={column._id}>
               <css.DivTitleColumn>
@@ -92,7 +74,8 @@ const Columns = () => {
                   </css.SvgAll>
                 </css.DivTitleColumnBtn>
               </css.DivTitleColumn>
-              <Card id={column._id} />
+              <Card column={column} columns={dashboard.columns} selectedPriority={selectedPriority} openFilterMenuForCardId={openFilterMenuForCardId}
+                setOpenFilterMenuForCardId={setOpenFilterMenuForCardId}/>
 
               <css.ButtonAddCard onClick={() => handleModalOpen(column._id)}>
                 <css.IconPlus />
@@ -113,6 +96,11 @@ const Columns = () => {
       </css.UlFull>
     </>
   );
+};
+
+Columns.propTypes = {
+  dashboard: PropTypes.object.isRequired,
+  selectedPriority: PropTypes.string,
 };
 
 export default Columns;

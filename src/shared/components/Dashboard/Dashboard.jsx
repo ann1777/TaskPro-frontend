@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ColumnModal from "../Modal/ColumnModal/ColumnModal";
@@ -6,32 +5,29 @@ import { Modal } from "../Modal/Modal";
 import * as css from "./Dashboard.styled";
 import Columns from "../Columns/Columns";
 import sprite from "../../images/icons.svg";
+import { useSelector } from "react-redux";
+
+// import { useDispatch } from "react-redux";
 
 const Dashboard = () => {
   const { dashboardId } = useParams();
-  const [dashboard, setDashboard] = useState([]);
+  const [dashboard, setDashboards] = useState({});
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
   const [selectedPriority, setSelectedPriority] = useState(null);
+  // const dispatch = useDispatch();
 
-  const apiDashboard = async () => {
-    if (dashboardId) {
-      const token = localStorage.getItem("accessToken");
-      const { data } = await axios.get(
-        `https://taskpro-backend-c73a.onrender.com/api/dashboard/${dashboardId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setDashboard(data);
-    }
-  };
+  const dashboards = useSelector((state) => state.dashboards.dashboards);
+  console.log(dashboards);
 
   useEffect(() => {
-    apiDashboard();
+    dashboards.map((item) => {
+      if (item._id === dashboardId) {
+        setDashboards(item);
+        setSelectedPriority(null);
+      }
+    });
   }, [dashboardId]);
 
   const toggleAddBoardModal = () => {
@@ -47,6 +43,10 @@ const Dashboard = () => {
   };
 
   const handleFilterMenuOpen = () => {
+    if (isFilterMenuOpen) {
+      setIsFilterMenuOpen(false);
+      return;
+    }
     setIsFilterMenuOpen(true);
   };
 
@@ -58,6 +58,11 @@ const Dashboard = () => {
     setSelectedPriority(priority);
   };
 
+  const hasCardsInColumns = () => {
+    return dashboard.columns.some((column) => column.cards.length > 0);
+  };
+
+
   return (
     <css.DivFull>
       {dashboardId ? (
@@ -66,12 +71,14 @@ const Dashboard = () => {
             <>
               <css.FilterDiv>
                 <css.H1>{dashboard.title}</css.H1>
-                <css.FilterBtn onClick={handleFilterMenuOpen}>
-                  <css.FilterSvg>
-                    <use href={sprite + "#icon-filter-priority"}></use>
-                  </css.FilterSvg>
-                  Filters
-                </css.FilterBtn>
+                {hasCardsInColumns() && (
+                  <css.FilterBtn onClick={handleFilterMenuOpen}>
+                    <css.FilterSvg>
+                      <use href={sprite + "#icon-filter-priority"}></use>
+                    </css.FilterSvg>
+                    Filters
+                  </css.FilterBtn>
+                )}
                 {isFilterMenuOpen && (
                   <css.FilterMenu>
                     <css.StyledCloseButton onClick={handleFilterMenuClose}>
@@ -80,24 +87,45 @@ const Dashboard = () => {
                       </css.Svg>
                     </css.StyledCloseButton>
                     <p>Filters</p>
+                    <p>Label color</p>
+                    <button onClick={() => filterCardsByPriority("all")}>
+                      Show All
+                    </button>
                     <ul>
-                      <li onClick={() => filterCardsByPriority("Without")}>
+                      <css.FilterLi
+                        onClick={() => filterCardsByPriority("without")}
+                      >
                         Without
-                      </li>
-                      <li onClick={() => filterCardsByPriority("Low")}>Low</li>
-                      <li onClick={() => filterCardsByPriority("Medium")}>
+                      </css.FilterLi>
+                      <css.FilterLi
+                        onClick={() => filterCardsByPriority("low")}
+                      >
+                        Low
+                      </css.FilterLi>
+                      <css.FilterLi
+                        onClick={() => filterCardsByPriority("medium")}
+                      >
                         Medium
-                      </li>
-                      <li onClick={() => filterCardsByPriority("High")}>
+                      </css.FilterLi>
+                      <css.FilterLi
+                        onClick={() => filterCardsByPriority("high")}
+                      >
                         High
-                      </li>
+                      </css.FilterLi>
                     </ul>
                   </css.FilterMenu>
                 )}
               </css.FilterDiv>
 
               <css.DivColumsBtn>
-                <Columns filterCardsByPriority={filterCardsByPriority} />
+              
+                <Columns
+                  dashboard={dashboard}
+                  selectedPriority={selectedPriority}
+                  dashboardId={dashboardId}
+                  columns={dashboard.columns}
+                />
+               
                 <div>
                   <css.ButtonAddColumn onClick={handleModalOpen}>
                     <css.IconPlus />

@@ -13,33 +13,13 @@ import {
   StyledNavLink,
   ProjectNameWrapper,
 } from "../Sidebar/BoardList.styled";
-import axios from "axios";
+
 
 export const BoardList = ({ onOpenEditDashBoard }) => {
-  const [arrayDashboard, setArrayDashboard] = useState([]);
+  const dashboards = useSelector((state) => state.dashboards.dashboards);
   
-
-  useEffect(() => {
-    const apiDashboard = async () => {
-      const token = localStorage.getItem("accessToken");
-      const { data } = await axios.get(
-        "https://taskpro-backend-c73a.onrender.com/api/dashboard/",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setArrayDashboard(data);
-    };
-
-    apiDashboard();
-
-    // dispatch(fetchAllDashboardsThunk());
-  }, []);
-
-  const elements = arrayDashboard.map((dashboard) => (
+  
+  const elements = dashboards.map((dashboard) => (
     <Project key={dashboard._id}>
       <StyledNavLink to={`/home/${dashboard._id}`}>
         <ProjectIcon>
