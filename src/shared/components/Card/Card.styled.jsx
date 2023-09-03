@@ -188,6 +188,14 @@ cursor: pointer;
 }
 `
 
+export const SvgBell = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: ${({ theme }) => theme.colors.hoverBtnSvg};
+  fill: ${({ theme }) => theme.colors.iconBtnFill};
+  filter: drop-shadow(0 0 4px ${({ theme }) => theme.colors.hoverBtnSvg});
+`
+
 export const DivDivEdit = styled.div`
 display: flex;
 justify-content: space-between;

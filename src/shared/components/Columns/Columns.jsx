@@ -9,7 +9,7 @@ import * as css from "./Columns.styled";
 import sprite from "../../images/icons.svg";
 import PropTypes from "prop-types";
 
-const Columns = ({ dashboard, selectedPriority }) => {
+const Columns = ({ dashboard, selectedPriorities }) => {
   const { dashboardId } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const [isColumnModalOpen, setColumnModalOpen] = useState(false);
@@ -74,7 +74,7 @@ const Columns = ({ dashboard, selectedPriority }) => {
                   </css.SvgAll>
                 </css.DivTitleColumnBtn>
               </css.DivTitleColumn>
-              <Card column={column} columns={dashboard.columns} selectedPriority={selectedPriority} openFilterMenuForCardId={openFilterMenuForCardId}
+              <Card column={column} columns={dashboard.columns} selectedPriorities={selectedPriorities} openFilterMenuForCardId={openFilterMenuForCardId}
                 setOpenFilterMenuForCardId={setOpenFilterMenuForCardId}/>
 
               <css.ButtonAddCard onClick={() => handleModalOpen(column._id)}>

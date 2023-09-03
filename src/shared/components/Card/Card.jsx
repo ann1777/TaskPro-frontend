@@ -4,11 +4,12 @@ import { Modal } from "../Modal/Modal";
 import * as css from "./Card.styled";
 import sprite from "../../images/icons.svg";
 import PropTypes from "prop-types";
+import { isToday } from 'date-fns';
 
 const Card = ({
   column,
   columns,
-  selectedPriority,
+  selectedPriorities,
   openFilterMenuForCardId,
   setOpenFilterMenuForCardId,
 }) => {
@@ -47,16 +48,15 @@ const Card = ({
   }
 
   const cards = column.cards.filter((item) => {
-    if (selectedPriority === "all" || selectedPriority === null) {
+    if (selectedPriorities.length === 0) {
       return true;
     } else {
-      return item.priority === selectedPriority;
+      return selectedPriorities.includes(item.priority);
     }
   });
 
   const handleFilterMenuOpen = (cardId) => {
     if (openFilterMenuForCardId === cardId && isFilterMenuOpen) {
-      // Если FilterMenu уже открыто для этой карточки и оно открыто, закрываем его
       setOpenFilterMenuForCardId(null);
       setIsFilterMenuOpen(false);
     } else {
@@ -64,7 +64,7 @@ const Card = ({
       setIsFilterMenuOpen(true);
     }
   };
-  
+
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (cardRef.current && !cardRef.current.contains(event.target)) {
@@ -105,6 +105,11 @@ const Card = ({
                 </css.DivEditPrioDead>
 
                 <css.DivDivEditSvg>
+                {isToday(new Date(card.deadline)) && (
+                  <css.SvgBell>
+                    <use href={sprite + "#icon-bell-01"}></use>
+                  </css.SvgBell>
+                )}
                   <css.SvgAll
                     onClick={() => {
                       handleFilterMenuOpen(card._id);
@@ -119,6 +124,7 @@ const Card = ({
                       {columns.map((column) => (
                         <css.ColumnsDiv key={column._id}>
                           {column.title}
+
                           <css.SvgAll>
                             <use
                               onClick={() => handleFilterMenuOpen(card._id)}
