@@ -77,7 +77,7 @@ border-radius: 7px;
 fill: ${({ theme }) => theme.colors.colorPlusColumn};`
 
 
-export const DivColumsBtn = styled.div`
+export const DivColumns = styled.div`
 display:flex;
 gap: 26px;
 width: 347px;
@@ -291,3 +291,18 @@ export const SvgPriorityW = styled.svg`
     `}
   `
 
+export const UlFull = styled.ul`
+display: flex;
+gap: 15px;  
+
+ @media screen and (min-width: ${tablet}) {
+  
+  gap: 26px;  
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  
+  gap: 26px;
+  }
+
+`

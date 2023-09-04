@@ -12,6 +12,10 @@ import { instance } from "../auth/operations";
 
 // instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 
+const getToken = () => {
+  return localStorage.getItem("accessToken");
+};
+
 export const fetchAllDashboardsThunk = createAsyncThunk(
   "dashboards/fetchAll",
   async (_, { rejectWithValue }) => {
@@ -121,7 +125,12 @@ export const deleteColumnThunk = createAsyncThunk(
   "columns/deleteColumn",
   async ({ columnId, dashboardId }, { rejectWithValue }) => {
     try {
-      await instance.delete(`api/column/${dashboardId}/${columnId}`);
+      const token = getToken(); 
+      await instance.delete(`api/column/${dashboardId}/${columnId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return { columnId, dashboardId };
     } catch (error) {
       return rejectWithValue(error.message);
