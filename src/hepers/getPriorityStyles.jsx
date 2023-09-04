@@ -3,22 +3,22 @@ export const getPriorityStyles = priority => {
     let labelText = '';
    
 
-    switch (priority) {
-      case 'without':
-            color = '#8FA1D0';
-        labelText = 'Without';
-        break;
-      case 'low':
-        color = '#E09CB5';
+  switch (priority) {
+       case 'low':
+        color = '#8FA1D0';
         labelText = 'Low';
-        break;
-      case 'medium':
-        color = '#BEDBB0';
+      break;
+    case 'medium':
+        color = '#E09CB5';
         labelText = 'Medium';
-        break;
+      break;
       case 'high':
-        color = '#FFFFFF';
+        color = '#BEDBB0';
         labelText = 'High';
+        break;
+    case 'without':
+      color = 'rgba(22, 22, 22, 0.3)';
+      labelText = 'Without';
         break;
       default:
         break;
