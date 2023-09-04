@@ -115,3 +115,45 @@ export const LiColumn = styled.li`
 margin-right: 0px;
 width: 350px;`
 
+export const UlCard = styled.ul`
+
+height: 478px;
+overflow-x: hidden;
+overflow-y: auto;
+padding-right: 4px;
+
+
+
+ @media screen and (min-width: ${tablet}) {
+ height: 640px;
+padding-right: 8px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  height: 640px;
+  padding-right: 8px;
+    }
+        
+&::-webkit-scrollbar {
+  width: 8px; 
+  position: absolute;
+
+ 
+}
+
+
+&::-webkit-scrollbar-track {
+  background-color: ${({ theme }) => theme.colors.scrollbarTrack};
+  border: 0px solid transparent; 
+  border-radius: 12px; 
+}
+
+
+&::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+  border: 0px solid transparent;
+  border-radius: 12px; 
+}
+        
+        `

@@ -8,35 +8,44 @@ import sprite from "../../images/icons.svg";
 import { useSelector } from "react-redux";
 
 import { getBackgroundByIcon } from "../../../hepers/getBackgroundByIcon";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
 
 const Dashboard = () => {
   const { dashboardId } = useParams();
-  const [dashboard, setDashboards] = useState({});
+  const [dashboard, setDashboard] = useState([]);
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
   const [selectedPriorities, setSelectedPriorities] = useState([]);
   const [backDashboad, setBackDashboad] = useState("");
-  console.log("backDashboad:", backDashboad);
+  const dispatch = useDispatch();
 
   const dashboards = useSelector((state) => state.dashboards.dashboards);
 
   useEffect(() => {
-    async function someFunction() {
-      setBackDashboad(await getBackgroundByIcon(dashboard.background));
+    async function fetchData() {
+      const selectedDashboard = dashboards.find(
+        (item) => item._id === dashboardId
+      );
+      if (selectedDashboard) {
+        setDashboard(selectedDashboard);
+        setBackDashboad(
+          await getBackgroundByIcon(selectedDashboard.background)
+        );
+      }
     }
 
-    someFunction();
-  });
+    fetchData();
+  }, [dashboardId, dashboards, dashboard]);
 
-  useEffect(() => {
-    dashboards.map((item) => {
-      if (item._id === dashboardId) {
-        setDashboards(item);
-       
-      }
-    });
-  }, [dashboardId]);
+  // useEffect(() => {
+  //   dashboards.map((item) => {
+  //     if (item._id === dashboardId) {
+  //       setDashboard(item);
+  //     }
+  //   });
+  // }, [dashboardId]);
 
   const toggleAddBoardModal = () => {
     setIsAddBoardOpen(!isAddBoardOpen);
@@ -85,6 +94,78 @@ const Dashboard = () => {
     setSelectedPriorities([]);
   };
 
+  const onDragEnd = ({ destination, source, draggableId, type }) => {
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const start = dashboard.columns[source.droppableId];
+    const end = dashboard.columns[destination.droppableId];
+
+    if (type === "column") {
+      console.log(destination, source, draggableId);
+      const newOrder = [...dashboard.columnOrder];
+      newOrder.splice(source.index, 1);
+      newOrder.splice(destination.index, 0, draggableId);
+
+      setDashboard({
+        ...dashboard,
+        columnOrder: newOrder
+      });
+      return;
+    }
+
+    if (start === end) {
+      const column = dashboard.columns[source.droppableId];
+      const cards = [...column.cards];
+      cards.splice(source.index, 1);
+      cards.splice(destination.index, 0, draggableId);
+      const newColumn = {
+        ...column,
+        cards,
+      };
+      setDashboard({
+        ...dashboard,
+        columns: {
+          ...dashboard.columns,
+          [column.id]: newColumn,
+        },
+      });
+      return;
+    }
+
+    const startCardIds = [...start.cards];
+    const endCardIds = [...end.cards];
+
+    startCardIds.splice(source.index, 1);
+    endCardIds.splice(destination.index, 0, draggableId);
+
+    const newStartColumn = {
+      ...start,
+      cards: startCardIds,
+    };
+    const endCardColumn = {
+      ...end,
+      cards: endCardIds,
+    };
+
+    setDashboard({
+      ...dashboard,
+      columns: {
+        ...dashboard.columns,
+        [start.id]: newStartColumn,
+        [end.id]: endCardColumn,
+      },
+    });
+    console.log("new starter", dashboard);
+
+    console.log(destination, source, draggableId);
+  };
+
   return (
     <css.DivFull imgUrl={backDashboad}>
       {dashboardId ? (
@@ -118,9 +199,7 @@ const Dashboard = () => {
                       </css.FilterLabelBtn>
                     </css.FilterDivLabel>
                     <ul>
-                      <css.FilterLi
-                        onClick={() => togglePriority("without")}
-                      >
+                      <css.FilterLi onClick={() => togglePriority("without")}>
                         <css.SvgPriorityW
                           active={selectedPriorities.includes("without")}
                         >
@@ -128,9 +207,7 @@ const Dashboard = () => {
                         </css.SvgPriorityW>
                         Without
                       </css.FilterLi>
-                      <css.FilterLi
-                        onClick={() => togglePriority("low")}
-                      >
+                      <css.FilterLi onClick={() => togglePriority("low")}>
                         <css.SvgPriority
                           color={color.Low}
                           active={selectedPriorities.includes("low")}
@@ -139,9 +216,7 @@ const Dashboard = () => {
                         </css.SvgPriority>
                         Low
                       </css.FilterLi>
-                      <css.FilterLi
-                        onClick={() => togglePriority("medium")}
-                      >
+                      <css.FilterLi onClick={() => togglePriority("medium")}>
                         <css.SvgPriority
                           color={color.Medium}
                           active={selectedPriorities.includes("medium")}
@@ -150,9 +225,7 @@ const Dashboard = () => {
                         </css.SvgPriority>
                         Medium
                       </css.FilterLi>
-                      <css.FilterLi
-                        onClick={() => togglePriority("high")}
-                      >
+                      <css.FilterLi onClick={() => togglePriority("high")}>
                         <css.SvgPriority
                           color={color.High}
                           active={selectedPriorities.includes("high")}
@@ -166,13 +239,36 @@ const Dashboard = () => {
                 )}
               </css.FilterDiv>
 
-              <css.DivColumsBtn>
-                <Columns
-                  dashboard={dashboard}
-                  dashboardId={dashboardId}
-                  columns={dashboard.columns}
-                  selectedPriorities={selectedPriorities}
-                />
+              <css.DivColumns>
+                <DragDropContext onDragEnd={onDragEnd}>
+                  <Droppable
+                    droppableId="all-columns"
+                    type="column"
+                    direction="horizontal"
+                  >
+                    {(provided) => (
+                      <css.UlFull
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+                        {dashboard.columns.map((column, index) => {
+                          const cards = column.cards;
+
+                          return (
+                            <Columns
+                              index={index}
+                              key={column._id}
+                              column={column}
+                              cards={cards}
+                              selectedPriorities={selectedPriorities}
+                            />
+                          );
+                        })}
+                        {provided.placeholder}
+                      </css.UlFull>
+                    )}
+                  </Droppable>
+                </DragDropContext>
 
                 <div>
                   <css.ButtonAddColumn onClick={handleModalOpen}>
@@ -180,7 +276,7 @@ const Dashboard = () => {
                     Add another column
                   </css.ButtonAddColumn>
                 </div>
-              </css.DivColumsBtn>
+              </css.DivColumns>
             </>
           )}
           {isModalOpen && (
