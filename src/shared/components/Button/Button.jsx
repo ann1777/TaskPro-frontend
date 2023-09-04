@@ -5,7 +5,7 @@ import { StyledButton, StyledIcon, Svg } from "./Button.styled";
 export const Button = ({
   type = "submit",
   svg = true,
-  onClick,
+  
   children,
   ...allyProps
 }) => {
@@ -24,8 +24,7 @@ export const Button = ({
 };
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
-  svg: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  children: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  svg: PropTypes.bool,
+  children: PropTypes.func,
 };
