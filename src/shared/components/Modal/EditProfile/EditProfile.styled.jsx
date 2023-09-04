@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { breakpoints } from '../../styles/breakpoints';
+import styled from "styled-components";
+// import { breakpoints } from "../../styles/breakpoints";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const WindowContaier = styled.div`
@@ -19,16 +19,17 @@ export const SendButton = styled.button`
   align-items: center;
   border-radius: 8px;
   border: none;
-  background: #bedbb0;
+  background: ${({ theme }) => theme.colors.btnModal};
   transition: background-color 250ms linear;
   font-family: Poppins;
   font-size: 14px;
   margin-top: 24px;
   font-weight: 500;
   letter-spacing: -0.28px;
+  color: ${({ theme }) => theme.colors.plusBtnColorModal};
   &:hover,
   &:focus {
-    background: #9dc888;
+    background: ${({ theme }) => theme.colors.btnModalActive};
   }
 `;
 
@@ -62,17 +63,25 @@ export const FileInputWrapper = styled.label`
   width: 24px;
   height: 24px;
   border-radius: 20%;
-  background-color: #bedbb0;
+  background-color: ${({ theme }) => theme.colors.btnModal};
   font-size: 18px;
+  color: ${({ theme }) => theme.colors.plusBtnColorModal};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: all 250ms linear;
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.btnModalActive};
+  }
 `;
 
 export const FileInput = styled.input`
+  font-family: Poppins;
+  color: ${({ theme }) => theme.colors.plusBtnColorModal};
   display: none;
-  background-color: #bedbb0;
+  background-color: ${({ theme }) => theme.colors.textColorModal};
 `;
 
 export const ProfileForm = styled.form`
@@ -83,20 +92,21 @@ export const ProfileForm = styled.form`
   gap: 14px;
 `;
 
-
 export const ProfileInput = styled.input`
-   width: 100%;
+  width: 100%;
   padding: 14px 18px;
   background: inherit;
   border-radius: 8px;
-  border: 1px solid #bedbb0;
+  border: 1px solid ${({ theme }) => theme.colors.btnModal};
   outline: none;
   color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
   margin-bottom: 14px;
+  font-family: Poppins;
+  transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
 
   &::placeholder {
-    color:${({ theme }) => theme.colors.textSecondModal};
+    color: ${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -109,28 +119,30 @@ export const ProfileInput = styled.input`
       opacity: 1;
     }
   }
-
 `;
 
 export const StyledEyeIcon = styled(AiOutlineEyeInvisible)`
   transition: color 0.3s;
   width: 18px;
   height: 18px;
-
+  top: 0;
+  right: 0;
   &:hover,
   &:focus {
-    color: #9dc888;
+    color: ${({ theme }) => theme.colors.btnModalActive};
   }
 `;
 
 export const StyledEyeIconVis = styled(AiOutlineEye)`
   transition: color 0.3s;
-  color:#9dc888;
+  color: ${({ theme }) => theme.colors.btnModal};
   width: 18px;
   height: 18px;
- 
+  top: 0;
+  right: 0;
+
   &:hover,
   &:focus {
-    color: #9dc888;
+    color: ${({ theme }) => theme.colors.btnModalActive};
   }
 `;

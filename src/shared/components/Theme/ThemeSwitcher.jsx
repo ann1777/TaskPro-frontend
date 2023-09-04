@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { changeTheme } from "../../../redux/auth/operations";
 import { selectUserTheme } from "../../../redux/auth/authSelectors";
-import { useSelector } from "react-redux";
+
 import { StyledSelect } from "../Header/Header.styled";
 
 const options = [

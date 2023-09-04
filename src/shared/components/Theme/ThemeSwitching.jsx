@@ -1,6 +1,8 @@
-import { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+
+import { ThemeProvider } from "styled-components";
+
 import { selectUserTheme } from "../../../redux/auth/authSelectors";
 import { light, dark, color } from "./theme.styled";
 

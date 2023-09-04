@@ -1,8 +1,5 @@
 import PropTypes from "prop-types";
-import axios from "axios";
-import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
-import { deleteDashboardThunk } from "../../../redux/dashboards/operations.js";
+import { useSelector } from "react-redux";
 import sprite from "../../images/icons.svg";
 import {
   ProjectList,
@@ -15,57 +12,43 @@ import {
   ProjectNameWrapper,
   IconWrapper,
 } from "../Sidebar/BoardList.styled";
+import { allDashboards } from "../../../redux/dashboards/dashboardsSelectos.js";
 
-export const BoardList = ({ onOpenEditDashBoard }) => {
-  // const dashboards = useSelector((state) => state.dashboards.dashboards);
-  const [arrayDashboard, setArrayDashboard] = useState([]);
 
-  useEffect(() => {
-    const apiDashboard = async () => {
-      const token = localStorage.getItem("accessToken");
-      const { data } = await axios.get(
-        "https://taskpro-backend-c73a.onrender.com/api/dashboard/",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setArrayDashboard(data);
-    };
+export const BoardList = ({ onOpenEditDashBoard, openDeleteModal}) => {
+  const dashboards = useSelector(allDashboards);
+  
+  
+  return (
+    <ProjectList>
+      {dashboards.length > 0 &&
+        dashboards.map((dashboard) => (
+          <Project key={dashboard._id}>
+            <StyledNavLink to={`/home/${dashboard._id}`}>
+              <ProjectIcon>
+                <use xlinkHref={`${sprite}#${dashboard.icon}`} />
+              </ProjectIcon>
 
-    apiDashboard();
-  }, []);
+              <ProjectNameWrapper style={{ width: "122px" }}>
+                <ProjectName>{dashboard.title}</ProjectName>
+              </ProjectNameWrapper>
 
-  const elements = arrayDashboard.map((dashboard) => (
-    <Project key={dashboard._id}>
-      <StyledNavLink to={`/home/${dashboard._id}`}>
-        <ProjectIcon>
-          <use xlinkHref={`${sprite}#${dashboard.icon}`} />
-        </ProjectIcon>
+              <IconWrapper>
+                <PencilIcon onClick={() => onOpenEditDashBoard(dashboard._id)}>
+                  <use href={sprite + "#icon-pencil-01"}></use>
+                </PencilIcon>
 
-        <ProjectNameWrapper style={{ width: "122px" }}>
-          <ProjectName>{dashboard.title}</ProjectName>
-        </ProjectNameWrapper>
-
-        <IconWrapper>
-          <PencilIcon onClick={() => onOpenEditDashBoard(dashboard._id)}>
-            <use href={sprite + "#icon-pencil-01"}></use>
-          </PencilIcon>
-
-          <TrashIcon
-            onClick={() => {
-              deleteDashboardThunk(dashboard._id);
-            }}
-          >
-            <use href={sprite + "#icon-trash-04"}></use>
-          </TrashIcon>
-        </IconWrapper>
-      </StyledNavLink>
-    </Project>
-  ));
-
-  return <ProjectList>{elements}</ProjectList>;
+                <TrashIcon
+  onClick={() => openDeleteModal(dashboard._id)}
+>
+  <use href={sprite + "#icon-trash-04"}></use>
+</TrashIcon>
+              </IconWrapper>
+            </StyledNavLink>
+          </Project>
+        ))}
+    </ProjectList>
+  );
 };
 
 BoardList.propTypes = {

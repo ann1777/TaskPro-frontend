@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import { Field } from 'formik';
-import { Button } from '../../Button/Button';
-
+import styled from "styled-components";
+import { Field } from "formik";
+import { Button } from "../../Button/Button";
 
 export const TitleHelp = styled.div`
   color: ${({ theme }) => theme.colors.textColorModal};
@@ -19,7 +18,7 @@ export const StyledForm = styled.form`
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  ${'' /* color: ${dark.colors.textColorModal}; */}
+  ${"" /* color: ${dark.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`
@@ -27,13 +26,15 @@ export const InputField = styled(Field)`
   padding: 14px 18px;
   background: inherit;
   border-radius: 8px;
-  border: 1px solid #BEDBB0;
+  border: 1px solid ${({ theme }) => theme.colors.btnModal};
   outline: none;
-    color:${({ theme }) => theme.colors.textSecondModal};
+  color: ${({ theme }) => theme.colors.textSecondModal};
   opacity: 0.5;
 
+  transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
   &::placeholder {
-   color:${({ theme }) => theme.colors.textSecondModal};
+    font-family: Poppins;
+    color: ${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -41,14 +42,15 @@ export const InputField = styled(Field)`
 
   &:hover,
   &:focus {
-  opacity: 1;
-  &::placeholder {
+    opacity: 1;
+    &::placeholder {
       opacity: 1;
     }
   }
 `;
 export const SubmitButton = styled(Button)`
   padding: 10px 0 11px 0;
+  color: ${({ theme }) => theme.colors.plusBtnColorModal};
 `;
 
 export const BoardText = styled.p`
@@ -58,12 +60,13 @@ export const BoardText = styled.p`
   line-height: 21px;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.textColorModal};
 `;
 export const RadioField = styled(Field)`
   position: fixed;
   opacity: 0;
   pointer-events: none;
+  transition: all 250ms linear;
 
   &:hover ~ .background-label,
   &:checked ~ .background-label {
@@ -93,13 +96,15 @@ export const Textarea = styled(Field)`
   padding: 14px 18px;
   background: inherit;
   border-radius: 8px;
-  border: 1px solid #BEDBB0;
+  border: 1px solid ${({ theme }) => theme.colors.btnModal};
   outline: none;
-  color: #BEDBB0;
+  color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
+  transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
 
   &::placeholder {
-    color:#BEDBB0;
+    font-family: Poppins;
+    color: ${({ theme }) => theme.colors.textColorModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -107,16 +112,14 @@ export const Textarea = styled(Field)`
 
   &:hover,
   &:focus {
-  opacity: 1;
-  &::placeholder {
+    opacity: 1;
+    &::placeholder {
       opacity: 1;
     }
   }
 `;
 
 export const RadioLabel = styled.label`
-  
-  
   border-radius: 6px;
   cursor: pointer;
 `;
@@ -126,8 +129,7 @@ export const IconContainer = styled.div`
   cursor: pointer;
 
   svg {
-    fill: #151515;
-
+    fill: ${({ theme }) => theme.colors.backgroundColorModal};
   }
 `;
 export const ImageContainer = styled.div`
@@ -137,13 +139,14 @@ export const ImageContainer = styled.div`
 `;
 
 export const Svg = styled.svg`
-  fill: #151515;
+  fill: ${({ theme }) => theme.colors.backgroundColorModal};
   stroke: rgba(255, 255, 255, 0.5);
 
   width: 18px;
   height: 18px;
   cursor: pointer;
- &:hover {
-    stroke: rgba(255, 255, 255, 1); 
+  transition: all 250ms linear;
+  &:hover {
+    stroke: rgba(255, 255, 255, 1);
   }
 `;

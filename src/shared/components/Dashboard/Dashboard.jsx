@@ -174,7 +174,7 @@ const Dashboard = () => {
             <>
               <css.FilterDiv>
                 <css.H1>{dashboard.title}</css.H1>
-                {hasCardsInColumns() && (
+                {dashboard.columns && hasCardsInColumns() && (
                   <css.FilterBtn onClick={handleFilterMenuOpen}>
                     <css.Svg width="18" height="18">
                       <use href={sprite + "#icon-filter-priority"}></use>

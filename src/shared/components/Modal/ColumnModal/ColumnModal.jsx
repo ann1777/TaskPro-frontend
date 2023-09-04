@@ -1,57 +1,57 @@
+
 import { TitleHelp, StyledForm, FormField, InputField, SubmitButton } from './ColumnModal.styled';
 import { Formik, ErrorMessage } from 'formik';
-import axios from 'axios';
+
 import PropTypes from 'prop-types';
+import { addColumnThunk, updateColumnThunk } from '../../../../redux/dashboards/operations';
+import { useDispatch } from "react-redux";
 
-function ColumnModal({ onCloseModal, isEditMode, columnId}) {
-  
 
-  const handleOnSubmit = async (values, { setSubmitting }) => {
-    try {
-      const dashboardId = getDashboardIdFromURL();
-      const token = localStorage.getItem('accessToken');
 
-      let response;
-      if (isEditMode) {
-        response = await axios.put(
-          `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}/${columnId}`,
-          { title: values.Title },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }
-          }
-        );
-      } else {
-        response = await axios.post(
-          `https://taskpro-backend-c73a.onrender.com/api/column/${dashboardId}`,
-          { title: values.Title },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }
-          }
-        );
-       
-      }
-
-      console.log('Ответ сервера:', response.data);
-
-      onCloseModal();
-    } catch (error) {
-      console.error('Ошибка:', error);
-    }
-
-    setSubmitting(false);
-  };
-
+function ColumnModal({ onCloseModal, isEditMode, columnId }) {
   const getDashboardIdFromURL = () => {
     const pathnameParts = window.location.pathname.split('/');
     const dashboardId = pathnameParts[pathnameParts.length - 1];
     return dashboardId;
   };
+  const dashboardId = getDashboardIdFromURL();
+  
+  const dispatch = useDispatch();
+  const handleOnSubmit = async (values) => {
+   const actualTitle = values.Title;
+  
+    if (isEditMode) {
+     const updateData = {
+       title: actualTitle,
+     
+      };
+      console.log(updateData)
+      dispatch(updateColumnThunk({ columnId: columnId, dashboardId, updateData }));
+      
+  
+    }
+    else {
+     const actualTitle = values.Title;
+const data = {
+  title: actualTitle,
+  dashboardId: dashboardId
+};
+
+dispatch(addColumnThunk(data));
+    }
+
+
+      onCloseModal();
+    } 
+
+    
+  
+
+
+  
+
+
+  
 
   return (
     <>
@@ -59,6 +59,7 @@ function ColumnModal({ onCloseModal, isEditMode, columnId}) {
       <Formik
         initialValues={{ Title: '' }}
         onSubmit={handleOnSubmit}
+        
       >
         {({ isSubmitting, handleSubmit }) => (
           <StyledForm onSubmit={handleSubmit}>
@@ -80,11 +81,12 @@ function ColumnModal({ onCloseModal, isEditMode, columnId}) {
     </>
   );
 }
+
 ColumnModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool,
-  columnId: PropTypes.string
+  columnId: PropTypes.string,
+  dashboardId: PropTypes.string
 };
-
 
 export default ColumnModal;
