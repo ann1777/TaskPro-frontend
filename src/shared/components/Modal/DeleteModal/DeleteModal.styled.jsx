@@ -45,6 +45,7 @@ export const SubmitButton = styled(Button)`
  
 export const CancelButton = styled(Button)`
   min-width: 100px;
+    background-color: #BEDBB0;
 `;
 
 export default {

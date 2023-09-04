@@ -1,40 +1,59 @@
 import PropTypes from 'prop-types';
 import { TitleHelp, StyledForm, FormField, SubmitButton, ButtonContainer, CancelButton } from './DeleteModal.styled';
 import { useDispatch } from 'react-redux';
-import { deleteDashboardThunk } from '../../../../redux/dashboards/operations';
+import { deleteDashboardThunk, deleteCardThunk, deleteColumnThunk } from '../../../../redux/dashboards/operations';
 
-export default function DeleteModal({ onCloseModal, dashboardId }) {
+export default function DeleteModal({ onCloseModal, dashboardId, cardId, columnId }) {
   const dispatch = useDispatch();
 
   const handleDelete = (e) => {
-     e.preventDefault();
-    dispatch(deleteDashboardThunk(dashboardId));
-    onCloseModal();  
+    e.preventDefault();
+    if (dashboardId && !columnId && !cardId) {
+      dispatch(deleteDashboardThunk(dashboardId));
+    } else if (dashboardId && columnId && !cardId) {
+      dispatch(deleteColumnThunk(dashboardId, columnId));
+    } else if (dashboardId && columnId && cardId) {
+      dispatch(deleteCardThunk(dashboardId, columnId, cardId));
+    }
+
+    onCloseModal();
   };
+  let itemToDelete;
+
+  if (dashboardId && !columnId && !cardId) {
+    itemToDelete = 'board';
+  } else if (dashboardId && columnId && !cardId) {
+    itemToDelete = 'column';
+  } else if (dashboardId && columnId && cardId) {
+    itemToDelete = 'card';
+  }
 
   return (
     <>
-      <TitleHelp>Удалить</TitleHelp>
+      <TitleHelp>Delete</TitleHelp>
       <StyledForm>
         <FormField>
-          Вы действительно хотите удалить?
+          Are you sure you want to delete the {itemToDelete}?
         </FormField>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <ButtonContainer>
-          <SubmitButton svg={false}  type='submit' onClick={handleDelete} >
-            Удалить
-          </SubmitButton>
-          <CancelButton svg={false} type='submit' onClick={onCloseModal}>
-            Отмена
-          </CancelButton>
+            <SubmitButton svg={false} type='submit' onClick={handleDelete}>
+              Delete
+            </SubmitButton>
+            <CancelButton svg={false} type='submit' onClick={onCloseModal}>
+              Cancel
+            </CancelButton>
           </ButtonContainer>
         </div>
       </StyledForm>
     </>
   );
 }
-
 DeleteModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
-  dashboardId: PropTypes.object.isRequired,  
+  dashboardId: PropTypes.string,
+  cardId: PropTypes.string,
+  columnId: PropTypes.string,
+
+
 };

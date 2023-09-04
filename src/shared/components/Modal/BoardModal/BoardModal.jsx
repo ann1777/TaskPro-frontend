@@ -55,7 +55,7 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
           });
         })
         .catch(error => {
-          console.error("Ошибка при загрузке данных доски:", error);
+          console.error("Error Get:", error);
         });
     } else {
       setFormInitialValues(initialValues);
