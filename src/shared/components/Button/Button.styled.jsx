@@ -6,9 +6,6 @@ export const StyledButton = styled.button`
   align-items: center;
   padding: 14px 0px;
   width: 100%;
-  font-size: var(--fontSize14);
-  font-family: var(--fontFamily);
-  font-weight: var(--fontWeight500);
   border: none;
   background-color: #BEDBB0;
   border-radius: 8px;

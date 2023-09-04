@@ -6,6 +6,7 @@ import NeedHelp from "../../shared/components/Modal/NeedHelp/NeedHelp";
 import { Header } from "../../shared/components/Header/Header";
 import { Sidebar } from "../../shared/components/Sidebar/Sidebar";
 import { Modal } from "../../shared/components/Modal/Modal";
+import DeleteModal from "../../shared/components/Modal/DeleteModal/DeleteModal";
 import BoardModal from "../../shared/components/Modal/BoardModal/BoardModal";
 import Dashboard from "../../shared/components/Dashboard/Dashboard";
 import { Overlay } from "../../shared/components/Sidebar/Overlay";
@@ -17,6 +18,7 @@ import * as css from "./HomePage.styled";
 export const HomePage = () => {
   const { isOpen, close, open } = useToggle();
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const [helpModalOpen, setHelpModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDashboardId, setSelectedDashboardId] = useState(null);
@@ -25,6 +27,11 @@ export const HomePage = () => {
     setModalOpen(true);
   };
 
+  const openDeleteModal = (dashboardId) => {
+  setSelectedDashboardId(dashboardId);
+  setDeleteModalOpen(true);
+  }
+  
   const openHelpModal = () => {
     setHelpModalOpen(true);
   };
@@ -63,6 +70,8 @@ export const HomePage = () => {
             isOpen={isOpen}
             onOpenCreateBoard={toggleModal}
             onOpenHelp={openHelpModal}
+            openDeleteModal={openDeleteModal}
+
           />
         )}
         {!isDesktopOrLaptop && (
@@ -86,6 +95,13 @@ export const HomePage = () => {
             <NeedHelp onClose={closeHelpModal} />
           </Modal>
         )}
+
+        {deleteModalOpen && (
+  <Modal onClose={() => setDeleteModalOpen(false)}>
+    <DeleteModal onCloseModal={() => setDeleteModalOpen(false)} dashboardId={selectedDashboardId} />
+  </Modal>
+)}
+        
         {modalOpen && (
           <Modal onClose={closeModal}>
             <BoardModal onClose={closeModal} />

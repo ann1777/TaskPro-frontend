@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -18,7 +18,7 @@ import {
 import { Formik, ErrorMessage } from 'formik';
 import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
-import { addCardThunk, updateCardThunk, getCardByIdThunk } from '../../../../redux/dashboards/operations';
+import { addCardThunk, updateCardThunk } from '../../../../redux/dashboards/operations';
 
 function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
   const labels = [
@@ -27,6 +27,7 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
     { value: 'high' },
     { value: 'without' },
   ];
+  
 
   const dispatch = useDispatch();
   const card = useSelector(state => state.dashboards.singleCard);
@@ -42,15 +43,12 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
     setSelectedPriority(value);
   };
 
-  useEffect(() => {
-    if (isEditMode && cardId) {
-      dispatch(getCardByIdThunk(cardId));
-    }
-  }, [dispatch, isEditMode, cardId]);
+  const idColumn = columnId
+        console.log(idColumn)
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const payload = {
+      const cardData = {
         title: values.Title,
         description: values.Desc,
         priority: selectedPriority,
@@ -58,9 +56,11 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
       };
 
       if (isEditMode) {
-        dispatch(updateCardThunk(columnId, cardId, payload));
+        
+        dispatch(updateCardThunk({ columnId: idColumn, cardId, updateData: cardData  }));
       } else {
-        dispatch(addCardThunk(columnId, payload));
+        
+       dispatch(addCardThunk({ columnId: idColumn, cardData: cardData }));
       }
 
       onCloseModal();

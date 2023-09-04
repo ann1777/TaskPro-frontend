@@ -117,6 +117,7 @@ export const BackgroundIcon = styled.img`
   width: 28px;
   height: 28px;
   margin-bottom: 4px;
+  outline: ${props => props.isSelected ? "2px solid red" : "none"};
 `;
 
 export const Row = styled.div`

@@ -23,20 +23,34 @@ export const FormField = styled.div`
   color: ${({ theme }) => theme.colors.textSecondModal};
   text-align: center; 
 `;
-
+export const ButtonContainer = styled.div`
+display: flex;
+gap: 50px;
+`
 export const SubmitButton = styled(Button)`
-  padding: 10px 0 11px 0;
-  margin: 0 10px; 
+   display: flex;
+  justify-content: center;
+ min-width: 100px;
+  align-items: center;
+  padding: 14px 0px;
+  width: 100%;
+  border: none;
+  background-color: #BEDBB0;
+  border-radius: 8px;
 `;
 
-export const CancelButton = styled(SubmitButton)`
-  background-color: #ccc;
+
+
+
+ 
+export const CancelButton = styled(Button)`
+  min-width: 100px;
 `;
 
 export default {
   TitleHelp,
   StyledForm,
   FormField,
-  SubmitButton,
+  Button,
   CancelButton
 };

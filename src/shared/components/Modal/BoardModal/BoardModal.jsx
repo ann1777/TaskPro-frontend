@@ -32,7 +32,7 @@ const BOARD_ICONS = [
 const initialValues = {
     title: "",
     icon: BOARD_ICONS[0],
-    background: ''
+    background: data[0].icon
   };
 
 

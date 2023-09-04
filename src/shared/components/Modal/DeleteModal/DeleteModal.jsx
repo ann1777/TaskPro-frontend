@@ -1,7 +1,17 @@
 import PropTypes from 'prop-types';
-import { TitleHelp, StyledForm, FormField, SubmitButton } from './DeleteModal.styled';
+import { TitleHelp, StyledForm, FormField, SubmitButton, ButtonContainer, CancelButton } from './DeleteModal.styled';
+import { useDispatch } from 'react-redux';
+import { deleteDashboardThunk } from '../../../../redux/dashboards/operations';
 
-function ConfirmDeleteModal({ onCloseModal }) {
+export default function DeleteModal({ onCloseModal, dashboardId }) {
+  const dispatch = useDispatch();
+
+  const handleDelete = (e) => {
+     e.preventDefault();
+    dispatch(deleteDashboardThunk(dashboardId));
+    onCloseModal();  
+  };
+
   return (
     <>
       <TitleHelp>Удалить</TitleHelp>
@@ -10,20 +20,21 @@ function ConfirmDeleteModal({ onCloseModal }) {
           Вы действительно хотите удалить?
         </FormField>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <SubmitButton onClick={onCloseModal} style={{ background: 'red' }}>
+          <ButtonContainer>
+          <SubmitButton svg={false}  type='submit' onClick={handleDelete} >
             Удалить
           </SubmitButton>
-          <SubmitButton onClick={onCloseModal}>
+          <CancelButton svg={false} type='submit' onClick={onCloseModal}>
             Отмена
-          </SubmitButton>
+          </CancelButton>
+          </ButtonContainer>
         </div>
       </StyledForm>
     </>
   );
 }
 
-ConfirmDeleteModal.propTypes = {
+DeleteModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
+  dashboardId: PropTypes.object.isRequired,  
 };
-
-export default ConfirmDeleteModal;
