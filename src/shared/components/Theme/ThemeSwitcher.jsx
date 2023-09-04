@@ -23,7 +23,6 @@ export const ThemeSwitcher = () => {
     dispatch(changeTheme(selectedOption.value));
     setSelectedOption(selectedOption);
   };
-
   const customStyles = {
     option: (base, state) => ({
       ...base,

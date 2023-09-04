@@ -28,8 +28,9 @@ export const InputField = styled(Field)`
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.btnModal};
   outline: none;
-  color: ${({ theme }) => theme.colors.textSecondModal};
+  color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
+  font-family: Poppins;
 
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
   &::placeholder {
@@ -50,6 +51,7 @@ export const InputField = styled(Field)`
 `;
 export const SubmitButton = styled(Button)`
   padding: 10px 0 11px 0;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.plusBtnColorModal};
 `;
 
@@ -101,10 +103,11 @@ export const Textarea = styled(Field)`
   color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  font-family: Poppins;
 
   &::placeholder {
     font-family: Poppins;
-    color: ${({ theme }) => theme.colors.textColorModal};
+    color: ${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;

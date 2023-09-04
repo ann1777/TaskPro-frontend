@@ -114,7 +114,7 @@ const Dashboard = () => {
 
       setDashboard({
         ...dashboard,
-        columnOrder: newOrder
+        columnOrder: newOrder,
       });
       return;
     }
@@ -251,19 +251,20 @@ const Dashboard = () => {
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                       >
-                        {dashboard.columns.map((column, index) => {
-                          const cards = column.cards;
+                        {dashboard.columns &&
+                          dashboard.columns.map((column, index) => {
+                            const cards = column.cards;
 
-                          return (
-                            <Columns
-                              index={index}
-                              key={column._id}
-                              column={column}
-                              cards={cards}
-                              selectedPriorities={selectedPriorities}
-                            />
-                          );
-                        })}
+                            return (
+                              <Columns
+                                index={index}
+                                key={column._id}
+                                column={column}
+                                cards={cards}
+                                selectedPriorities={selectedPriorities}
+                              />
+                            );
+                          })}
                         {provided.placeholder}
                       </css.UlFull>
                     )}
