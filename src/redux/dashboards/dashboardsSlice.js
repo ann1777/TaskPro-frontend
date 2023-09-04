@@ -82,32 +82,73 @@ const dashboardSlice = createSlice({
       .addCase(addColumnThunk.pending, handlePending)
       .addCase(addColumnThunk.rejected, handleRejected)
       .addCase(addColumnThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.dashboardId
-        );
-        state.dashboards[indexDashboard].push(action.payload);
+        const { dashboardId } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === dashboardId) {
+            return {
+              ...dashboard,
+              columns: [...dashboard.columns, action.payload],
+            };
+          }
+          return dashboard;
+        });
+
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       })
       .addCase(updateColumnThunk.pending, handlePending)
       .addCase(updateColumnThunk.rejected, handleRejected)
       .addCase(updateColumnThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.dashboardId
-        );
-        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
-          (item) => item._id === action.payload._id
-        );
-        state.dashboards[indexDashboard].columns[indexColumn] = action.payload;
+        const { dashboardId, _id: columnId } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === dashboardId) {
+            const updatedColumns = dashboard.columns.map((column) => {
+              if (column._id === columnId) {
+                return {
+                  ...column,
+                  ...action.payload,
+                };
+              }
+              return column;
+            });
+
+            return {
+              ...dashboard,
+              columns: updatedColumns,
+            };
+          }
+          return dashboard;
+        });
+
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       })
       .addCase(deleteColumnThunk.pending, handlePending)
       .addCase(deleteColumnThunk.rejected, handleRejected)
       .addCase(deleteColumnThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.dashboardId
-        );
-        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
-          (item) => item._id === action.payload.columnId
-        );
-        state.dashboards[indexDashboard].splice(indexColumn, 1);
+        const { dashboardId, deletedColumnId } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === dashboardId) {
+            const updatedColumns = dashboard.columns.filter(
+              (column) => column._id !== deletedColumnId
+            );
+
+            return {
+              ...dashboard,
+              columns: updatedColumns,
+            };
+          }
+          return dashboard;
+        });
+
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       })
       .addCase(fetchAllCardsThunk.pending, handlePending)
       .addCase(fetchAllCardsThunk.rejected, handleRejected)
@@ -118,77 +159,141 @@ const dashboardSlice = createSlice({
       .addCase(addCardThunk.pending, handlePending)
       .addCase(addCardThunk.rejected, handleRejected)
       .addCase(addCardThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.dashboardId
-        );
-        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
-          (item) => item._id === action.payload.columnId
-        );
-        state.dashboards[indexDashboard].columns[indexColumn].push(
-          action.payload
-        );
+        const { dashboardId, columnId } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === dashboardId) {
+            const updatedColumns = dashboard.columns.map((column) => {
+              if (column._id === columnId) {
+                return {
+                  ...column,
+                  cards: [...column.cards, action.payload],
+                };
+              }
+              return column;
+            });
+            return {
+              ...dashboard,
+              columns: updatedColumns,
+            };
+          }
+          return dashboard;
+        });
+
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       })
       .addCase(updateCardThunk.pending, handlePending)
       .addCase(updateCardThunk.rejected, handleRejected)
       .addCase(updateCardThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.dashboardId
-        );
-        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
-          (item) => item._id === action.payload.columnId
-        );
-        const indexCard = state.dashboards[indexDashboard].columns[
-          indexColumn
-        ].cards.findIndex((item) => item._id === action.payload._id);
-        state.dashboards[indexDashboard].columns[indexColumn].cards[indexCard] =
-          action.payload;
+        const { dashboardId, columnId, _id: cardId } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === dashboardId) {
+            const updatedColumns = dashboard.columns.map((column) => {
+              if (column._id === columnId) {
+                const updatedCards = column.cards.map((card) => {
+                  if (card._id === cardId) {
+                    return {
+                      ...card,
+                      ...action.payload,
+                    };
+                  }
+                  return card;
+                });
+
+                return {
+                  ...column,
+                  cards: updatedCards,
+                };
+              }
+              return column;
+            });
+
+            return {
+              ...dashboard,
+              columns: updatedColumns,
+            };
+          }
+          return dashboard;
+        });
+
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       })
       .addCase(deleteCardThunk.pending, handlePending)
       .addCase(deleteCardThunk.rejected, handleRejected)
       .addCase(deleteCardThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.dashboardId
-        );
-        const indexColumn = state.dashboards[indexDashboard].columns.findIndex(
-          (item) => item._id === action.payload.columnId
-        );
-        const indexCard = state.dashboards[indexDashboard].columns[
-          indexColumn
-        ].cards.findIndex((item) => item._id === action.payload.cardId);
-        state.dashboards[indexDashboard].columns[indexColumn].splice(
-          indexCard,
-          1
-        );
+        const { dashboardId, columnId, cardId } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === dashboardId) {
+            const updatedColumns = dashboard.columns.map((column) => {
+              if (column._id === columnId) {
+                const updatedCards = column.cards.filter(
+                  (card) => card._id !== cardId
+                );
+                return {
+                  ...column,
+                  cards: updatedCards,
+                };
+              }
+              return column;
+            });
+            return {
+              ...dashboard,
+              columns: updatedColumns,
+            };
+          }
+          return dashboard;
+        });
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       })
       .addCase(updateCardColumnThunk.pending, handlePending)
       .addCase(updateCardColumnThunk.rejected, handleRejected)
       .addCase(updateCardColumnThunk.fulfilled, (state, action) => {
-        const indexDashboard = state.dashboards.findIndex(
-          (item) => item._id === action.payload.data.dashboardId
-        );
+        const { columnId: oldColumnId, data: cardData } = action.payload;
+        const updatedDashboards = state.dashboards.map((dashboard) => {
+          if (dashboard._id === cardData.dashboardId) {
+            const updatedColumns = dashboard.columns.map((column) => {
+              if (column._id === oldColumnId) {
+                const updatedCards = column.cards.filter(
+                  (card) => card._id !== cardData._id
+                );
 
-        const indexOldColumn = state.dashboards[
-          indexDashboard
-        ].columns.findIndex((item) => item._id === action.payload.columnId);
+                return {
+                  ...column,
+                  cards: updatedCards,
+                };
+              }
 
-        const indexNewColumn = state.dashboards[
-          indexDashboard
-        ].columns.findIndex(
-          (item) => item._id === action.payload.data.columnId
-        );
+              if (column._id === cardData.columnId) {
+                return {
+                  ...column,
+                  cards: [...column.cards, cardData],
+                };
+              }
 
-        const indexCard = state.dashboards[indexDashboard].columns[
-          indexOldColumn
-        ].cards.findIndex((item) => item._id === action.payload.data._id);
+              return column;
+            });
 
-        state.dashboards[indexDashboard].columns[indexOldColumn].splice(
-          indexCard,
-          1
-        );
+            return {
+              ...dashboard,
+              columns: updatedColumns,
+            };
+          }
 
-        state.dashboards[indexDashboard].columns[indexNewColumn].push(
-          action.payload.data
-        );
+          return dashboard;
+        });
+
+        return {
+          ...state,
+          dashboards: updatedDashboards,
+        };
       });
   },
 });
