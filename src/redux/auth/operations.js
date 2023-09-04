@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: "https://taskpro-backend-c73a.onrender.com/",
 });
 

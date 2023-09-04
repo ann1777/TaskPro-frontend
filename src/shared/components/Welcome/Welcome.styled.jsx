@@ -62,9 +62,8 @@ export const AboutText = styled.p`
   text-align: center;
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.28; /* 128.571% */
+  line-height: 1.28;
   letter-spacing: -0.28px;
-
   width: calc(100vw - 40px);
   @media screen and (min-width: ${breakpoints.tablet}) {
     width: 473px;

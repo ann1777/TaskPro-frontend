@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   TitleHelp,
   StyledForm,
@@ -15,18 +16,21 @@ import {
   LabelRadiobutton,
 } from './CardModal.styled';
 import { Formik, ErrorMessage } from 'formik';
-import axios from 'axios';
 import { getPriorityStyles } from '../../../../hepers/getPriorityStyles';
 import TaskCalendar from '../../TaskCalendar/TaskCalendar';
+import { addCardThunk, updateCardThunk } from '../../../../redux/dashboards/operations';
 
 function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
-  console.log("columnIdQQQQQ:", columnId)
   const labels = [
     { value: 'low' },
     { value: 'medium' },
     { value: 'high' },
     { value: 'without' },
   ];
+  
+
+  const dispatch = useDispatch();
+  const card = useSelector(state => state.dashboards.singleCard);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedPriority, setSelectedPriority] = useState('');
@@ -39,58 +43,41 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
     setSelectedPriority(value);
   };
 
+  const idColumn = columnId
+        console.log(idColumn)
+
   const handleSubmit = async (values, { setSubmitting }) => {
-  try {
-    const token = localStorage.getItem('accessToken');
+    try {
+      const cardData = {
+        title: values.Title,
+        description: values.Desc,
+        priority: selectedPriority,
+        deadline: selectedDate,
+      };
 
-    const payload = {
-      title: values.Title,
-      description: values.Desc,
-      priority: selectedPriority,
-      deadline: selectedDate,
-    };
+      if (isEditMode) {
+        
+        dispatch(updateCardThunk({ columnId: idColumn, cardId, updateData: cardData  }));
+      } else {
+        
+       dispatch(addCardThunk({ columnId: idColumn, cardData: cardData }));
+      }
 
-    let response;
-    if (isEditMode) { 
-      response = await axios.put(
-        `https://taskpro-backend-c73a.onrender.com/api/card/${columnId}/${cardId}`,
-        payload,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-        }
-      );
-    } else {
-      response = await axios.post(
-        `https://taskpro-backend-c73a.onrender.com/api/card/${columnId}`,
-        payload,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-        }
-      );
+      onCloseModal();
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setSubmitting(false);
     }
+  };
 
-    console.log('Ответ от бекенда:', response.data);
-     onCloseModal();
-  } catch (error) {
-    console.error('Error:', error);
-  } finally {
-    setSubmitting(false);
-  }
-};
   return (
     <>
       <TitleHelp>{isEditMode ? 'Edit card' : 'Add card'}</TitleHelp>
       <Formik
         initialValues={{
-          Title: '',
-          Desc: '',
-          
+          Title: isEditMode && card ? card.title : '',
+          Desc: isEditMode && card ? card.description : '',
         }}
         onSubmit={handleSubmit}
       >

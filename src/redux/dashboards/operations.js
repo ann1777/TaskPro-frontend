@@ -1,9 +1,16 @@
-import axios from "axios";
+// import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+// import { useSelector } from "react-redux";
+import { instance } from "../auth/operations";
+// import { selectToken } from "../auth/authSelectors";
 
-const instance = axios.create({
-  baseURL: "https://taskpro-backend-c73a.onrender.com/",
-});
+// const token = useSelector(() => state.auth.token);
+
+// const instance = axios.create({
+//   baseURL: "https://taskpro-backend-c73a.onrender.com/",
+// });
+
+// instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 
 export const fetchAllDashboardsThunk = createAsyncThunk(
   "dashboards/fetchAll",
@@ -21,8 +28,8 @@ export const getDashboardByIdThunk = createAsyncThunk(
   "dashboards/getSingleDashboard",
   async (dashboardId, { rejectWithValue }) => {
     try {
-      await instance.get(`api/dashboard/${dashboardId}`);
-      return dashboardId;
+     const response = await instance.get(`api/dashboard/${dashboardId}`);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -87,8 +94,8 @@ export const getColumnByIdThunk = createAsyncThunk(
   "columns/getSingleColumn",
   async (columnId, { rejectWithValue }) => {
     try {
-      await instance.get(`api/column/${columnId}`);
-      return columnId;
+     const response =  await instance.get(`api/column/${columnId}`);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -153,10 +160,10 @@ export const fetchAllCardsThunk = createAsyncThunk(
 
 export const getCardByIdThunk = createAsyncThunk(
   "cards/getSingleCard",
-  async (cardId, { rejectWithValue }) => {
+  async ({columnId, cardId}, { rejectWithValue }) => {
     try {
-      await instance.get(`api/cards/${cardId}`);
-      return cardId;
+     const response =  await instance.get(`api/card/${columnId}/${cardId}`);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -165,10 +172,10 @@ export const getCardByIdThunk = createAsyncThunk(
 
 export const addCardThunk = createAsyncThunk(
   "cards/addCard",
-  async (payload, { rejectWithValue }) => {
+  async ({columnId, cardData}, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post(`api/card/${payload.columnId}`, {
-        ...payload,
+      const { data } = await instance.post(`api/card/${columnId}`, {
+        ...cardData,
       });
       return data;
     } catch (error) {
@@ -176,6 +183,7 @@ export const addCardThunk = createAsyncThunk(
     }
   }
 );
+
 
 export const deleteCardThunk = createAsyncThunk(
   "cards/deleteCard",

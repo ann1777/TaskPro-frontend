@@ -7,9 +7,36 @@ import {
   SendButton,
   Textarea,
 } from './NeedHelp.styled';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 
 function NeedHelp({ onClose }) {
+  
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      const response = await fetch(`https://taskpro-backend-c73a.onrender.com/api/auth/help`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email.');
+      }
+
+      const responseData = await response.json();
+      console.log(responseData.message);
+      onClose(); 
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
+    setSubmitting(false); 
+  };
+
   return (
     <>
       <TitleHelp>Need help</TitleHelp>
@@ -18,9 +45,10 @@ function NeedHelp({ onClose }) {
           email: '',
           comment: '',
         }}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <StyledForm onChange={() => setErrorMessage(null)}>
+          <Form as={StyledForm}>
             <FormField>
               <InputField
                 autoFocus
@@ -38,10 +66,10 @@ function NeedHelp({ onClose }) {
               />
               <ErrorMessage name='comment' component='div' />
             </FormField>
-            <SendButton disabled={isSubmitting} onSubmit={onClose}>
+            <SendButton type="submit" disabled={isSubmitting}>
               Send
             </SendButton>
-          </StyledForm>
+          </Form>
         )}
       </Formik>
     </>

@@ -16,6 +16,7 @@ export const Sidebar = ({
   onOpenCreateBoard,
   onOpenHelp,
   onOpenEditDashBoard,
+  openDeleteModal,
 }) => {
   const activeUserTheme = useSelector(selectUserTheme);
   return (
@@ -33,7 +34,7 @@ export const Sidebar = ({
 
       <CreateBoard onOpenCreateBoard={onOpenCreateBoard} />
 
-      <BoardList onOpenEditDashBoard={onOpenEditDashBoard} />
+      <BoardList onOpenEditDashBoard={onOpenEditDashBoard} openDeleteModal={openDeleteModal} />
 
       <div style={{ bottom: "0", left: "0", position: "relative" }}>
       
@@ -50,4 +51,5 @@ Sidebar.propTypes = {
   onOpenCreateBoard: PropTypes.func.isRequired,
   onOpenHelp: PropTypes.func.isRequired,
   onOpenEditDashBoard: PropTypes.func.isRequired,
+  OpenDeleteModal: PropTypes.func.isRequired,
 };

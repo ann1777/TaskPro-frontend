@@ -1,3 +1,14 @@
+import { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { Formik, ErrorMessage } from "formik";
+import * as yup from "yup";
+
+import NavAuth from "../Navigation/NavAuth.jsx";
+import { signin } from "../../../redux/auth/operations.js";
+
 import {
   StyledInputAuth,
   StyledFormAuth,
@@ -12,29 +23,30 @@ import {
   StyledEyeIcon,
   StyledEyeIconVis,
 } from "./Login.styled.jsx";
-import { Formik, ErrorMessage } from "formik";
-import * as yup from "yup";
-import { useState } from "react";
-import { signin } from "../../../redux/auth/operations.js";
-import { useDispatch } from "react-redux";
-import NavAuth from "../Navigation/NavAuth.jsx";
-import { useNavigate } from "react-router-dom";
-import React from "react";
 
 let schema = yup.object({
   password: yup
     .string()
     .required("Please enter a password")
     .min(8, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols")
-    .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])/, "a-z and 0-9"),
+    .max(64, "Max length 64 symbols")
+    .matches(
+      /^[a-zA-Z0-9!@#$%^&*()_+[\]{}|;':",.<>?`~\-=_]+$/,
+      "Invalid characters in password"
+    )
+    .test(
+      "no-spaces",
+      "Password cannot contain spaces",
+      (value) => !/\s/.test(value)
+    ),
 
   email: yup
     .string()
     .required("Please enter an email")
-    .email("Enter a correct email")
-    .min(8, "Min length 8 symbols")
-    .max(32, "Max length 32 symbols"),
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      "Enter a valid email address"
+    ),
 });
 
 const initialValues = {

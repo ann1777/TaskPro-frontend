@@ -29,6 +29,7 @@ export const light = {
     btnAccentText: "#161616",
     btnAdd: "#BEDBB0",
     textCard: "rgba(22, 22, 22, 0.70)",
+    filterText: "rgba(22, 22, 22, 0.80)",
     textCardNew: "#161616",
     btnAddColumn: "#ffffff",
     btnAddColumnPlus: "#161616",
@@ -44,6 +45,11 @@ export const light = {
     scrollbarTrack: "#E8E8E8",
     scrollbarThumb: "rgba(22, 22, 22, 0.10)",
 
+    filterBack: "#FCFCFC",
+
+    hoverBtn: "#9DC888",
+    hoverBtnSvg: "#BEDBB0",
+    colorWithout: "rgba(22, 22, 22, 0.30)",
 
     iconAndSubTextMain: "rgba(22, 22, 22, 0.50)",
     textCardMain: "rgba(22, 22, 22, 0.70)",
@@ -53,13 +59,10 @@ export const light = {
     scrollLineColor: "#E8E8E8",
     scrollColor: "rgba(22, 22, 22, 0.10)",
     btnAccentBackground: "#BEDBB0",
-   
-
-
-
 
     // MODAL
-
+    inputModal: "#BEDBB0",
+    inputModalActive: "#9DC888",
     backgroundColorModal: "#FCFCFC",
     textColorModal: "#161616",
     textSecondModal: "rgba(22, 22, 22, 0.50)",
@@ -100,6 +103,7 @@ export const dark = {
     btnAccentText: "#ffffff",
     btnAdd: "#BEDBB0",
     textCard: "rgba(255, 255, 255, 0.50)",
+    filterText: "rgba(255, 255, 255, 0.80)",
     textCardNew: "#FFFFFF",
     btnAddColumn: "#121212",
     btnAddColumnPlus: "#ffffff",
@@ -115,6 +119,10 @@ export const dark = {
     scrollbarTrack: "rgba(255, 255, 255, 0.08)",
     scrollbarThumb: "#121212",
 
+    filterBack: "#151515",
+    hoverBtn: "#9DC888",
+    hoverBtnSvg: "#BEDBB0",
+    colorWithout: "rgba(255, 255, 255, 0.30)",
 
     iconAndSubTextMain: "rgba(22, 22, 22, 0.50)",
     textCardMain: "rgba(22, 22, 22, 0.70)",
@@ -124,10 +132,10 @@ export const dark = {
     scrollLineColor: "#FFF",
     scrollColor: "#B8BCFD",
     btnAccentBackground: "#5255BC",
-   
 
     // MODAL
-
+    inputModal: "#9DC888",
+    inputModalActive: "#BEDBB0",
     backgroundColorModal: "#151515",
     textColorModal: "#FFF",
     textSecondModal: "#FFF",
@@ -169,10 +177,11 @@ export const color = {
     btnAccentText: "#161616",
     btnAdd: "#5255BC",
     textCard: "rgba(22, 22, 22, 0.70)",
+    filterText: "rgba(22, 22, 22, 0.80)",
     textCardNew: "#161616",
     btnAddColumn: "#ffffff",
     btnAddColumnPlus: "#5255BC",
-    btnAddCardPlus: "#ffffff",  
+    btnAddCardPlus: "#ffffff",
     backgroundAll: "#ffffff",
     colorPlus: "#161616;",
     colorPlusColumn: "#ffffff",
@@ -184,9 +193,12 @@ export const color = {
     scrollbarTrack: "#FFF",
     scrollbarThumb: "#B8BCFD",
 
+    filterBack: "#FCFCFC",
+    hoverBtn: "#7B7EDE",
+    hoverBtnSvg: "#5255BC",
 
+    colorWithout: "rgba(22, 22, 22, 0.30)",
 
-    
     iconAndSubTextMain: "rgba(255, 255, 255, 0.50)",
     textCardMain: "rgba(255, 255, 255, 0.50)",
     backgroundMain: "#ECEDFD",
@@ -195,7 +207,6 @@ export const color = {
     scrollLineColor: "#FFF",
     scrollColor: "#121212",
     btnAccentBackground: "#BEDBB0",
-   
 
     // MODAL
 
@@ -203,10 +214,12 @@ export const color = {
     textColorModal: "#161616",
     textSecondModal: "rgba(22, 22, 22, 0.50)",
     borderColorModal: "1px solid #5255BC",
-    btnModal: "#FFF",
+    btnModal: "#5255BC",
     btnModalActive: "#B8BCFD",
+    inputModal: "#B8BCFD",
+    inputModalActive: "#5255BC",
     plusBtnColorModal: "#FFF",
-    plusBtnBackgroundModal: "#B8BCFD",
+    plusBtnBackgroundModal: "#161616",
   },
 };
 

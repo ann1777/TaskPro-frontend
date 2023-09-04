@@ -1,9 +1,10 @@
-import axios from 'axios';
-import { Formik, Form } from 'formik';
-import icon from '../../../images/icons.svg';
-import data from '../../../../hepers/background.json'; 
-import PropTypes from 'prop-types';
-
+import { Formik, Form } from "formik";
+import icon from "../../../images/icons.svg";
+import data from "../../../../hepers/background.json";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { addDashboardThunk, updateDashboardThunk, getDashboardByIdThunk  } from "../../../../redux/dashboards/operations";
 import {
   TitleHelp,
   FormField,
@@ -16,79 +17,83 @@ import {
   Svg,
   BoardText,
   RadioField,
-} from './BoardModal.styled';
+  RowBack,
+} from "./BoardModal.styled";
 
 const BOARD_ICONS = [
-  'icon-Project',
-  'icon-star-04',
-  'icon-loading-03',
-  'icon-puzzle-piece-02',
-  'icon-container',
-  'icon-lightning-02',
-  'icon-colors',
-  'icon-hexagon-01',
+  "icon-Project",
+  "icon-star-04",
+  "icon-loading-03",
+  "icon-puzzle-piece-02",
+  "icon-container",
+  "icon-lightning-02",
+  "icon-colors",
+  "icon-hexagon-01",
 ];
+const initialValues = {
+    title: "",
+    icon: BOARD_ICONS[0],
+    background: data[0].icon
+  };
+
 
 function BoardModal({ onClose, isEditMode, dashboardId }) {
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      console.log("Submitting values:", values);
-
-      const token = localStorage.getItem('accessToken'); 
-      let response;
-
-           if (isEditMode) {
-          response = await axios.put(
-        `https://taskpro-backend-c73a.onrender.com/api/dashboard/${dashboardId}`,
-        values,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  const [dashboardData, setDashboardData] = useState();
+  const [formInitialValues, setFormInitialValues] = useState(initialValues);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (isEditMode && dashboardId) {
+      dispatch(getDashboardByIdThunk(dashboardId))
+        .unwrap()
+        .then(data => {
+          setDashboardData(data);
+          setFormInitialValues({
+            title: data.title,
+            icon: data.icon,
+            background: data.background
+          });
+        })
+        .catch(error => {
+          console.error("Ошибка при загрузке данных доски:", error);
+        });
     } else {
-      response = await axios.post(
-        'https://taskpro-backend-c73a.onrender.com/api/dashboard/',
-        values,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-        }
-        console.log('Response from the server:', response.data);
+      setFormInitialValues(initialValues);
+    }
+  }, [isEditMode, dashboardId, dispatch]);
 
-      if (response.status === 200 || response.status === 201) {
-        console.log(isEditMode ? "Доска обновлена" : "Доска создана");
-        onClose();
-      } else {
-        console.error("Неожиданный ответ от сервера:", response);
-      }
-    } catch (error) {
-      console.error(isEditMode ? "Ошибка при обновлении доски:" : "Ошибка при создании доски:", error);
-    } finally {
-      setSubmitting(false);
+  const handleSubmit = async (values) => {
+    if (isEditMode) {
+      const updateData = {
+        ...values,
+      };
+      dispatch(updateDashboardThunk({ dashboardId, updateData })).then(handleFormClose());
+    } else {
+      dispatch(addDashboardThunk(values)).then(handleFormClose());
     }
   };
 
-  return (
-    <>
+  const handleFormClose = () => {
+    setDashboardData(null);
+    onClose();
+  };
+    return (
+    <div>
       <TitleHelp>{isEditMode ? "Edit board" : "New board"}</TitleHelp>
-
-      <Formik
-        initialValues={{
-          title: '',
-         
-          icon: BOARD_ICONS[0],
-        }}
-        onSubmit={handleSubmit}
-      >
+       <Formik
+        key={formInitialValues.title}
+      initialValues={formInitialValues}
+      onSubmit={handleSubmit}
+    >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <FormField>
-              <InputField autoFocus name="title" component="input" placeholder="Title" />
+              <InputField
+                autoFocus
+                name="title"
+                component="input"
+                placeholder="Title"
+              />
             </FormField>
 
             <BoardText>Icons</BoardText>
@@ -106,30 +111,39 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
             </Row>
 
             <BoardText>Background</BoardText>
-           <Row>
-  {data.map((item, index) => (
-    <RadioLabel key={index} onClick={() => setFieldValue("background", item.icon)}>
-      <RadioField name="background" type="radio" value={item.icon} />
-      <BackgroundIcon 
-        src={item.icon} 
-        alt={`Background ${index + 1}`} 
-        isSelected={values.background === item.icon}
-      />
-    </RadioLabel>
-  ))}
-</Row>
+            <RowBack>
+              {data.map((item, index) => (
+                <RadioLabel
+                  key={index}
+                  onClick={() => setFieldValue("background", item.icon)}
+                >
+                  <RadioField
+                    name="background"
+                    type="radio"
+                    value={item.icon}
+                  />
+                  <BackgroundIcon
+                    src={item.icon}
+                    alt={`Background ${index + 1}`}
+                    isSelected={values.background === item.icon}
+                  />
+                </RadioLabel>
+              ))}
+            </RowBack>
 
-            <SubmitButton type="submit" disabled={isSubmitting}>Create</SubmitButton>
+            <SubmitButton type="submit" disabled={isSubmitting}>
+              {isEditMode ? "Update" : "Create"}
+            </SubmitButton>
           </Form>
         )}
       </Formik>
-    </>
+    </div>
   );
 }
 BoardModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool,
-  dashboardId: PropTypes.string
+  dashboardId: PropTypes.string,
 };
 
-export default BoardModal;
+export default BoardModal 
