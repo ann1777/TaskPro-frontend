@@ -1,25 +1,21 @@
-import icon from '../../images/icons.svg';
-import PropTypes from 'prop-types';
-import { StyledButton, StyledIcon, Svg } from './Button.styled';
+import icon from "../../images/icons.svg";
+import PropTypes from "prop-types";
+import { StyledButton, StyledIcon, Svg } from "./Button.styled";
 
 export const Button = ({
-  type = 'submit',
+  type = "submit",
   svg = true,
   onClick,
   children,
   ...allyProps
 }) => {
-
-
   return (
     <StyledButton type={type} {...allyProps}>
       {svg && (
         <StyledIcon>
-          (
-          <Svg width='28' height='28'>
+          <Svg width="14" height="14">
             <use xlinkHref={`${icon}#icon-plus`} />
           </Svg>
-          )
         </StyledIcon>
       )}
       {children}

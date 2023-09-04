@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledButton = styled.button`
   display: flex;
@@ -10,8 +10,14 @@ export const StyledButton = styled.button`
   font-family: var(--fontFamily);
   font-weight: var(--fontWeight500);
   border: none;
-  background-color: #BEDBB0;
+  background-color: ${({ theme }) => theme.colors.btnModal};
   border-radius: 8px;
+  transition: all 250ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.btnModalActive};
+  }
 `;
 
 export const StyledIcon = styled.span`
@@ -21,12 +27,10 @@ export const StyledIcon = styled.span`
   width: 28px;
   height: 28px;
   margin-right: 8px;
- stroke: #fff;
- background-color: #000;
- border-radius: 6px;
-
+  background-color: ${({ theme }) => theme.colors.plusBtnColorModal};
+  border-radius: 6px;
 `;
 
 export const Svg = styled.svg`
-  fill: #000;
+  stroke: ${({ theme }) => theme.colors.plusBtnBackgroundModal};
 `;
