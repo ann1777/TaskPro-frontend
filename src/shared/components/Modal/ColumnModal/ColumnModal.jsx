@@ -1,14 +1,11 @@
-
 import { TitleHelp, StyledForm, FormField, InputField, SubmitButton } from './ColumnModal.styled';
 import { Formik, ErrorMessage } from 'formik';
-
 import PropTypes from 'prop-types';
 import { addColumnThunk, updateColumnThunk } from '../../../../redux/dashboards/operations';
 import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
 
-
-
-function ColumnModal({ onCloseModal, isEditMode, columnId, columnTitle}) {
+function ColumnModal({ onCloseModal, isEditMode, columnId, columnTitle }) {
   const getDashboardIdFromURL = () => {
     const pathnameParts = window.location.pathname.split('/');
     const dashboardId = pathnameParts[pathnameParts.length - 1];
@@ -17,35 +14,30 @@ function ColumnModal({ onCloseModal, isEditMode, columnId, columnTitle}) {
   const dashboardId = getDashboardIdFromURL();
   
   const dispatch = useDispatch();
+  
   const handleOnSubmit = async (values) => {
-   const actualTitle = values.Title;
+    const actualTitle = values.Title;
+  
+    if (!actualTitle) {
+      toast.error("Title is required!");
+      return;
+    }
   
     if (isEditMode) {
-     const updateData = {
-       title: actualTitle,
-     
+      const updateData = {
+        title: actualTitle,
       };
-      console.log(updateData)
       dispatch(updateColumnThunk({ columnId: columnId, dashboardId, updateData }));
-      
+    } else {
+      const data = {
+        title: actualTitle,
+        dashboardId: dashboardId,
+      };
+      dispatch(addColumnThunk(data));
+    }
   
-    }
-    else {
-     
-const data = {
-  title: actualTitle,
-  dashboardId: dashboardId
-};
-
-dispatch(addColumnThunk(data));
-    }
-
-
-      onCloseModal();
-    } 
-
-    
-   
+    onCloseModal();
+  } 
 
   return (
     <>
@@ -53,7 +45,6 @@ dispatch(addColumnThunk(data));
       <Formik
         initialValues={{ Title: isEditMode ? columnTitle : '' }}
         onSubmit={handleOnSubmit}
-        
       >
         {({ isSubmitting, handleSubmit }) => (
           <StyledForm onSubmit={handleSubmit}>
@@ -80,7 +71,6 @@ ColumnModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool,
   columnId: PropTypes.string,
-  dashboardId: PropTypes.string,
   columnTitle: PropTypes.string,
 };
 

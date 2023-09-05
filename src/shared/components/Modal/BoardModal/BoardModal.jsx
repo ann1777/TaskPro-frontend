@@ -4,7 +4,7 @@ import data from "../../../../hepers/background.json";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { addDashboardThunk, updateDashboardThunk, getDashboardByIdThunk  } from "../../../../redux/dashboards/operations";
+import { addDashboardThunk, updateDashboardThunk, getDashboardByIdThunk } from "../../../../redux/dashboards/operations";
 import {
   TitleHelp,
   FormField,
@@ -19,6 +19,7 @@ import {
   RadioField,
   RowBack,
 } from "./BoardModal.styled";
+import { toast } from 'react-toastify';
 
 const BOARD_ICONS = [
   "icon-Project",
@@ -31,17 +32,16 @@ const BOARD_ICONS = [
   "icon-hexagon-01",
 ];
 const initialValues = {
-    title: "",
-    icon: BOARD_ICONS[0],
-    background: data[0].icon
-  };
-
+  title: "",
+  icon: BOARD_ICONS[0],
+  background: data[0].icon,
+};
 
 function BoardModal({ onClose, isEditMode, dashboardId }) {
   const [dashboardData, setDashboardData] = useState();
   const [formInitialValues, setFormInitialValues] = useState(initialValues);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     if (isEditMode && dashboardId) {
       dispatch(getDashboardByIdThunk(dashboardId))
@@ -63,6 +63,11 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
   }, [isEditMode, dashboardId, dispatch]);
 
   const handleSubmit = async (values) => {
+    if (!values.title) {
+      toast.error("Title is required!");
+      return;
+    }
+
     if (isEditMode) {
       const updateData = {
         ...values,
@@ -77,14 +82,15 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
     setDashboardData(null);
     onClose();
   };
-    return (
+
+  return (
     <div>
       <TitleHelp>{isEditMode ? "Edit board" : "New board"}</TitleHelp>
-       <Formik
+      <Formik
         key={formInitialValues.title}
-      initialValues={formInitialValues}
-      onSubmit={handleSubmit}
-    >
+        initialValues={formInitialValues}
+        onSubmit={handleSubmit}
+      >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <FormField>
@@ -140,10 +146,11 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
     </div>
   );
 }
+
 BoardModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool,
   dashboardId: PropTypes.string,
 };
 
-export default BoardModal 
+export default BoardModal;

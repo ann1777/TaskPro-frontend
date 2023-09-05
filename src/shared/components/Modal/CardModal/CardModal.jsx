@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserTheme } from "../../../../redux/auth/authSelectors";
 import {
   TitleHelp,
   StyledForm,
@@ -22,6 +23,7 @@ import {
   addCardThunk,
   updateCardThunk,
 } from "../../../../redux/dashboards/operations";
+import { toast } from "react-toastify";
 
 function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
   const labels = [
@@ -32,11 +34,14 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
   ];
 
   const dispatch = useDispatch();
-  
+  const activeUserTheme = useSelector(selectUserTheme);
 
- const [selectedDate, setSelectedDate] = useState(isEditMode && card ? new Date(card.deadline) : new Date());
-  const [selectedPriority, setSelectedPriority] = useState(isEditMode && card ? card.priority : "");
-
+  const [selectedDate, setSelectedDate] = useState(
+    isEditMode && card ? new Date(card.deadline) : new Date()
+  );
+  const [selectedPriority, setSelectedPriority] = useState(
+    isEditMode && card ? card.priority : ""
+  );
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -47,42 +52,49 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
   };
 
   const idColumn = columnId;
-  // console.log(idColumn);
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      const cardData = {
-        title: values.Title,
-        description: values.Desc,
-        priority: selectedPriority,
-        deadline: selectedDate,
-      };
-
-      if (isEditMode) {
-        dispatch(
-          updateCardThunk({ columnId: idColumn, cardId, updateData: cardData })
-        );
-      } else {
-        dispatch(addCardThunk({ columnId: idColumn, cardData: cardData }));
-      }
-
-      onCloseModal();
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setSubmitting(false);
+ const handleSubmit = async (values, { setSubmitting }) => {
+  try {
+    if (!values.Title) {
+      toast.error("Card title is required!");
+      return;
     }
-  };
+
+    if (!selectedPriority) {
+      toast.error("Card priority is required!");
+      return;
+    }
+
+    const cardData = {
+      title: values.Title,
+      description: values.Desc,
+      priority: selectedPriority,
+      deadline: selectedDate,
+    };
+
+    if (isEditMode) {
+      dispatch(
+        updateCardThunk({ columnId: idColumn, cardId, updateData: cardData })
+      );
+    } else {
+      dispatch(addCardThunk({ columnId: idColumn, cardData: cardData }));
+    }
+
+    onCloseModal();
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <>
       <TitleHelp>{isEditMode ? "Edit card" : "Add card"}</TitleHelp>
       <Formik
         initialValues={{
-           Title: isEditMode && card ? card.title : "",
-  Desc: isEditMode && card ? card.description : "",
-  Priority: isEditMode && card ? card.priority : "",
-  Deadline: isEditMode && card ? card.deadline : new Date(),
+          Title: isEditMode && card ? card.title : "",
+          Desc: isEditMode && card ? card.description : "",
         }}
         onSubmit={handleSubmit}
       >
@@ -110,13 +122,23 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
               {labels.map(({ value }) => (
                 <div style={{ display: "flex" }} key={value}>
                   <RadioLabel
-                    backgroundColor={getPriorityStyles(value)}
+                    backgroundColor={getPriorityStyles(
+                      value,
+                      activeUserTheme
+                    )}
                     className="inputlabel"
                     onClick={() => handlePriorityChange(value)}
                   >
-                    <LabelRadiobutton name="label" type="radio" value={value} />
+                    <LabelRadiobutton
+                      name="label"
+                      type="radio"
+                      value={value}
+                    />
                     <Checkmark
-                      backgroundColor={getPriorityStyles(value)}
+                      backgroundColor={getPriorityStyles(
+                        value,
+                        activeUserTheme
+                      )}
                       checked={selectedPriority === value}
                     />
                   </RadioLabel>
