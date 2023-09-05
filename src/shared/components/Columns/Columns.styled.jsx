@@ -6,7 +6,7 @@ const { tablet, desktop } = breakpoints;
 
 export const UlFull = styled.ul`
 display: flex;
-gap: 15px;  
+/* gap: 15px;  
 
  @media screen and (min-width: ${tablet}) {
   
@@ -16,7 +16,7 @@ gap: 15px;
   @media screen and (min-width: ${desktop}) {
   
   gap: 26px;
-  }
+  } */
 
 `
 export const DivTitleColumn = styled.div`
@@ -117,14 +117,31 @@ cursor: pointer;
 export const LiColumn = styled.li`
 margin-right: 0px;
 max-width: 350px;
-width: 100%;`
+width: 100%;
+
+ @media screen and (min-width: 375px) {
+  margin-right: 15px;
+
+  }
+
+ @media screen and (min-width: ${tablet}) {
+  margin-right: 19px;
+ 
+  }
+
+  @media screen and (min-width: ${desktop}) {
+  margin-right: 26px;
+
+  }
+margin-right: 34px;`
 
 export const UlCard = styled.ul`
 
-max-height: 478px;
+/* max-height: 478px; */
 overflow-x: hidden;
 overflow-y: auto;
 padding-right: 4px;
+ height: 59vh;
 
 
 
