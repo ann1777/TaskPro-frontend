@@ -27,7 +27,8 @@ align-items: center;
 justify-content: space-between;
 border-radius: 8px;
 background:  ${({ theme }) => theme.colors.backgroundAll};
-width: 334px;
+max-width: 334px;
+width: 100%;
 height: 56px;
 margin-bottom: 14px;
 `
@@ -56,6 +57,7 @@ justify-content: center;
 align-items: center;
 border: none;
 width: 334px;
+
 height: 56px;
 
 font-family: Poppins;
@@ -85,7 +87,8 @@ fill: ${({ theme }) => theme.colors.colorPlus};`
 
 
 export const LiCard = styled.li`
-width: 334px;
+max-width: 334px;
+width: 100%;
 height: 154px;
 background: ${({ theme }) => theme.colors.backgroundAll};
 border-radius: 8px;
@@ -113,11 +116,12 @@ cursor: pointer;
 
 export const LiColumn = styled.li`
 margin-right: 0px;
-width: 350px;`
+max-width: 350px;
+width: 100%;`
 
 export const UlCard = styled.ul`
 
-height: 478px;
+max-height: 478px;
 overflow-x: hidden;
 overflow-y: auto;
 padding-right: 4px;
@@ -125,12 +129,12 @@ padding-right: 4px;
 
 
  @media screen and (min-width: ${tablet}) {
- height: 640px;
+ max-height: 640px;
 padding-right: 8px;
   }
 
   @media screen and (min-width: ${desktop}) {
-  height: 640px;
+  max-height: 640px;
   padding-right: 8px;
     }
         

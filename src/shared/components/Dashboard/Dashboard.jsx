@@ -38,7 +38,7 @@ const Dashboard = ({openDeleteModal}) => {
     }
 
     fetchData();
-  }, [dashboardId]);
+  }, [dashboardId, dashboards]);
 
   // useEffect(() => {
   //   dashboards.map((item) => {

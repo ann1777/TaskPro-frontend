@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState, useEffect } from "react";
 import Card from "../Card/Card";
 import CardModal from "../Modal/CardModal/CardModal";
 import { Modal } from "../Modal/Modal";
@@ -10,7 +10,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { deleteColumnThunk } from "../../../redux/dashboards/operations";
-import { useSelector } from "react-redux";
+
 
 const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) => {
   const { dashboardId } = useParams();
@@ -19,6 +19,10 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
   const [currentColumnId, setCurrentColumnId] = useState(null);
   const [openFilterMenuForCardId, setOpenFilterMenuForCardId] = useState(null);
   const dispatch = useDispatch();
+
+
+
+
   
   const handleModalOpen = (columnId) => {
     setCurrentColumnId(columnId);
@@ -37,13 +41,18 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
     setColumnModalOpen(false);
   };
 
-  const cardsFiltered = cards.filter((item) => {
+
+
+
+  const cardsFiltered = cards ? cards.filter((item) => {
     if (selectedPriorities.length === 0) {
       return true;
     } else {
       return selectedPriorities.includes(item.priority);
     }
-  });
+  }) : [];
+  console.log("cardsFiltered:", cardsFiltered)
+
 
  
 
