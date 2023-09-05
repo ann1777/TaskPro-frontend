@@ -117,7 +117,7 @@ width: 350px;`
 
 export const UlCard = styled.ul`
 
-height: 478px;
+max-height: 478px;
 overflow-x: hidden;
 overflow-y: auto;
 padding-right: 4px;
@@ -125,12 +125,12 @@ padding-right: 4px;
 
 
  @media screen and (min-width: ${tablet}) {
- height: 640px;
+ max-height: 640px;
 padding-right: 8px;
   }
 
   @media screen and (min-width: ${desktop}) {
-  height: 640px;
+  max-height: 640px;
   padding-right: 8px;
     }
         
