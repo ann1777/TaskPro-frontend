@@ -290,7 +290,7 @@ const Dashboard = () => {
                 <div>
                   <css.ButtonAddColumn onClick={handleModalOpen}>
                     <css.IconPlus />
-                    Add another column
+                    <css.AddColumnText>Add another column</css.AddColumnText>
                   </css.ButtonAddColumn>
                 </div>
               </css.DivColumns>
