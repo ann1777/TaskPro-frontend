@@ -8,6 +8,7 @@ import {
   Textarea,
 } from './NeedHelp.styled';
 import { Formik, Form, ErrorMessage } from 'formik';
+import { toast } from "react-toastify"; 
 
 function NeedHelp({ onClose }) {
   
@@ -18,7 +19,7 @@ function NeedHelp({ onClose }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-           'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(values),
       });
@@ -28,10 +29,11 @@ function NeedHelp({ onClose }) {
       }
 
       const responseData = await response.json();
-      console.log(responseData.message);
+      toast.success(responseData.message); 
       onClose(); 
     } catch (error) {
       console.error('Error:', error);
+      toast.error(`Error: ${error.message}`); 
     }
 
     setSubmitting(false); 

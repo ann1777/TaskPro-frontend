@@ -13,6 +13,9 @@ const Card = ({
   index,
   openFilterMenuForCardId,
   setOpenFilterMenuForCardId,
+  openDeleteModal,
+  dashboardId
+  
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -57,7 +60,7 @@ const Card = ({
     };
   }, [setOpenFilterMenuForCardId]);
   // ref={cardRef}
-
+  
   return (
     <Draggable draggableId={card._id} index={index} type="card">
       {(provided) => (
@@ -105,12 +108,19 @@ const Card = ({
                       cardId={card._id}
                       isEditMode={true}
                       columnId={column._id}
+                      card={card}
                     />
                   </Modal>
                 )}
-                <css.SvgAll onClick={() => deleteCard(card._id)}>
-                  <use href={sprite + "#icon-trash-04"}></use>
-                </css.SvgAll>
+                <css.SvgAll 
+  onClick={() => {
+    console.log(card._id);
+    openDeleteModal(dashboardId, column._id, card._id);
+  }}
+>
+  <use href={sprite + "#icon-trash-04"}></use>
+</css.SvgAll>
+
               </css.DivDivEditSvg>
             </css.DivDivEdit>
           </css.DivEditBefor>
@@ -126,7 +136,7 @@ Card.propTypes = {
   selectedPriorities: PropTypes.array.isRequired,
   openFilterMenuForCardId: PropTypes.string,
   setOpenFilterMenuForCardId: PropTypes.func,
-  column: PropTypes.object.isRequired,
+  columnId: PropTypes.string,
 };
 
 export default Card;

@@ -12,7 +12,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { updateCardColumnThunk } from "../../../redux/dashboards/operations";
 
-const Dashboard = () => {
+const Dashboard = ({openDeleteModal}) => {
   const { dashboardId } = useParams();
   const [dashboard, setDashboard] = useState({});
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
@@ -278,6 +278,7 @@ const Dashboard = () => {
                                 column={column}
                                 cards={cards}
                                 selectedPriorities={selectedPriorities}
+                                openDeleteModal={openDeleteModal}
                               />
                             );
                           })}

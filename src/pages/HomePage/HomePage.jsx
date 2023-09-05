@@ -22,13 +22,17 @@ export const HomePage = () => {
   const [helpModalOpen, setHelpModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDashboardId, setSelectedDashboardId] = useState(null);
+  const [selectedColumnId, setSelectedColumnId] = useState(null);
+  const [selectedCardId, setSelectedCardId] = useState(null);
 
   const toggleModal = () => {
     setModalOpen(true);
   };
 
-  const openDeleteModal = (dashboardId) => {
-  setSelectedDashboardId(dashboardId);
+  const openDeleteModal = ( dashboardId, columnId, cardId ) => {
+    setSelectedDashboardId(dashboardId);
+    setSelectedColumnId(columnId);
+    setSelectedCardId(cardId)
   setDeleteModalOpen(true);
   }
   
@@ -81,6 +85,7 @@ export const HomePage = () => {
               onOpenEditDashBoard={handleModalOpen}
               isOpen={isOpen}
               onOpenHelp={openHelpModal}
+              openDeleteModal={openDeleteModal}
             />
             <Overlay closeSidebar={close} isOpen={isOpen} />
           </>
@@ -98,7 +103,7 @@ export const HomePage = () => {
 
         {deleteModalOpen && (
   <Modal onClose={() => setDeleteModalOpen(false)}>
-    <DeleteModal onCloseModal={() => setDeleteModalOpen(false)} dashboardId={selectedDashboardId} />
+    <DeleteModal onCloseModal={() => setDeleteModalOpen(false)} dashboardId={selectedDashboardId} columnId={selectedColumnId} cardId={selectedCardId} />
   </Modal>
 )}
         
@@ -118,7 +123,7 @@ export const HomePage = () => {
         )}
         <css.HeadBoardDIv>
           <Header isOpen={isOpen} openSidebar={open} />
-          <Dashboard />
+          <Dashboard openDeleteModal={openDeleteModal} />
         </css.HeadBoardDIv>
       </css.FlexDiv>
     </>
