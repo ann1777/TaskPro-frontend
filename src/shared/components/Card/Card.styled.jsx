@@ -51,7 +51,8 @@ padding-right: 4px;
 
 
 export const LiCard = styled.li`
-width: 334px;
+max-width: 334px;
+width: 100%;
 height: 154px;
 position: relative;
 background: ${({ theme }) => theme.colors.backgroundAll};
