@@ -20,6 +20,8 @@ Project terms of reference: [https://docs.google.com/spreadsheets/d/1zaiiXTcm5e2
 
 This is a link to the Project backend repository: [![GitHub Backend part](https://github.com/ann1777/TaskPro-backend)]
 
+Project deploy vercel summary: [https://vercel.com/ann1777/task-pro-frontend/B7pTPfgLAzmCG31ruE4nksveFd6d]
+
 Project deploy page: [https://task-pro-frontend.vercel.app/]
 
 ## Technologies Used
