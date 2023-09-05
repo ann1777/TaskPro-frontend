@@ -93,26 +93,6 @@ const Card = ({
                     <use href={sprite + "#icon-bell-01"}></use>
                   </css.SvgBell>
                 )}
-                <css.SvgAll
-                  onClick={() => {
-                    handleFilterMenuOpen(card._id);
-                  }}
-                >
-                  <use href={sprite + "#icon-arrow-circle-broken-right"}></use>
-                </css.SvgAll>
-                {openFilterMenuForCardId === card._id && (
-                  <css.FilterMenu>
-                    <css.ColumnsDiv>
-                      {column.title}
-                      <css.SvgAll>
-                        <use
-                          onClick={() => handleFilterMenuOpen(card._id)}
-                          href={sprite + "#icon-arrow-circle-broken-right"}
-                        ></use>
-                      </css.SvgAll>
-                    </css.ColumnsDiv>
-                  </css.FilterMenu>
-                )}
 
                 <css.SvgAll onClick={handleModalOpen}>
                   <use href={sprite + "#icon-pencil-01"}></use>

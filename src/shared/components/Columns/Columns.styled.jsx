@@ -10,7 +10,7 @@ gap: 15px;
 
  @media screen and (min-width: ${tablet}) {
   
-  gap: 26px;  
+  gap: 18px;  
   }
 
   @media screen and (min-width: ${desktop}) {

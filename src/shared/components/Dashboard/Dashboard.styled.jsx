@@ -5,17 +5,17 @@ import { breakpoints } from "../styles/breakpoints";
 const { tablet, desktop } = breakpoints;
 
 export const DivFull = styled.div`
-padding: 14px 20px;
-background: url(${props => props.imgUrl}) no-repeat center center;
+padding: 14px  20px;
+background: url(${props => props.imgurl}) no-repeat center center;
 background-size: cover;
 
 
  @media screen and (min-width: ${tablet}) {
-     padding: 94px 32px;
+     padding: 94px  32px;
   }
 
   @media screen and (min-width: ${desktop}) {
-  padding: 84px 284px;
+  padding: 84px  284px;
     width: 100%;
     height: 100vh;
   }
@@ -27,6 +27,7 @@ export const DivText = styled.div`
 width:486px;
 height:72px;
 margin: 281px auto 0;
+color: ${({ theme }) => theme.colors.textCard};
 `
 
 export const H1 = styled.h1`
@@ -36,6 +37,9 @@ font-size: 18px;
 font-weight: 500;
 letter-spacing: -0.36px;
  margin-bottom: 39px;
+ background: ${({ theme }) => theme.colors.backgroundAll};
+    border-radius: 8px 8px 8px 8px;
+    padding: 10px 15px;
 
 @media screen and (min-width: ${tablet}) {
   
@@ -81,7 +85,7 @@ export const DivColumns = styled.div`
 display:flex;
 gap: 26px;
 width: 347px;
-
+margin: 0 auto;
     overflow-x: auto;
 
      @media screen and (min-width: ${tablet}) {
@@ -118,6 +122,8 @@ export const FilterDiv = styled.div`
   display: flex;
     justify-content: space-between;
     position: relative;
+    max-width: 1463px;
+    
 `
 
 export const FilterBtn = styled.button`
@@ -130,6 +136,9 @@ export const FilterBtn = styled.button`
     letter-spacing: -0.28px;
     gap: 8px;
     align-items: center;
+    background: ${({ theme }) => theme.colors.backgroundAll};
+    border-radius: 8px 8px 8px 8px;
+    padding: 21px;
 `
 
 export const FilterSvg = styled.svg`
@@ -297,7 +306,7 @@ gap: 15px;
 
  @media screen and (min-width: ${tablet}) {
   
-  gap: 26px;  
+  gap: 18px;  
   }
 
   @media screen and (min-width: ${desktop}) {

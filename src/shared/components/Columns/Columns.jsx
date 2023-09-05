@@ -45,6 +45,8 @@ const Columns = ({ selectedPriorities, cards, column, index }) => {
     }
   });
 
+ 
+
   const deleteColumn = (columnId) => {
     dispatch(deleteColumnThunk({ columnId, dashboardId }));
   };

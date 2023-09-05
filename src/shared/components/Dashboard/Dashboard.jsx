@@ -10,10 +10,11 @@ import { useSelector } from "react-redux";
 import { getBackgroundByIcon } from "../../../hepers/getBackgroundByIcon";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
+import { updateCardColumnThunk } from "../../../redux/dashboards/operations";
 
 const Dashboard = () => {
   const { dashboardId } = useParams();
-  const [dashboard, setDashboard] = useState([]);
+  const [dashboard, setDashboard] = useState({});
   const [isAddBoardOpen, setIsAddBoardOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -37,7 +38,7 @@ const Dashboard = () => {
     }
 
     fetchData();
-  }, [dashboardId, dashboards, dashboard]);
+  }, [dashboardId]);
 
   // useEffect(() => {
   //   dashboards.map((item) => {
@@ -96,78 +97,93 @@ const Dashboard = () => {
 
   const onDragEnd = ({ destination, source, draggableId, type }) => {
     if (!destination) return;
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
 
-    const start = dashboard.columns[source.droppableId];
-    const end = dashboard.columns[destination.droppableId];
+    const startColumn = dashboard.columns.find(
+      (column) => column._id === source.droppableId
+    );
+    const endColumn = dashboard.columns.find(
+      (column) => column._id === destination.droppableId
+    );
 
     if (type === "column") {
-      console.log(destination, source, draggableId);
-      const newOrder = [...dashboard.columnOrder];
-      newOrder.splice(source.index, 1);
-      newOrder.splice(destination.index, 0, draggableId);
+      const newOrder = [...dashboard.columns];
+      const [movedColumn] = newOrder.splice(source.index, 1);
+      newOrder.splice(destination.index, 0, movedColumn);
 
       setDashboard({
         ...dashboard,
-        columnOrder: newOrder,
+        columns: newOrder,
       });
       return;
     }
 
-    if (start === end) {
-      const column = dashboard.columns[source.droppableId];
-      const cards = [...column.cards];
+    const cardToMove = startColumn.cards.find(
+      (card) => card._id === draggableId
+    );
+
+    if (startColumn === endColumn) {
+      const cards = [...startColumn.cards];
+      console.log(cards.title);
       cards.splice(source.index, 1);
-      cards.splice(destination.index, 0, draggableId);
-      const newColumn = {
-        ...column,
+      cards.splice(destination.index, 0, cardToMove);
+      const updatedStartColumn = {
+        ...startColumn,
         cards,
       };
+
+      const updatedColumns = dashboard.columns.map((column) =>
+        column._id === source.droppableId ? updatedStartColumn : column
+      );
+
       setDashboard({
         ...dashboard,
-        columns: {
-          ...dashboard.columns,
-          [column.id]: newColumn,
-        },
+        columns: updatedColumns,
       });
-      return;
+
+      
+
+    } else {
+      const startCards = [...startColumn.cards];
+      const endCards = [...endColumn.cards];
+      startCards.splice(source.index, 1);
+      endCards.splice(destination.index, 0, cardToMove);
+
+      const updatedStartColumn = {
+        ...startColumn,
+        cards: startCards,
+      };
+
+      const updatedEndColumn = {
+        ...endColumn,
+        cards: endCards,
+      };
+
+      const updatedColumns = dashboard.columns.map((column) => {
+        if (column._id === source.droppableId) {
+          return updatedStartColumn;
+        } else if (column._id === destination.droppableId) {
+          return updatedEndColumn;
+        }
+        return column;
+      });
+
+      setDashboard({
+        ...dashboard,
+        columns: updatedColumns,
+      });
+      dispatch(updateCardColumnThunk({
+       
+        columnId: source.droppableId,
+        cardId: draggableId,
+        newColumnId: destination.droppableId,
+        title: cardToMove.title,
+        priority: cardToMove.priority,
+      }));
     }
-
-    const startCardIds = [...start.cards];
-    const endCardIds = [...end.cards];
-
-    startCardIds.splice(source.index, 1);
-    endCardIds.splice(destination.index, 0, draggableId);
-
-    const newStartColumn = {
-      ...start,
-      cards: startCardIds,
-    };
-    const endCardColumn = {
-      ...end,
-      cards: endCardIds,
-    };
-
-    setDashboard({
-      ...dashboard,
-      columns: {
-        ...dashboard.columns,
-        [start.id]: newStartColumn,
-        [end.id]: endCardColumn,
-      },
-    });
-    console.log("new starter", dashboard);
-
-    console.log(destination, source, draggableId);
   };
 
   return (
-    <css.DivFull imgUrl={backDashboad}>
+    <css.DivFull imgurl={backDashboad}>
       {dashboardId ? (
         <>
           {dashboard.title && (
@@ -242,7 +258,7 @@ const Dashboard = () => {
               <css.DivColumns>
                 <DragDropContext onDragEnd={onDragEnd}>
                   <Droppable
-                    droppableId="all-columns"
+                    droppableId={dashboardId}
                     type="column"
                     direction="horizontal"
                   >
