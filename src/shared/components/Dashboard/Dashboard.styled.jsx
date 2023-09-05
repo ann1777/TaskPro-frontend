@@ -8,10 +8,12 @@ export const DivFull = styled.div`
 padding: 14px 20px 0  20px;
 background: url(${props => props.imgurl}) no-repeat center center;
 background-size: cover;
+    height: 100vh;
 
 
  @media screen and (min-width: ${tablet}) {
      padding: 94px 32px 0  32px;
+       height: 100vh;
   }
 
   @media screen and (min-width: ${desktop}) {
