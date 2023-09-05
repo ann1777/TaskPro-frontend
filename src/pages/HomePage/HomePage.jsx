@@ -85,6 +85,7 @@ export const HomePage = () => {
               onOpenEditDashBoard={handleModalOpen}
               isOpen={isOpen}
               onOpenHelp={openHelpModal}
+              openDeleteModal={openDeleteModal}
             />
             <Overlay closeSidebar={close} isOpen={isOpen} />
           </>
