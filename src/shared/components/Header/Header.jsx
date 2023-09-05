@@ -7,7 +7,6 @@ import {
   UserName,
   StyledSvgBurger,
   ButtonBurger,
-  NameWrapper,
 } from "./Header.styled";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../redux/auth/authSelectors";
@@ -41,9 +40,7 @@ export const Header = ({ openSidebar, isOpen }) => {
 
       <Wrapper>
         <ThemeSwitcher />
-        <NameWrapper>
-          <UserName onClick={handleModalOpen}>{name}</UserName>
-        </NameWrapper>
+        <UserName onClick={handleModalOpen}>{name}</UserName>
         <AvatarImg onClick={handleModalOpen} src={avatarURL} alt="user" />
         {isModalOpen && (
           <Modal onClose={handleModalClose}>
