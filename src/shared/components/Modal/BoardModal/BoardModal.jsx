@@ -4,7 +4,11 @@ import data from "../../../../hepers/background.json";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { addDashboardThunk, updateDashboardThunk, getDashboardByIdThunk  } from "../../../../redux/dashboards/operations";
+import {
+  addDashboardThunk,
+  updateDashboardThunk,
+  getDashboardByIdThunk,
+} from "../../../../redux/dashboards/operations";
 import {
   TitleHelp,
   FormField,
@@ -19,6 +23,8 @@ import {
   RadioField,
   RowBack,
 } from "./BoardModal.styled";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const BOARD_ICONS = [
   "icon-Project",
@@ -31,30 +37,31 @@ const BOARD_ICONS = [
   "icon-hexagon-01",
 ];
 const initialValues = {
-    title: "",
-    icon: BOARD_ICONS[0],
-    background: data[0].icon
-  };
-
+  title: "",
+  icon: BOARD_ICONS[0],
+  background: data[0].icon,
+};
 
 function BoardModal({ onClose, isEditMode, dashboardId }) {
   const [dashboardData, setDashboardData] = useState();
   const [formInitialValues, setFormInitialValues] = useState(initialValues);
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
+  const dashboards = useSelector((state) => state.dashboards.dashboards);
+
   useEffect(() => {
     if (isEditMode && dashboardId) {
       dispatch(getDashboardByIdThunk(dashboardId))
         .unwrap()
-        .then(data => {
+        .then((data) => {
           setDashboardData(data);
           setFormInitialValues({
             title: data.title,
             icon: data.icon,
-            background: data.background
+            background: data.background,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error Get:", error);
         });
     } else {
@@ -67,9 +74,18 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
       const updateData = {
         ...values,
       };
-      dispatch(updateDashboardThunk({ dashboardId, updateData })).then(handleFormClose());
+      dispatch(updateDashboardThunk({ dashboardId, updateData })).then(() => {
+        handleFormClose();
+      });
     } else {
-      dispatch(addDashboardThunk(values)).then(handleFormClose());
+      dispatch(addDashboardThunk(values))
+        .then(() => {
+          handleFormClose();
+          navigate(`/home/${dashboards[0]._id}`);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 
@@ -77,14 +93,14 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
     setDashboardData(null);
     onClose();
   };
-    return (
+  return (
     <div>
       <TitleHelp>{isEditMode ? "Edit board" : "New board"}</TitleHelp>
-       <Formik
+      <Formik
         key={formInitialValues.title}
-      initialValues={formInitialValues}
-      onSubmit={handleSubmit}
-    >
+        initialValues={formInitialValues}
+        onSubmit={handleSubmit}
+      >
         {({ isSubmitting, values, setFieldValue }) => (
           <Form>
             <FormField>
@@ -98,7 +114,7 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
 
             <BoardText>Icons</BoardText>
             <Row>
-              {BOARD_ICONS.map(id => (
+              {BOARD_ICONS.map((id) => (
                 <RadioLabel key={id} onClick={() => setFieldValue("icon", id)}>
                   <RadioField name="icon" type="radio" value={id} />
                   <IconContainer isSelected={values.icon === id}>
@@ -146,4 +162,4 @@ BoardModal.propTypes = {
   dashboardId: PropTypes.string,
 };
 
-export default BoardModal 
+export default BoardModal;
