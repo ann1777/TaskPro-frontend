@@ -1,12 +1,10 @@
 import { useState, forwardRef } from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
-import "./calendar.css";
 
 import { format, isToday } from "date-fns";
 import { BsChevronDown } from "react-icons/bs";
-
-import DatePicker from "react-datepicker";
+import { Calendar, DatePickerWrapper, Popper } from "./TaskCalendar.styled";
 
 const TaskCalendar = ({ dateChange, initialDate }) => {
   const [selectedDate, setSelectedDate] = useState(initialDate);
@@ -37,7 +35,9 @@ const TaskCalendar = ({ dateChange, initialDate }) => {
   ));
   return (
     <div>
-      <DatePicker
+      <DatePickerWrapper
+        popperContainer={Popper}
+        calendarContainer={Calendar}
         selected={selectedDate}
         onChange={onDateChange}
         customInput={<InputOutputBtn />}
