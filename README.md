@@ -37,3 +37,4 @@ Here are some of the key technologies and libraries used in this project (Fronte
 - [▶️ **Front-end developer:** Vladislav Lyubaikin](https://www.linkedin.com/in/vladislav-lyubaikin/)
 - [▶️ **Front-end developer:** Volodymyr Chornockryl](https://www.linkedin.com/in/volodymyr-chornockryl/)
 - [▶️ **Front-end developer:** Bogdan Omelchenko](https://www.linkedin.com/in/comeandsee/)
+
