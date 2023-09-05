@@ -9,7 +9,7 @@ padding: 14px 20px 0  20px;
 background: url(${props => props.imgurl}) no-repeat center center;
 background-size: cover;
     height: 100vh;
-    width: 95%;
+   
 
 
  @media screen and (min-width: ${tablet}) {
