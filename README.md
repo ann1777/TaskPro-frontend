@@ -13,16 +13,15 @@ Currently, two official plugins are available:
 
 ## Project documentation
 
-Project Layout: [https://www.figma.com/file/yRrel7KUKlBkO3pYa7kWqR/QuizMaster?type=design&node-id=0%3A1&mode=design&t=eavwxuklWNZuRV15-1]
-[https://www.figma.com/file/PmHqMIpwl5V20cv5AnzhBY/TaskPro-(Copy)?type=design&node-id=0-1&mode=design]
+Project design: ![Figma design](<https://www.figma.com/file/PmHqMIpwl5V20cv5AnzhBY/TaskPro-(Copy)?type=design&node-id=0-1&mode=design>)
 
-Project terms of reference: [https://docs.google.com/spreadsheets/d/1zaiiXTcm5e26T-sU9FoVuSzqlTsONBt4GrHaTGhgsKo/edit?usp=sharing]
+Project terms of reference: ![Terms of reference](https://docs.google.com/spreadsheets/d/1zaiiXTcm5e26T-sU9FoVuSzqlTsONBt4GrHaTGhgsKo/edit?usp=sharing)
 
-This is a link to the Project backend repository: [![GitHub Backend part](https://github.com/ann1777/TaskPro-backend)]
+This is a link to the Project backend repository: ![GitHub Backend part](https://github.com/ann1777/TaskPro-backend)
 
-Project deploy vercel summary: [https://vercel.com/ann1777/task-pro-frontend/B7pTPfgLAzmCG31ruE4nksveFd6d]
+Project deploy vercel summary: ![Vercel deploy summary](https://vercel.com/ann1777/task-pro-frontend/B7pTPfgLAzmCG31ruE4nksveFd6d)
 
-Project deploy page: [https://task-pro-frontend.vercel.app/]
+Project deploy page: ![Deploy page](https://task-pro-frontend.vercel.app/)
 
 ## Technologies Used
 
