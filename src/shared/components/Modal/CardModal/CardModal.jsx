@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   TitleHelp,
   StyledForm,
@@ -23,7 +23,7 @@ import {
   updateCardThunk,
 } from "../../../../redux/dashboards/operations";
 
-function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
+function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
   const labels = [
     { value: "low" },
     { value: "medium" },
@@ -32,10 +32,11 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
   ];
 
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.dashboards.singleCard);
+  
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedPriority, setSelectedPriority] = useState("");
+ const [selectedDate, setSelectedDate] = useState(isEditMode && card ? new Date(card.deadline) : new Date());
+  const [selectedPriority, setSelectedPriority] = useState(isEditMode && card ? card.priority : "");
+
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -78,8 +79,10 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId }) {
       <TitleHelp>{isEditMode ? "Edit card" : "Add card"}</TitleHelp>
       <Formik
         initialValues={{
-          Title: isEditMode && card ? card.title : "",
-          Desc: isEditMode && card ? card.description : "",
+           Title: isEditMode && card ? card.title : "",
+  Desc: isEditMode && card ? card.description : "",
+  Priority: isEditMode && card ? card.priority : "",
+  Deadline: isEditMode && card ? card.deadline : new Date(),
         }}
         onSubmit={handleSubmit}
       >

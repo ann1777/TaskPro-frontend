@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 
 
 
-function ColumnModal({ onCloseModal, isEditMode, columnId }) {
+function ColumnModal({ onCloseModal, isEditMode, columnId, columnTitle}) {
   const getDashboardIdFromURL = () => {
     const pathnameParts = window.location.pathname.split('/');
     const dashboardId = pathnameParts[pathnameParts.length - 1];
@@ -31,7 +31,7 @@ function ColumnModal({ onCloseModal, isEditMode, columnId }) {
   
     }
     else {
-     const actualTitle = values.Title;
+     
 const data = {
   title: actualTitle,
   dashboardId: dashboardId
@@ -57,7 +57,7 @@ dispatch(addColumnThunk(data));
     <>
       <TitleHelp>{isEditMode ? 'Edit column' : 'Add column'}</TitleHelp>
       <Formik
-        initialValues={{ Title: '' }}
+        initialValues={{ Title: isEditMode ? columnTitle : '' }}
         onSubmit={handleOnSubmit}
         
       >

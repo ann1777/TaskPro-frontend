@@ -106,6 +106,7 @@ const Card = ({
                       cardId={card._id}
                       isEditMode={true}
                       columnId={column._id}
+                      card={card}
                     />
                   </Modal>
                 )}

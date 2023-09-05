@@ -72,6 +72,7 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
                     <ColumnModal
                       onCloseModal={handleColumnModalClose}
                       columnId={column._id}
+                      columnTitle={column.title}
                       isEditMode={true}
                     />
                   </Modal>
