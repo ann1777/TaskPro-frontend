@@ -45,6 +45,8 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 export const UserName = styled.p`
+  margin-left: 14px;
+  margin-right: 8px;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
@@ -54,15 +56,6 @@ export const UserName = styled.p`
   letter-spacing: -0.28px;
 
   color: ${({ theme }) => theme.colors.textHeader};
-`;
-
-export const NameWrapper = styled.div`
-  margin-left: 14px;
-  margin-right: 8px;
-  width: 39px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 `;
 
 export const AvatarImg = styled.img`
