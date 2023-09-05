@@ -20,7 +20,7 @@ export const Sidebar = ({
 }) => {
   const activeUserTheme = useSelector(selectUserTheme);
   return (
-    <StyledSidebar isOpen={isOpen}>
+    <StyledSidebar $isOpen={isOpen}>
       <LogoWrapper>
         <Logo>
           {activeUserTheme === "color" ? (
@@ -51,5 +51,5 @@ Sidebar.propTypes = {
   onOpenCreateBoard: PropTypes.func.isRequired,
   onOpenHelp: PropTypes.func.isRequired,
   onOpenEditDashBoard: PropTypes.func.isRequired,
-  OpenDeleteModal: PropTypes.func.isRequired,
+  OpenDeleteModal: PropTypes.func
 };

@@ -1,8 +1,6 @@
 import styled from "styled-components";
-// import theme from '../../styles/theme.styled';
 import { Field } from "formik";
 import { Button } from "../../Button/Button";
-// const selectedTheme = theme[1];
 
 export const TitleHelp = styled.div`
   color: ${({ theme }) => theme.colors.textColorModal};
@@ -16,12 +14,10 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  ${"" /* background-color: ${selectedTheme.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`
   margin-bottom: 14px;
-  ${"" /* color: ${selectedTheme.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`
@@ -76,12 +72,10 @@ export const RadioField = styled(Field)`
 
   &:hover ~ .background-label,
   &:checked ~ .background-label {
-    ${"" /* outline: 1px solid var(--createBoardInputBorderFocus); */}
   }
 
   &:hover ~ .icon-label,
   &:checked ~ .icon-label {
-    --color1: var(--createBoardButtonIconFill);
   }
 `;
 export const Row = styled.div`
@@ -149,15 +143,12 @@ export const RadioLabel = styled.label`
   margin-top: 4px;
   width: 14px;
   height: 14px;
-
-  ${"" /* border: 2px solid ${props => props.buttoncolor.color}; */}
-
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: ${(props) => props.backgroundColor.color};
+  background-color: ${(props) => props.bgcolor.color};
   & input {
     display: none;
   }
@@ -174,7 +165,7 @@ export const Checkmark = styled.span`
   border-radius: 50%;
   border: 0;
   outline: 2px solid
-    ${(props) => (props.checked ? props.backgroundColor.color : "none")};
+    ${(props) => (props.checked ? props.bgcolor.color : "none")};
   outline-offset: 4px;
   padding: 1px;
   display: inline-block;

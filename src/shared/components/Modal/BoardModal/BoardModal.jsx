@@ -24,8 +24,7 @@ import {
   RowBack,
 } from "./BoardModal.styled";
 import { toast } from 'react-toastify';
-import { Navigate, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 
 const BOARD_ICONS = [
   "icon-Project",
@@ -48,7 +47,7 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
   const [formInitialValues, setFormInitialValues] = useState(initialValues);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const dashboards = useSelector((state) => state.dashboards.dashboards);
+ 
 
   useEffect(() => {
     if (isEditMode && dashboardId) {
@@ -123,7 +122,7 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
               {BOARD_ICONS.map((id) => (
                 <RadioLabel key={id} onClick={() => setFieldValue("icon", id)}>
                   <RadioField name="icon" type="radio" value={id} />
-                  <IconContainer isSelected={values.icon === id}>
+                  <IconContainer $isSelected={values.icon === id}>
                     <Svg>
                       <use xlinkHref={`${icon}#${id}`} />
                     </Svg>
@@ -147,7 +146,7 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
                   <BackgroundIcon
                     src={item.icon}
                     alt={`Background ${index + 1}`}
-                    isSelected={values.background === item.icon}
+                   $isSelected={values.background === item.icon}
                   />
                 </RadioLabel>
               ))}
@@ -164,7 +163,7 @@ function BoardModal({ onClose, isEditMode, dashboardId }) {
 }
 
 BoardModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   isEditMode: PropTypes.bool,
   dashboardId: PropTypes.string,
 };

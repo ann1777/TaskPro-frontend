@@ -132,11 +132,14 @@ const Card = ({
 
 Card.propTypes = {
   card: PropTypes.object.isRequired,
+  column: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   selectedPriorities: PropTypes.array.isRequired,
   openFilterMenuForCardId: PropTypes.string,
   setOpenFilterMenuForCardId: PropTypes.func,
   columnId: PropTypes.string,
+  openDeleteModal: PropTypes.func.isRequired,
+  dashboardId: PropTypes.string,
 };
 
 export default Card;

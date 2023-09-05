@@ -26,5 +26,5 @@ export const Button = ({
 Button.propTypes = {
   type: PropTypes.string,
   svg: PropTypes.bool,
-  children: PropTypes.func,
+  children: PropTypes.node,
 };

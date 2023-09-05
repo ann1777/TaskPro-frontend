@@ -122,10 +122,7 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
               {labels.map(({ value }) => (
                 <div style={{ display: "flex" }} key={value}>
                   <RadioLabel
-                    backgroundColor={getPriorityStyles(
-                      value,
-                      activeUserTheme
-                    )}
+                     bgcolor={getPriorityStyles(value, activeUserTheme)}
                     className="inputlabel"
                     onClick={() => handlePriorityChange(value)}
                   >
@@ -135,7 +132,7 @@ function CardModal({ onCloseModal, isEditMode, columnId, cardId, card }) {
                       value={value}
                     />
                     <Checkmark
-                      backgroundColor={getPriorityStyles(
+                      bgcolor={getPriorityStyles(
                         value,
                         activeUserTheme
                       )}
@@ -166,6 +163,7 @@ CardModal.propTypes = {
   isEditMode: PropTypes.bool,
   columnId: PropTypes.string,
   cardId: PropTypes.string,
+  card: PropTypes.object,
 };
 
 export default CardModal;

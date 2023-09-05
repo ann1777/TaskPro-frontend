@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from "../../../../redux/auth/authSelectors";
 import { Formik, Form } from 'formik';
+import PropTypes from "prop-types";
 import { updateUserProfile } from "../../../../redux/auth/operations";
 import avatarImg from '../../../images/user-zaglushka.png';
 import {
@@ -124,4 +125,7 @@ export const EditProfile = ({ onCloseModal }) => {
             </Formik>
         </WindowContaier>
     );
+};
+EditProfile.propTypes = {
+   onCloseModal: PropTypes.func.isRequired,
 };

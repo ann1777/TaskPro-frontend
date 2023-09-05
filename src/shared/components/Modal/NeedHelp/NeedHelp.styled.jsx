@@ -1,9 +1,7 @@
 import styled from "styled-components";
-// import { dark } from '../../styles/theme.styled';
 import { Field } from "formik";
 
 export const TitleHelp = styled.div`
-  ${"" /* color: ${dark.colors.textColorModal}; */}
   font-size: 18px;
   font-weight: 500;
   line-height: 27px;
@@ -15,12 +13,10 @@ export const TitleHelp = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  ${"" /* background-color: ${dark.colors.backgroundColorModal}; */}
 `;
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  ${"" /* color: ${dark.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`
@@ -89,14 +85,11 @@ export const RadioField = styled(Field)`
   transition: all 250ms linear;
 
   &:hover ~ .background-label,
-  &:checked ~ .background-label {
-    outline: 1px solid var(--createBoardInputBorderFocus);
-  }
+  &:checked ~ .background-label 
+
 
   &:hover ~ .icon-label,
-  &:checked ~ .icon-label {
-    --color1: var(--createBoardButtonIconFill);
-  }
+  &:checked ~ .icon-label 
 `;
 export const Row = styled.div`
   display: flex;
