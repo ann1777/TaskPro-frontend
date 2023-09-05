@@ -57,7 +57,14 @@ const dashboardSlice = createSlice({
         const index = state.dashboards.findIndex(
           (item) => item._id === action.payload._id
         );
-        state.dashboards[index] = action.payload;
+        console.log(action.payload);
+        const { title, background, icon } = action.payload;
+        state.dashboards[index] = {
+          ...state.dashboards[index],
+          title,
+          background,
+          icon,
+        };
       })
       .addCase(deleteDashboardThunk.pending, handlePending)
       .addCase(deleteDashboardThunk.rejected, handleRejected)
@@ -85,10 +92,14 @@ const dashboardSlice = createSlice({
         const { dashboardId } = action.payload;
         const updatedDashboards = state.dashboards.map((dashboard) => {
           if (dashboard._id === dashboardId) {
-            return {
-              ...dashboard,
-              columns: [...dashboard.columns, action.payload],
-            };
+            if (dashboard.columns) {
+              return {
+                ...dashboard,
+                columns: [...dashboard.columns, action.payload],
+              };
+            } else {
+              return { ...dashboard, columns: [action.payload] };
+            }
           }
           return dashboard;
         });
@@ -130,11 +141,11 @@ const dashboardSlice = createSlice({
       .addCase(deleteColumnThunk.pending, handlePending)
       .addCase(deleteColumnThunk.rejected, handleRejected)
       .addCase(deleteColumnThunk.fulfilled, (state, action) => {
-        const { dashboardId, deletedColumnId } = action.payload;
+        const { dashboardId, columnId } = action.payload;
         const updatedDashboards = state.dashboards.map((dashboard) => {
           if (dashboard._id === dashboardId) {
             const updatedColumns = dashboard.columns.filter(
-              (column) => column._id !== deletedColumnId
+              (column) => column._id !== columnId
             );
 
             return {
@@ -164,10 +175,17 @@ const dashboardSlice = createSlice({
           if (dashboard._id === dashboardId) {
             const updatedColumns = dashboard.columns.map((column) => {
               if (column._id === columnId) {
-                return {
-                  ...column,
-                  cards: [...column.cards, action.payload],
-                };
+                if (column.cards) {
+                  return {
+                    ...column,
+                    cards: [...column.cards, action.payload],
+                  };
+                } else {
+                  return {
+                    ...column,
+                    cards: [action.payload],
+                  };
+                }
               }
               return column;
             });
@@ -184,6 +202,7 @@ const dashboardSlice = createSlice({
           dashboards: updatedDashboards,
         };
       })
+
       .addCase(updateCardThunk.pending, handlePending)
       .addCase(updateCardThunk.rejected, handleRejected)
       .addCase(updateCardThunk.fulfilled, (state, action) => {

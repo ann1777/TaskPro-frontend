@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
 import { TitleHelp, StyledForm, FormField, SubmitButton, ButtonContainer, CancelButton } from './DeleteModal.styled';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { deleteDashboardThunk, deleteCardThunk, deleteColumnThunk } from '../../../../redux/dashboards/operations';
 
 export default function DeleteModal({ onCloseModal, dashboardId, cardId, columnId }) {
   console.log(dashboardId, columnId, cardId)
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  
   const handleDelete = (e) => {
     e.preventDefault();
     if (dashboardId && !columnId && !cardId) {
-  dispatch(deleteDashboardThunk(dashboardId));
+  dispatch(deleteDashboardThunk(dashboardId)).then(() => {
+        navigate('/home');
+      });
 } else if (dashboardId && columnId && !cardId) {
   dispatch(deleteColumnThunk({ dashboardId, columnId })); 
 } else if (dashboardId && columnId && cardId) {

@@ -73,7 +73,10 @@ const Dashboard = ({openDeleteModal}) => {
   };
 
   const hasCardsInColumns = () => {
-    return dashboard.columns.some((column) => column.cards.length > 0);
+    if (!dashboard || !dashboard.columns) {
+      return false;
+    }
+    return dashboard.columns.some((column) => column.cards && column.cards.length > 0);
   };
 
   const color = {
@@ -291,7 +294,7 @@ const Dashboard = ({openDeleteModal}) => {
                 <div>
                   <css.ButtonAddColumn onClick={handleModalOpen}>
                     <css.IconPlus />
-                    Add another column
+                    <css.AddColumnText>Add another column</css.AddColumnText>
                   </css.ButtonAddColumn>
                 </div>
               </css.DivColumns>

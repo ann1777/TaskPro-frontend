@@ -9,6 +9,7 @@ padding: 14px 20px 0  20px;
 background: url(${props => props.imgurl}) no-repeat center center;
 background-size: cover;
     height: 100vh;
+   
 
 
  @media screen and (min-width: ${tablet}) {
@@ -61,12 +62,12 @@ border-radius: 8px;
 background: ${({ theme }) => theme.colors.btnAddColumn};
 display: flex;
     gap: 8px;
-padding: 14px 78px 14px 79px;
+    padding: 14px 48px 14px 42px;
 justify-content: center;
 align-items: center;
 border: none;
 
-width: 334px;
+max-width: 334px;
 
 height: 56px;
 
@@ -75,6 +76,22 @@ color: ${({ theme }) => theme.colors.btnAccentText};
 font-size: 14px;
 font-weight: 500;
 letter-spacing: -0.28px;
+
+
+@media screen and (min-width: 375px) {
+
+    padding: 14px 79px;
+  
+}
+
+     @media screen and (min-width: ${tablet}) {
+      padding: 14px 78px 14px 79px;
+
+  }
+
+  @media screen and (min-width: ${desktop}) {
+
+  }
 `
 
 export const IconPlus = styled(BsPlus)`
@@ -87,15 +104,20 @@ fill: ${({ theme }) => theme.colors.colorPlusColumn};`
 
 export const DivColumns = styled.div`
 display:flex;
-gap: 26px;
+
 max-width: 347px;
 width: 100%;
 margin: 0 auto;
     overflow-x: auto;
 
-     @media screen and (min-width: ${tablet}) {
+
+
+
+@media screen and (min-width: ${tablet}) {
   max-width: 702px;
   width: 100%;
+  /* gap: 26px; */
+  height: 80vh;
   }
 
   @media screen and (min-width: ${desktop}) {
@@ -308,7 +330,7 @@ export const SvgPriorityW = styled.svg`
 
 export const UlFull = styled.ul`
 display: flex;
-gap: 15px;  
+/* gap: 15px;  
 
  @media screen and (min-width: ${tablet}) {
   
@@ -318,6 +340,10 @@ gap: 15px;
   @media screen and (min-width: ${desktop}) {
   
   gap: 26px;
-  }
+  } */
 
 `
+
+export const AddColumnText = styled.p`
+ width: 141px;
+ `

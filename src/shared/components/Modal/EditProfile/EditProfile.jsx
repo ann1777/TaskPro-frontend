@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from "../../../../redux/auth/authSelectors";
 import { Formik, Form } from 'formik';
-import axios from 'axios'; 
+import { updateUserProfile } from "../../../../redux/auth/operations";
 import avatarImg from '../../../images/user-zaglushka.png';
 import {
     WindowContaier,
@@ -24,6 +24,7 @@ export const EditProfile = ({ onCloseModal }) => {
     const [name, setName] = useState(initialName); 
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
+    const dispatch = useDispatch();
     
     const handleTogglePassword = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -45,41 +46,18 @@ export const EditProfile = ({ onCloseModal }) => {
         }
     };
 
-    const uploadToCloudinary = async (file) => {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'thb4n5sd');
-
-        const response = await fetch('https://api.cloudinary.com/v1_1/doc0gvy9u/upload', {
-            method: 'POST',
-            body: formData,
-        });
-
-        const data = await response.json();
-        return data.secure_url; 
-    };
-
     const handleSubmit = async (values) => {
         try {
-            let imageUrl = avatarURL; 
-            if (selectedFile) {
-                imageUrl = await uploadToCloudinary(selectedFile);
-            }
+            const actionResult = await dispatch(updateUserProfile({
+                name: values.name,
+                avatarFile: selectedFile
+            }));
 
-            const token = localStorage.getItem('accessToken');
-            await axios.put(
-                'https://taskpro-backend-c73a.onrender.com/api/auth/updatedata',
-                { 
-                    name: values.name, 
-                    avatarURL: imageUrl
-                }, 
-                {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                }
-            );
-            onCloseModal();
+            if (updateUserProfile.fulfilled.match(actionResult)) {
+                onCloseModal();
+            } else {
+                console.error('Error:', actionResult.payload);
+            }
         } catch (error) {
             console.error('Error:', error);
         }
