@@ -35,7 +35,7 @@ export const ProjectName = styled.h2`
   margin-right: 43px;
   font-size: 14px;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.2;
   letter-spacing: -0.28px;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -99,7 +99,10 @@ export const StyledNavLink = styled(NavLink)`
   height: 61px;
   padding: 20px 24px;
 
-  :hover {
+  &:hover {
+    background: ${({ theme }) => theme.colors.backgroundActiveSidebar};
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
   }
 
   &.active {

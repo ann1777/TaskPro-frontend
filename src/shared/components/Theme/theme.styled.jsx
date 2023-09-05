@@ -16,7 +16,8 @@ export const light = {
     btnLogOutActive: "#9DC888",
     borderLineCreateBoard: "rgba(22, 22, 22, 0.10)",
     spanColor: " #BEDBB0",
-
+    hoverCreateBtn :"  #9DC888",
+       
     // HEADER
 
     textHeader: "rgba(22, 22, 22, 0.80)",
@@ -91,7 +92,8 @@ export const dark = {
     btnLogOutActive: "#9DC888",
     borderLineCreateBoard: "rgba(255, 255, 255, 0.10)",
     spanColor: " #BEDBB0",
-
+    hoverCreateBtn :"  #9DC888",
+    
     // HEADER
 
     textHeader: "rgba(255, 255, 255, 0.80)",
@@ -164,7 +166,8 @@ export const color = {
     btnLogOutActive: "#B8BCFD",
     borderLineCreateBoard: "rgba(255, 255, 255, 0.10)",
     spanColor: " #5255BC",
-
+    hoverCreateBtn :"  #979CEA",
+    
     // HEADER
 
     textHeader: "rgba(22, 22, 22, 0.80)",

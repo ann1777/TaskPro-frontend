@@ -35,6 +35,7 @@ export const StyledSelect = styled(Select)`
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -0.28px;
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.backgroundHeader};
 `;
 
@@ -44,8 +45,6 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 export const UserName = styled.p`
-  margin-left: 14px;
-  margin-right: 8px;
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
@@ -53,11 +52,17 @@ export const UserName = styled.p`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.28px;
+
+  color: ${({ theme }) => theme.colors.textHeader};
+`;
+
+export const NameWrapper = styled.div`
+  margin-left: 14px;
+  margin-right: 8px;
+  width: 39px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  color: ${({ theme }) => theme.colors.textHeader};
-  
 `;
 
 export const AvatarImg = styled.img`
@@ -65,6 +70,12 @@ export const AvatarImg = styled.img`
   border-radius: 8px;
   width: 32px;
   height: 32px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+  }
 `;
 
 export const ButtonBurger = styled.button`

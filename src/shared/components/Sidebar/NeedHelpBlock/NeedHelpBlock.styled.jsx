@@ -55,6 +55,10 @@ export const HelpBtn = styled.button`
   line-height: 1.2;
   letter-spacing: -0.24px;
   color: ${({ theme }) => theme.colors.textTitlesSidebar};
+  &:hover{
+    transform: scale(1.2); 
+  transition: transform 0.3s ease; 
+  }
 `;
 
 export const HelpIcon = styled.svg`

@@ -54,7 +54,6 @@ export const Logo = styled.svg`
   height: 32px;
   fill: transparent;
   stroke: ${({ theme }) => theme.colors.logoBackground};
-   
 `;
 
 export const AppName = styled.h2`
