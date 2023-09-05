@@ -13,13 +13,15 @@ padding-right: 4px;
 
 
  @media screen and (min-width: ${tablet}) {
- height: 640px;
-padding-right: 8px;
+  height: 100%;
+    padding-right: 8px;
+    max-height: 650px;
   }
 
   @media screen and (min-width: ${desktop}) {
-  height: 640px;
-  padding-right: 8px;
+    height: 100%;
+    padding-right: 8px;
+    max-height: 650px;
     }
         
 &::-webkit-scrollbar {
