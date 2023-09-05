@@ -41,7 +41,7 @@ export const CreateText = styled.h2`
   color: #161616;
   font-size: 14px;
   font-weight: 500;
-  line-height: normal;
+  line-height: 1.2;
   letter-spacing: -0.28px;
   color: ${({ theme }) => theme.colors.textTitlesSidebar};
 `;
@@ -55,6 +55,11 @@ export const CreateBoardButton = styled.button`
   border: none;
   cursor: pointer;
   background: ${({ theme }) => theme.colors.plusBtnBackgroundSidebar};
+
+  &:hover,
+  &:focus {
+    background: ${({ theme }) => theme.colors.hoverCreateBtn};
+  }
 `;
 
 export const Plus = styled.svg`

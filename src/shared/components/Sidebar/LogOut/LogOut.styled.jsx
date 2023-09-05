@@ -26,4 +26,9 @@ export const LogOutIcon = styled.svg`
   margin-right: 14px;
   stroke: ${({ theme }) => theme.colors.btnLogOut};
   fill: transparent;
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.colors.btnLogOutActive};;
+  }
+
 `;
