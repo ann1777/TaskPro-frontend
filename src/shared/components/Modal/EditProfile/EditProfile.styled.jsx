@@ -106,6 +106,7 @@ export const ProfileInput = styled.input`
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
 
   &::placeholder {
+    font-family: Poppins;
     color: ${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;

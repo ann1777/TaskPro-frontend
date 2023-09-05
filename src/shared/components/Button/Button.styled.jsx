@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
   background-color: ${({ theme }) => theme.colors.btnModal};
   border-radius: 8px;
   transition: all 250ms linear;
+  font-family: Poppins;
 
   &:hover,
   &:focus {

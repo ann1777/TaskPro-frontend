@@ -33,10 +33,11 @@ export const InputField = styled(Field)`
   color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  font-family: Poppins;
 
   &::placeholder {
     font-family: Poppins;
-    color: ${({ theme }) => theme.colors.textColorModal};
+    color: ${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -120,10 +121,11 @@ export const Textarea = styled(Field)`
   color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  font-family: Poppins;
 
   &::placeholder {
     font-family: Poppins;
-    color: ${({ theme }) => theme.colors.textColorModal};
+    color: ${({ theme }) => theme.colors.textSecondModal};
     font-weight: 400;
     opacity: 0.5;
   }

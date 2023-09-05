@@ -34,6 +34,7 @@ export const InputField = styled(Field)`
   color: ${({ theme }) => theme.colors.textColorModal};
   /* opacity: 0.5; */
   background: inherit;
+  font-family: Poppins;
   transition: all 250ms linear;
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
   &::placeholder {
@@ -79,14 +80,16 @@ export const RadioLabel = styled.label`
 export const IconContainer = styled.div`
   position: relative;
   cursor: pointer;
-   outline: ${props => props.isSelected ? "2px solid red" : "none"};
+  /* outline: ${(props) => (props.isSelected ? "2px solid red" : "none")}; */
 
   svg {
-    fill: #151515;
-
+    stroke: ${({ theme }) => theme.colors.iconBtnStroke};
+    fill: ${({ theme }) => theme.colors.iconBtnFill};
     opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-    stroke: ${(props) =>
-      props.isSelected ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.5)"};
+    /* stroke: ${(props) =>
+      props.isSelected
+        ? "rgba(255, 255, 255, 1)"
+        : "rgba(255, 255, 255, 0.5)"}; */
   }
 `;
 
@@ -98,8 +101,7 @@ export const RadioField = styled(Field)`
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
   &:focus + ${IconContainer} svg,
   &:hover + ${IconContainer} svg {
-    opacity: 1;
-    stroke: rgba(255, 255, 255, 1);
+    stroke: ${({ theme }) => theme.colors.textColorModal};
   }
 `;
 
@@ -107,13 +109,6 @@ export const Svg = styled.svg`
   width: 18px;
   height: 18px;
   cursor: pointer;
-  stroke: rgba(255, 255, 255, 0.5);
-  transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
-  transition: all 250ms linear;
-  &:hover {
-    stroke: rgba(255, 255, 255, 1);
-    opacity: 1;
-  }
 `;
 
 export const BackgroundIcon = styled.img`
@@ -121,7 +116,7 @@ export const BackgroundIcon = styled.img`
   height: 28px;
   border-radius: 8px;
   border: ${({ isSelected, theme }) =>
-    isSelected ? `2px solid ${theme.colors.btnModalActive}` : "none"};
+    isSelected ? `3px solid ${theme.colors.btnModalActive}` : "none"};
   box-sizing: border-box;
 `;
 

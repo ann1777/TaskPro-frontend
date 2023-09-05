@@ -35,6 +35,7 @@ export const InputField = styled(Field)`
   opacity: 0.5;
   transition: all 250ms linear;
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  font-family: Poppins;
   &::placeholder {
     font-family: Poppins;
     color: ${({ theme }) => theme.colors.textSecondModal};
@@ -54,6 +55,7 @@ export const InputField = styled(Field)`
 export const SubmitButton = styled(Button)`
   padding: 10px 0 11px 0;
   color: ${({ theme }) => theme.colors.plusBtnColorModal};
+  font-weight: 500;
 `;
 
 export const BoardText = styled.p`
@@ -105,9 +107,10 @@ export const Textarea = styled(Field)`
   color: ${({ theme }) => theme.colors.textColorModal};
   opacity: 0.5;
   transition: opacity 0.2s ease-in-out, stroke 0.2s ease-in-out;
+  font-family: Poppins;
   &::placeholder {
     font-family: Poppins;
-    color: ${({ theme }) => theme.colors.textColorModal};
+    color: ${({ theme }) => theme.colors.textSecondModal};
     font-size: 14px;
     font-weight: 400;
     opacity: 0.5;
@@ -169,13 +172,11 @@ export const Checkmark = styled.span`
   width: calc(100%);
   height: calc(100%);
   border-radius: 50%;
-  background-color: ${(props) =>
-    props.checked ? "black" : props.backgroundColor.color};
-  border: ${(props) =>
-    props.checked
-      ? "2px solid " + props.backgroundColor.color
-      : "1px solid " + props.backgroundColor.color};
-
+  border: 0;
+  outline: 2px solid
+    ${(props) => (props.checked ? props.backgroundColor.color : "none")};
+  outline-offset: 4px;
+  padding: 1px;
   display: inline-block;
   opacity: 1;
   transition: opacity 0.25s ease;
