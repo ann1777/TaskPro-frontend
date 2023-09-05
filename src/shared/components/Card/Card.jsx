@@ -13,6 +13,7 @@ const Card = ({
   index,
   openFilterMenuForCardId,
   setOpenFilterMenuForCardId,
+  openDeleteModal
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
@@ -108,9 +109,10 @@ const Card = ({
                     />
                   </Modal>
                 )}
-                <css.SvgAll onClick={() => deleteCard(card._id)}>
+                <css.SvgAll onClick={() => openDeleteModal(card._id)}>
                   <use href={sprite + "#icon-trash-04"}></use>
                 </css.SvgAll>
+
               </css.DivDivEditSvg>
             </css.DivDivEdit>
           </css.DivEditBefor>

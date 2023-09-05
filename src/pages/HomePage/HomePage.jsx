@@ -118,7 +118,7 @@ export const HomePage = () => {
         )}
         <css.HeadBoardDIv>
           <Header isOpen={isOpen} openSidebar={open} />
-          <Dashboard />
+          <Dashboard openDeleteModal={openDeleteModal} />
         </css.HeadBoardDIv>
       </css.FlexDiv>
     </>

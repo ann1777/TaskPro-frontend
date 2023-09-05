@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import { deleteColumnThunk } from "../../../redux/dashboards/operations";
 import { useSelector } from "react-redux";
 
-const Columns = ({ selectedPriorities, cards, column, index }) => {
+const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) => {
   const { dashboardId } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const [isColumnModalOpen, setColumnModalOpen] = useState(false);
@@ -77,7 +77,7 @@ const Columns = ({ selectedPriorities, cards, column, index }) => {
                   </Modal>
                 )}
 
-                <css.SvgAll onClick={() => deleteColumn(column._id)}>
+                <css.SvgAll onClick={() => openDeleteModal(column._id)}>
                   <use href={sprite + "#icon-trash-04"}></use>
                 </css.SvgAll>
               </css.DivTitleColumnBtn>
@@ -97,6 +97,7 @@ const Columns = ({ selectedPriorities, cards, column, index }) => {
                       selectedPriorities={selectedPriorities}
                       openFilterMenuForCardId={openFilterMenuForCardId}
                       setOpenFilterMenuForCardId={setOpenFilterMenuForCardId}
+                      openDeleteModal={openDeleteModal}
                     />
                   ))}
 
@@ -116,6 +117,7 @@ const Columns = ({ selectedPriorities, cards, column, index }) => {
               <CardModal
                 onCloseModal={handleModalClose}
                 columnId={currentColumnId}
+                
               />
             </Modal>
           )}
