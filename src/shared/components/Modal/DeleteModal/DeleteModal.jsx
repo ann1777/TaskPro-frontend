@@ -4,17 +4,18 @@ import { useDispatch } from 'react-redux';
 import { deleteDashboardThunk, deleteCardThunk, deleteColumnThunk } from '../../../../redux/dashboards/operations';
 
 export default function DeleteModal({ onCloseModal, dashboardId, cardId, columnId }) {
+  console.log(dashboardId, columnId, cardId)
   const dispatch = useDispatch();
 
   const handleDelete = (e) => {
     e.preventDefault();
     if (dashboardId && !columnId && !cardId) {
-      dispatch(deleteDashboardThunk(dashboardId));
-    } else if (dashboardId && columnId && !cardId) {
-      dispatch(deleteColumnThunk(dashboardId, columnId));
-    } else if (dashboardId && columnId && cardId) {
-      dispatch(deleteCardThunk(dashboardId, columnId, cardId));
-    }
+  dispatch(deleteDashboardThunk(dashboardId));
+} else if (dashboardId && columnId && !cardId) {
+  dispatch(deleteColumnThunk({ dashboardId, columnId })); 
+} else if (dashboardId && columnId && cardId) {
+  dispatch(deleteCardThunk({ dashboardId, columnId, cardId }));
+}
 
     onCloseModal();
   };

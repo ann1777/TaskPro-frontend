@@ -45,13 +45,7 @@ dispatch(addColumnThunk(data));
     } 
 
     
-  
-
-
-  
-
-
-  
+   
 
   return (
     <>
@@ -86,7 +80,8 @@ ColumnModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool,
   columnId: PropTypes.string,
-  dashboardId: PropTypes.string
+  dashboardId: PropTypes.string,
+  columnTitle: PropTypes.string,
 };
 
 export default ColumnModal;

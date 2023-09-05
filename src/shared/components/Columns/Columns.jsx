@@ -50,6 +50,7 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
   const deleteColumn = (columnId) => {
     dispatch(deleteColumnThunk({ columnId, dashboardId }));
   };
+  const columnId =  column._id 
 
   return (
     <Draggable draggableId={column._id} index={index} type="column">
@@ -78,7 +79,10 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
                   </Modal>
                 )}
 
-                <css.SvgAll onClick={() => openDeleteModal(column._id)}>
+               <css.SvgAll onClick={() => {
+                  
+                  openDeleteModal( dashboardId,columnId);
+              }}>
                   <use href={sprite + "#icon-trash-04"}></use>
                 </css.SvgAll>
               </css.DivTitleColumnBtn>
@@ -99,6 +103,7 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
                       openFilterMenuForCardId={openFilterMenuForCardId}
                       setOpenFilterMenuForCardId={setOpenFilterMenuForCardId}
                       openDeleteModal={openDeleteModal}
+                      dashboardId={dashboardId}
                     />
                   ))}
 
