@@ -73,9 +73,7 @@ function Login() {
     if (signin.fulfilled.match(resultAction)) {
       navigate("/home");
       formikRef.current.resetForm();
-    } else if (signin.rejected.match(resultAction)) {
-      console.log(resultAction.error.message);
-    }
+    } else if (signin.rejected.match(resultAction)) 
     setIsLoading(false);
   };
 
