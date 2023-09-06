@@ -19,6 +19,8 @@ Project terms of reference: [Terms of reference](https://docs.google.com/spreads
 
 This is a link to the Project backend repository: [GitHub Backend part](https://github.com/ann1777/TaskPro-backend)
 
+This is a link th the Swagger.docs: [Swagger API docs](https://taskpro-backend-c73a.onrender.com/api-docs/)
+
 Project deploy vercel summary: [Vercel deploy summary](https://vercel.com/ann1777/task-pro-frontend/B7pTPfgLAzmCG31ruE4nksveFd6d)
 
 Project frontend deploy page: [Deploy page](https://task-pro-frontend.vercel.app/)
