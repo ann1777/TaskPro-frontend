@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { deleteDashboardThunk, deleteCardThunk, deleteColumnThunk } from '../../../../redux/dashboards/operations';
 
 export default function DeleteModal({ onCloseModal, dashboardId, cardId, columnId }) {
-  console.log(dashboardId, columnId, cardId)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   

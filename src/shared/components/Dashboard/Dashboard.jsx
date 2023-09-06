@@ -126,7 +126,6 @@ const Dashboard = ({openDeleteModal}) => {
 
     if (startColumn === endColumn) {
       const cards = [...startColumn.cards];
-      console.log(cards.title);
       cards.splice(source.index, 1);
       cards.splice(destination.index, 0, cardToMove);
       const updatedStartColumn = {
