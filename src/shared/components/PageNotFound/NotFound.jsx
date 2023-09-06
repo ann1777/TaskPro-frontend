@@ -80,7 +80,7 @@ function NotFound() {
         </UserPicture>
         <LogoWrapper>
           <LogoSvg width="40px" height="40px">
-            <use href={sprite + "#icon-logo"}></use>
+            <use href={sprite + "#icon-logo-1"}></use>
           </LogoSvg>
           <LogoText>Page Not Found</LogoText>
         </LogoWrapper>
