@@ -6,7 +6,7 @@ import * as css from "./Dashboard.styled";
 import Columns from "../Columns/Columns";
 import sprite from "../../images/icons.svg";
 import { useSelector } from "react-redux";
-
+import PropTypes from 'prop-types';
 import { getBackgroundByIcon } from "../../../hepers/getBackgroundByIcon";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
@@ -220,7 +220,7 @@ const Dashboard = ({openDeleteModal}) => {
                     <ul>
                       <css.FilterLi onClick={() => togglePriority("without")}>
                         <css.SvgPriorityW
-                          active={selectedPriorities.includes("without")}
+                          active={selectedPriorities.includes("without").toString()}
                         >
                           <use href={sprite + "#icon-Ellipse"}></use>
                         </css.SvgPriorityW>
@@ -229,7 +229,7 @@ const Dashboard = ({openDeleteModal}) => {
                       <css.FilterLi onClick={() => togglePriority("low")}>
                         <css.SvgPriority
                           color={color.Low}
-                          active={selectedPriorities.includes("low")}
+                         active={selectedPriorities.includes("low").toString()}
                         >
                           <use href={sprite + "#icon-Ellipse"}></use>
                         </css.SvgPriority>
@@ -238,7 +238,7 @@ const Dashboard = ({openDeleteModal}) => {
                       <css.FilterLi onClick={() => togglePriority("medium")}>
                         <css.SvgPriority
                           color={color.Medium}
-                          active={selectedPriorities.includes("medium")}
+                          active={selectedPriorities.includes("medium").toString()}
                         >
                           <use href={sprite + "#icon-Ellipse"}></use>
                         </css.SvgPriority>
@@ -247,7 +247,7 @@ const Dashboard = ({openDeleteModal}) => {
                       <css.FilterLi onClick={() => togglePriority("high")}>
                         <css.SvgPriority
                           color={color.High}
-                          active={selectedPriorities.includes("high")}
+                         active={selectedPriorities.includes("high").toString()}
                         >
                           <use href={sprite + "#icon-Ellipse"}></use>
                         </css.SvgPriority>
@@ -330,6 +330,10 @@ const Dashboard = ({openDeleteModal}) => {
       )}
     </css.DivFull>
   );
+};
+
+Dashboard.propTypes = {
+  openDeleteModal: PropTypes.func
 };
 
 export default Dashboard;

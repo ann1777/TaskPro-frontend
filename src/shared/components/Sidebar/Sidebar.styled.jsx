@@ -16,13 +16,10 @@ export const StyledSidebar = styled.div`
   transform: translateX(-100%);
   transition: all 250ms;
   background: ${({ theme }) => theme.colors.backroundSidebar};
-  /* overflow-y: hidden;
-  overflow-x: hidden; */
 
-  ${(props) =>
-    props.isOpen
-      ? "transform: translateX(0);"
-      : "transform: translateX(-100%);"}
+   ${({ $isOpen }) => $isOpen && `
+    transform: translateX(0);
+  `}
 
   @media screen and (min-width: ${tablet}) {
     width: 260px;

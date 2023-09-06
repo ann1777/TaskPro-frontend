@@ -1,4 +1,4 @@
-export const getPriorityStyles = priority => {
+export const getPriorityStyles = (priority, theme) => {
     let color = '';
     let labelText = '';
    
@@ -17,7 +17,7 @@ export const getPriorityStyles = priority => {
         labelText = 'High';
         break;
     case 'without':
-      color = 'rgba(22, 22, 22, 0.3)';
+        color = theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(22, 22, 22, 0.3)';
       labelText = 'Without';
         break;
       default:

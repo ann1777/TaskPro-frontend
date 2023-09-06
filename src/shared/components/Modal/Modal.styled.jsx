@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import { breakpoints } from "../styles/breakpoints";
-// import theme from "../../components/styles/theme.styled";
-
-// const selectedTheme = theme[1];
 
 export const StyledOverlay = styled.div`
   position: fixed;
@@ -18,9 +15,7 @@ export const StyledOverlay = styled.div`
 `;
 
 export const StyledModal = styled.div`
-  /* position: relative; */
   border-radius: 8px;
-
   background-color: ${({ theme }) => theme.colors.backgroundColorModal};
   padding: 24px;
   position: fixed;
@@ -30,7 +25,7 @@ export const StyledModal = styled.div`
   width: 100%;
   border: ${({ theme }) => theme.colors.borderColorModal};
   z-index: 9999;
-
+  
   @media (max-width: 374px) {
     min-width: 50%;
   }
