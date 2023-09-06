@@ -1,4 +1,4 @@
-import {  useState, useEffect } from "react";
+import {  useState } from "react";
 import Card from "../Card/Card";
 import CardModal from "../Modal/CardModal/CardModal";
 import { Modal } from "../Modal/Modal";
@@ -7,10 +7,7 @@ import * as css from "./Columns.styled";
 import sprite from "../../images/icons.svg";
 import PropTypes from "prop-types";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { deleteColumnThunk } from "../../../redux/dashboards/operations";
-
 
 const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) => {
   const { dashboardId } = useParams();
@@ -18,11 +15,6 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
   const [isColumnModalOpen, setColumnModalOpen] = useState(false);
   const [currentColumnId, setCurrentColumnId] = useState(null);
   const [openFilterMenuForCardId, setOpenFilterMenuForCardId] = useState(null);
-  const dispatch = useDispatch();
-
-
-
-
   
   const handleModalOpen = (columnId) => {
     setCurrentColumnId(columnId);
@@ -41,9 +33,6 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
     setColumnModalOpen(false);
   };
 
-
-
-
   const cardsFiltered = cards ? cards.filter((item) => {
     if (selectedPriorities.length === 0) {
       return true;
@@ -53,12 +42,6 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
   }) : [];
   console.log("cardsFiltered:", cardsFiltered)
 
-
- 
-
-  const deleteColumn = (columnId) => {
-    dispatch(deleteColumnThunk({ columnId, dashboardId }));
-  };
   const columnId =  column._id 
 
   return (
@@ -144,9 +127,10 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
 
 Columns.propTypes = {
   selectedPriorities: PropTypes.array.isRequired,
-  cards: PropTypes.array.isRequired,
+  cards: PropTypes.array,
   column: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
+  openDeleteModal: PropTypes.func.isRequired,
 };
 
 export default Columns;

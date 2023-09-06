@@ -1,9 +1,7 @@
 import styled from "styled-components";
-// import { breakpoints } from "../../styles/breakpoints";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const WindowContaier = styled.div`
-  background-color: var(--profileBgColor);
   border-radius: 8px;
   display: flex;
   justify-content: center;

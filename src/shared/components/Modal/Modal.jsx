@@ -9,7 +9,7 @@ import {
   Svg,
 } from './Modal.styled';
 
-export const Modal = ({ onClose, children, title }) => {
+export const Modal = ({ onClose, children }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeydown);
@@ -40,7 +40,6 @@ export const Modal = ({ onClose, children, title }) => {
             <use xlinkHref={`${icon}#icon-x-close`} />
           </Svg>
         </StyledCloseButton>
-        {title && <h2>{title}</h2>}
         {children}
         
       </StyledModal>
@@ -49,7 +48,6 @@ export const Modal = ({ onClose, children, title }) => {
 };
 
 Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
 };

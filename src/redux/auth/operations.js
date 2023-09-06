@@ -102,5 +102,39 @@ export const currentUser = createAsyncThunk(
     }
   }
 );
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateProfile",
+  async ({ name, avatarFile }, thunkAPI) => {
+    const uploadToCloudinary = async (file) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'thb4n5sd');
+
+      const response = await fetch('https://api.cloudinary.com/v1_1/doc0gvy9u/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      return data.secure_url; 
+    };
+
+    try {
+      let avatarURL;
+      if (avatarFile) {
+        avatarURL = await uploadToCloudinary(avatarFile);
+      }
+
+      const { data } = await instance.put("api/auth/updatedata", {
+        name,
+        avatarURL
+      });
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export default instance;

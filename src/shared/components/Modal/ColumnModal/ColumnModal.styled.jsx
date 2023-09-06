@@ -18,7 +18,6 @@ export const StyledForm = styled.form`
 
 export const FormField = styled.div`
   margin-bottom: 24px;
-  ${"" /* color: ${dark.colors.textColorModal}; */}
 `;
 
 export const InputField = styled(Field)`
@@ -72,13 +71,12 @@ export const RadioField = styled(Field)`
 
   &:hover ~ .background-label,
   &:checked ~ .background-label {
-    outline: 1px solid var(--createBoardInputBorderFocus);
+
   }
 
   &:hover ~ .icon-label,
-  &:checked ~ .icon-label {
-    --color1: var(--createBoardButtonIconFill);
-  }
+  &:checked ~ .icon-label 
+  
 `;
 export const Row = styled.div`
   display: flex;

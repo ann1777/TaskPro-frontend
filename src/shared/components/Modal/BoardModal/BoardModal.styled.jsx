@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { Field } from "formik";
 import { Button } from "../../Button/Button";
-// import { breakpoints } from "../styles/breakpoints";
-
-// const { tablet, desktop } = breakpoints;
 
 export const TitleHelp = styled.div`
   color: ${({ theme }) => theme.colors.textColorModal};
@@ -32,7 +29,6 @@ export const InputField = styled(Field)`
   border: 1px solid ${({ theme }) => theme.colors.inputModal};
   outline: none;
   color: ${({ theme }) => theme.colors.textColorModal};
-  /* opacity: 0.5; */
   background: inherit;
   font-family: Poppins;
   transition: all 250ms linear;
@@ -74,22 +70,16 @@ export const RadioLabel = styled.label`
   position: relative;
   display: inline-block;
   cursor: pointer;
-  /* margin-right: 4px; */
 `;
 
 export const IconContainer = styled.div`
   position: relative;
   cursor: pointer;
-  /* outline: ${(props) => (props.isSelected ? "2px solid red" : "none")}; */
 
   svg {
     stroke: ${({ theme }) => theme.colors.iconBtnStroke};
     fill: ${({ theme }) => theme.colors.iconBtnFill};
-    opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-    /* stroke: ${(props) =>
-      props.isSelected
-        ? "rgba(255, 255, 255, 1)"
-        : "rgba(255, 255, 255, 0.5)"}; */
+     opacity: ${(props) => (props.$isSelected ? 1 : 0.5)};
   }
 `;
 
@@ -115,8 +105,8 @@ export const BackgroundIcon = styled.img`
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  border: ${({ isSelected, theme }) =>
-    isSelected ? `3px solid ${theme.colors.btnModalActive}` : "none"};
+ border: ${({ $isSelected, theme }) =>
+    $isSelected ? `3px solid ${theme.colors.btnModalActive}` : "none"};
   box-sizing: border-box;
 `;
 

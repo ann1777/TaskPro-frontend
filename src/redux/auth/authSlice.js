@@ -5,6 +5,7 @@ import {
   signOut,
   changeTheme,
   currentUser,
+  updateUserProfile,
 } from "./operations";
 
 const handlePending = (state) => {
@@ -82,7 +83,12 @@ const authSlice = createSlice({
       })
       .addCase(currentUser.rejected, (state) => {
         state.isRefreshing = false;
-      });
+      })
+    .addCase(updateUserProfile.fulfilled, (state, action) => {
+    state.user.name = action.payload.name;
+    state.user.avatarURL = action.payload.avatarURL;
+    state.isLoading = false;
+})
   },
 });
 
