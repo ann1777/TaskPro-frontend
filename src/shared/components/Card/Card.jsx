@@ -114,7 +114,6 @@ const Card = ({
                 )}
                 <css.SvgAll 
   onClick={() => {
-    console.log(card._id);
     openDeleteModal(dashboardId, column._id, card._id);
   }}
 >

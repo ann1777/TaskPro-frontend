@@ -40,7 +40,6 @@ const Columns = ({ selectedPriorities, cards, column, index, openDeleteModal}) =
       return selectedPriorities.includes(item.priority);
     }
   }) : [];
-  console.log("cardsFiltered:", cardsFiltered)
 
   const columnId =  column._id 
 
